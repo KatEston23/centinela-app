@@ -132,7 +132,7 @@ for (const sym of symbols) {
 // ---------- 5. Avisos al móvil (máx. 3; nunca importes del usuario) ----------
 async function notify(title, message, priority, tags) {
   if (!cfg.ntfyTopic) return false;
-  const headers = { Title: `=?UTF-8?B?${Buffer.from(title).toString("base64")}?=`, Priority: String(priority), Tags: tags, Click: cfg.pwaUrl, "Content-Type": "text/plain; charset=utf-8" };
+  const headers = { Title: `=?UTF-8?B?${Buffer.from(title).toString("base64")}?=`, Priority: String(priority), Tags: tags, Actions: `view, Abrir en el navegador, ${cfg.pwaUrl}`, "Content-Type": "text/plain; charset=utf-8" };
   try { const r = await fetch(`${cfg.ntfyServer || "https://ntfy.sh"}/${cfg.ntfyTopic}`, { method: "POST", headers, body: message }); return r.ok; } catch { return false; }
 }
 let sent = 0;
