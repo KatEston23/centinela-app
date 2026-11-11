@@ -153,7 +153,9 @@ function rankItems(items) {
 }
 
 // ---------- 6. Escáner técnico (solo en modo scan) ----------
-if (mode === "scan") {
+// El escáner diario también se hace si toca y nadie lo hizo (por si GitHub se salta la hora programada)
+const scanDue = (!s.status.scanAt || now - new Date(s.status.scanAt) > 20 * 3600e3) && now.getUTCHours() >= 7;
+if (mode === "scan" || scanDue) {
   const rows = await mapLimit(UNIVERSE.map((u) => u[0]), 6, analyze);
   const country = Object.fromEntries(UNIVERSE);
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -214,7 +216,12 @@ if (existsSync(notesFile)) {
         if (tier1.has(sym) || tier2.has(sym)) {
           const tier = tier1.has(sym) ? 1 : 2;
           if (tier === 2 && !["comprar", "vigilar"].includes(n.verdict)) { merged++; continue; }
-          if (!recent(sym, n.verdict) || conf >= 70) {
+          // Mismo veredicto en las últimas 20 h: se actualiza esa señal con las noticias nuevas en vez de duplicarla
+          const prevSig = s.signals.find((x) => x.symbol === sym && x.action === n.verdict && x.by === "ia" && now - new Date(x.at) < H20);
+          if (prevSig && conf < 70) {
+            const q = s.quotes[docId(sym)] || {};
+            Object.assign(prevSig, { at, confidence: conf, title: String(n.title || prevSig.title).slice(0, 60), reason: n.reason, risk: n.risk, sources: sources.length ? sources : prevSig.sources, price: q.price ?? prevSig.price, updates: (prevSig.updates || 0) + 1 });
+          } else if (!recent(sym, n.verdict) || conf >= 70) {
             const q = s.quotes[docId(sym)] || {};
             const sg = { id: `${at.replace(/\D/g, "").slice(0, 12)}-${docId(sym)}-ia`, at, symbol: sym, tier, action: n.verdict, confidence: conf, title: String(n.title || `${sym}: ${n.verdict}`).slice(0, 60), reason: n.reason, risk: n.risk, sources, price: q.price, currency: q.currency, by: "ia", notified: false };
             if (conf >= 70 && n.verdict !== "mantener" && aiSent < 3 && !notifiedRecently(sym)) {
