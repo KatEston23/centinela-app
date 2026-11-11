@@ -204,7 +204,7 @@ renderOpportunities = () => {
       node.before(el("div", { class: "opp-group g-" + g }, el("h3", { text: GROUPS[g][0] }), el("p", { class: "note", text: GROUPS[g][1] })));
       last = g;
     }
-    if (it.verdict && it.confidence != null) node.querySelector(".hd .pill")?.after(el("span", { class: "flat num", style: "font-size:12.5px", text: `${it.confidence} %` }));
+    if (it.verdict && it.confidence != null) node.querySelector(".hd .pill")?.after(el("span", { class: "flat num", style: "font-size:12.5px", text: `confianza ${it.confidence} %` }));
   });
   // Marca las que aún esperan al motor
   document.querySelectorAll("#watch-list .status-row").forEach((row) => {
