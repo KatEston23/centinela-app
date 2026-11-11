@@ -4,7 +4,10 @@
 // Trabaja sobre out/state.json (lo deja `node engine/state.mjs decrypt`); después se publica con
 // `node engine/state.mjs publish`. El análisis de noticias lo añade la capa 2 (Claude) cuando hay tokens.
 import { execFileSync, execSync } from "node:child_process";
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
+// notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
 import { holdingsFromLedger } from "./parser.mjs";
 import { readState, writeState } from "./state.mjs";
@@ -158,7 +161,63 @@ if (mode === "scan") {
   log.push(`Escáner: ${scored.length} valores, ${enriched.length} con análisis de IA vigente`);
 }
 
-// ---------- 7. Estado ----------
+// ---------- 7. Capa 2 (IA): integra ai/notes.json si es más nuevo que lo último integrado ----------
+// La rutina de Claude solo ve datos públicos de mercado y deja aquí su análisis de noticias.
+const notesFile = join(ROOT, "ai", "notes.json");
+if (existsSync(notesFile)) {
+  try {
+    const nn = JSON.parse(readFileSync(notesFile, "utf8"));
+    const nAt = nn.at && new Date(nn.at);
+    if (nAt && !isNaN(nAt) && (!s.status.aiMergedAt || nAt > new Date(s.status.aiMergedAt))) {
+      let merged = 0, aiSent = 0;
+      const VERDICTS = ["comprar", "reforzar", "mantener", "reducir", "vender", "vigilar"];
+      for (const [sym, n] of Object.entries(nn.notes || {})) {
+        if (!VERDICTS.includes(n.verdict)) continue;
+        const conf = Math.max(0, Math.min(100, Number(n.confidence) || 0));
+        const sources = (n.sources || []).filter((x) => /^https:\/\//.test(x?.u || "")).slice(0, 4).map((x) => ({ t: String(x.t || "Fuente").slice(0, 140), u: x.u }));
+        // Candidatas del escáner
+        const it = (s.scan?.items || []).find((i) => i.symbol === sym);
+        if (it) Object.assign(it, { verdict: n.verdict, confidence: conf, news: n.news, risk: n.risk, aiReason: n.reason, reason: n.reason || it.reason, aiAt: nn.at });
+        // Cartera y vigilancia: señal con noticias
+        if (tier1.has(sym) || tier2.has(sym)) {
+          const tier = tier1.has(sym) ? 1 : 2;
+          if (tier === 2 && !["comprar", "vigilar"].includes(n.verdict)) { merged++; continue; }
+          if (!recent(sym, n.verdict) || conf >= 70) {
+            const q = s.quotes[docId(sym)] || {};
+            const sg = { id: `${at.replace(/\D/g, "").slice(0, 12)}-${docId(sym)}-ia`, at, symbol: sym, tier, action: n.verdict, confidence: conf, title: String(n.title || `${sym}: ${n.verdict}`).slice(0, 60), reason: n.reason, risk: n.risk, sources, price: q.price, currency: q.currency, by: "ia", notified: false };
+            if (conf >= 70 && n.verdict !== "mantener" && aiSent < 3 && !notifiedRecently(sym)) {
+              sg.notified = await notify(`${sym.replace(/-EUR$/, "")}: ${n.verdict[0].toUpperCase() + n.verdict.slice(1)}`, String(n.reason || "").slice(0, 150), conf >= 80 ? 4 : 3, ["reducir", "vender"].includes(n.verdict) ? "chart_with_downwards_trend" : "chart_with_upwards_trend");
+              if (sg.notified) aiSent++;
+            }
+            s.signals.push(sg);
+          }
+        }
+        // Oportunidad fuerte: pasa a vigilancia
+        if (!tier1.has(sym) && n.verdict === "comprar" && conf >= 75 && !s.watch.some((w) => w.symbol === sym)) {
+          s.watch.push({ symbol: sym, name: it?.name || sym, addedAt: at, by: "IA" });
+          if (aiSent < 3 && await notify(`Oportunidad: ${sym}`, String(n.reason || "").slice(0, 150), 3, "mag")) aiSent++;
+        }
+        merged++;
+      }
+      s.status.aiAt = nn.at; s.status.aiMergedAt = nn.at;
+      if (s.scan) s.scan.enrichedAt = nn.at;
+      log.push(`IA: ${merged} análisis integrados, ${aiSent} aviso(s)`);
+    }
+  } catch (e) { log.push("IA: ai/notes.json no válido (" + e.message + ")"); }
+}
+
+// Petición para la capa 2: solo datos públicos de mercado, sin cantidades ni marcar qué es del usuario
+{
+  const pick = new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol)]);
+  const list = [...pick].sort().map((sym) => {
+    const q = s.quotes[docId(sym)] || (s.scan?.items || []).find((i) => i.symbol === sym) || {};
+    return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma200: q.sma200, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null };
+  });
+  mkdirSync(join(ROOT, "docs"), { recursive: true });
+  writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list }, null, 1));
+}
+
+// ---------- 8. Estado ----------
 s.status.portfolioAt = at;
 s.status.engine = "github";
 const aiFresh = s.status.aiAt && now - new Date(s.status.aiAt) < 30 * 3600e3;

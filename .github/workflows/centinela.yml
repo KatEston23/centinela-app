@@ -5,7 +5,10 @@ name: Centinela
 on:
   schedule:
     - cron: "5 3,11,15,19,23 * * *"   # cartera (horas UTC)
-    - cron: "30 7 * * *"             # cartera + escáner (08:30 en Madrid en invierno)
+    - cron: "30 7 * * *"             # cartera + escáner (07:30 UTC)
+  push:                                # la rutina de Claude (capa 2) deja su análisis aquí
+    branches: [main]
+    paths: ["ai/notes.json"]
   workflow_dispatch:
     inputs:
       mode:
