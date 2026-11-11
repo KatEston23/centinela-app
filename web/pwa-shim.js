@@ -91,6 +91,7 @@ renderPortfolio = () => {
     tds[7].querySelector("svg")?.setAttribute("preserveAspectRatio", "none");
     tr.prepend(el("td", { class: "c-av" }, avatar(sym)));
   });
+  if (typeof renderMarkets === "function" && S.loaded) renderMarkets();
 };
 const _signalNode = signalNode;
 signalNode = (s, compact) => {
@@ -144,6 +145,83 @@ renderFresh = () => {
   f.classList.toggle("stale", !live && (!at || Date.now() - new Date(at).getTime() > 3 * 3600e3));
   if (live) f.replaceChildren(el("b", { text: "En directo" }));
 };
+
+// ---- estado de los mercados (abierto, preapertura, cierre ampliado, cerrado) ----
+// Horarios oficiales en la hora local de cada bolsa; festivos completos y medias sesiones de NYSE/Nasdaq.
+const US_HOLIDAYS = new Set(["2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
+  "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18", "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24"]);
+const US_HALF = new Set(["2026-11-27", "2026-12-24", "2027-11-26"]);
+const MARKETS = {
+  us: { name: "Wall Street", flag: "🇺🇸", tz: "America/New_York", pre: 240, open: 570, close: 960, post: 1200, holidays: US_HOLIDAYS, half: US_HALF },
+  de: { name: "Fráncfort", flag: "🇩🇪", tz: "Europe/Berlin", open: 540, close: 1050 },
+  uk: { name: "Londres", flag: "🇬🇧", tz: "Europe/London", open: 480, close: 990 },
+  eu: { name: "Euronext", flag: "🇪🇺", tz: "Europe/Paris", open: 540, close: 1050 },
+  jp: { name: "Tokio", flag: "🇯🇵", tz: "Asia/Tokyo", open: 540, close: 930 },
+  crypto: { name: "Cripto", flag: "₿", always: true },
+};
+function localParts(tz, d = new Date()) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false }).formatToParts(d).map((x) => [x.type, x.value]));
+  return { date: `${p.year}-${p.month}-${p.day}`, mins: (Number(p.hour) % 24) * 60 + Number(p.minute), wd: p.weekday };
+}
+const dur = (m) => m >= 1440 ? `${Math.floor(m / 1440)} d ${Math.floor((m % 1440) / 60)} h` : m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m} min`;
+function marketStatus(key, now = new Date()) {
+  const M = MARKETS[key];
+  if (!M) return null;
+  if (M.always) return { key, ...M, state: "abierto", label: "Abierto 24/7", detail: "" };
+  const isTradingDay = (d) => { const lp = localParts(M.tz, d); return !["Sat", "Sun"].includes(lp.wd) && !(M.holidays && M.holidays.has(lp.date)); };
+  const lp = localParts(M.tz, now);
+  const close = M.half && M.half.has(lp.date) ? 780 : M.close;
+  const trading = isTradingDay(now);
+  // Minutos hasta la próxima apertura (busca el siguiente día hábil)
+  const nextOpen = () => {
+    if (trading && lp.mins < (M.pre ?? M.open)) return (M.pre ?? M.open) - lp.mins;
+    for (let k = 1; k <= 7; k++) { const d = new Date(now.getTime() + k * 864e5); if (isTradingDay(d)) return k * 1440 - lp.mins + (M.pre ?? M.open); }
+    return null;
+  };
+  if (trading && lp.mins >= M.open && lp.mins < close) return { key, ...M, state: "abierto", label: "Abierta", detail: `cierra en ${dur(close - lp.mins)}` };
+  if (trading && M.pre != null && lp.mins >= M.pre && lp.mins < M.open) return { key, ...M, state: "pre", label: "Preapertura", detail: `abre en ${dur(M.open - lp.mins)}` };
+  if (trading && M.post != null && lp.mins >= close && lp.mins < (M.half && M.half.has(lp.date) ? 1020 : M.post)) return { key, ...M, state: "post", label: "Cierre ampliado", detail: "after-hours" };
+  const n = nextOpen();
+  const why = !trading && M.holidays && M.holidays.has(lp.date) ? "festivo · " : ["Sat", "Sun"].includes(lp.wd) ? "fin de semana · " : "";
+  return { key, ...M, state: "cerrado", label: "Cerrada", detail: why + (n != null ? `${M.pre != null ? "preapertura" : "abre"} en ${dur(n)}` : "") };
+}
+// Bolsa de cada valor: por su mercado de cotización (los ADR cotizan en EE. UU.)
+function marketOf(q) {
+  if (!q) return null;
+  if (q.kind === "crypto") return "crypto";
+  const ex = String(q.exchange || "").toLowerCase();
+  if (/nasdaq|nyse|nms|nyq|nca|nasdaqgs|nasdaqgm|arca|bats|cboe/.test(ex) || q.currency === "USD") return "us";
+  if (/xetra|frankfurt|ger/.test(ex)) return "de";
+  if (/london|lse/.test(ex)) return "uk";
+  if (/paris|amsterdam|euronext|madrid|milan/.test(ex)) return "eu";
+  if (/tokyo|jpx/.test(ex)) return "jp";
+  return null;
+}
+function marketBar() {
+  const used = new Set(["us", "crypto", ...Object.values(S.quotes || {}).map(marketOf).filter(Boolean)]);
+  return el("div", { class: "mkt-bar" }, [...used].map((k) => {
+    const st = marketStatus(k);
+    return el("div", { class: "mkt m-" + st.state }, el("span", { class: "dot" }), el("b", { text: `${st.flag} ${st.name}` }), el("span", { text: st.label }), st.detail ? el("small", { text: st.detail }) : "");
+  }));
+}
+function renderMarkets() {
+  for (const [host, id] of [["#v-cartera", "mkt-home"], ["#v-oportunidades", "mkt-ideas"]]) {
+    const view = $(host); if (!view) continue;
+    const old = document.getElementById(id);
+    const bar = marketBar(); bar.id = id;
+    if (old) old.replaceWith(bar); else view.prepend(bar);
+  }
+  // Etiqueta en cada posición
+  document.querySelectorAll("table.pos tbody tr").forEach((tr) => {
+    const sym = tr.querySelector(".tk")?.textContent; if (!sym) return;
+    const h = allHoldings().find((x) => x.symbol === sym);
+    const st = marketStatus(marketOf(h?.q));
+    if (!st) return;
+    tr.querySelector(".mk-tag")?.remove();
+    tr.querySelector(".c-name")?.append(el("span", { class: "mk-tag m-" + st.state, text: st.state === "abierto" ? (st.always ? "24/7" : "mercado abierto") : st.label.toLowerCase() }));
+  });
+}
+setInterval(() => { if (document.visibilityState === "visible" && S.loaded) renderMarkets(); }, 30000);
 
 // ---- vigilancia desde el móvil ----
 // La orden viaja cifrada con su clave (AES-GCM) por un canal ntfy privado; el motor de GitHub
