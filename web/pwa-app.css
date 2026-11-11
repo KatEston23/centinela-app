@@ -133,6 +133,14 @@ table.pos td.c-hide{display:none}
 .opp .score{min-width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);color:var(--accent)}
 .opp .body{font-size:14px;margin-top:4px}
 .opp .side button{border-radius:999px;padding:8px 14px}
+.opp-group{margin:18px 0 2px;padding:12px 14px;border-radius:14px;background:var(--sunk)}
+.opp-group:first-child{margin-top:0}
+.opp-group h3{margin:0;font:700 16px var(--f-display)}
+.opp-group .note{margin:2px 0 0}
+.opp-group.g-comprar{background:var(--gain-soft)} .opp-group.g-comprar h3{color:var(--gain)}
+.opp-group.g-vigilar{background:var(--accent-soft)} .opp-group.g-vigilar h3{color:var(--accent)}
+.opp-group.g-evitar{background:var(--loss-soft)} .opp-group.g-evitar h3{color:var(--loss)}
+.opp-group + .opp{border-top:0}
 .pill{padding:4px 10px}
 
 /* ---- formularios ---- */

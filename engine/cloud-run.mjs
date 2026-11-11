@@ -145,6 +145,13 @@ for (const sg of newSignals) {
 }
 s.signals.push(...newSignals.map((x) => ({ id: `${at.replace(/\D/g, "").slice(0, 12)}-${docId(x.symbol)}`, ...x })));
 
+// Orden de las ideas: primero «comprar», luego «vigilar», luego «evitar»; dentro, por confianza y puntuación
+const ENTRY_RANK = { comprar: 0, vigilar: 1, evitar: 2 };
+function rankItems(items) {
+  return [...(items || [])].sort((a, b) =>
+    (ENTRY_RANK[a.verdict] ?? 3) - (ENTRY_RANK[b.verdict] ?? 3) || (b.confidence ?? 0) - (a.confidence ?? 0) || (b.score ?? 0) - (a.score ?? 0));
+}
+
 // ---------- 6. Escáner técnico (solo en modo scan) ----------
 if (mode === "scan") {
   const rows = await mapLimit(UNIVERSE.map((u) => u[0]), 6, analyze);
@@ -174,9 +181,9 @@ if (mode === "scan") {
   const prev = new Map((s.scan?.items || []).filter((i) => i.verdict && aiTime(i) && now - new Date(aiTime(i)) < 36 * 3600e3).map((i) => [i.symbol, { ...i, aiAt: aiTime(i) }]));
   const items = scored.slice(0, 25).map((it) => {
     const p = prev.get(it.symbol);
-    return p ? { ...it, verdict: p.verdict, confidence: p.confidence, news: p.news, risk: p.risk, aiReason: p.aiReason || p.reason, reason: p.aiReason || p.reason, aiAt: p.aiAt, score: p.aiScore ?? it.score } : it;
+    return p ? { ...it, verdict: p.verdict, confidence: p.confidence, news: p.news, risk: p.risk, watchFor: p.watchFor, aiReason: p.aiReason || p.reason, reason: p.aiReason || p.reason, aiAt: p.aiAt, score: p.aiScore ?? it.score } : it;
   });
-  const enriched = items.filter((i) => i.verdict).sort((a, b) => b.score - a.score);
+  const enriched = rankItems(items.filter((i) => i.verdict));
   s.scan = { at, analyzed: scored.length, enrichedAt: s.scan?.enrichedAt, items: [...enriched, ...items.filter((i) => !i.verdict)].slice(0, 15) };
   s.status.scanAt = at;
   log.push(`Escáner: ${scored.length} valores, ${enriched.length} con análisis de IA vigente`);
@@ -197,8 +204,12 @@ if (existsSync(notesFile)) {
         const conf = Math.max(0, Math.min(100, Number(n.confidence) || 0));
         const sources = (n.sources || []).filter((x) => /^https:\/\//.test(x?.u || "")).slice(0, 4).map((x) => ({ t: String(x.t || "Fuente").slice(0, 140), u: x.u }));
         // Candidatas del escáner
+        // Para quien NO la tiene: comprar | vigilar | evitar (si la IA no lo da, se deduce del veredicto)
+        const ENTRY = { comprar: "comprar", reforzar: "comprar", vigilar: "vigilar", mantener: "vigilar", reducir: "evitar", vender: "evitar" };
+        const entry = ["comprar", "vigilar", "evitar"].includes(n.entry) ? n.entry : ENTRY[n.verdict];
+        const entryConf = Math.max(0, Math.min(100, Number(n.entryConfidence ?? n.confidence) || 0));
         const it = (s.scan?.items || []).find((i) => i.symbol === sym);
-        if (it) Object.assign(it, { verdict: n.verdict, confidence: conf, news: n.news, risk: n.risk, aiReason: n.reason, reason: n.reason || it.reason, aiAt: nn.at });
+        if (it) Object.assign(it, { verdict: entry, confidence: entryConf, news: n.news, risk: n.risk, watchFor: n.watchFor, aiReason: n.reason, reason: n.reason || it.reason, aiAt: nn.at });
         // Cartera y vigilancia: señal con noticias
         if (tier1.has(sym) || tier2.has(sym)) {
           const tier = tier1.has(sym) ? 1 : 2;
@@ -214,14 +225,14 @@ if (existsSync(notesFile)) {
           }
         }
         // Oportunidad fuerte: pasa a vigilancia
-        if (!tier1.has(sym) && n.verdict === "comprar" && conf >= 75 && !s.watch.some((w) => w.symbol === sym)) {
+        if (!tier1.has(sym) && entry === "comprar" && entryConf >= 75 && !s.watch.some((w) => w.symbol === sym)) {
           s.watch.push({ symbol: sym, name: it?.name || sym, addedAt: at, by: "IA" });
           if (aiSent < 3 && await notify(`Oportunidad: ${sym}`, String(n.reason || "").slice(0, 150), 3, "mag")) aiSent++;
         }
         merged++;
       }
       s.status.aiAt = nn.at; s.status.aiMergedAt = nn.at;
-      if (s.scan) s.scan.enrichedAt = nn.at;
+      if (s.scan) { s.scan.enrichedAt = nn.at; s.scan.items = rankItems(s.scan.items); }
       log.push(`IA: ${merged} análisis integrados, ${aiSent} aviso(s)`);
     }
   } catch (e) { log.push("IA: ai/notes.json no válido (" + e.message + ")"); }

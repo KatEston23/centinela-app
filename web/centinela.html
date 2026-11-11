@@ -565,7 +565,7 @@ function lineChart(box, data, { height = 220 } = {}) {
 }
 
 // ---------- señales ----------
-const ACTIONS = { comprar: ["Comprar", "p-buy"], reforzar: ["Reforzar", "p-buy"], mantener: ["Mantener", "p-hold"], reducir: ["Reducir", "p-sell"], vender: ["Vender", "p-sell"], vigilar: ["Vigilar", "p-watch"] };
+const ACTIONS = { comprar: ["Comprar", "p-buy"], reforzar: ["Reforzar", "p-buy"], mantener: ["Mantener", "p-hold"], reducir: ["Reducir", "p-sell"], vender: ["Vender", "p-sell"], vigilar: ["Vigilar", "p-watch"], evitar: ["Evitar", "p-sell"] };
 function actionPill(a) { const [t, c] = ACTIONS[a] || [a || "—", "p-hold"]; return el("span", { class: "pill " + c, text: t }); }
 const TIERS = { 1: "Mi cartera", 2: "En vigilancia", 3: "Mercado" };
 function signalNode(s, compact = false) {
@@ -616,7 +616,8 @@ function renderOpportunities() {
         el("div", { class: "hd" }, el("span", { class: "score num", text: it.score ?? "—" }), el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" }), it.country ? el("span", { class: "cty", text: it.country }) : null, it.verdict ? actionPill(it.verdict) : null),
         el("div", { class: "body", text: it.reason || (it.reasons || []).join("; ") }),
         it.news ? el("div", { class: "body flat", text: "Noticias: " + it.news }) : null,
-        it.risk ? el("div", { class: "body flat", text: "Riesgo: " + it.risk }) : null),
+        it.risk ? el("div", { class: "body flat", text: "Riesgo: " + it.risk }) : null,
+        it.watchFor ? el("div", { class: "body", text: "Para entrar: " + it.watchFor }) : null),
       el("div", { class: "side" },
         it.spark ? spark(it.spark, 120, 34) : null,
         el("span", { class: "num " + cls(it.change1d), text: `${fmtMoney(it.price, it.currency || "USD")} ${fmtPct(it.change1d)}` }),

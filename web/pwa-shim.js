@@ -186,8 +186,26 @@ async function queueCmd(op, symbol, name) {
 watch = (it) => queueCmd("watch", it.symbol, it.name);
 unwatch = (w) => queueCmd("unwatch", w.symbol, w.name);
 const _renderOpp2 = renderOpportunities;
+const GROUPS = {
+  comprar: ["Para invertir ahora", "Buen punto de entrada: el técnico, las noticias y la valoración acompañan."],
+  vigilar: ["Para vigilar", "Interesantes, pero conviene esperar a un mejor precio o a una confirmación."],
+  evitar: ["Descartadas por ahora", "No resultan atractivas en este momento."],
+  none: ["Sin analizar todavía", "Solo puntuación técnica; la IA las revisará en su próximo análisis."],
+};
 renderOpportunities = () => {
   _renderOpp2();
+  // Agrupa las candidatas del escáner según convenga invertir, vigilar o descartar
+  const items = S.scan?.items || [];
+  let last = null;
+  document.querySelectorAll("#scan-list .opp").forEach((node, i) => {
+    const it = items[i]; if (!it) return;
+    const g = GROUPS[it.verdict] ? it.verdict : "none";
+    if (g !== last) {
+      node.before(el("div", { class: "opp-group g-" + g }, el("h3", { text: GROUPS[g][0] }), el("p", { class: "note", text: GROUPS[g][1] })));
+      last = g;
+    }
+    if (it.verdict && it.confidence != null) node.querySelector(".hd .pill")?.after(el("span", { class: "flat num", style: "font-size:12.5px", text: `${it.confidence} %` }));
+  });
   // Marca las que aún esperan al motor
   document.querySelectorAll("#watch-list .status-row").forEach((row) => {
     const sym = row.querySelector("b")?.textContent.trim();

@@ -11,8 +11,11 @@ Formato de `ai/notes.json`:
   "at": "2026-11-12T08:10:00Z",
   "notes": {
     "NVDA": {
-      "verdict": "comprar | reforzar | mantener | reducir | vender | vigilar",
+      "verdict": "comprar | reforzar | mantener | reducir | vender | vigilar  (para quien ya lo tiene)",
       "confidence": 0,
+      "entry": "comprar | vigilar | evitar  (para quien se plantea invertir)",
+      "entryConfidence": 0,
+      "watchFor": "qué tendría que pasar para comprar",
       "title": "máx. 60 caracteres",
       "reason": "2-3 frases con datos concretos",
       "news": "1-2 frases",
