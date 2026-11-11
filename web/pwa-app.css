@@ -36,6 +36,10 @@ header.top .wrap{padding-left:max(12px,env(safe-area-inset-left,0px));padding-ri
 .fresh{display:flex;align-items:center;gap:6px;background:var(--sunk);border-radius:999px;padding:7px 12px;font-size:12.5px;white-space:nowrap}
 .fresh::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gain);box-shadow:0 0 0 3px var(--gain-soft)}
 .fresh.stale::before{background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.fresh.live{color:var(--gain)}
+.fresh.live b{color:var(--gain)}
+.fresh.live::before{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px var(--gain-soft)}50%{box-shadow:0 0 0 6px transparent}}
 
 /* ---- barra inferior ---- */
 nav.tabs{position:fixed;z-index:30;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 10px);

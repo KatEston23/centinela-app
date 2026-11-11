@@ -99,8 +99,50 @@ signalNode = (s, compact) => {
   if (t && src) { t.classList.add("has-logo"); t.replaceChildren(el("img", { src, alt: s.symbol })); }
   return n;
 };
+// ---- precios en directo mientras la app está abierta ----
+// Cripto: Binance (público, sin clave). Acciones: Finnhub, con la clave gratuita que el usuario
+// guarda solo en este móvil. Los proveedores ven qué valores se consultan, nunca cuántos tiene.
+const FH_LS = "centinela.finnhub";
+let liveAt = 0, liveTimer = null;
+async function liveTick() {
+  if (document.visibilityState !== "visible" || !S.loaded) return;
+  const fh = lsGet(FH_LS);
+  let changed = 0;
+  await Promise.all(allHoldings().map(async (h) => {
+    const q = h.q; if (!q) return;
+    try {
+      if (q.kind === "crypto") {
+        const r = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${encodeURIComponent(h.quote.replace(/-/g, ""))}`);
+        if (!r.ok) return;
+        const j = await r.json(), p = Number(j.lastPrice);
+        if (!p) return;
+        q.price = p; q.priceEur = q.currency === "EUR" ? p : p * (q.eurPer || 1); q.change1d = Number(j.priceChangePercent) / 100; changed++;
+      } else if (fh) {
+        const r = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(h.quote)}&token=${encodeURIComponent(fh)}`);
+        if (!r.ok) return;
+        const j = await r.json();
+        if (!j.c) return;
+        q.price = j.c; q.priceEur = Math.round(j.c * (q.eurPer || 1) * 100) / 100; q.change1d = (j.dp ?? 0) / 100;
+        q.liveClosed = j.t && Date.now() / 1000 - j.t > 20 * 60; changed++;
+      }
+    } catch { /* sin conexión: se mantiene el último precio */ }
+  }));
+  if (changed) { liveAt = Date.now(); renderPortfolio(); renderFresh(); }
+}
+function startLive() {
+  if (liveTimer) return;
+  liveTick();
+  liveTimer = setInterval(liveTick, 15000);
+}
 const _renderFresh = renderFresh;
-renderFresh = () => { _renderFresh(); const at = S.status?.portfolioAt; $("#fresh").classList.toggle("stale", !at || Date.now() - new Date(at).getTime() > 6 * 3600e3); };
+renderFresh = () => {
+  _renderFresh();
+  const f = $("#fresh"), at = S.status?.portfolioAt;
+  const live = Date.now() - liveAt < 60000;
+  f.classList.toggle("live", live);
+  f.classList.toggle("stale", !live && (!at || Date.now() - new Date(at).getTime() > 3 * 3600e3));
+  if (live) f.replaceChildren(el("b", { text: "En directo" }));
+};
 
 const readOnly = () => Promise.reject({ message: "en la app del móvil solo se consulta; cámbielo en la dashboard de Claude" });
 const stubDb = { doc: () => ({ set: readOnly, update: readOnly, delete: readOnly }) };
@@ -151,7 +193,7 @@ async function pwaLoad(k) {
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {};
     db = stubDb; S.loaded = true;
-    renderAll(); appPanel();
+    renderAll(); appPanel(); startLive();
     if (!$("#v-cartera").hidden) requestAnimationFrame(drawEvolution);
     return true;
   } catch (e) {
@@ -170,13 +212,26 @@ function appPanel() {
   }
   p.replaceChildren(
     el("h2", { text: "App del móvil" }),
-    el("p", { class: "note" }, "Para añadir movimientos, suba el ", el("b", { text: "Extracto de cuenta (CSV)" }), " de Revolut a Drive › Inversiones › 01 Extractos Revolut › Invest (Account statement). El vigilante lo importa solo en la siguiente revisión."),
-    el("p", { class: "note", text: "Las posiciones a mano y la lista de vigilancia se cambian en la dashboard de Claude." }),
+    el("p", { class: "note", text: "Bitcoin y las criptos de Revolut X se actualizan solas. Si compra o vende acciones en Revolut Invest, suba el Extracto de cuenta (CSV) a Drive › Inversiones › 01 Extractos Revolut › Invest y pídale a Claude que lo importe." }),
+    el("p", { class: "note", text: "El motor revisa su cartera cada hora y el mercado cada mañana, sin necesidad de su PC. El análisis de noticias con IA se añade cada día a las 08:00." }),
     el("div", { style: "display:flex;gap:8px;flex-wrap:wrap" },
-      pwaDash ? el("a", { class: "btn small", href: pwaDash, target: "_blank", rel: "noopener", text: "Abrir la dashboard de Claude" }) : "",
       el("button", { class: "btn small", type: "button", text: "Actualizar ahora", onclick: () => refresh(true) }),
       el("button", { class: "btn small", type: "button", text: "Olvidar la clave", onclick: () => { lsSet(KEY_LS, null); location.reload(); } })),
     el("p", { class: "note", text: pwaLastAt ? "Datos publicados " + ago(pwaLastAt) + "." : "" }));
+  // Clave de Finnhub para precios de acciones en directo (solo se guarda en este móvil)
+  const has = !!lsGet(FH_LS);
+  const inp = el("input", { id: "fh-key", placeholder: has ? "Clave guardada · escriba otra para cambiarla" : "Pegue aquí su clave de Finnhub", autocomplete: "off", spellcheck: "false" });
+  let lp = $("#live-panel");
+  if (!lp) { lp = el("div", { class: "panel", id: "live-panel" }); p.after(lp); }
+  lp.replaceChildren(
+    el("h2", { text: "Precios en directo" }),
+    el("p", { class: "note", text: "Con la app abierta, los precios de su cartera se actualizan cada 15 segundos. Bitcoin y otras criptos ya funcionan. Para las acciones hace falta una clave gratuita de Finnhub." }),
+    el("p", { class: "note" }, "1. Regístrese gratis en ", el("a", { href: "https://finnhub.io/register", target: "_blank", rel: "noopener", text: "finnhub.io" }), ". 2. Copie su «API key» del panel. 3. Péguela aquí:"),
+    el("div", { class: "form" },
+      el("label", { class: "field" }, "Clave de Finnhub", inp),
+      el("button", { class: "btn primary", type: "button", text: "Guardar", onclick: () => { const v = inp.value.trim(); if (!/^[A-Za-z0-9]{10,}$/.test(v)) { toast("Esa clave no parece válida", true); return; } lsSet(FH_LS, v); inp.value = ""; toast("Clave guardada en este móvil"); appPanel(); liveTick(); } }),
+      has ? el("button", { class: "btn", type: "button", text: "Quitar", onclick: () => { lsSet(FH_LS, null); appPanel(); } }) : ""),
+    el("p", { class: "note", text: has ? "Acciones en directo: activas." : "Acciones en directo: pendientes de la clave." }));
 }
 
 async function refresh(manual = false) {
