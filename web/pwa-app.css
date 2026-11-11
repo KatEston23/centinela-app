@@ -197,3 +197,6 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .ap-skip{margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--sunk);font-size:13.5px}
 .ap-skip h3{margin:0 0 6px;font:700 15px var(--f-display)}
 .ap-skip p{margin:4px 0;line-height:1.45}
+.ap-alt{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--accent-soft)}
+.ap-alt h3{margin:0 0 4px;font:700 15px var(--f-display);color:var(--accent)}
+.ap-alt .ap-line{border-top-color:color-mix(in srgb, var(--accent) 25%, transparent)}

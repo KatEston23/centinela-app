@@ -313,12 +313,24 @@ function planCandidates() {
       value: h.value || 0, share: total ? (h.value || 0) / total : 0, verdict: s ? VERD[s.action] || "mantener" : "mantener", action: s?.action || "mantener",
       conf: s?.confidence ?? 50, phase: q.phase, phaseLabel: q.phaseLabel, rsi: q.rsi14, why: s?.reason || "", sigAt: s?.at });
   }
-  // Ideas nuevas: las mejores del escáner que la IA da por buenas y que no tiene ya
+  // Activos de su cartera que hoy no merecen más dinero
+  const weak = out.filter(isWeak);
+  // Ideas nuevas: las mejores del escáner que la IA da por buenas y que no tiene ya.
+  // Si algo de su cartera flojea, se buscan más (y con algo menos de exigencia) para sustituirlo.
   const held = new Set(H.map((h) => h.quote));
-  (S.scan?.items || []).filter((it) => it.verdict === "comprar" && !held.has(it.symbol) && (it.confidence ?? 0) >= 60).slice(0, 2).forEach((it) =>
+  const minConf = weak.length ? 50 : 60, nIdeas = Math.min(3, 2 + weak.length);
+  (S.scan?.items || []).filter((it) => it.verdict === "comprar" && !held.has(it.symbol) && (it.confidence ?? 0) >= minConf).slice(0, nIdeas).forEach((it) =>
     out.push({ sym: it.symbol, quote: it.symbol, name: it.name || it.symbol, held: false, kind: it.kind || "stock", value: 0, share: 0, verdict: "comprar", action: "comprar",
       conf: it.confidence, phase: it.phase, phaseLabel: it.phaseLabel, rsi: it.rsi14, why: it.reason || "", country: it.country }));
-  return { list: out, total };
+  return { list: out, total, weak };
+}
+const BAD_PH = new Set(["bajista", "debil", "distribucion"]), GOOD_PH = new Set(["alcista", "correccion", "acumulacion"]);
+function isWeak(c) { return c.held && (c.verdict === "evitar" || BAD_PH.has(c.phase) || planScore(c) < 0.2); }
+function weakWhy(c) {
+  if (c.verdict === "evitar") return "las noticias aconsejan no aumentar";
+  if (BAD_PH.has(c.phase)) return "está en fase «" + (c.phaseLabel || c.phase) + "»";
+  if (c.rsi > 70) return "ha subido demasiado deprisa";
+  return c.verdict === "vigilar" ? "la IA aconseja esperar" : "hoy su momento es flojo";
 }
 
 function planScore(c) {
@@ -332,7 +344,7 @@ function planScore(c) {
 // Reparte respetando topes; lo que no cabe en ningún sitio queda en reserva
 function capFill(items, amount) {
   let left = amount;
-  const cap = (c) => Math.min(c.held ? (items.length === 1 ? 1 : ONE_CAP) : NEW_CAP, 1) * amount;
+  const cap = (c) => Math.min(c.held || c.instead ? (items.length === 1 ? 1 : ONE_CAP) : NEW_CAP, 1) * amount;
   items.forEach((c) => (c.eur = 0));
   for (let round = 0; round < 8 && left > 0.01; round++) {
     const open = items.filter((c) => c.eur < cap(c) - 0.01 && !(c.kind === "crypto" && items.filter((x) => x.kind === "crypto").reduce((a, x) => a + x.eur, 0) >= CRYPTO_CAP * amount - 0.01));
@@ -350,8 +362,11 @@ function capFill(items, amount) {
 }
 
 function buildPlan(amount) {
-  const { list, total } = planCandidates();
+  const { list, total, weak } = planCandidates();
   list.forEach((c) => { c.score = planScore(c); });
+  // Si hay una alternativa con señal de compra, el dinero de lo que flojea va a ella
+  const alts = list.filter((c) => !c.held);
+  if (alts.length) weak.forEach((w, i) => { w.replacedBy = alts[Math.min(i, alts.length - 1)].sym; w.score = 0; alts[Math.min(i, alts.length - 1)].instead = (alts[Math.min(i, alts.length - 1)].instead || []).concat(w.sym); });
   const best = Math.max(0, ...list.map((c) => c.score));
   // Si nada convence, parte se queda esperando una mejor ocasión
   let reserve = best >= 0.4 ? 0 : amount * Math.min(0.6, (0.4 - best) / 0.4 * 0.6);
@@ -377,7 +392,11 @@ function buildPlan(amount) {
   const diff = amount - reserve - pool.reduce((a, c) => a + c.eur, 0);
   if (pool.length && Math.abs(diff) >= step / 2) pool[0].eur += diff;
   pool = pool.filter((c) => c.eur > 0).sort((a, b) => b.eur - a.eur);
-  return { amount, total, pool, reserve, skipped: out().filter((c) => c.held || c.tooSmall) };
+  // Sin alternativa comprable: las mejores candidatas a vigilar, para que sepa qué viene
+  const held = new Set(list.filter((c) => c.held).map((c) => c.quote));
+  const watchAlts = weak.length && !alts.length ? (S.scan?.items || []).filter((it) => it.verdict === "vigilar" && !held.has(it.symbol) && GOOD_PH.has(it.phase))
+    .sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0) || (b.score ?? 0) - (a.score ?? 0)).slice(0, 2) : [];
+  return { amount, total, pool, reserve, weak, watchAlts, skipped: out().filter((c) => c.held || c.tooSmall) };
 }
 
 function planWhy(c, plan) {
@@ -389,6 +408,7 @@ function planWhy(c, plan) {
   return bits.join("; ");
 }
 function skipWhy(c) {
+  if (c.replacedBy) return `${weakWhy(c)}, así que este mes su parte va a ${c.replacedBy}, que sí está en punto de compra`;
   if (c.tooSmall) return "le tocaría tan poco que no compensa una operación aparte; lo sumo a las demás";
   if (c.verdict === "evitar") return "las noticias y el análisis aconsejan no aumentar ahora" + (c.why ? ": " + shortTxt(c.why, 160) : "");
   if (c.phase === "bajista") return "está en tendencia bajista: mejor no meter más hasta que gire";
@@ -417,7 +437,7 @@ function renderPlan() {
     box.append(el("div", { class: "ap-line" },
       avatar(c.quote),
       el("div", { class: "ap-main" },
-        el("div", { class: "ap-hd" }, el("b", { text: c.sym }), el("span", { class: "flat", text: c.name }), c.held ? null : el("span", { class: "pill p-buy", text: "Nueva" })),
+        el("div", { class: "ap-hd" }, el("b", { text: c.sym }), el("span", { class: "flat", text: c.name }), c.held ? null : el("span", { class: "pill p-buy", text: c.instead ? "En lugar de " + c.instead.join(" y ") : "Nueva" })),
         el("div", { class: "ap-tags" }, actionPill(c.action), c.phaseLabel ? el("span", { class: "flat", text: c.phaseLabel }) : null, el("span", { class: "flat", text: `confianza ${c.conf ?? "—"} %` })),
         c.why ? el("div", { class: "body", text: shortTxt(c.why) }) : null,
         why ? el("div", { class: "body flat", text: "Reparto: " + why + "." }) : null,
@@ -431,6 +451,22 @@ function renderPlan() {
     el("div", { class: "ap-amt" }, el("b", { class: "num", text: fmt(P.reserve) }), el("span", { class: "num flat", text: fmtPct(P.reserve / amount, false) }))));
   if (P.skipped.length) box.append(el("div", { class: "ap-skip" }, el("h3", { text: "Esta vez no" }),
     ...P.skipped.map((c) => el("p", {}, el("b", { text: c.sym + ": " }), skipWhy(c) + "."))));
+  if (P.watchAlts.length) {
+    const flojos = P.weak.map((c) => `${c.sym} (${weakWhy(c)})`).join(" y ");
+    box.append(el("div", { class: "ap-alt" }, el("h3", { text: "Alternativas a " + P.weak.map((c) => c.sym).join(" y ") }),
+      el("p", { class: "note", text: `${flojos} no está en su mejor momento. Hoy ninguna empresa del escáner tiene señal clara de compra, así que no le meto dinero aún, pero estas son las que mejor pinta tienen para sustituirlo:` }),
+      ...P.watchAlts.map((it) => {
+        const watched = S.watch.some((w) => w.symbol === it.symbol);
+        return el("div", { class: "ap-line" }, avatar(it.symbol),
+          el("div", { class: "ap-main" },
+            el("div", { class: "ap-hd" }, el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" })),
+            el("div", { class: "ap-tags" }, actionPill("vigilar"), it.phaseLabel ? el("span", { class: "flat", text: it.phaseLabel }) : null, el("span", { class: "flat", text: `confianza ${it.confidence ?? "—"} %` })),
+            el("div", { class: "body", text: shortTxt(it.reason || "") }),
+            it.watchFor ? el("div", { class: "body", text: "Para entrar: " + it.watchFor }) : null),
+          el("div", { class: "ap-amt" }, el("button", { class: "btn small" + (watched ? "" : " primary"), type: "button", text: watched ? "Vigilando" : "Vigilar", onclick: () => watched ? unwatch({ symbol: it.symbol }) : watch(it) })));
+      }),
+      el("p", { class: "note", text: "Si las pone en vigilancia, le aviso en cuanto entren en punto de compra y pasarán a este reparto." })));
+  }
   const sigAt = P.pool.concat(P.skipped).map((c) => c.sigAt).filter(Boolean).sort().at(-1);
   box.append(el("p", { class: "note", text: `Calculado con las señales de ${sigAt ? ago(sigAt) : "—"} y el escáner de ${S.scan?.at ? ago(S.scan.at) : "—"}. Si un activo no aparece, es que hoy no está en buen momento. Es una propuesta orientativa, no asesoramiento financiero: las compras las hace usted en Revolut, y pocas operaciones grandes cuestan menos en comisiones que muchas pequeñas.` }));
 }
