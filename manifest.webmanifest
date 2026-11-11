@@ -1,0 +1,16 @@
+{
+  "name": "Centinela de Cartera",
+  "short_name": "Centinela",
+  "description": "Su cartera de Revolut, señales y proyecciones.",
+  "lang": "es",
+  "start_url": "./#cartera",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0D1317",
+  "theme_color": "#141C21",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
