@@ -12,7 +12,7 @@ const server = cfg.ntfyServer || "https://ntfy.sh";
 // El título va en RFC 2047 (base64) para que tildes y símbolos lleguen bien
 const headers = { Title: `=?UTF-8?B?${Buffer.from(title).toString("base64")}?=`, Priority: String(priority), "Content-Type": "text/plain; charset=utf-8" };
 if (tags) headers.Tags = tags;
-if (cfg.dashboardUrl) headers.Click = cfg.dashboardUrl;
+headers.Click = cfg.pwaUrl; // al tocar el aviso se abre la app del móvil
 
 const r = await fetch(`${server}/${cfg.ntfyTopic}`, { method: "POST", headers, body: message });
 console.log(r.ok ? "enviada" : `error ${r.status}: ${await r.text()}`);
