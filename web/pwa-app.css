@@ -176,3 +176,24 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 #proj-kpis .kpi .v{font-size:18px}
 #proj-kpis .kpi.big .v{font-size:32px}
 .dis{padding:6px 8px 0}
+/* aportación del mes */
+.quick a.wide{grid-column:1/-1;background:color-mix(in srgb, var(--gain) 16%, var(--surface));border-color:color-mix(in srgb, var(--gain) 35%, transparent)}
+#aporte{background:linear-gradient(160deg, color-mix(in srgb, var(--surface) 90%, var(--gain)), var(--surface))}
+.ap-form{display:grid;gap:10px}
+.ap-quick{display:flex;gap:8px;flex-wrap:wrap}
+.ap-bar{margin-top:16px}
+.ap-line{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:14px 0;border-top:1px solid var(--line)}
+.ap-line:first-of-type{border-top:0}
+.ap-main{display:grid;gap:5px;min-width:0}
+.ap-hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ap-hd b{font-size:16px}
+.ap-tags{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.ap-main .body{font-size:13.5px;line-height:1.45}
+.ap-where{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.ap-amt{display:grid;justify-items:end;gap:2px}
+.ap-amt b{font-size:19px}
+.ap-amt span{font-size:12.5px}
+.ap-res .body{color:var(--muted)}
+.ap-skip{margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--sunk);font-size:13.5px}
+.ap-skip h3{margin:0 0 6px;font:700 15px var(--f-display)}
+.ap-skip p{margin:4px 0;line-height:1.45}

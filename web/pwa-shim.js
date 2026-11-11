@@ -291,6 +291,166 @@ renderOpportunities = () => {
   });
 };
 
+// ---- aportación del mes: cómo repartir lo que va a invertir ----
+// Todo se calcula en este móvil con los datos ya descifrados: la cantidad no sale de aquí.
+const AP_LS = "centinela.aporte";
+const VERD = { comprar: "comprar", reforzar: "comprar", mantener: "mantener", vigilar: "vigilar", reducir: "evitar", vender: "evitar", evitar: "evitar" };
+const V_BASE = { comprar: 1, mantener: 0.6, vigilar: 0.35, evitar: 0 };
+const PH_MULT = { correccion: 1.15, alcista: 1, acumulacion: 1, lateral: 0.8, sin_datos: 0.75, rebote: 0.6, debil: 0.5, distribucion: 0.4, bajista: 0.25 };
+const MIN_TICKET = 10, CRYPTO_CAP = 0.3, ONE_CAP = 0.5, NEW_CAP = 0.25, MAX_LINES = 4;
+const shortTxt = (t, n = 230) => !t ? "" : t.length <= n ? t : t.slice(0, t.lastIndexOf(" ", n)) + "…";
+
+function planCandidates() {
+  const H = allHoldings();
+  const total = H.reduce((a, h) => a + (h.value || 0), 0);
+  const recent = (s) => s && Date.now() - new Date(s.at).getTime() < 36 * 3600e3;
+  const out = [];
+  for (const h of H) {
+    const q = h.q || {};
+    const sigs = S.signals.filter((s) => s.symbol === h.quote);
+    const s = sigs.find((x) => x.by === "ia" && recent(x)) || sigs.find(recent) || sigs[0];
+    out.push({ sym: h.symbol, quote: h.quote, name: q.name || h.symbol, held: true, kind: q.kind || (h.source === "Revolut X" ? "crypto" : "stock"),
+      value: h.value || 0, share: total ? (h.value || 0) / total : 0, verdict: s ? VERD[s.action] || "mantener" : "mantener", action: s?.action || "mantener",
+      conf: s?.confidence ?? 50, phase: q.phase, phaseLabel: q.phaseLabel, rsi: q.rsi14, why: s?.reason || "", sigAt: s?.at });
+  }
+  // Ideas nuevas: las mejores del escáner que la IA da por buenas y que no tiene ya
+  const held = new Set(H.map((h) => h.quote));
+  (S.scan?.items || []).filter((it) => it.verdict === "comprar" && !held.has(it.symbol) && (it.confidence ?? 0) >= 60).slice(0, 2).forEach((it) =>
+    out.push({ sym: it.symbol, quote: it.symbol, name: it.name || it.symbol, held: false, kind: it.kind || "stock", value: 0, share: 0, verdict: "comprar", action: "comprar",
+      conf: it.confidence, phase: it.phase, phaseLabel: it.phaseLabel, rsi: it.rsi14, why: it.reason || "", country: it.country }));
+  return { list: out, total };
+}
+
+function planScore(c) {
+  let s = V_BASE[c.verdict] * Math.max(0, Math.min(100, c.conf ?? 50)) / 100 * (PH_MULT[c.phase] ?? 0.75);
+  if (c.rsi > 70) s *= 0.6; else if (c.rsi != null && c.rsi < 30 && c.phase !== "bajista") s *= 1.1;
+  if (c.held && c.share > 0.5) s *= 0.8;          // ya pesa mucho: no concentrar más
+  if (!c.held) s *= 0.9;                          // lo nuevo, con algo más de prudencia
+  return s;
+}
+
+// Reparte respetando topes; lo que no cabe en ningún sitio queda en reserva
+function capFill(items, amount) {
+  let left = amount;
+  const cap = (c) => Math.min(c.held ? (items.length === 1 ? 1 : ONE_CAP) : NEW_CAP, 1) * amount;
+  items.forEach((c) => (c.eur = 0));
+  for (let round = 0; round < 8 && left > 0.01; round++) {
+    const open = items.filter((c) => c.eur < cap(c) - 0.01 && !(c.kind === "crypto" && items.filter((x) => x.kind === "crypto").reduce((a, x) => a + x.eur, 0) >= CRYPTO_CAP * amount - 0.01));
+    const sw = open.reduce((a, c) => a + c.w, 0); if (!open.length || !sw) break;
+    let used = 0;
+    for (const c of open) {
+      let add = left * c.w / sw;
+      add = Math.min(add, cap(c) - c.eur);
+      if (c.kind === "crypto") add = Math.min(add, CRYPTO_CAP * amount - items.filter((x) => x.kind === "crypto").reduce((a, x) => a + x.eur, 0));
+      c.eur += Math.max(0, add); used += Math.max(0, add);
+    }
+    left -= used; if (used < 0.01) break;
+  }
+  return left;
+}
+
+function buildPlan(amount) {
+  const { list, total } = planCandidates();
+  list.forEach((c) => { c.score = planScore(c); });
+  const best = Math.max(0, ...list.map((c) => c.score));
+  // Si nada convence, parte se queda esperando una mejor ocasión
+  let reserve = best >= 0.4 ? 0 : amount * Math.min(0.6, (0.4 - best) / 0.4 * 0.6);
+  let pool = list.filter((c) => c.score > 0.03).sort((a, b) => b.score - a.score).slice(0, MAX_LINES);
+  const out = () => list.filter((c) => !pool.includes(c));
+  for (let k = 0; k < 6; k++) {
+    // Peso: 60 % según la calidad de la señal, 40 % hacia lo que pesa poco en su cartera
+    const sum = pool.reduce((a, c) => a + c.score, 0) || 1;
+    const inv = amount - reserve, after = total + inv;
+    const gaps = pool.map((c) => Math.max(0, c.score / sum * after - c.value));
+    const gs = gaps.reduce((a, g) => a + g, 0);
+    pool.forEach((c, i) => { c.target = c.score / sum; c.w = 0.6 * c.target + 0.4 * (gs ? gaps[i] / gs : c.target); });
+    const extra = capFill(pool, inv);
+    const small = pool.filter((c) => c.eur < Math.min(MIN_TICKET, inv)).sort((a, b) => a.eur - b.eur);
+    if (small.length && pool.length > 1) { pool = pool.filter((c) => c !== small[0]); small[0].tooSmall = true; continue; }
+    reserve += extra; break;
+  }
+  if (!pool.length) reserve = amount;
+  // Redondeo a euros enteros (o céntimos si es poco) cuadrando el total
+  const step = amount >= 50 ? 1 : 0.01;
+  pool.forEach((c) => (c.eur = Math.round(c.eur / step) * step));
+  reserve = pool.length ? Math.round(reserve / step) * step : amount;
+  const diff = amount - reserve - pool.reduce((a, c) => a + c.eur, 0);
+  if (pool.length && Math.abs(diff) >= step / 2) pool[0].eur += diff;
+  pool = pool.filter((c) => c.eur > 0).sort((a, b) => b.eur - a.eur);
+  return { amount, total, pool, reserve, skipped: out().filter((c) => c.held || c.tooSmall) };
+}
+
+function planWhy(c, plan) {
+  const bits = [];
+  if (c.held && c.share > 0.5) bits.push(`ya es el ${fmtPct(c.share, false)} de su cartera, así que le doy algo menos para no concentrar`);
+  else if (c.held && plan.total && c.share < (c.target ?? 0) - 0.08) bits.push(`pesa poco en su cartera (${fmtPct(c.share, false)}), así que va reforzándolo`);
+  if (c.rsi > 70) bits.push(`RSI ${c.rsi.toFixed(0)}: está caro a corto plazo`);
+  if (c.kind === "crypto") bits.push("la cripto se limita al " + Math.round(CRYPTO_CAP * 100) + " % de cada aportación por su volatilidad");
+  return bits.join("; ");
+}
+function skipWhy(c) {
+  if (c.tooSmall) return "le tocaría tan poco que no compensa una operación aparte; lo sumo a las demás";
+  if (c.verdict === "evitar") return "las noticias y el análisis aconsejan no aumentar ahora" + (c.why ? ": " + shortTxt(c.why, 160) : "");
+  if (c.phase === "bajista") return "está en tendencia bajista: mejor no meter más hasta que gire";
+  if (c.rsi > 70) return `RSI ${c.rsi.toFixed(0)}: ha subido demasiado deprisa, mejor esperar`;
+  return "esta vez hay opciones con mejor momento";
+}
+
+function renderPlan() {
+  const box = $("#ap-out"); if (!box) return;
+  const amount = parseFloat(String($("#ap-amount").value).replace(",", "."));
+  box.replaceChildren();
+  if (!S.loaded) return;
+  if (!(amount > 0)) { box.append(el("p", { class: "note", text: "Escriba cuánto va a invertir este mes y le propongo el reparto." })); return; }
+  const P = buildPlan(amount);
+  const fmt = (v) => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: amount >= 50 ? 0 : 2 }).format(v);
+  const parts = [...P.pool.map((c) => ({ k: c.sym, v: c.eur })), ...(P.reserve > 0 ? [{ k: "Reserva", v: P.reserve }] : [])];
+  const bar = el("div", { class: "alloc ap-bar" }), leg = el("div", { class: "legend" });
+  parts.forEach((p, i) => {
+    const col = p.k === "Reserva" ? "var(--muted)" : seriesColor(i);
+    bar.append(el("span", { style: `width:${(p.v / amount * 100).toFixed(2)}%;background:${col}` }));
+    leg.append(el("span", {}, el("i", { style: `background:${col}` }), `${p.k} `, el("span", { class: "num flat", text: fmtPct(p.v / amount, false) })));
+  });
+  box.append(bar, leg);
+  P.pool.forEach((c) => {
+    const why = planWhy(c, P);
+    box.append(el("div", { class: "ap-line" },
+      avatar(c.quote),
+      el("div", { class: "ap-main" },
+        el("div", { class: "ap-hd" }, el("b", { text: c.sym }), el("span", { class: "flat", text: c.name }), c.held ? null : el("span", { class: "pill p-buy", text: "Nueva" })),
+        el("div", { class: "ap-tags" }, actionPill(c.action), c.phaseLabel ? el("span", { class: "flat", text: c.phaseLabel }) : null, el("span", { class: "flat", text: `confianza ${c.conf ?? "—"} %` })),
+        c.why ? el("div", { class: "body", text: shortTxt(c.why) }) : null,
+        why ? el("div", { class: "body flat", text: "Reparto: " + why + "." }) : null,
+        el("div", { class: "ap-where", text: c.kind === "crypto" ? "Comprar en Revolut X" : "Comprar en Revolut Invest" })),
+      el("div", { class: "ap-amt" }, el("b", { class: "num", text: fmt(c.eur) }), el("span", { class: "num flat", text: fmtPct(c.eur / amount, false) }))));
+  });
+  if (P.reserve > 0) box.append(el("div", { class: "ap-line ap-res" },
+    el("div", { class: "av", style: "background:var(--sunk);color:var(--muted)", text: "€" }),
+    el("div", { class: "ap-main" }, el("div", { class: "ap-hd" }, el("b", { text: "Reserva" })),
+      el("div", { class: "body", text: P.pool.length ? "Ahora mismo nada convence lo suficiente para invertirlo todo: guarde esta parte y úsela cuando aparezca una señal de compra." : "Hoy no veo ningún punto de entrada claro. Mejor esperar: le avisaré cuando lo haya." })),
+    el("div", { class: "ap-amt" }, el("b", { class: "num", text: fmt(P.reserve) }), el("span", { class: "num flat", text: fmtPct(P.reserve / amount, false) }))));
+  if (P.skipped.length) box.append(el("div", { class: "ap-skip" }, el("h3", { text: "Esta vez no" }),
+    ...P.skipped.map((c) => el("p", {}, el("b", { text: c.sym + ": " }), skipWhy(c) + "."))));
+  const sigAt = P.pool.concat(P.skipped).map((c) => c.sigAt).filter(Boolean).sort().at(-1);
+  box.append(el("p", { class: "note", text: `Calculado con las señales de ${sigAt ? ago(sigAt) : "—"} y el escáner de ${S.scan?.at ? ago(S.scan.at) : "—"}. Si un activo no aparece, es que hoy no está en buen momento. Es una propuesta orientativa, no asesoramiento financiero: las compras las hace usted en Revolut, y pocas operaciones grandes cuestan menos en comisiones que muchas pequeñas.` }));
+}
+
+(function planPanel() {
+  const saved = lsGet(AP_LS) || "";
+  const inp = el("input", { id: "ap-amount", type: "number", min: "0", step: "10", inputmode: "decimal", placeholder: "200", value: saved });
+  inp.addEventListener("input", () => { lsSet(AP_LS, inp.value || null); renderPlan(); });
+  const panel = el("div", { class: "panel", id: "aporte" },
+    el("h2", {}, "Aportación del mes", el("small", { text: "dígame cuánto va a invertir y le digo cómo repartirlo" })),
+    el("div", { class: "ap-form" }, el("label", { class: "field" }, "Cantidad a invertir (€)", inp),
+      el("div", { class: "ap-quick" }, [100, 200, 300, 500].map((v) => el("button", { class: "chip", type: "button", text: v + " €", onclick: () => { inp.value = v; lsSet(AP_LS, String(v)); renderPlan(); } })))),
+    el("div", { id: "ap-out" }));
+  $("#v-oportunidades").prepend(panel);
+  const q = $(".quick");
+  if (q) q.append(el("a", { class: "wide", href: "#oportunidades", onclick: () => setTimeout(() => $("#aporte")?.scrollIntoView({ behavior: "smooth" }), 80) }, svgIcon('<path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/>'), "Invertir este mes"));
+})();
+const _renderOpp3 = renderOpportunities;
+renderOpportunities = () => { _renderOpp3(); renderPlan(); };
+
 const readOnly = () => Promise.reject({ message: "en la app del móvil solo se consulta; cámbielo en la dashboard de Claude" });
 const stubDb = { doc: () => ({ set: readOnly, update: readOnly, delete: readOnly }) };
 
