@@ -1,0 +1,225 @@
+{
+ "at": "2026-11-11T11:54:12.638Z",
+ "notes": {
+  "AMD": {
+   "verdict": "mantener",
+   "confidence": 62,
+   "title": "Resultados récord, pero volatilidad extrema",
+   "reason": "AMD cotiza a 515,21 $, sobre su media de 200 sesiones (418,5 $), con RSI 48,6 y puntuación técnica 80, pero con un -13,3% a 30 días y un -20,7% desde máximos. Los resultados del 3T (ingresos ~13.400 M$, centro de datos +97%) y la guía de ~17.000 M$ para el 4T son sólidos, aunque tras subir ~122% en el año la valoración es exigente.",
+   "news": "Resultados récord el 3 de noviembre; el 5 de noviembre cayó ~17% en el selloff de chips por temor a regulación de IA tras las elecciones y rebotó ~11% al día siguiente.",
+   "risk": "Selloff sectorial de IA y posible endurecimiento regulatorio, con valoración alta.",
+   "sources": [
+    {
+     "t": "AMD shares surge nearly 8% as Q3 earnings beat forecasts",
+     "u": "https://finviz.com/news/415163/amd-shares-surge-nearly-8-as-q3-earnings-beat-forecasts-and-revenue-outlook-exceeds-expectations"
+    },
+    {
+     "t": "What Just Happened To AMD Stock?",
+     "u": "https://www.trefis.com/stock/amd/articles/623346/what-just-happened-to-amd-stock/2026-11-06"
+    },
+    {
+     "t": "Why Did AMD Stock Jump?",
+     "u": "https://www.trefis.com/stock/amd/articles/623723/why-did-amd-stock-jump-2/2026-11-07"
+    }
+   ]
+  },
+  "AZN": {
+   "verdict": "mantener",
+   "confidence": 65,
+   "title": "Tendencia sana y guía reafirmada",
+   "reason": "AstraZeneca está a 186,76 $, por encima de su media de 200 (180,2 $), con +18% a 30 días y RSI 66,2, cerca de sobrecompra tras el -1,4% de hoy. Reafirmó la guía de 2026 en el 3T y acumula 12 lecturas positivas de fase III.",
+   "news": "Resultados del 3T (30 oct.) con guía de ingresos y BPA reconfirmada; inversión de 2.000 M$ en Summit Therapeutics completada y nuevos datos en oncología.",
+   "risk": "Tras el fuerte repunte mensual, margen limitado a corto plazo y presión de China.",
+   "sources": [
+    {
+     "t": "AstraZeneca unveils Zegfrovy deal, lung trial win and Enhertu approval",
+     "u": "https://www.ajbell.co.uk/news/articles/astrazeneca-unveils-zegfrovy-deal-lung-trial-win-and-enhertu-approval"
+    },
+    {
+     "t": "AstraZeneca Reports 11% Revenue Growth, Reaffirms $80B 2030 Goal",
+     "u": "https://rallies.ai/news/astrazeneca-reports-11-revenue-growth-15-eps-rise-reaffirms-guidance-and-highlights-2026-launches"
+    }
+   ]
+  },
+  "BTC-EUR": {
+   "verdict": "vigilar",
+   "confidence": 55,
+   "title": "Bitcoin débil, con flujos de ETF dudosos",
+   "reason": "BTC está a 66.464 €, apenas un 4% sobre su media de 200 (63.750 €), con RSI 37,1, -11,1% a 30 días y -25,2% desde máximos. La tendencia se deteriora y se acerca a la media de largo plazo.",
+   "news": "Los ETF de bitcoin al contado en EE. UU. registraron salidas el 2 de noviembre (~-399 M$, IBIT la mayor) y una pequeña entrada el 4 (+35 M$), según Decrypt.",
+   "risk": "Una pérdida de la media de 200 con salidas sostenidas de ETF aceleraría la caída.",
+   "sources": [
+    {
+     "t": "Bitcoin ETF Flows · Live Month (TFTC)",
+     "u": "https://www.tftc.io/bitcoin-etf-flows/november-2026"
+    }
+   ]
+  },
+  "CRM": {
+   "verdict": "mantener",
+   "confidence": 55,
+   "title": "Sobrevendida pero sin catalizador claro",
+   "reason": "Salesforce cotiza a 213,48 $, sobre su media de 200 (198,1 $), con RSI 34,3 (sobrevendida), -8,7% a 30 días y puntuación técnica 90. Hay mejora de fondo (BPA del 2T fiscal por encima de lo esperado, mejora de BofA a Comprar en octubre), pero no encontré noticias de esta semana que confirmen un giro.",
+   "news": "BofA mejoró el 12 de octubre a Comprar con objetivo de 285 $; sin titulares específicos de noviembre.",
+   "risk": "Sector software presionado y datos contradictorios sobre el rendimiento reciente.",
+   "sources": [
+    {
+     "t": "Salesforce (CRM) – Trefis",
+     "u": "https://www.trefis.com/data/companies/CRM?from=CRM-2026-05-28"
+    },
+    {
+     "t": "Salesforce Inc. (CRM) Earnings — Q3 2026",
+     "u": "https://www.quiverquant.com/news/Salesforce+Inc.+%28CRM%29+Earnings+%E2%80%94+Q3+2026%3A+%2410.3B+Revenue%2C+%242.19+EPS"
+    }
+   ]
+  },
+  "META": {
+   "verdict": "mantener",
+   "confidence": 58,
+   "title": "Cerca de la media de 200 y gasto en IA",
+   "reason": "Meta está a 641,39 $, apenas un 1,5% sobre su media de 200 (631,7 $), con RSI 46,5, -13,7% a 30 días y -17,5% desde máximos. La subida de ingresos del 3T queda eclipsada por el aumento del gasto en IA.",
+   "news": "La acción cayó ~5,7% tras resultados por el capex en IA y rebotó el 9 de noviembre; la mayoría de analistas mantiene Comprar o Mantener.",
+   "risk": "Perder la media de 200 con más presión por el gasto en IA sería señal de debilidad.",
+   "sources": [
+    {
+     "t": "META stock quote – Fox Business",
+     "u": "https://www.foxbusiness.com/quote?stockTicker=meta"
+    },
+    {
+     "t": "Meta (META) stock is up, what you need to know",
+     "u": "https://stockstory.org/us/stocks/nasdaq/meta/news/why-up-down/meta-meta-stock-is-up-what-you-need-to-know-4"
+    }
+   ]
+  },
+  "NVDA": {
+   "verdict": "vigilar",
+   "confidence": 60,
+   "title": "Pierde la media de 200; resultados el 17-nov",
+   "reason": "NVIDIA está a 168,89 $, un 17% bajo su media de 200 (204,5 $), con RSI 23,9 (sobrevendida extrema), -25,4% a 30 días y -29,4% desde máximos; el 5 de noviembre cayó ~9,3%. No hubo noticia propia: la caída es del selloff de chips por temor a regulación de IA.",
+   "news": "Peor caída diaria en más de un año en un selloff de ~2,5 billones de $ en el Nasdaq; los resultados llegan el 17 de noviembre y el dato de centros de datos será clave.",
+   "risk": "Tendencia rota y resultados cercanos: puede seguir cayendo antes de rebotar.",
+   "sources": [
+    {
+     "t": "Nvidia Stock (NVDA) Falls 9.3% as AI Chip Stocks Slide (Nov 5)",
+     "u": "https://www.heygotrade.com/en/news/nvidia-nvda-stock-news-november-6-2026/"
+    },
+    {
+     "t": "What Sent NVIDIA Stock Lower?",
+     "u": "https://www.trefis.com/stock/nvda/articles/623357/what-sent-nvidia-stock-lower/2026-11-06"
+    },
+    {
+     "t": "Why Nvidia stock is getting punished today",
+     "u": "https://www.fool.com/investing/2026/11/05/why-nvidia-stock-is-getting-punished-today/"
+    }
+   ]
+  },
+  "SAP": {
+   "verdict": "mantener",
+   "confidence": 66,
+   "title": "Nube creciendo, tendencia alcista intacta",
+   "reason": "SAP está a 233,74 $, un 22% sobre su media de 200 (191,8 $), con RSI 54,8 y puntuación técnica 85. En el 3T los ingresos subieron un 13% y la nube un 26%, con cartera de nube de 24.100 M€ (+28%).",
+   "news": "Guía de 2026 respaldada, con ingresos de nube en la parte alta del rango; ligera caída a principios de noviembre por la rebaja de guía de TeamViewer, sin impacto propio.",
+   "risk": "Distancia grande a la media de 200 y sensibilidad del sector software.",
+   "sources": [
+    {
+     "t": "SAP Aktie: Cloud-Geschäft legt 26 % drauf",
+     "u": "https://www.boerse-express.com/news/articles/sap-aktie-cloud-geschaeft-legt-26-drauf-958886"
+    },
+    {
+     "t": "SAP shares climb after hours as it backs 2026 guidance",
+     "u": "https://www.vermoegenszentrum.ch/en/stock-exchange-and-markets/news/sap-shares-climb-after-hours-it-backs-2026-guidance"
+    }
+   ]
+  },
+  "SHEL": {
+   "verdict": "mantener",
+   "confidence": 60,
+   "title": "Buenos resultados, petróleo a la baja",
+   "reason": "Shell está a 97,27 $, sobre su media de 200 (89,3 $), con RSI 37,2 y -4,3% a 30 días. El 3T superó previsiones (BPA ajustado 3,86 $ frente a 3,54 $) y lanzó una recompra de 5.000 M$.",
+   "news": "El Brent cedió el 2 de noviembre por esperanzas diplomáticas con Irán; Shell firmó un contrato de GNL a cinco años con METLEN.",
+   "risk": "Caída del crudo si avanza la diplomacia en Oriente Medio y menor producción.",
+   "sources": [
+    {
+     "t": "Shell Q3 Profit Surges, Despite Weak Volume; Launches $5 Bln Buyback",
+     "u": "https://www.rttnews.com/3704996/shell-q3-profit-surges-despite-weak-volume-launches-5-bln-buyback.aspx"
+    },
+    {
+     "t": "SHEL Q3 earnings beat on record refining margins, LNG strength",
+     "u": "https://www.zacks.com/stock/news/3019815/shel-q3-earnings-beat-on-record-refining-margins-lng-strength"
+    }
+   ]
+  },
+  "SONY": {
+   "verdict": "mantener",
+   "confidence": 68,
+   "title": "Guía elevada y tendencia fuerte",
+   "reason": "Sony está a 26,71 $, un 19% sobre su media de 200 (22,4 $), con +10,1% a 30 días, RSI 63,1 y puntuación técnica 84. El 5 de noviembre elevó su previsión de beneficio neto a 1,33 billones de yenes (desde 1,21).",
+   "news": "Subida de guía de ventas y beneficio operativo; el negocio de juegos aumentó su beneficio un 83% aunque los envíos de PS5 cayeron un 35%.",
+   "risk": "Caída de envíos de PS5 y RSI acercándose a sobrecompra.",
+   "sources": [
+    {
+     "t": "Sony forecasts record full-year net profit of 1.33 trillion yen",
+     "u": "https://www.nationthailand.com/news/40073155"
+    },
+    {
+     "t": "Sony PS5 shipments and profit growth",
+     "u": "https://xenospectrum.com/en/sony-ps5-shipments-profit-growth/"
+    }
+   ]
+  },
+  "SPOT": {
+   "verdict": "mantener",
+   "confidence": 62,
+   "title": "Buena guía del 4T, valoración exigente",
+   "reason": "Spotify está a 606,22 $, un 21% sobre su media de 200 (500,8 $), con +14,6% a 30 días y RSI 62,6. Los ingresos del 3T superaron previsiones y la guía del 4T (~5.200 M€ de ingresos, 820 M€ de beneficio operativo) mejoró lo esperado.",
+   "news": "Analistas elevaron objetivos (JPMorgan a 805 $); el BPA del 3T quedó por debajo de lo esperado (2,85 $ frente a 3,10 $).",
+   "risk": "Valoración con prima y costes de licencias e IA.",
+   "sources": [
+    {
+     "t": "Earnings Beat Might Change The Case For Investing In Spotify Stock",
+     "u": "https://www.webull.com/news/15814749179662336"
+    },
+    {
+     "t": "Spotify (SPOT) rises on AI bets, Q3 guidance",
+     "u": "https://tickerspark.ai/market/spotify-technology-s-a-spot-rises-on-ai-bets-q3-guidance-1793628100566"
+    }
+   ]
+  },
+  "TXN": {
+   "verdict": "mantener",
+   "confidence": 58,
+   "title": "Tendencia alcista, valoración alta",
+   "reason": "Texas Instruments está a 300,52 $, un 14% sobre su media de 200 (263,3 $), con +6,7% a 30 días, RSI 55 y puntuación técnica 81. El beneficio neto del 3T subió a 2.425 M$ frente a 1.364 M$, aunque con guía cautelosa.",
+   "news": "Subió ~5,5% el 9 de noviembre; hay ventas de insiders por ~88,9 M$ y avisos de cotizar sobre valor intrínseco.",
+   "risk": "Valoración exigente y ciclo de semiconductores analógicos sensible a la macro.",
+   "sources": [
+    {
+     "t": "Texas Instruments (TXN) Moved Up by 5.48% on Nov 9 – TradingKey",
+     "u": "https://www.tradingkey.com/news/market-movers/262296801-market-movers-txn-20261109"
+    },
+    {
+     "t": "TI reports third quarter 2026 financial results",
+     "u": "https://www.placera.se/telegram/avanza/39_2ab1a460-89f0-473a-96b0-442256065481.html"
+    }
+   ]
+  },
+  "UL": {
+   "verdict": "mantener",
+   "confidence": 64,
+   "title": "Defensiva estable con guía mejorada",
+   "reason": "Unilever está a 66,47 $, sobre su media de 200 (62,6 $), con +5,6% a 30 días y RSI 56,4. Las ventas subyacentes del 3T crecieron un 5,2% y espera al menos un 3% de volumen en 2026.",
+   "news": "Evento de inversores el 4 de noviembre centrado en ser una empresa pura de higiene y cuidado personal; Foods se combina con McCormick; resultados anuales el 11 de febrero de 2027.",
+   "risk": "Ejecución de la separación y presión de costes en consumo.",
+   "sources": [
+    {
+     "t": "Unilever Q3 sales grow 5.2% as FY volume growth forecast improves",
+     "u": "https://www.directorstalkinterviews.com/unilever-q3-sales-grow-5-2-as-fy-volume-growth-forecast-improves/4121268198"
+    },
+    {
+     "t": "Sharper focus and disciplined execution driving competitive performance",
+     "u": "https://www.unilever.com/news/press-and-media/press-releases/2026/sharper-focus-and-disciplined-execution-driving-competitive-performance/"
+    }
+   ]
+  }
+ }
+}
