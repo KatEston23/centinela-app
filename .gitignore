@@ -1,0 +1,9 @@
+config.local.json
+out/
+data/
+prompts/
+setup/
+pwa/
+node_modules/
+*.log
+docs/

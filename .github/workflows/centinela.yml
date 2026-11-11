@@ -1,0 +1,61 @@
+# Centinela · motor base (capa 1). Corre en GitHub, sin PC y sin tokens de IA.
+# Cartera cada 4 h y escáner de mercado cada mañana. Todo lo que publica va cifrado.
+name: Centinela
+
+on:
+  schedule:
+    - cron: "5 3,11,15,19,23 * * *"   # cartera (horas UTC)
+    - cron: "30 7 * * *"             # cartera + escáner (08:30 en Madrid en invierno)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "portfolio o scan"
+        default: "portfolio"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: centinela
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PWA_KEY: ${{ secrets.PWA_KEY }}
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      REVOLUTX_CONFIG_DIR: /tmp/revolut-x
+      MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '30 7 * * *' && 'scan' || 'portfolio') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Revolut X (solo lectura)
+        env:
+          REVX_API_KEY: ${{ secrets.REVX_API_KEY }}
+          REVX_PRIVATE_KEY: ${{ secrets.REVX_PRIVATE_KEY }}
+        run: |
+          if [ -z "$REVX_API_KEY" ]; then echo "REVX_ENABLED=0" >> "$GITHUB_ENV"; exit 0; fi
+          npm install -g --silent @revolut/revolut-x-cli
+          mkdir -p "$REVOLUTX_CONFIG_DIR" && chmod 700 "$REVOLUTX_CONFIG_DIR"
+          printf '%s\n' "$REVX_PRIVATE_KEY" > "$REVOLUTX_CONFIG_DIR/private.pem"
+          chmod 600 "$REVOLUTX_CONFIG_DIR/private.pem"
+          node -e 'const fs=require("fs"),d=process.env.REVOLUTX_CONFIG_DIR;fs.writeFileSync(d+"/config.json",JSON.stringify({api_key:process.env.REVX_API_KEY,private_key_path:d+"/private.pem"}));fs.chmodSync(d+"/config.json",0o600)'
+
+      - name: Descifrar el estado
+        run: node engine/state.mjs decrypt
+
+      - name: Motor (${{ env.MODE }})
+        run: node engine/cloud-run.mjs "$MODE"
+
+      - name: Publicar en la app
+        run: node engine/state.mjs publish "Motor $MODE $(date -u +%FT%RZ)"
+
+      - name: Limpiar claves
+        if: always()
+        run: rm -rf "$REVOLUTX_CONFIG_DIR"
