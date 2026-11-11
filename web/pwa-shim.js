@@ -145,6 +145,56 @@ renderFresh = () => {
   if (live) f.replaceChildren(el("b", { text: "En directo" }));
 };
 
+// ---- vigilancia desde el móvil ----
+// La orden viaja cifrada con su clave (AES-GCM) por un canal ntfy privado; el motor de GitHub
+// la recoge en su siguiente revisión horaria. Mientras, la app la muestra como «pendiente».
+const PEND_LS = "centinela.pending";
+let pwaTopic = null;
+const pending = () => { try { return JSON.parse(lsGet(PEND_LS) || "[]"); } catch { return []; } };
+async function encryptForEngine(obj) {
+  const k = lsGet(KEY_LS); if (!k) throw new Error("sin clave");
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(k), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt, iterations: 210000 }, base, { name: "AES-GCM", length: 256 }, false, ["encrypt"]);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(obj))));
+  const b = (u) => btoa(String.fromCharCode(...u));
+  return { v: 1, iter: 210000, salt: b(salt), iv: b(iv), ct: b(ct) };
+}
+async function sendCmd(cmd) {
+  if (!pwaTopic) throw new Error("sin canal");
+  const r = await fetch(`https://ntfy.sh/${encodeURIComponent(pwaTopic + "-cmd")}`, { method: "POST", body: JSON.stringify(await encryptForEngine(cmd)) });
+  if (!r.ok) throw new Error("ntfy " + r.status);
+}
+function applyPending() {
+  const appliedAt = S.status?.cmdAppliedAt || "";
+  const list = pending().filter((c) => c.at > appliedAt); // las ya aplicadas por el motor se olvidan
+  lsSet(PEND_LS, JSON.stringify(list));
+  for (const c of list) {
+    if (c.op === "watch" && !S.watch.some((w) => w.symbol === c.symbol)) S.watch.push({ symbol: c.symbol, name: c.name, addedAt: c.at, by: "usuario", pending: true });
+    if (c.op === "unwatch") S.watch = S.watch.filter((w) => w.symbol !== c.symbol);
+  }
+}
+async function queueCmd(op, symbol, name) {
+  const c = { op, symbol, name: name || "", at: new Date().toISOString() };
+  try {
+    await sendCmd(c);
+    lsSet(PEND_LS, JSON.stringify([...pending(), c]));
+    applyPending(); renderOpportunities();
+    toast(op === "watch" ? `${symbol} en vigilancia. El vigilante lo incorpora en su próxima revisión (máx. 1 h).` : `${symbol} quitado de vigilancia.`);
+  } catch (e) { toast("No se pudo enviar: " + (e.message || e), true); }
+}
+watch = (it) => queueCmd("watch", it.symbol, it.name);
+unwatch = (w) => queueCmd("unwatch", w.symbol, w.name);
+const _renderOpp2 = renderOpportunities;
+renderOpportunities = () => {
+  _renderOpp2();
+  // Marca las que aún esperan al motor
+  document.querySelectorAll("#watch-list .status-row").forEach((row) => {
+    const sym = row.querySelector("b")?.textContent.trim();
+    if (S.watch.find((w) => w.symbol === sym)?.pending) row.querySelector("span")?.append(el("span", { class: "pill p-watch", style: "margin-left:6px", text: "pendiente" }));
+  });
+};
+
 const readOnly = () => Promise.reject({ message: "en la app del móvil solo se consulta; cámbielo en la dashboard de Claude" });
 const stubDb = { doc: () => ({ set: readOnly, update: readOnly, delete: readOnly }) };
 
@@ -193,6 +243,7 @@ async function pwaLoad(k) {
     S.signals = d.signals || []; S.watch = d.watch || [];
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
+    pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
     db = stubDb; S.loaded = true;
     renderAll(); appPanel(); startLive();
     if (!$("#v-cartera").hidden) requestAnimationFrame(drawEvolution);

@@ -132,7 +132,7 @@ table.pos td.c-hide{display:none}
 .opp .hd{align-items:center}
 .opp .score{min-width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);color:var(--accent)}
 .opp .body{font-size:14px;margin-top:4px}
-.opp .side button,#watch-list button{display:none}
+.opp .side button{border-radius:999px;padding:8px 14px}
 .pill{padding:4px 10px}
 
 /* ---- formularios ---- */

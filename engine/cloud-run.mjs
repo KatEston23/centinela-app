@@ -10,7 +10,7 @@ import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 // notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
 import { holdingsFromLedger } from "./parser.mjs";
-import { readState, writeState } from "./state.mjs";
+import { readState, writeState, decrypt } from "./state.mjs";
 
 const mode = process.argv[2] || "portfolio";
 const cfg = loadConfig();
@@ -56,6 +56,27 @@ if (process.env.REVX_ENABLED !== "0") {
     log.push("Revolut X no respondió; uso el último saldo conocido");
     if (s.crypto) s.crypto.lastError = String(e.stderr || e.message).slice(0, 200);
   }
+}
+
+// ---------- 1b. Órdenes del móvil (vigilar / quitar), cifradas, por el canal ntfy «<topic>-cmd» ----------
+if (cfg.ntfyTopic) {
+  try {
+    const since = s.status.cmdSince || "12h";
+    const r = await fetch(`${cfg.ntfyServer || "https://ntfy.sh"}/${cfg.ntfyTopic}-cmd/json?poll=1&since=${encodeURIComponent(since)}`);
+    const msgs = r.ok ? (await r.text()).split("\n").filter(Boolean).map((l) => JSON.parse(l)).filter((m) => m.event === "message") : [];
+    let applied = 0;
+    for (const m of msgs) {
+      let c;
+      try { c = decrypt(JSON.parse(m.message)); } catch { continue; } // sin la clave: se ignora
+      const sym = String(c.symbol || "").toUpperCase().replace(/[^A-Z0-9.^=-]/g, "").slice(0, 20);
+      if (!sym || !c.at) continue;
+      if (c.op === "watch" && !s.watch.some((w) => w.symbol === sym)) { s.watch.push({ symbol: sym, name: String(c.name || sym).slice(0, 80), addedAt: c.at, by: "usuario" }); applied++; }
+      if (c.op === "unwatch" && s.watch.some((w) => w.symbol === sym)) { s.watch = s.watch.filter((w) => w.symbol !== sym); applied++; }
+      if (!s.status.cmdAppliedAt || c.at > s.status.cmdAppliedAt) s.status.cmdAppliedAt = c.at;
+      s.status.cmdSince = m.id;
+    }
+    if (msgs.length) log.push(`Órdenes del móvil: ${applied} aplicada(s) de ${msgs.length}`);
+  } catch (e) { log.push("Órdenes del móvil: no se pudieron leer (" + e.message + ")"); }
 }
 
 // ---------- 2. Símbolos: cartera (prioridad 1) y vigilancia (prioridad 2) ----------
