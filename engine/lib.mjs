@@ -66,6 +66,39 @@ function pct(a, back) {
   return a[a.length - 1] / a[a.length - 1 - back] - 1;
 }
 
+/**
+ * Fase de mercado (inspirada en las fases de Wyckoff y Weinstein), solo con precio y medias:
+ * acumulación → tendencia alcista → (corrección) → distribución → tendencia bajista → (rebote) → …
+ */
+export function marketPhase({ closes, price, s50, s200, dd, ch30, ch90 }) {
+  if (!s50 || !s200 || closes.length < 230) return { code: "sin_datos", label: "Sin historia suficiente", note: "Hace falta casi un año de cotizaciones para fijar la fase." };
+  const s200prev = sma(closes.slice(0, -20), 200), s50prev = sma(closes.slice(0, -20), 50);
+  const slope200 = s200prev ? s200 / s200prev - 1 : 0;   // pendiente de la media de 200 en 20 sesiones
+  const slope50 = s50prev ? s50 / s50prev - 1 : 0;
+  const near200 = Math.abs(price / s200 - 1) < 0.05;
+  const up200 = slope200 > 0.005, down200 = slope200 < -0.005, flat200 = !up200 && !down200;
+  const P = (code, label, note) => ({ code, label, note });
+  if (price > s50 && s50 > s200 && up200 && dd > -0.08 && (ch90 ?? 0) > 0.25 && slope50 < 0.005)
+    return P("distribucion", "Distribución (posible techo)", "Viene de una fuerte subida y pierde impulso cerca de máximos: es fácil comprar caro.");
+  if (price > s50 && s50 > s200 && up200)
+    return P("alcista", "Tendencia alcista", "Precio sobre sus medias y la de 200 sube: la fase más sana para estar dentro.");
+  if (price > s50 && s50 > s200 && flat200)
+    return P("alcista", "Inicio de tendencia alcista", "Precio y media de 50 por encima de la de 200, que empieza a girar: tendencia que se está formando.");
+  if (price > s50 && price > s200 && s50 <= s200)
+    return P("acumulacion", "Recuperación (posible suelo superado)", "Vuelve por encima de sus medias tras una fase débil: podría estar saliendo del suelo, pendiente de confirmar.");
+  if (price <= s50 && price > s200 * 0.97 && (up200 || flat200) && s50 > s200)
+    return P("correccion", "Corrección en tendencia alcista", "Retrocede sin romper la tendencia de fondo: suele ofrecer los mejores puntos de entrada.");
+  if (price < s50 && s50 < s200 && down200)
+    return P("bajista", "Tendencia bajista", "Precio bajo sus medias y la de 200 cae: entrar aquí es intentar coger un cuchillo que cae.");
+  if (price > s50 && price < s200 && down200)
+    return P("rebote", "Rebote en tendencia bajista", "Rebota, pero la tendencia de fondo sigue siendo bajista: hace falta confirmación.");
+  if ((near200 || flat200) && dd < -0.15 && (ch30 ?? 0) > -0.06)
+    return P("acumulacion", "Acumulación (posible suelo)", "Tras una caída, el precio se estabiliza en torno a su media de 200: puede estar formando suelo.");
+  if (price < s200 && (down200 || flat200))
+    return P("debil", "Débil, bajo su media de 200", "Por debajo de su tendencia de fondo y sin señales claras de giro.");
+  return P("lateral", "Lateral", "Sin una tendencia clara: el precio oscila sin dirección definida.");
+}
+
 /** Analiza un símbolo: precio, variaciones, RSI, medias, volatilidad, deriva, disparadores. */
 export async function analyze(symbol) {
   const res = await fetchChart(symbol);
@@ -111,8 +144,12 @@ export async function analyze(symbol) {
 
   // Historial reducido para gráficas: [día unix, cierre]
   const history = rows.map((r, i) => [Math.floor(r[0] / 86400), round(i === rows.length - 1 ? price : r[1], 4)]);
+  const phase = marketPhase({ closes, price, s50, s200, dd, ch30: pct(closes, 21), ch90: pct(closes, 63) });
 
   return {
+    phase: phase.code,
+    phaseLabel: phase.label,
+    phaseNote: phase.note,
     symbol,
     name: m.longName || m.shortName || symbol,
     kind: m.instrumentType === "CRYPTOCURRENCY" ? "crypto" : m.instrumentType === "ETF" ? "etf" : "stock",

@@ -243,7 +243,7 @@ if (existsSync(notesFile)) {
   const pick = new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol)]);
   const list = [...pick].sort().map((sym) => {
     const q = s.quotes[docId(sym)] || (s.scan?.items || []).find((i) => i.symbol === sym) || {};
-    return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma200: q.sma200, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null };
+    return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma50: q.sma50, sma200: q.sma200, phase: q.phaseLabel, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null };
   });
   mkdirSync(join(ROOT, "docs"), { recursive: true });
   writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list }, null, 1));

@@ -133,6 +133,15 @@ table.pos td.c-hide{display:none}
 .opp .score{min-width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);color:var(--accent)}
 .opp .body{font-size:14px;margin-top:4px}
 .opp .side button{border-radius:999px;padding:8px 14px}
+.opp .score{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;gap:3px;height:48px;min-width:48px}
+.opp .score small{font:600 8.5px var(--f-body);letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.decision{margin-top:8px;font-weight:700;font-size:14.5px}
+.decision.d-comprar{color:var(--gain)} .decision.d-vigilar{color:var(--accent)} .decision.d-evitar{color:var(--loss)}
+.phase{margin-top:6px;font-size:13px;color:var(--muted);padding:8px 10px;border-radius:10px;background:var(--sunk);border-left:3px solid var(--muted)}
+.phase b{color:var(--fg);font-weight:600}
+.phase.ph-alcista,.phase.ph-correccion,.phase.ph-acumulacion{border-left-color:var(--gain)}
+.phase.ph-distribucion,.phase.ph-rebote,.phase.ph-lateral{border-left-color:var(--accent)}
+.phase.ph-bajista,.phase.ph-debil{border-left-color:var(--loss)}
 .opp-group{margin:18px 0 2px;padding:12px 14px;border-radius:14px;background:var(--sunk)}
 .opp-group:first-child{margin-top:0}
 .opp-group h3{margin:0;font:700 16px var(--f-display)}

@@ -613,7 +613,9 @@ function renderOpportunities() {
     const watched = S.watch.some((w) => w.symbol === it.symbol);
     sc.append(el("div", { class: "opp" },
       el("div", {},
-        el("div", { class: "hd" }, el("span", { class: "score num", text: it.score ?? "—" }), el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" }), it.country ? el("span", { class: "cty", text: it.country }) : null, it.verdict ? actionPill(it.verdict) : null),
+        el("div", { class: "hd" }, el("span", { class: "score num", title: "Puntuación técnica (0-100)" }, String(it.score ?? "—"), el("small", { text: "técnico" })), el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" }), it.country ? el("span", { class: "cty", text: it.country }) : null, it.verdict ? actionPill(it.verdict) : null),
+        it.verdict ? el("div", { class: "decision d-" + it.verdict, text: ({ comprar: "¿Invertir? Sí: buen momento para entrar.", vigilar: "¿Invertir? Todavía no: mejor esperar.", evitar: "¿Invertir? No, por ahora." })[it.verdict] || "" }) : null,
+        it.phaseLabel ? el("div", { class: "phase ph-" + it.phase }, el("b", { text: "Fase: " + it.phaseLabel }), " · " + (it.phaseNote || "")) : null,
         el("div", { class: "body", text: it.reason || (it.reasons || []).join("; ") }),
         it.news ? el("div", { class: "body flat", text: "Noticias: " + it.news }) : null,
         it.risk ? el("div", { class: "body flat", text: "Riesgo: " + it.risk }) : null,
