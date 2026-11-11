@@ -103,10 +103,11 @@ signalNode = (s, compact) => {
 // Cripto: Binance (público, sin clave). Acciones: Finnhub, con la clave gratuita que el usuario
 // guarda solo en este móvil. Los proveedores ven qué valores se consultan, nunca cuántos tiene.
 const FH_LS = "centinela.finnhub";
-let liveAt = 0, liveTimer = null;
+let liveAt = 0, liveTimer = null, pwaFinnhub = null;
 async function liveTick() {
   if (document.visibilityState !== "visible" || !S.loaded) return;
-  const fh = lsGet(FH_LS);
+  // Clave de Finnhub: la del móvil si el usuario puso una; si no, la que viaja cifrada en sus datos
+  const fh = lsGet(FH_LS) || pwaFinnhub;
   let changed = 0;
   await Promise.all(allHoldings().map(async (h) => {
     const q = h.q; if (!q) return;
@@ -191,7 +192,7 @@ async function pwaLoad(k) {
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
-    pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {};
+    pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     db = stubDb; S.loaded = true;
     renderAll(); appPanel(); startLive();
     if (!$("#v-cartera").hidden) requestAnimationFrame(drawEvolution);
@@ -219,7 +220,7 @@ function appPanel() {
       el("button", { class: "btn small", type: "button", text: "Olvidar la clave", onclick: () => { lsSet(KEY_LS, null); location.reload(); } })),
     el("p", { class: "note", text: pwaLastAt ? "Datos publicados " + ago(pwaLastAt) + "." : "" }));
   // Clave de Finnhub para precios de acciones en directo (solo se guarda en este móvil)
-  const has = !!lsGet(FH_LS);
+  const has = !!(lsGet(FH_LS) || pwaFinnhub);
   const inp = el("input", { id: "fh-key", placeholder: has ? "Clave guardada · escriba otra para cambiarla" : "Pegue aquí su clave de Finnhub", autocomplete: "off", spellcheck: "false" });
   let lp = $("#live-panel");
   if (!lp) { lp = el("div", { class: "panel", id: "live-panel" }); p.after(lp); }
@@ -230,7 +231,7 @@ function appPanel() {
     el("div", { class: "form" },
       el("label", { class: "field" }, "Clave de Finnhub", inp),
       el("button", { class: "btn primary", type: "button", text: "Guardar", onclick: () => { const v = inp.value.trim(); if (!/^[A-Za-z0-9]{10,}$/.test(v)) { toast("Esa clave no parece válida", true); return; } lsSet(FH_LS, v); inp.value = ""; toast("Clave guardada en este móvil"); appPanel(); liveTick(); } }),
-      has ? el("button", { class: "btn", type: "button", text: "Quitar", onclick: () => { lsSet(FH_LS, null); appPanel(); } }) : ""),
+      lsGet(FH_LS) ? el("button", { class: "btn", type: "button", text: "Quitar", onclick: () => { lsSet(FH_LS, null); appPanel(); } }) : ""),
     el("p", { class: "note", text: has ? "Acciones en directo: activas." : "Acciones en directo: pendientes de la clave." }));
 }
 
