@@ -256,6 +256,51 @@ if (existsSync(notesFile)) {
   writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list }, null, 1));
 }
 
+// ---------- 7b. Resumen matinal (una vez al día, entre las 07:00 y las 11:00 de Dublín) ----------
+// Solo porcentajes: nunca importes ni cantidades del usuario.
+{
+  const dub = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Dublin", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hour12: false }).formatToParts(now);
+  const P = Object.fromEntries(dub.map((x) => [x.type, x.value]));
+  const today = `${P.year}-${P.month}-${P.day}`, hour = Number(P.hour) % 24;
+  if ((process.env.FORCE_SUMMARY === "1" || (hour >= 7 && hour < 11)) && s.status.summaryDate !== today) {
+    const pc = (v) => v == null || !isFinite(v) ? "—" : `${v > 0 ? "+" : ""}${(v * 100).toFixed(1).replace(".", ",")} %`;
+    const H = holdingsFromLedger(s.ledger?.rows || []).map((h) => ({ sym: h.quote, qty: h.qty }))
+      .concat((s.crypto?.assets || []).filter((a) => !["EUR", "USD", "GBP"].includes(a.asset)).map((a) => ({ sym: `${a.asset}-EUR`, qty: a.qty })))
+      .concat((s.positions?.manual || []).map((m) => ({ sym: m.symbol, qty: m.qty })));
+    const seen = new Set(); const hold = H.filter((h) => !seen.has(h.sym) && seen.add(h.sym));
+    let val = 0, prev = 0;
+    const parts = [];
+    for (const h of hold) {
+      const q = s.quotes[docId(h.sym)]; if (!q?.priceEur) continue;
+      const v = h.qty * q.priceEur; val += v; prev += v / (1 + (q.change1d || 0));
+      parts.push(`${h.sym.replace(/-EUR$/, "")} ${pc(q.change1d)}`);
+    }
+    const tot = prev ? val / prev - 1 : null;
+    const idx = await mapLimit([["ES=F", "S&P 500 (fut.)"], ["NQ=F", "Nasdaq (fut.)"], ["^N225", "Nikkei"], ["^GDAXI", "DAX"]], 4, async ([sym, name]) => { try { const q = await analyze(sym); return `${name} ${pc(q.change1d)}`; } catch { return null; } });
+    // Wall Street hoy
+    const ny = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", weekday: "short", year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(now).map((x) => [x.type, x.value]));
+    const US_OFF = ["2026-11-26", "2026-12-25", "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18", "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24"];
+    const nyDate = `${ny.year}-${ny.month}-${ny.day}`;
+    const wall = ["Sat", "Sun"].includes(ny.weekday) || US_OFF.includes(nyDate) ? "Wall Street cerrada hoy." : "Wall Street abre a las 14:30 (hora de Dublín).";
+    // Veredictos de la IA sobre su cartera y la mejor idea
+    const mine = hold.map((h) => s.signals.find((x) => x.symbol === h.sym)).filter(Boolean).map((x) => `${x.symbol.replace(/-EUR$/, "")} ${x.action} ${x.confidence} %`);
+    const ideas = (s.scan?.items || []).filter((i) => !seen.has(i.symbol)); // nunca lo que ya tiene
+    const best = ideas.find((i) => i.verdict === "comprar") || ideas.find((i) => i.verdict === "vigilar");
+    const body = [
+      `Cartera ${pc(tot)} en 24 h${parts.length ? ` (${parts.join(", ")})` : ""}.`,
+      idx.filter(Boolean).length ? `Noche: ${idx.filter(Boolean).join(" · ")}.` : "",
+      wall,
+      mine.length ? `Señales: ${mine.join(" · ")}.` : "",
+      best ? `Idea del día: ${best.symbol} (${best.verdict} ${best.confidence} %).` : "",
+      s.status.aiAt && now - new Date(s.status.aiAt) < 30 * 3600e3 ? "" : "Análisis de noticias en pausa: solo datos estadísticos.",
+    ].filter(Boolean).join("\n");
+    const okSent = await notify(`Buenos días · cartera ${pc(tot)}`, body, 3, "sunrise");
+    if (okSent) { s.status.summaryDate = today; log.push("Resumen matinal enviado"); }
+    else log.push("Resumen matinal: no se pudo enviar");
+    if (process.env.FORCE_SUMMARY === "1") console.log("RESUMEN:\n" + body);
+  }
+}
+
 // ---------- 8. Estado ----------
 s.status.portfolioAt = at;
 s.status.engine = "github";
