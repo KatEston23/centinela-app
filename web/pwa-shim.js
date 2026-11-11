@@ -371,15 +371,29 @@ function appPanel() {
   const inp = el("input", { id: "fh-key", placeholder: has ? "Clave guardada · escriba otra para cambiarla" : "Pegue aquí su clave de Finnhub", autocomplete: "off", spellcheck: "false" });
   let lp = $("#live-panel");
   if (!lp) { lp = el("div", { class: "panel", id: "live-panel" }); p.after(lp); }
-  lp.replaceChildren(
-    el("h2", { text: "Precios en directo" }),
-    el("p", { class: "note", text: "Con la app abierta, los precios de su cartera se actualizan cada 15 segundos. Bitcoin y otras criptos ya funcionan. Para las acciones hace falta una clave gratuita de Finnhub." }),
-    el("p", { class: "note" }, "1. Regístrese gratis en ", el("a", { href: "https://finnhub.io/register", target: "_blank", rel: "noopener", text: "finnhub.io" }), ". 2. Copie su «API key» del panel. 3. Péguela aquí:"),
-    el("div", { class: "form" },
-      el("label", { class: "field" }, "Clave de Finnhub", inp),
-      el("button", { class: "btn primary", type: "button", text: "Guardar", onclick: () => { const v = inp.value.trim(); if (!/^[A-Za-z0-9]{10,}$/.test(v)) { toast("Esa clave no parece válida", true); return; } lsSet(FH_LS, v); inp.value = ""; toast("Clave guardada en este móvil"); appPanel(); liveTick(); } }),
-      lsGet(FH_LS) ? el("button", { class: "btn", type: "button", text: "Quitar", onclick: () => { lsSet(FH_LS, null); appPanel(); } }) : ""),
-    el("p", { class: "note", text: has ? "Acciones en directo: activas." : "Acciones en directo: pendientes de la clave." }));
+  const form = el("div", { class: "form" },
+    el("label", { class: "field" }, "Clave de Finnhub", inp),
+    el("button", { class: "btn primary", type: "button", text: "Guardar", onclick: () => { const v = inp.value.trim(); if (!/^[A-Za-z0-9]{10,}$/.test(v)) { toast("Esa clave no parece válida", true); return; } lsSet(FH_LS, v); inp.value = ""; toast("Clave guardada en este móvil"); appPanel(); liveTick(); } }),
+    lsGet(FH_LS) ? el("button", { class: "btn", type: "button", text: "Quitar la de este móvil", onclick: () => { lsSet(FH_LS, null); appPanel(); } }) : "");
+  const live = Date.now() - liveAt < 60000;
+  const ok = (t, d) => el("div", { class: "status-row" }, el("span", { text: t }), el("span", { class: "up", text: d }));
+  if (has) {
+    // Ya configurado: estado y, solo si lo pide, el formulario para cambiar la clave
+    form.hidden = true;
+    lp.replaceChildren(
+      el("h2", { text: "Precios en directo" }),
+      ok("Criptomonedas (Binance)", "✓ activo"),
+      ok("Acciones (Finnhub)", "✓ clave configurada"),
+      el("p", { class: "note", text: live ? "Actualizándose ahora cada 15 segundos mientras la app está abierta." : "Se actualizan cada 15 segundos mientras la app está abierta y el mercado cotiza." }),
+      el("button", { class: "btn small", type: "button", text: "Cambiar clave", onclick: (e) => { form.hidden = false; e.target.remove(); } }),
+      form);
+  } else {
+    lp.replaceChildren(
+      el("h2", { text: "Precios en directo" }),
+      ok("Criptomonedas (Binance)", "✓ activo"),
+      el("p", { class: "note" }, "Para las acciones hace falta una clave gratuita de Finnhub: regístrese en ", el("a", { href: "https://finnhub.io/register", target: "_blank", rel: "noopener", text: "finnhub.io" }), ", copie su «API key» y péguela aquí."),
+      form);
+  }
 }
 
 async function refresh(manual = false) {

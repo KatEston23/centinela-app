@@ -4,8 +4,8 @@ name: Centinela
 
 on:
   schedule:
-    - cron: "5 0-6,8-23 * * *"        # cartera cada hora (UTC)
-    - cron: "30 7 * * *"             # cartera + escáner (07:30 UTC)
+    - cron: "23 0-6,8-23 * * *"       # cartera cada hora (UTC; minuto 23 para evitar la saturación de GitHub a en punto)
+    - cron: "41 7 * * *"             # cartera + escáner (07:41 UTC)
   push:                                # la rutina de Claude (capa 2) deja su análisis aquí
     branches: [main]
     paths: ["ai/notes.json"]
@@ -30,7 +30,7 @@ jobs:
       PWA_KEY: ${{ secrets.PWA_KEY }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
       REVOLUTX_CONFIG_DIR: /tmp/revolut-x
-      MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '30 7 * * *' && 'scan' || 'portfolio') }}
+      MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '41 7 * * *' && 'scan' || 'portfolio') }}
     steps:
       - uses: actions/checkout@v4
 
