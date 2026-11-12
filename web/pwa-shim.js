@@ -492,6 +492,96 @@ function renderPlan() {
 const _renderOpp3 = renderOpportunities;
 renderOpportunities = () => { _renderOpp3(); renderPlan(); };
 
+// ---- Mercado hoy: noticias que mueven el mercado, escenarios, régimen cripto y fechas clave ----
+// Lo escribe la capa de IA con las skills market-news-analyst, scenario-analyzer, catalyst-calendar
+// y crypto-regime-analyzer. Todo son datos públicos de mercado.
+const ZONE_ES = { "RISK-ON": ["Apetito por el riesgo", "gain"], "STRONG RISK-ON": ["Mucho apetito por el riesgo", "gain"], "HEALTHY": ["Sano", "gain"], "NEUTRAL": ["Neutral", "flat"], "CAUTION": ["Precaución", "loss"], "RISK-OFF": ["Aversión al riesgo", "loss"], "CRITICAL": ["Muy negativo", "loss"] };
+const COMP_ES = { btc_trend: "Tendencia de BTC", alt_breadth: "Amplitud de altcoins", dominance: "Dominancia de BTC", funding: "Apalancamiento", drawdown_vol: "Caída y volatilidad", momentum_thrust: "Impulso" };
+const REG_ES = { "risk-on": ["Apetito por el riesgo", "gain"], neutral: ["Neutral", "flat"], "risk-off": ["Aversión al riesgo", "loss"] };
+const IMP_ES = { alto: "loss", medio: "warn", bajo: "flat", high: "loss", medium: "warn", low: "flat" };
+const fmtD = (d) => { const t = new Date(d); return isNaN(t) ? d : t.toLocaleDateString("es-ES", { day: "numeric", month: "short" }); };
+function upcomingCatalysts() {
+  const held = new Set(allHoldings().map((h) => h.quote));
+  const out = [];
+  for (const c of S.market?.catalysts || []) out.push({ ...c, sym: null });
+  // Las fechas de sus valores; si el panorama general ya trae ese mismo día, no se repite
+  const mkDays = new Set(out.map((c) => c.d));
+  for (const [sym, a] of Object.entries(S.analysis || {})) if (held.has(sym)) for (const c of a.catalysts || []) if (!mkDays.has(c.d)) out.push({ ...c, sym });
+  const today = new Date(new Date().toDateString());
+  return out.filter((c) => { const t = new Date(c.d); return isNaN(t) || t >= today; })
+    .sort((a, b) => String(a.d).localeCompare(String(b.d))).slice(0, 6);
+}
+function renderMarketToday() {
+  let p = $("#hoy-mkt");
+  const M = S.market, R = S.cryptoRegime;
+  if (!M && !R) { if (p) p.remove(); return; }
+  if (!p) { p = el("div", { class: "panel", id: "hoy-mkt" }); $("#positions").after(p); }
+  p.replaceChildren(el("h2", {}, "Mercado hoy", el("small", { text: M?.at ? ` · análisis de ${ago(M.at)}` : "" })));
+  if (M) {
+    const rg = REG_ES[(M.regime || "").toLowerCase()];
+    if (rg) p.append(el("div", { class: "hm-reg" }, el("span", { class: "pill hm-" + rg[1], text: rg[0] })));
+    if (M.summary) p.append(el("p", { class: "hm-sum", text: M.summary }));
+    if (M.events?.length) {
+      p.append(el("h3", { text: "Noticias que mueven el mercado" }));
+      const ul = el("ul", { class: "hm-ev" });
+      for (const e of M.events) ul.append(el("li", {}, el("i", { class: "hm-dot hm-" + (IMP_ES[(e.impact || "").toLowerCase()] || "flat"), title: "Impacto " + (e.impact || "") }),
+        el("div", {}, e.u ? el("a", { href: e.u, target: "_blank", rel: "noopener", text: e.t }) : el("b", { text: e.t }), e.affects ? el("span", { class: "flat", text: " · " + e.affects }) : null)));
+      p.append(ul);
+    }
+    if (M.scenarios?.length) {
+      p.append(el("h3", { text: "Escenarios" }));
+      for (const sc of M.scenarios) p.append(el("div", { class: "hm-sc" }, el("div", { class: "hm-sch" }, el("b", { text: sc.name }), el("span", { class: "num flat", text: `${sc.prob} %` })),
+        el("div", { class: "hm-bar" }, el("span", { style: `width:${sc.prob}%` })), sc.effect ? el("div", { class: "body flat", text: sc.effect }) : null));
+    }
+  }
+  if (R) {
+    const z = ZONE_ES[String(R.zone || "").toUpperCase()] || [R.zone, "flat"];
+    p.append(el("h3", { text: "Mercado cripto" }));
+    p.append(el("div", { class: "hm-cr" }, el("div", { class: "hm-score num " + z[1], text: String(Math.round(R.score)) }),
+      el("div", {}, el("b", { text: z[0] }), el("div", { class: "flat", text: `Régimen 0–100 · ${ago(R.at)}` }))));
+    const comp = el("div", { class: "hm-comp" });
+    for (const [k, c] of Object.entries(R.components || {})) if (c.ok) comp.append(el("div", {}, el("span", { text: COMP_ES[k] || k }), el("div", { class: "hm-bar" }, el("span", { style: `width:${c.score}%` })), el("span", { class: "num flat", text: String(c.score) })));
+    p.append(comp);
+    if (M?.crypto) p.append(el("p", { class: "body", text: M.crypto }));
+  }
+  const cats = upcomingCatalysts();
+  if (cats.length) {
+    p.append(el("h3", { text: "Próximas fechas clave" }));
+    const ul = el("ul", { class: "hm-cat" });
+    for (const c of cats) ul.append(el("li", {}, el("span", { class: "num hm-d", text: fmtD(c.d) }), el("span", {}, c.sym ? el("b", { text: c.sym.replace(/-EUR$/, "") + " · " }) : null, c.e)));
+    p.append(ul);
+  }
+  p.append(el("p", { class: "note", text: "Lectura orientativa del mercado con IA y datos públicos; no es asesoramiento financiero." }));
+}
+// Tesis de inversión: por qué, qué la rompería, valoración y fechas, en señales e ideas
+function thesisBlock(sym) {
+  const a = S.analysis?.[sym];
+  if (!a || !(a.thesis || a.breaks || a.valuation)) return null;
+  const b = el("div", { class: "thesis" });
+  if (a.thesis) b.append(el("div", { class: "body" }, el("b", { text: "Por qué invertir: " }), a.thesis));
+  if (a.breaks) b.append(el("div", { class: "body" }, el("b", { text: "Qué lo cambiaría: " }), a.breaks));
+  if (a.valuation) b.append(el("div", { class: "body flat" }, el("b", { text: "Valoración: " }), a.valuation));
+  if (a.catalysts?.length) b.append(el("div", { class: "body flat" }, el("b", { text: "Fechas: " }), a.catalysts.map((c) => `${fmtD(c.d)} ${c.e}`).join(" · ")));
+  return b;
+}
+const _signalNode2 = signalNode;
+signalNode = (s, compact) => {
+  const n = _signalNode2(s, compact);
+  if (!compact && s.by === "ia") { const t = thesisBlock(s.symbol); if (t) n.append(t); }
+  return n;
+};
+const _renderOpp4 = renderOpportunities;
+renderOpportunities = () => {
+  _renderOpp4();
+  document.querySelectorAll("#scan-list .opp").forEach((o) => {
+    if (o.querySelector(".thesis")) return;
+    const sym = o.querySelector(".hd b")?.textContent; const t = sym && thesisBlock(sym);
+    if (t) o.append(t);
+  });
+};
+const _renderAll2 = renderAll;
+renderAll = () => { _renderAll2(); renderMarketToday(); };
+
 const readOnly = () => Promise.reject({ message: "en la app del móvil solo se consulta; cámbielo en la dashboard de Claude" });
 const stubDb = { doc: () => ({ set: readOnly, update: readOnly, delete: readOnly }) };
 
@@ -538,6 +628,7 @@ async function pwaLoad(k) {
     S.positions = { manual: [], cryptoCost: {}, ...(d.positions || {}) };
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
+    S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();

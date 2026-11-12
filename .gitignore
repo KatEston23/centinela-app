@@ -7,3 +7,7 @@ pwa/
 node_modules/
 *.log
 docs/
+__pycache__/
+*.pyc
+ai/regime-cache/*
+!ai/regime-cache/dominance_history.json

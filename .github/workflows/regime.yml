@@ -1,0 +1,59 @@
+# Centinela · régimen del mercado cripto (skill crypto-regime-analyzer, tradermonty, MIT).
+# Datos públicos sin clave (CoinGecko + Binance). Tarda ~6 min por los límites de CoinGecko,
+# así que va aparte del motor horario: lo lanza el motor una vez al día y deja el resultado en
+# ai/crypto-regime.json (main), que el motor integra en la siguiente pasada.
+name: Régimen cripto
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regime
+  cancel-in-progress: false
+
+jobs:
+  regime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Analizar
+        run: |
+          pip install -q "requests>=2.31.0"
+          mkdir -p ai/regime-cache /tmp/regime
+          # El histórico de dominancia de BTC se acumula día a día (hacen falta 31 días)
+          python .claude/skills/crypto-regime-analyzer/scripts/crypto_regime_analyzer.py \
+            --output-dir /tmp/regime --cache-dir ai/regime-cache --quiet
+          python - <<'EOF'
+          import json
+          d = json.load(open("/tmp/regime/crypto_regime.json"))
+          c = d.get("composite", {})
+          out = {
+              "at": d["metadata"]["as_of"],
+              "score": c.get("score"),
+              "zone": c.get("zone"),
+              "guidance": c.get("guidance"),
+              "components": {k: {"score": v.get("score"), "signal": v.get("signal"), "ok": v.get("data_available")}
+                             for k, v in d.get("components", {}).items()},
+          }
+          json.dump(out, open("ai/crypto-regime.json", "w"), indent=1)
+          print(out["zone"], out["score"])
+          EOF
+
+      - name: Guardar
+        run: |
+          # Solo se conserva el histórico de dominancia; la caché diaria se descarta
+          find ai/regime-cache -type f ! -name dominance_history.json -delete
+          git config user.name "centinela-bot"
+          git config user.email "centinela-bot@users.noreply.github.com"
+          git add ai/crypto-regime.json ai/regime-cache/dominance_history.json
+          git commit -q -m "Régimen cripto $(date -u +%F)" || exit 0
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin main && break; sleep 5; done

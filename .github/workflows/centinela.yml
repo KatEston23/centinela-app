@@ -17,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # para lanzar el análisis diario del régimen cripto
 
 concurrency:
   group: centinela
@@ -49,6 +50,14 @@ jobs:
           printf '%s\n' "$REVX_PRIVATE_KEY" > "$REVOLUTX_CONFIG_DIR/private.pem"
           chmod 600 "$REVOLUTX_CONFIG_DIR/private.pem"
           node -e 'const fs=require("fs"),d=process.env.REVOLUTX_CONFIG_DIR;fs.writeFileSync(d+"/config.json",JSON.stringify({api_key:process.env.REVX_API_KEY,private_key_path:d+"/private.pem"}));fs.chmodSync(d+"/config.json",0o600)'
+
+      - name: Régimen cripto (una vez al día, desde las 06:00 UTC)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          due=$(node -e 'const f="ai/crypto-regime.json",fs=require("fs");const n=new Date(),t6=Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate(),6);let at=0;try{at=new Date(JSON.parse(fs.readFileSync(f)).at).getTime()}catch{}console.log(n>=t6&&at<t6?1:0)')
+          busy=$(gh run list -w regime.yml --json status -q '[.[]|select(.status!="completed")]|length' -L 5 || echo 0)
+          if [ "$due" = 1 ] && [ "$busy" = 0 ]; then gh workflow run regime.yml --ref main && echo "lanzado"; else echo "no toca (due=$due, en curso=$busy)"; fi
 
       - name: Descifrar el estado
         run: node engine/state.mjs decrypt

@@ -200,3 +200,29 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .ap-alt{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--accent-soft)}
 .ap-alt h3{margin:0 0 4px;font:700 15px var(--f-display);color:var(--accent)}
 .ap-alt .ap-line{border-top-color:color-mix(in srgb, var(--accent) 25%, transparent)}
+/* mercado hoy */
+#hoy-mkt h3{margin:18px 0 8px;font:700 15px var(--f-display)}
+#hoy-mkt .hm-sum{margin:8px 0 0;line-height:1.5;font-size:14.5px}
+.hm-reg .pill{font-weight:700}
+.pill.hm-gain{background:var(--gain-soft);color:var(--gain)}
+.pill.hm-loss{background:var(--loss-soft);color:var(--loss)}
+.pill.hm-flat{background:var(--sunk);color:var(--muted)}
+.hm-ev,.hm-cat{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.hm-ev li{display:grid;grid-template-columns:10px 1fr;gap:10px;align-items:start;font-size:13.5px;line-height:1.45}
+.hm-ev a{color:var(--fg);font-weight:600;text-decoration:none}
+.hm-dot{width:8px;height:8px;border-radius:50%;margin-top:6px;background:var(--muted)}
+.hm-dot.hm-loss{background:var(--loss)}.hm-dot.hm-warn{background:var(--accent)}
+.hm-sc{display:grid;gap:5px;padding:8px 0}
+.hm-sch{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.hm-bar{height:6px;border-radius:6px;background:var(--sunk);overflow:hidden}
+.hm-bar span{display:block;height:100%;background:var(--accent);border-radius:6px}
+.hm-cr{display:flex;gap:14px;align-items:center}
+.hm-score{font:700 34px var(--f-display);min-width:56px}
+.hm-score.gain{color:var(--gain)}.hm-score.loss{color:var(--loss)}
+.hm-comp{display:grid;gap:7px;margin-top:12px;font-size:12.5px}
+.hm-comp>div{display:grid;grid-template-columns:minmax(0,9.5em) 1fr 2.2em;gap:10px;align-items:center}
+.hm-comp .num{text-align:right}
+.hm-cat li{display:grid;grid-template-columns:4.2em 1fr;gap:10px;font-size:13.5px;line-height:1.4}
+.hm-d{color:var(--accent);font-weight:600}
+.thesis{display:grid;gap:5px;margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--sunk);font-size:13px;line-height:1.45}
+.thesis b{color:var(--fg)}

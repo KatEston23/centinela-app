@@ -193,6 +193,15 @@ if (mode === "scan" || scanDue) {
   log.push(`Escáner: ${scored.length} valores, ${enriched.length} con análisis de IA vigente`);
 }
 
+// ---------- 6b. Régimen del mercado cripto (skill crypto-regime-analyzer; lo deja regime.yml) ----------
+const regimeFile = join(ROOT, "ai", "crypto-regime.json");
+if (existsSync(regimeFile)) {
+  try {
+    const r = JSON.parse(readFileSync(regimeFile, "utf8"));
+    if (r.at && r.score != null && (!s.cryptoRegime || r.at !== s.cryptoRegime.at)) { s.cryptoRegime = r; log.push(`Régimen cripto: ${r.zone} ${r.score}/100`); }
+  } catch (e) { log.push("Régimen cripto no válido (" + e.message + ")"); }
+}
+
 // ---------- 7. Capa 2 (IA): integra ai/notes.json si es más nuevo que lo último integrado ----------
 // La rutina de Claude solo ve datos públicos de mercado y deja aquí su análisis de noticias.
 const notesFile = join(ROOT, "ai", "notes.json");
@@ -202,6 +211,21 @@ if (existsSync(notesFile)) {
     const nAt = nn.at && new Date(nn.at);
     if (nAt && !isNaN(nAt) && (!s.status.aiMergedAt || nAt > new Date(s.status.aiMergedAt))) {
       let merged = 0, aiSent = 0;
+      // Texto de la IA: siempre cadena, recortada (nunca HTML ni objetos)
+      const tx = (x, n = 300) => (x == null ? undefined : String(x).replace(/\s+/g, " ").trim().slice(0, n) || undefined);
+      const cats = (a) => (Array.isArray(a) ? a : []).slice(0, 5).map((c) => ({ d: tx(c?.d, 20), e: tx(c?.e, 120), imp: tx(c?.imp, 10) })).filter((c) => c.e);
+      s.analysis = s.analysis || {};
+      // Panorama del día: noticias que mueven el mercado, escenarios y lectura cripto
+      const mk = nn.market || {};
+      if (mk.summary || (mk.events || []).length) {
+        s.market = {
+          at: nn.at, regime: tx(mk.regime, 20), summary: tx(mk.summary, 700),
+          events: (mk.events || []).slice(0, 6).map((e) => ({ t: tx(e?.t, 140), impact: tx(e?.impact, 10), affects: tx(e?.affects, 140), u: /^https:\/\//.test(e?.u || "") ? e.u : undefined })).filter((e) => e.t),
+          scenarios: (mk.scenarios || []).slice(0, 3).map((e) => ({ name: tx(e?.name, 60), prob: Math.max(0, Math.min(100, Number(e?.prob) || 0)), effect: tx(e?.effect, 200) })).filter((e) => e.name),
+          catalysts: cats(mk.catalysts),
+          crypto: tx(nn.crypto?.summary || mk.crypto, 400),
+        };
+      }
       const VERDICTS = ["comprar", "reforzar", "mantener", "reducir", "vender", "vigilar"];
       for (const [sym, n] of Object.entries(nn.notes || {})) {
         if (!VERDICTS.includes(n.verdict)) continue;
@@ -212,6 +236,8 @@ if (existsSync(notesFile)) {
         const ENTRY = { comprar: "comprar", reforzar: "comprar", vigilar: "vigilar", mantener: "vigilar", reducir: "evitar", vender: "evitar" };
         const entry = ["comprar", "vigilar", "evitar"].includes(n.entry) ? n.entry : ENTRY[n.verdict];
         const entryConf = Math.max(0, Math.min(100, Number(n.entryConfidence ?? n.confidence) || 0));
+        // Tesis (por qué invertir), qué la rompería, valoración y próximas fechas clave
+        s.analysis[sym] = { at: nn.at, thesis: tx(n.thesis, 400), breaks: tx(n.breaks, 250), valuation: tx(n.valuation, 250), catalysts: cats(n.catalysts) };
         const it = (s.scan?.items || []).find((i) => i.symbol === sym);
         if (it) Object.assign(it, { verdict: entry, confidence: entryConf, news: n.news, risk: n.risk, watchFor: n.watchFor, aiReason: n.reason, reason: n.reason || it.reason, aiAt: nn.at });
         // Cartera y vigilancia: señal con noticias
@@ -255,7 +281,10 @@ if (existsSync(notesFile)) {
     return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma50: q.sma50, sma200: q.sma200, phase: q.phaseLabel, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null };
   });
   mkdirSync(join(ROOT, "docs"), { recursive: true });
-  writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list }, null, 1));
+  const cr = s.cryptoRegime ? { at: s.cryptoRegime.at, score: s.cryptoRegime.score, zone: s.cryptoRegime.zone, guidance: s.cryptoRegime.guidance, components: s.cryptoRegime.components } : null;
+  // Tesis del día anterior para que la IA las actualice en vez de reescribirlas de cero
+  const prevThesis = Object.fromEntries([...pick].filter((x) => s.analysis?.[x]?.thesis).map((x) => [x, { thesis: s.analysis[x].thesis, breaks: s.analysis[x].breaks }]));
+  writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list, cryptoRegime: cr, prevThesis }, null, 1));
 }
 
 // ---------- 7b. Resumen matinal (una vez al día, entre las 07:00 y las 11:00 de Dublín) ----------
