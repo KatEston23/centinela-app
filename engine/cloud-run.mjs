@@ -154,7 +154,9 @@ function rankItems(items) {
 
 // ---------- 6. Escáner técnico (solo en modo scan) ----------
 // El escáner diario también se hace si toca y nadie lo hizo (por si GitHub se salta la hora programada)
-const scanDue = (!s.status.scanAt || now - new Date(s.status.scanAt) > 20 * 3600e3) && now.getUTCHours() >= 7;
+// Toca si hoy (UTC) aún no hay escáner hecho a partir de las 07:00: así no se va desplazando día a día
+const today7 = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 7));
+const scanDue = now >= today7 && (!s.status.scanAt || new Date(s.status.scanAt) < today7);
 if (mode === "scan" || scanDue) {
   const rows = await mapLimit(UNIVERSE.map((u) => u[0]), 6, analyze);
   const country = Object.fromEntries(UNIVERSE);

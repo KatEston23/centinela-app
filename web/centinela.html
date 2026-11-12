@@ -752,7 +752,9 @@ function renderSettings() {
   row("Extracto de Invest", S.ledger ? `${S.ledger.rows.length} movimientos` : "sin importar");
   if (S.ledger) {
     row("· Último importado", ago(S.ledger.importedAt));
-    row("· Drive revisado", st.statementCheckedAt ? ago(st.statementCheckedAt) + (st.statementCheckedAt > S.ledger.importedAt ? " · sin extractos nuevos" : "") : "pendiente");
+    // Si la revisión importó el extracto (misma pasada, < 15 min), lo dice; si no, no había nada nuevo
+    const chk = st.statementCheckedAt ? new Date(st.statementCheckedAt) - new Date(S.ledger.importedAt) : null;
+    row("· Drive revisado", chk == null ? "pendiente" : ago(st.statementCheckedAt) + (chk < 15 * 60e3 ? " · extracto nuevo importado" : " · sin extractos nuevos"));
   }
   if (st.note) es.append(el("p", { class: "note", text: st.note }));
 }
