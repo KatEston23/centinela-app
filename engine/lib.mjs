@@ -116,6 +116,22 @@ export async function extendedQuote(symbol) {
   return { price: c[i], at: ts[i], session };
 }
 
+/** Precio de hace 24 h (cripto): Revolut X y Binance miden la variación en 24 h móviles, no desde las 00:00 UTC. */
+export async function price24hAgo(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=2d&interval=5m`;
+  const r = await fetch(url, { headers: UA });
+  if (!r.ok) return null;
+  const res = (await r.json())?.chart?.result?.[0];
+  const ts = res?.timestamp || [], c = res?.indicators?.quote?.[0]?.close || [];
+  let last = ts.length - 1;
+  while (last >= 0 && c[last] == null) last--;
+  if (last < 0) return null;
+  const target = ts[last] - 86400;
+  let best = null;
+  for (let i = 0; i < ts.length; i++) if (c[i] != null && ts[i] <= target) best = c[i];
+  return best;
+}
+
 export async function analyze(symbol, opts = {}) {
   const res = await fetchChart(symbol);
   const m = res.meta;
@@ -150,7 +166,8 @@ export async function analyze(symbol, opts = {}) {
   const s50 = sma(closes, 50), s200 = sma(closes, 200);
   const r14 = rsi(closes);
   const prevClose = closes.length > 1 ? closes[closes.length - 2] : null;
-  const ch1 = prevClose ? price / prevClose - 1 : null;
+  let ch1 = prevClose ? price / prevClose - 1 : null;
+  if (m.instrumentType === "CRYPTOCURRENCY") { try { const p24 = await price24hAgo(symbol); if (p24) ch1 = price / p24 - 1; } catch {} }
   const v = vols.filter((x) => x != null);
   const vAvg = v.length > 21 ? v.slice(-21, -1).reduce((a, b) => a + b, 0) / 20 : null;
   const volRatio = vAvg ? v.at(-1) / vAvg : null;
