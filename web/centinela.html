@@ -363,7 +363,7 @@ function importRevolut(text) {
     let kind = null;
     if (/BUY|COMPRA/.test(typeRaw)) kind = "buy"; else if (/SELL|VENTA/.test(typeRaw)) kind = "sell";
     else if (/DIVIDEND/.test(typeRaw)) kind = "div"; else if (/SPLIT|DESDOBL/.test(typeRaw)) kind = "split";
-    else if (/FEE|COMISI/.test(typeRaw)) kind = "fee"; else if (/TOP.?UP|WITHDRAW|RETIRAD|INGRESO|DEP[OÓ]SITO|TRANSFER/.test(typeRaw)) kind = "cash";
+    else if (/FEE|COMISI/.test(typeRaw)) kind = "fee"; else if (/WITHDRAW|RETIRAD/.test(typeRaw)) kind = "out"; else if (/TOP.?UP|INGRESO|DEP[OÓ]SITO|TRANSFER/.test(typeRaw)) kind = "cash";
     if (!kind) continue;
     const ticker = (r[c.ticker] || "").trim().toUpperCase();
     const date = parseDate(r[c.date]);
@@ -416,22 +416,41 @@ function allHoldings() {
     // El precio medio está en la divisa de compra; se pasa a euros con el cambio de hoy
     const rate = h.cur === "EUR" ? 1 : q?.currency === h.cur ? q.eurPer : null;
     const value = q && q.priceEur != null ? h.qty * q.priceEur : null;
-    const costEur = h.costEurHist != null ? h.costEurHist : h.avg != null && rate != null ? h.qty * h.avg * rate : null;
+    // Como Revolut: acciones en dólares se comparan con su precio medio en dólares al cambio de hoy
+    // (el resultado no mezcla la subida o bajada del euro); lo que se compró en euros, con su coste en euros
+    const costEur = h.cur !== "EUR" && h.avg != null && rate != null ? h.qty * h.avg * rate : h.costEurHist != null ? h.costEurHist : h.avg != null && rate != null ? h.qty * h.avg * rate : null;
     return { ...h, q, value, costEur, pnl: value != null && costEur != null ? value - costEur : null };
   }).sort((a, b) => (b.value || 0) - (a.value || 0));
 }
 const latestSignalFor = (sym) => S.signals.find((s) => s.symbol === sym);
 
 // ---------- render: cartera ----------
+// Efectivo sin invertir en Revolut Invest, sacado del extracto (ingresos − compras + ventas + dividendos − comisiones − retiradas)
+function investCash() {
+  const by = {};
+  for (const r of S.ledger?.rows || []) {
+    const v = Math.abs(r.tot || 0), sign = { cash: 1, sell: 1, div: 1, buy: -1, fee: -1, out: -1 }[r.k];
+    if (!sign || !r.cur) continue;
+    by[r.cur] = (by[r.cur] || 0) + sign * v;
+  }
+  let eurTotal = 0;
+  for (const [cur, amt] of Object.entries(by)) {
+    const rate = cur === "EUR" ? 1 : Object.values(S.quotes).find((q) => q.currency === cur && q.eurPer)?.eurPer;
+    if (rate == null) return null;
+    eurTotal += amt * rate;
+  }
+  return Math.abs(eurTotal) < 0.005 ? 0 : eurTotal;
+}
 function renderPortfolio() {
   const H = allHoldings();
+  const cash = investCash();
   const total = H.reduce((a, h) => a + (h.value || 0), 0);
   const cost = H.reduce((a, h) => a + (h.costEur || 0), 0);
   const withCost = H.filter((h) => h.pnl != null);
   const pnl = withCost.reduce((a, h) => a + h.pnl, 0);
   const costKnown = withCost.reduce((a, h) => a + h.costEur, 0);
   const today = H.reduce((a, h) => a + (h.value && h.q?.change1d != null ? h.value - h.value / (1 + h.q.change1d) : 0), 0);
-  $("#k-value").textContent = H.length ? eur.format(total) : "—";
+  $("#k-value").textContent = H.length ? eur.format(total + (cash || 0)) : "—";
   $("#k-cost").textContent = cost ? eur.format(cost) : "—";
   const kp = $("#k-pnl"); kp.textContent = withCost.length ? (pnl > 0 ? "+" : "") + eur.format(pnl) : "—"; kp.className = "v num " + cls(pnl);
   const kpp = $("#k-pnlp"); kpp.textContent = costKnown ? fmtPct(pnl / costKnown) : " "; kpp.className = "s num " + cls(pnl);
@@ -468,6 +487,7 @@ function renderPortfolio() {
     });
     t.append(tb);
     body.append(el("div", { class: "tablewrap" }, t));
+    if (cash) body.append(el("p", { class: "note", text: `Efectivo sin invertir en Revolut Invest: ${eur.format(cash)} (incluido en el valor total, como en Revolut).` }));
     const rsiNotes = H.filter((h) => h.q?.rsi14 != null).map((h) => `${h.symbol}: RSI ${h.q.rsi14.toFixed(0)}${h.q.rsi14 < 30 ? " (sobreventa)" : h.q.rsi14 > 70 ? " (sobrecompra)" : ""}, ${fmtPct(h.q.drawdown)} desde máximos`);
     if (rsiNotes.length) body.append(el("p", { class: "note", text: rsiNotes.join(" · ") }));
   }
