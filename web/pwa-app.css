@@ -226,3 +226,4 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .hm-d{color:var(--accent);font-weight:600}
 .thesis{display:grid;gap:5px;margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--sunk);font-size:13px;line-height:1.45}
 .thesis b{color:var(--fg)}
+.sig .thesis{grid-column:2;margin-top:6px}
