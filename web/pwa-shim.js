@@ -87,6 +87,9 @@ renderPortfolio = () => {
     tds[3].textContent = price;
     tds[1].classList.replace("c-qty", "c-meta");
     tds[1].replaceChildren(`${qty} uds · medio ${avg} · hoy `, el("span", { class: tds[4].className.replace(/num|c-today/g, "").trim(), text: today }));
+    // Fuera de horario el precio es el de preapertura/cierre ampliado (como Revolut); se indica el cierre oficial
+    const hq = allHoldings().find((h) => h.symbol === sym || h.quote === sym)?.q;
+    if (hq?.regularPrice != null && hq.extSession) tds[1].append(` · ${hq.extSession === "pre" ? "precio de preapertura" : "precio de cierre ampliado"}, cierre ${fmtMoney(hq.regularPrice, hq.currency)}`);
     tds[2].classList.add("c-hide"); tds[4].classList.add("c-hide");
     tds[7].querySelector("svg")?.setAttribute("preserveAspectRatio", "none");
     tr.prepend(el("td", { class: "c-av" }, avatar(sym)));
@@ -124,6 +127,8 @@ async function liveTick() {
         if (!r.ok) return;
         const j = await r.json();
         if (!j.c) return;
+        // Fuera de horario Finnhub solo da el cierre: no pisa el precio de preapertura/cierre ampliado del motor
+        if (q.extAt && (!j.t || j.t * 1000 < new Date(q.extAt).getTime())) return;
         q.price = j.c; q.priceEur = Math.round(j.c * (q.eurPer || 1) * 100) / 100; q.change1d = (j.dp ?? 0) / 100;
         q.liveClosed = j.t && Date.now() / 1000 - j.t > 20 * 60; changed++;
       }

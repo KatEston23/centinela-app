@@ -89,7 +89,7 @@ const tier2 = new Set(s.watch.map((w) => w.symbol).filter((x) => !tier1.has(x)))
 
 // ---------- 3. Precios e indicadores ----------
 const symbols = [...tier1, ...tier2];
-const fresh = await mapLimit(symbols, 4, analyze);
+const fresh = await mapLimit(symbols, 4, (sym) => analyze(sym, { ext: true }));
 const fx = { EUR: 1 };
 for (const c of new Set(fresh.filter((q) => !q.error).map((q) => q.currency))) { try { fx[c] = await fxEurPer(c); } catch { fx[c] = null; } }
 let ok = 0;

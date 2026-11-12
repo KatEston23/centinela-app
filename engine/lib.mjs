@@ -100,7 +100,23 @@ export function marketPhase({ closes, price, s50, s200, dd, ch30, ch90 }) {
 }
 
 /** Analiza un símbolo: precio, variaciones, RSI, medias, volatilidad, deriva, disparadores. */
-export async function analyze(symbol) {
+/** Precio fuera de horario (preapertura / cierre ampliado) del último minuto con cotización, o null. */
+export async function extendedQuote(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=1m&includePrePost=true`;
+  const r = await fetch(url, { headers: UA });
+  if (!r.ok) return null;
+  const res = (await r.json())?.chart?.result?.[0];
+  const m = res?.meta, ts = res?.timestamp || [], c = res?.indicators?.quote?.[0]?.close || [];
+  if (!m || m.instrumentType === "CRYPTOCURRENCY") return null;
+  let i = c.length - 1;
+  while (i >= 0 && c[i] == null) i--;
+  if (i < 0 || !m.regularMarketTime || ts[i] <= m.regularMarketTime + 120) return null; // en sesión: ya vale el precio normal
+  const reg = m.currentTradingPeriod?.regular;
+  const session = reg && ts[i] < reg.start && ts[i] > reg.start - 12 * 3600 ? "pre" : "post";
+  return { price: c[i], at: ts[i], session };
+}
+
+export async function analyze(symbol, opts = {}) {
   const res = await fetchChart(symbol);
   const m = res.meta;
   const ts = res.timestamp || [];
@@ -108,8 +124,18 @@ export async function analyze(symbol) {
   const vols = res.indicators?.quote?.[0]?.volume || [];
   const rows = ts.map((t, i) => [t, raw[i], vols[i]]).filter((r) => r[1] != null);
   const closes = rows.map((r) => r[1]);
-  const price = m.regularMarketPrice ?? closes.at(-1);
+  const regular = m.regularMarketPrice ?? closes.at(-1);
+  let price = regular;
   if (closes.length) closes[closes.length - 1] = price;
+  // Fuera de horario manda el precio de preapertura/cierre ampliado, como en Revolut.
+  // Preapertura: es un día nuevo (se añade un punto). Cierre ampliado: prolonga el día de hoy.
+  let ext = null;
+  if (opts.ext) { try { ext = await extendedQuote(symbol); } catch {} }
+  if (ext) {
+    price = ext.price;
+    if (ext.session === "pre") { closes.push(price); rows.push([ext.at, price, null]); }
+    else closes[closes.length - 1] = price;
+  }
 
   const logr = [];
   for (let i = 1; i < closes.length; i++) logr.push(Math.log(closes[i] / closes[i - 1]));
@@ -130,7 +156,7 @@ export async function analyze(symbol) {
   const volRatio = vAvg ? v.at(-1) / vAvg : null;
 
   const triggers = [];
-  if (ch1 != null && Math.abs(ch1) >= 0.05) triggers.push({ code: ch1 < 0 ? "caida_dia" : "subida_dia", text: `${ch1 < 0 ? "Cae" : "Sube"} ${Math.abs(ch1 * 100).toFixed(1)} % en el día` });
+  if (ch1 != null && Math.abs(ch1) >= 0.05) triggers.push({ code: ch1 < 0 ? "caida_dia" : "subida_dia", text: `${ch1 < 0 ? "Cae" : "Sube"} ${Math.abs(ch1 * 100).toFixed(1)} % ${ext ? (ext.session === "pre" ? "en preapertura" : "en el cierre ampliado") : "en el día"}` });
   if (r14 != null && r14 < 30) triggers.push({ code: "rsi_sobreventa", text: `RSI ${r14.toFixed(0)}: sobreventa` });
   if (r14 != null && r14 > 70) triggers.push({ code: "rsi_sobrecompra", text: `RSI ${r14.toFixed(0)}: sobrecompra` });
   if (s200 && prevClose) {
@@ -156,6 +182,7 @@ export async function analyze(symbol) {
     exchange: m.fullExchangeName || m.exchangeName || "",
     currency: m.currency,
     price: round(price, 4),
+    ...(ext ? { regularPrice: round(regular, 4), extSession: ext.session, extAt: new Date(ext.at * 1000).toISOString() } : {}),
     change1d: round(ch1),
     change7d: round(pct(closes, 5)),
     change30d: round(pct(closes, 21)),
