@@ -42,6 +42,9 @@ export function buildShell() {
   const head = readFileSync(join(ROOT, "web", "pwa-head.html"), "utf8");
   const appCss = readFileSync(join(ROOT, "web", "pwa-app.css"), "utf8");
   const version = createHash("sha256").update(src + head + appCss).digest("hex").slice(0, 10);
+  // La app conoce su versión y la compara con version.json: si hay una nueva, se recarga sola
+  src = src.replace("__APP_VERSION__", version);
+  writeFileSync(join(DOCS, "version.json"), JSON.stringify({ v: version }));
   writeFileSync(join(DOCS, "index.html"), `<!doctype html><html lang="es"><head>${head}</head><body>\n${src}\n<style>\n${appCss}</style>\n</body></html>\n`);
   writeFileSync(join(DOCS, "sw.js"), readFileSync(join(ROOT, "web", "pwa-sw.js"), "utf8").replace("__VERSION__", version));
   copyFileSync(join(ROOT, "web", "manifest.webmanifest"), join(DOCS, "manifest.webmanifest"));

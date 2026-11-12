@@ -688,7 +688,19 @@ function appPanel() {
   }
 }
 
+// Versión del código de la app: «Actualizar» y cada vuelta a la app comprueban si hay una nueva y recargan
+const APP_V = "__APP_VERSION__";
+async function checkAppVersion() {
+  try {
+    const r = await fetch("version.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return false;
+    const { v } = await r.json();
+    if (v && v !== APP_V && !APP_V.startsWith("__")) { location.reload(); return true; }
+  } catch {}
+  return false;
+}
 async function refresh(manual = false) {
+  if (await checkAppVersion()) return;
   const k = lsGet(KEY_LS);
   if (!k) return;
   const ok = await pwaLoad(k);
