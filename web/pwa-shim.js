@@ -283,7 +283,7 @@ renderOpportunities = () => {
   document.querySelectorAll("#scan-list .opp").forEach((node, i) => {
     const it = items[i]; if (!it) return;
     const g = GROUPS[it.verdict] ? it.verdict : "none";
-    if (g !== last) {
+    if (g !== last && !OPP_BY_TECH) {
       node.before(el("div", { class: "opp-group g-" + g }, el("h3", { text: GROUPS[g][0] }), el("p", { class: "note", text: GROUPS[g][1] })));
       last = g;
     }
@@ -578,6 +578,16 @@ renderOpportunities = () => {
     const sym = o.querySelector(".hd b")?.textContent; const t = sym && thesisBlock(sym);
     if (t) o.append(t);
   });
+};
+// Ideas ordenadas por puntuación técnica, de mayor a menor (el veredicto sigue en cada tarjeta)
+var OPP_BY_TECH = true;
+const _renderOpp5 = renderOpportunities;
+renderOpportunities = () => {
+  const orig = S.scan?.items;
+  if (orig) S.scan.items = [...orig].sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+  try { _renderOpp5(); } finally { if (orig) S.scan.items = orig; }
+  const sc = $("#scan-list");
+  if (sc && sc.querySelector(".opp") && !sc.querySelector(".opp-order")) sc.prepend(el("p", { class: "note opp-order", text: "Ordenadas por puntuación técnica, de mayor a menor." }));
 };
 const _renderAll2 = renderAll;
 renderAll = () => { _renderAll2(); renderMarketToday(); };
