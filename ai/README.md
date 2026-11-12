@@ -26,4 +26,11 @@ Formato de `ai/notes.json`:
 }
 ```
 
+Desde el 2026-11-12 la rutina aplica las skills de `.claude/skills/` (market-news-analyst, scenario-analyzer,
+us-stock-analysis, thesis-tracker, catalyst-calendar, crypto-regime-analyzer) y añade al formato:
+`market` {regime, summary, events[{t, impact, affects, u}], scenarios[{name, prob, effect}], catalysts[{d, e, imp}]},
+`crypto` {summary} y, por símbolo, `thesis`, `breaks`, `valuation` y `catalysts`. Las instrucciones completas
+están en la rutina de Claude (copia local en `prompts/rutina-ia.md`). El régimen cripto lo calcula `.github/workflows/regime.yml` una vez al día
+y lo deja en `ai/crypto-regime.json`; el motor lo pasa a la IA en `ai-request.json` (`cryptoRegime`).
+
 Si la rutina no se ejecuta (sin tokens), el motor sigue funcionando con señales estadísticas.
