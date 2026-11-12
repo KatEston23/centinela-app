@@ -208,6 +208,8 @@ const notesFile = join(ROOT, "ai", "notes.json");
 if (existsSync(notesFile)) {
   try {
     const nn = JSON.parse(readFileSync(notesFile, "utf8"));
+    // Si la IA pone una hora futura, se toma la de ahora (la app nunca muestra «dentro de…»)
+    if (nn.at && new Date(nn.at) > now) nn.at = now.toISOString();
     const nAt = nn.at && new Date(nn.at);
     if (nAt && !isNaN(nAt) && (!s.status.aiMergedAt || nAt > new Date(s.status.aiMergedAt))) {
       let merged = 0, aiSent = 0;
