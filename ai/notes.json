@@ -1,220 +1,263 @@
 {
- "at": "2026-11-12T11:45:08.748Z",
+ "at": "2026-11-12T12:30:00Z",
  "market": {
-  "regime": "neutral",
-  "summary": "El mercado intenta recuperarse tras la fuerte venta de chips de IA de la semana pasada: el 5-11 el S&P 500 llegó a caer un 4,4% y NVIDIA un 9%, y el 9-11 hubo un rebote (S&P 500 +2,35%). Pesan la incertidumbre electoral, las dudas sobre la demanda de centros de datos y la inflación (IPC del 10-11). Los resultados de NVIDIA el 17-11 son el siguiente gran catalizador.",
+  "regime": "risk-off",
+  "summary": "El mercado digiere el desplome de chips e IA del 5 de noviembre tras las elecciones de medio mandato, por el temor a una regulación más dura. El Brent ha caído con fuerza al relajarse la tensión con Irán y los mercados descuentan nuevas subidas de tipos de la Fed y el BCE. El sentimiento es frágil y las tecnológicas son muy volátiles.",
   "events": [
    {
-    "t": "Venta masiva de chips de IA y rebote posterior",
+    "t": "Desplome de chips e IA tras las elecciones de medio mandato (HeyGoTrade)",
     "impact": "alto",
-    "affects": "Semiconductores, tecnología, Nasdaq",
-    "u": "https://oplexa.com/blogs/nvidia-stock-crash-ai-chip-selloff-november-2026/"
+    "affects": "semiconductores, Nvidia, AMD, Qualcomm, Nasdaq",
+    "u": "https://www.heygotrade.com/en/news/nvidia-nvda-stock-news-november-6-2026/"
    },
    {
-    "t": "Wall Street rebota tras la caída de la IA (S&P 500 +2,35% el 9-11)",
+    "t": "Resultados de AMD: ingresos +45% y guía de 17.000 M$ (Finviz)",
+    "impact": "medio",
+    "affects": "semiconductores e IA",
+    "u": "https://finviz.com/news/415163/amd-shares-surge-nearly-8-as-q3-earnings-beat-forecasts-and-revenue-outlook-exceeds-expectations"
+   },
+   {
+    "t": "Qualcomm cae un 9,5% tras resultados y rebota (Trefis)",
+    "impact": "medio",
+    "affects": "móviles y centros de datos",
+    "u": "https://www.trefis.com/stock/qcom/articles/623744/what-is-behind-the-rebound-in-qualcomm-stock/2026-11-07"
+   },
+   {
+    "t": "Brent cae un 18% en una semana (Panda Forecast)",
     "impact": "alto",
-    "affects": "Índices de EE. UU.",
-    "u": "https://www.staradvertiser.com/2026/11/09/breaking-news/wall-street-rallies-after-last-weeks-ai-rout-nvidia-falls/"
+    "affects": "petroleras, energía, inflación",
+    "u": "https://pandaforecast.com/crypto-news/bitcoin-midterm-bounce-chip-rout-liquidations-etf-outflows/"
    },
    {
-    "t": "AMD supera previsiones y guía 17.000 M USD para el T4",
-    "impact": "medio",
-    "affects": "Chips de IA, centros de datos",
-    "u": "https://investinglive.com/stocks/amd-shares-rise-after-hours-as-q4-revenue-outlook-of-17bn-tops-forecasts-on-ai-ramp/"
+    "t": "Los mercados descuentan nuevas subidas de tipos de la Fed y el BCE (CMC Markets)",
+    "impact": "alto",
+    "affects": "renta variable, divisas, bonos",
+    "u": "https://www.cmcmarkets.com/en-gb/news-and-analysis/the-week-ahead-us-germany-inflation-cisco-earnings"
    },
    {
-    "t": "Qualcomm cae por guía débil y móviles en retroceso",
+    "t": "Las salidas de ETF de Bitcoin marcan el mayor retiro semanal en 19 semanas (Panda Forecast)",
     "impact": "medio",
-    "affects": "Semiconductores móviles",
-    "u": "https://investinglive.com/stocks/qualcomm-beats-q4-forecasts-shares-slip-2-as-profit-guidance-comes-in-light/"
-   },
-   {
-    "t": "Salidas de ETF de bitcoin a principios de noviembre",
-    "impact": "medio",
-    "affects": "Criptomonedas",
-    "u": "https://www.tftc.io/bitcoin-etf-flows/november-2026"
+    "affects": "cripto",
+    "u": "https://pandaforecast.com/crypto-news/bitcoin-midterm-bounce-chip-rout-liquidations-etf-outflows/"
    }
   ],
   "scenarios": [
    {
-    "name": "Estabilización tras resultados de NVIDIA",
-    "prob": 40,
-    "effect": "Buenos resultados y guía calman el sector de chips y el Nasdaq recupera parte de lo perdido."
+    "name": "Rebote técnico de chips",
+    "prob": 35,
+    "effect": "Buenos resultados de Nvidia el 17-11 estabilizan el sector y recuperan parte de lo perdido."
    },
    {
-    "name": "Volatilidad lateral con rotación a defensivos",
+    "name": "Corrección prolongada",
     "prob": 40,
-    "effect": "El mercado oscila sin dirección clara y favorece sanidad y consumo básico frente a tecnología."
+    "effect": "El miedo a la regulación de la IA y a nuevas subidas de tipos mantiene la presión sobre tecnología."
    },
    {
-    "name": "Nueva ola de ventas en IA",
-    "prob": 20,
-    "effect": "Resultados o guía decepcionantes reabren la caída de los chips y arrastran los índices."
+    "name": "Rotación a defensivas",
+    "prob": 25,
+    "effect": "El dinero pasa de chips a salud y consumo básico, que aguantan mejor."
    }
   ],
   "catalysts": [
    {
     "d": "2026-11-17",
-    "e": "Resultados de NVIDIA (T3 fiscal 2027)",
-    "imp": "alto"
-   },
-   {
-    "d": "2026-12-09",
-    "e": "Decisión de tipos de la Fed (FOMC)",
-    "imp": "alto"
-   },
-   {
-    "d": "2026-12-10",
-    "e": "IPC de EE. UU. de noviembre",
-    "imp": "alto"
-   },
-   {
-    "d": "2026-12-17",
-    "e": "Decisión de tipos del BCE",
+    "e": "Resultados de Nvidia del tercer trimestre fiscal",
     "imp": "alto"
    }
   ]
  },
  "crypto": {
-  "summary": "El régimen cripto es neutral (52,9/100): la tendencia de BTC es de corrección alcista (75) pero el momentum es muy negativo (20; solo el 10% de 20 monedas sube a 30 días) y la amplitud de altcoins es débil (40). Los ETF spot de bitcoin vieron salidas el 2-3 de noviembre y una pequeña entrada el 4-11; faltan datos de dominancia y financiación."
+  "summary": "El régimen cripto marca 52,9/100 (zona neutral): la tendencia de Bitcoin es alcista en corrección, pero la amplitud de altcoins es débil y el impulso a 30 días es claramente negativo (solo 10% de monedas positivas). Bitcoin cae bajo 74.000 USD con salidas de 1.280 M$ de ETF en la semana y miedo extremo; conviene prudencia."
  },
  "notes": {
-  "AMD": {
+  "NVDA": {
    "verdict": "mantener",
-   "confidence": 62,
+   "confidence": 50,
    "entry": "vigilar",
-   "entryConfidence": 52,
-   "watchFor": "Un retroceso hacia la media de 50 sesiones (~550 USD) tras los resultados de NVIDIA del 17-11 con el sector estabilizado.",
-   "title": "Tendencia alcista con guía 2027 muy fuerte",
-   "reason": "Fase de tendencia alcista (precio sobre la SMA200 de 420 USD) y resultados del T3 con ingresos +45% y guía de ~17.000 M USD para el T4. La valoración ya descuenta mucho crecimiento y el flujo de caja es débil, y el sector de chips está volátil.",
-   "news": "AMD presentó el 3-11 ingresos de 13.400 M USD (+45%) y centro de datos +97%; prevé +80% de ingresos en 2027. Parte de la prensa señala un flujo de caja libre muy bajo (~4% de ingresos).",
-   "risk": "Si NVIDIA decepciona el 17-11 el sector de chips de IA podría seguir cayendo.",
-   "thesis": "Crecimiento del centro de datos por la demanda de IA, guía 2027 de +80% y ganancia de cuota en aceleradores.",
-   "breaks": "Recortes de gasto en IA de los grandes clientes o márgenes brutos por debajo del 55%.",
-   "valuation": "Valoración exigente tras subir con fuerza; el crecimiento esperado es muy alto pero el FCF es solo ~4% de ingresos (dato no verificado por el motor).",
+   "entryConfidence": 45,
+   "watchFor": "Esperar a los resultados del 17-11 y a una estabilización por encima de los mínimos recientes antes de entrar.",
+   "title": "Sobrevendida tras caer un 27% en un mes",
+   "reason": "Fase lateral tras una caída fuerte del 33% desde máximos y RSI 24 (sobreventa extrema). La venta es sectorial (miedo a regulación y gasto en IA tras las elecciones), sin noticia propia; el 17-11 llegan resultados que pueden dar el giro o ampliar la caída.",
+   "news": "Cae con el resto de chips de IA tras las elecciones de medio mandato; sin anuncio propio. Resultados el 17 de noviembre.",
+   "risk": "Volatilidad alta ante resultados y posible regulación de la IA.",
+   "thesis": "Liderazgo en aceleradores de IA, demanda de centros de datos y foso del software CUDA.",
+   "breaks": "Recorte de inversión en IA de los grandes clientes o pérdida de cuota frente a AMD y chips propios.",
+   "valuation": "Tras la caída del 25-33% desde máximos de octubre la valoración es menos exigente, pero sigue dependiendo de que el gasto en IA se mantenga.",
    "catalysts": [
     {
      "d": "2026-11-17",
-     "e": "Resultados trimestrales de NVIDIA (T3 fiscal 2027)",
+     "e": "Resultados de Nvidia del tercer trimestre fiscal",
      "imp": "alto"
     }
    ],
    "sources": [
     {
-     "t": "AMD reports record Q3 as data center revenue rises 97%",
-     "u": "https://letsdatascience.com/news/amd-reports-record-q3-as-data-center-revenue-rises-97-d2aab34a"
+     "t": "Nvidia cae 9,3% en el desplome de chips del 5 de noviembre (HeyGoTrade)",
+     "u": "https://www.heygotrade.com/en/news/nvidia-nvda-stock-news-november-6-2026/"
     },
     {
-     "t": "AMD shares rise after hours as Q4 revenue outlook of $17bn tops forecasts",
-     "u": "https://investinglive.com/stocks/amd-shares-rise-after-hours-as-q4-revenue-outlook-of-17bn-tops-forecasts-on-ai-ramp/"
-    },
-    {
-     "t": "AMD Soars After Blowout $17 Billion Guide... As Free Cash Flow Quietly Shrinks",
-     "u": "https://www.zerohedge.com/markets/amd-soars-after-blowout-17-billion-guide-free-cash-flow-quietly-shrinks-4-revenue"
+     "t": "Por qué castigan a la acción de Nvidia (Motley Fool)",
+     "u": "https://www.fool.com/investing/2026/11/05/why-nvidia-stock-is-getting-punished-today/"
     }
    ]
   },
-  "AZN": {
+  "AMD": {
    "verdict": "mantener",
-   "confidence": 62,
-   "entry": "vigilar",
-   "entryConfidence": 50,
-   "watchFor": "Un retroceso hacia la zona de 170-175 USD (cerca de la SMA50) tras el salto de +19% en 30 días.",
-   "title": "Recuperación apoyada en resultados sólidos",
-   "reason": "Fase de recuperación con precio ya sobre la SMA200 y RSI 64 tras subir ~19% en un mes. El T3 batió previsiones y la guía anual se mantiene, pero tras el rebote la entrada es menos atractiva.",
-   "news": "AstraZeneca presentó el 30-10 ingresos del T3 de ~16.200 M USD (+7%) y BPA core +19%, reiterando la guía de 2026; Zacks cita un BPA core de 2,79 USD frente a 2,60 esperado. Un resumen menciona el fracaso de un ensayo oncológico.",
-   "risk": "Fallos de ensayos clínicos o presión de precios de medicamentos en EE. UU.",
-   "thesis": "Oncología y cartera de fase III con 12 lecturas positivas en el año, crecimiento de ingresos de un dígito alto y beneficios creciendo más rápido.",
-   "breaks": "Fracasos en ensayos clave de oncología o recorte de guía.",
-   "valuation": "Beneficio core creciendo ~19% con ingresos +7%; no tengo múltiplos verificados, el rebote reciente reduce el margen de seguridad.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "AstraZeneca 9M and Q3 2026 results",
-     "u": "https://www.astrazeneca.com/media-centre/press-releases/2026/9m-and-q3-2026-results.html"
-    },
-    {
-     "t": "AZN Q3 earnings beat estimates, oncology drugs drive sales growth",
-     "u": "https://www.zacks.com/stock/news/3019736/azn-q3-earnings-beat-estimates,-oncology-drugs-drive-sales-growth"
-    },
-    {
-     "t": "AZ's Q3 sales reach record, but it holds guidance",
-     "u": "https://pharmaphorum.com/news/azs-q3-sales-reach-record-15bn-it-holds-guidance"
-    }
-   ]
-  },
-  "BTC-EUR": {
-   "verdict": "vigilar",
    "confidence": 55,
    "entry": "vigilar",
-   "entryConfidence": 48,
-   "watchFor": "Recuperar la media de 50 sesiones (~72.000 EUR) o que el régimen cripto suba de 60 con entradas netas en los ETF.",
-   "title": "Corrección con régimen neutral y momentum débil",
-   "reason": "Fase de corrección en tendencia alcista: cotiza entre la SMA200 (~63.700) y la SMA50 (~72.000), con RSI 35 y -25% desde máximos. El régimen cripto es neutral (52,9) y el momentum de las altcoins es muy negativo, así que conviene esperar confirmación.",
-   "news": "Los ETF spot de bitcoin de EE. UU. registraron salidas el 2 y 3 de noviembre (-398,6 M y -115,6 M USD) y una pequeña entrada de 35,1 M el 4-11 según Decrypt.",
-   "risk": "Nuevas salidas de ETF o caída por debajo de la SMA200 (~63.700 EUR) abrirían más bajadas.",
-   "thesis": "Adopción institucional vía ETF y escasez; tendencia de fondo alcista mientras la SMA200 siga subiendo.",
-   "breaks": "Cierre sostenido por debajo de la SMA200 con salidas de ETF persistentes.",
-   "valuation": "Sin PER: el régimen es neutral (52,9/100), con tendencia de BTC 75 pero momentum 20 y amplitud de altcoins débil.",
-   "catalysts": [],
+   "entryConfidence": 50,
+   "watchFor": "Un retroceso hacia la media de 50 sesiones (~550 USD) con el gasto en IA confirmado tras los resultados de Nvidia.",
+   "title": "Resultados sólidos, pero muy volátil",
+   "reason": "Tendencia alcista pero con gran volatilidad: resultados del 3T con ingresos +45% y centro de datos +97%, guía de unos 17.000 M$ para el 4T. La valoración es exigente (16 veces ventas) y el sector sufre por el miedo a la regulación de la IA.",
+   "news": "Ingresos de 13.400 M$ (+45%), centro de datos 8.500 M$ y previsión de 17.000 M$ en el 4T; cayó un 17% el 5-11 y rebotó un 11% el día 6.",
+   "risk": "Arrastre de todo el sector de chips si se enfría el gasto en IA.",
+   "thesis": "Crecimiento del centro de datos por la demanda de IA, guía 2027 de +80% y ganancia de cuota en aceleradores.",
+   "breaks": "Recortes de gasto en IA de los grandes clientes o márgenes brutos por debajo del 55%.",
+   "valuation": "Cotiza a unas 16 veces ventas de los últimos 12 meses frente a 3,1 del S&P 500: prima alta que exige cumplir el crecimiento.",
+   "catalysts": [
+    {
+     "d": "2026-11-17",
+     "e": "Resultados de Nvidia del tercer trimestre fiscal",
+     "imp": "alto"
+    }
+   ],
    "sources": [
     {
-     "t": "Bitcoin ETF Flows - November 2026 (TFTC)",
-     "u": "https://www.tftc.io/bitcoin-etf-flows/november-2026"
+     "t": "AMD sube casi un 8% tras superar previsiones en el tercer trimestre (Finviz)",
+     "u": "https://finviz.com/news/415163/amd-shares-surge-nearly-8-as-q3-earnings-beat-forecasts-and-revenue-outlook-exceeds-expectations"
     },
     {
-     "t": "Bitcoin Rebound Stalls at $65K as Stocks Fall and Gold Rises (Decrypt)",
-     "u": "https://decrypt.co/359420/bitcoin-rebound-stalls-65k-stocks-fall-gold-rises?amp=1"
+     "t": "Qué ha pasado con la acción de AMD (Trefis)",
+     "u": "https://www.trefis.com/stock/amd/articles/623346/what-just-happened-to-amd-stock/2026-11-06"
     }
    ]
   },
-  "CRM": {
+  "QCOM": {
    "verdict": "mantener",
    "confidence": 50,
    "entry": "vigilar",
    "entryConfidence": 45,
-   "watchFor": "Recuperar la SMA50 (~237 USD) o resultados que confirmen la reaceleración de ingresos.",
-   "title": "Lateral y sin catalizador claro",
-   "reason": "Fase lateral con precio bajo la SMA50 y RSI 39. No he encontrado noticias nuevas relevantes salvo la compra de Rune Technologies; la tesis depende de que Agentforce reacelere los ingresos.",
-   "news": "Salesforce anunció el 3-11 la adquisición de Rune Technologies; sin resultados nuevos. En el último dato de resultados, Agentforce y Data 360 sumaban casi 1.400 M USD de ARR (+114%).",
-   "risk": "La IA generativa podría erosionar el crecimiento del software empresarial y mantener el múltiplo comprimido.",
-   "thesis": "Agentforce y Data 360 como motor de reaceleración, base de clientes fidelizada y recompras.",
-   "breaks": "Crecimiento de ingresos que no reacelera en los próximos dos trimestres.",
-   "valuation": "La acción cae -18% desde máximos; sin múltiplos verificados, el mercado descuenta dudas sobre el crecimiento.",
+   "watchFor": "Que recupere la media de 50 sesiones (~178 USD) con tracción visible en centros de datos.",
+   "title": "Cae tras resultados pese a superar previsiones",
+   "reason": "Fase de corrección con la acción un 30% bajo máximos. Objetivo de 5.000 M$ en centros de datos en el año fiscal 2027, aunque casi todo es silicio a medida para dos clientes, lo que concentra el riesgo.",
+   "news": "Cayó cerca de un 9,5% el 5-11 tras resultados y rebotó un 5,5% el día 6; Alphabet declara una participación de 548 M$.",
+   "risk": "Concentración en dos clientes de nube y presión sobre márgenes de móviles.",
+   "thesis": "Diversificación hacia centros de datos y automoción para compensar los móviles.",
+   "breaks": "Los márgenes de QCT siguen cayendo sin tracción en centros de datos.",
+   "valuation": "Descuento frente a sus máximos de octubre, pero la tesis de centros de datos aún está por demostrar.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Salesforce Q3 FY 2026: AI Agents, Data 360 Lift Bookings",
-     "u": "https://futurumgroup.com/insights/salesforce-q3-fy-2026-ai-agents-data-360-lift-bookings-and-fy26-outlook/"
+     "t": "Qualcomm, Micron y Arm lideran otra caída de chips (The Wealth Advisor)",
+     "u": "https://www.thewealthadvisor.com/article/qualcomm-micron-and-arm-lead-another-chip-selloff-ai-trade-loses-its-shine"
     },
     {
-     "t": "CRM's Agentforce ARR Jumps 330% Y/Y",
-     "u": "https://www.nasdaq.com/articles/crms-agentforce-arr-jumps-330-y-y-it-next-growth-engine"
+     "t": "Qué hay detrás del rebote de Qualcomm (Trefis)",
+     "u": "https://www.trefis.com/stock/qcom/articles/623744/what-is-behind-the-rebound-in-qualcomm-stock/2026-11-07"
+    },
+    {
+     "t": "Caída tecnológica tras resultados de Qualcomm y Arm (Morningstar)",
+     "u": "https://www.morningstar.com/news/dow-jones/2026110525354/tech-plunges-after-qualcomm-arm-earnings-tech-roundup"
+    }
+   ]
+  },
+  "TXN": {
+   "verdict": "mantener",
+   "confidence": 55,
+   "entry": "vigilar",
+   "entryConfidence": 50,
+   "watchFor": "Un retroceso hacia la media de 50 sesiones (~282 USD) o resultados que confirmen la recuperación analógica.",
+   "title": "Tendencia alcista tras fuerte subida",
+   "reason": "Tendencia alcista con +3% en el día y +7,6% en el mes; tras la subida el punto de entrada es menos atractivo. No he hallado noticias propias recientes verificables, así que prima la fase y el contexto de sector.",
+   "news": "Sin noticias propias verificadas esta semana; se mueve con el sector de semiconductores.",
+   "risk": "Un ajuste de inventarios o recaída del ciclo industrial.",
+   "thesis": "Recuperación del ciclo analógico, mayor utilización de fábricas y flujo de caja al moderarse el capex.",
+   "breaks": "Nuevo ajuste de inventarios o guía por debajo de lo esperado.",
+   "valuation": "Sin datos recientes de PER verificados; cotiza ~10% sobre su SMA50.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "Qualcomm, Micron y Arm lideran otra caída de chips (The Wealth Advisor)",
+     "u": "https://www.thewealthadvisor.com/article/qualcomm-micron-and-arm-lead-another-chip-selloff-ai-trade-loses-its-shine"
+    },
+    {
+     "t": "Mercado de acciones hoy (TheStreet)",
+     "u": "https://pro.thestreet.com/stock-market-today/2026-11-05"
+    }
+   ]
+  },
+  "CRM": {
+   "verdict": "vigilar",
+   "confidence": 50,
+   "entry": "vigilar",
+   "entryConfidence": 50,
+   "watchFor": "Cierre sostenido por encima de la media de 50 sesiones (~237 USD) o aceleración de ingresos confirmada en resultados.",
+   "title": "Lateral y lejos de máximos",
+   "reason": "Fase lateral, un 18% bajo máximos y por debajo de la SMA50. No he encontrado noticias propias verificadas de esta semana; el software sufre con la rotación del mercado y no hay catalizador claro.",
+   "news": "Sin noticias propias verificadas esta semana.",
+   "risk": "Reaceleración de ingresos que no llega.",
+   "thesis": "Agentforce y Data 360 como motor de reaceleración, base de clientes fidelizada y recompras.",
+   "breaks": "Crecimiento de ingresos que no reacelera en los próximos dos trimestres.",
+   "valuation": "Sin datos de PER verificados esta semana.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "Mercado de acciones hoy (TheStreet)",
+     "u": "https://pro.thestreet.com/stock-market-today/2026-11-05"
+    },
+    {
+     "t": "Semana por delante: inflación en EE. UU. y Alemania (CMC Markets)",
+     "u": "https://www.cmcmarkets.com/en-gb/news-and-analysis/the-week-ahead-us-germany-inflation-cisco-earnings"
     }
    ]
   },
   "CVX": {
    "verdict": "mantener",
-   "confidence": 55,
+   "confidence": 60,
    "entry": "vigilar",
-   "entryConfidence": 48,
-   "watchFor": "Un rebote sostenido por encima de la SMA50 (~215 USD) con petróleo estable, o un retroceso hacia ~200 USD.",
-   "title": "Corrección ligera, ligada al petróleo",
-   "reason": "Corrección en tendencia alcista cercana a la SMA50, RSI 43. No hay noticias propias frescas; el petróleo depende del riesgo geopolítico en Irán/Ormuz y de la oferta, y la valoración es razonable para un valor de dividendo.",
-   "news": "Sin noticias específicas de los últimos 3 días. En 2026 pesaron la revocación de la licencia de Venezuela (feb) y la tensión en Irán, con petróleo muy volátil.",
-   "risk": "Caída del crudo por acuerdo de paz en Irán o mayor producción de la OPEP.",
+   "entryConfidence": 55,
+   "watchFor": "Que el Brent se estabilice y la acción pierda su caída hacia la SMA50 (~215 USD).",
+   "title": "Energía en corrección, petróleo volátil",
+   "reason": "Corrección en tendencia alcista, un 9% bajo máximos. El petróleo es muy volátil (Brent sobre 100 en octubre y caída del 18% en una semana en noviembre), lo que da sentido a mantener con prudencia.",
+   "news": "El Brent cayó con fuerza en la semana tras las elecciones y la menor tensión con Irán.",
+   "risk": "Caída del crudo y recorte de recompras o dividendo.",
    "thesis": "Flujo de caja sólido, dividendo y recompras, y producción en crecimiento.",
    "breaks": "Petróleo sostenidamente bajo y recorte de recompras o dividendo.",
-   "valuation": "Sin datos verificados de múltiplos; cotiza un ~9% bajo máximos con beneficio ligado al crudo.",
+   "valuation": "Valoración razonable frente al sector, muy ligada al precio del crudo.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Oil climbs after Trump cancels Chevron’s Venezuela licence",
-     "u": "https://www.lse.co.uk/news/oil-climbs-after-trump-cancels-chevrons-venezuela-licence-kenkn00def303wk.html"
+     "t": "Cuatro acuerdos energéticos en cuatro días con el Brent sobre 100 (Finviz)",
+     "u": "https://finviz.com/news/400814/four-energy-deals-in-four-days-as-brent-holds-above-100"
     },
     {
-     "t": "Geopolitical Risk Keeps Oil Prices Afloat (OilPrice)",
-     "u": "https://oilprice.com/Energy/Energy-General/Geopolitical-Risk-Keeps-Oil-Prices-Afloat-As-Bearish-Pressure-Builds.amp.html"
+     "t": "Brent cae un 18% en una semana (Panda Forecast)",
+     "u": "https://pandaforecast.com/crypto-news/bitcoin-midterm-bounce-chip-rout-liquidations-etf-outflows/"
+    }
+   ]
+  },
+  "SHEL": {
+   "verdict": "mantener",
+   "confidence": 60,
+   "entry": "vigilar",
+   "entryConfidence": 55,
+   "watchFor": "Estabilización del Brent y precio por encima de la SMA50 (~99,6 USD).",
+   "title": "Corrección con crudo volátil",
+   "reason": "Corrección en tendencia alcista, un 10% bajo máximos. Culmina la compra de ARC Resources (16.400 M$, completada el 2 de septiembre); la volatilidad del crudo domina el corto plazo.",
+   "news": "La compra de ARC Resources se completó el 2 de septiembre; el Brent ha bajado un 18% en una semana.",
+   "risk": "Crudo débil que presione recompras y dividendo.",
+   "thesis": "Generación de caja, dividendo y recompras con negocio de gas natural licuado.",
+   "breaks": "Recorte de dividendo o recompras por crudo débil.",
+   "valuation": "Descuento frente a las petroleras de EE. UU., sujeto al precio del crudo.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "Cuatro acuerdos energéticos en cuatro días con el Brent sobre 100 (Finviz)",
+     "u": "https://finviz.com/news/400814/four-energy-deals-in-four-days-as-brent-holds-above-100"
+    },
+    {
+     "t": "Brent cae un 18% en una semana (Panda Forecast)",
+     "u": "https://pandaforecast.com/crypto-news/bitcoin-midterm-bounce-chip-rout-liquidations-etf-outflows/"
     }
    ]
   },
@@ -223,218 +266,136 @@
    "confidence": 50,
    "entry": "vigilar",
    "entryConfidence": 45,
-   "watchFor": "Conocer los resultados del T2 (publicados el 10-11) y que aguante la SMA50 (~33 USD).",
-   "title": "Tendencia alcista, cae -4% en el día",
-   "reason": "Fase de tendencia alcista sobre la SMA200, pero cae un 4,4% hoy. Honda publicó resultados el 10-11 y no he podido confirmar las cifras; sin ellos prefiero cautela.",
-   "news": "Honda tenía programados resultados del T2 el 10-11 (sin cifras verificadas). Sony anotó una pérdida adicional de ~30.000 M yenes ligada a Sony Honda Mobility.",
-   "risk": "Costes de la estrategia de vehículos eléctricos y aranceles presionan los márgenes.",
+   "watchFor": "Que supere la SMA50 (~33 USD) tras la caída del 4% de hoy y haya claridad sobre el margen por aranceles.",
+   "title": "Cae un 4% en el día",
+   "reason": "Tendencia alcista, pero hoy retrocede un 4,4% sin que haya hallado la causa en fuentes verificadas. Sin catalizador claro, lo prudente es no mover ficha.",
+   "news": "Sin noticia verificada que explique la caída de hoy.",
+   "risk": "Aranceles y costes de la transición a EV.",
    "thesis": "Negocio de motos y híbridos rentable que financia la transición a EV, con recompras.",
    "breaks": "Recortes de guía por EV y aranceles que erosionen el margen operativo.",
-   "valuation": "No tengo múltiplos verificados; la guía del año fiscal llegó a prever una fuerte caída del beneficio operativo.",
+   "valuation": "Sin datos de PER verificados.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Honda investors - Financial Results",
-     "u": "https://global.honda/en/investors"
-    },
-    {
-     "t": "Sony Q2 Earnings: Operating Income Rises 45%, Full-Year Guidance Raised",
-     "u": "https://www.panabee.com/news/sony-earnings-q2-2027"
-    }
-   ]
-  },
-  "NVDA": {
-   "verdict": "mantener",
-   "confidence": 55,
-   "entry": "vigilar",
-   "entryConfidence": 55,
-   "watchFor": "Resultados del 17-11: estabilización tras ellos y recuperación de la zona de ~190-200 USD.",
-   "title": "Sobrevendida antes de resultados el 17-11",
-   "reason": "Fase lateral con RSI 24,5, -27% en 30 días y -33% desde máximos tras la venta masiva de chips de IA. Está muy sobrevendida pero el catalizador de resultados el 17-11 y la incertidumbre de gobierno corporativo aconsejan esperar.",
-   "news": "Cayó ~9% el 5-11 en una venta sectorial de chips de IA (sin noticia propia); un medio cita una investigación del consejo sobre el CEO (no confirmado por otras fuentes). Resultados T3 el 17-11.",
-   "risk": "Resultados o guía que decepcionen podrían alargar la caída; una fuente no verificada habla de una investigación interna.",
-   "thesis": "Liderazgo en aceleradores de IA, demanda de centros de datos y software CUDA como foso.",
-   "breaks": "Recorte de inversión en IA de los grandes clientes o pérdida de cuota frente a AMD y chips propios.",
-   "valuation": "Tras la caída es mucho menos cara, pero no tengo múltiplos verificados; el mercado teme una burbuja de IA.",
-   "catalysts": [
-    {
-     "d": "2026-11-17",
-     "e": "Resultados trimestrales de NVIDIA (T3 fiscal 2027)",
-     "imp": "alto"
-    }
-   ],
-   "sources": [
-    {
-     "t": "Why Nvidia stock is getting punished today (Motley Fool)",
-     "u": "https://www.fool.com/investing/2026/11/05/why-nvidia-stock-is-getting-punished-today/"
-    },
-    {
-     "t": "Nvidia Stock (NVDA) Falls 9.3% as AI Chip Stocks Slide",
-     "u": "https://www.heygotrade.com/en/news/nvidia-nvda-stock-news-november-6-2026/"
-    },
-    {
-     "t": "What Sent NVIDIA Stock Lower? (Trefis)",
-     "u": "https://www.trefis.com/stock/nvda/articles/623357/what-sent-nvidia-stock-lower/2026-11-06"
-    }
-   ]
-  },
-  "QCOM": {
-   "verdict": "vigilar",
-   "confidence": 55,
-   "entry": "evitar",
-   "entryConfidence": 60,
-   "watchFor": "Estabilización de márgenes y señales de que el negocio de centros de datos compensa la caída de móviles.",
-   "title": "Guía débil y móviles en retroceso",
-   "reason": "Fase de corrección con -30% desde máximos. El T4 mostró ingresos -7% y móviles -26%, con guía de BPA por debajo de lo esperado; el mercado de móviles se contrae, así que no hay razón para entrar todavía.",
-   "news": "Qualcomm batió por poco (BPA 2,17 USD) el 4-11 pero la guía del T1 (BPA 2,15-2,35 USD) quedó por debajo del consenso; las acciones cayeron entre 2% y 10% según la fuente.",
-   "risk": "Caída del mercado de móviles y mayores costes de chips comprimen márgenes.",
-   "thesis": "Diversificación hacia centros de datos y automoción para compensar los móviles.",
-   "breaks": "Los márgenes de QCT siguen cayendo sin tracción en centros de datos.",
-   "valuation": "Ingresos en descenso y márgenes a la baja; sin múltiplos verificados.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "Qualcomm beats Q4 forecasts, shares slip as profit guidance comes in light",
-     "u": "https://investinglive.com/stocks/qualcomm-beats-q4-forecasts-shares-slip-2-as-profit-guidance-comes-in-light/"
-    },
-    {
-     "t": "Qualcomm falls 6 percent on chip supply costs, margin guidance",
-     "u": "https://tech-insider.org/qualcomm-falls-6-percent-chip-supply-costs-margin-guidance-2026/"
-    }
-   ]
-  },
-  "SHEL": {
-   "verdict": "mantener",
-   "confidence": 55,
-   "entry": "vigilar",
-   "entryConfidence": 45,
-   "watchFor": "Cierre por encima de la SMA50 (~99,6 USD) con crudo estable.",
-   "title": "Corrección tranquila, sin noticias frescas",
-   "reason": "Fase de corrección en tendencia alcista, cerca de la SMA50 y con RSI 40. Sin noticias propias recientes; depende del crudo y de la integración de la compra de ARC.",
-   "news": "Sin noticias específicas en los últimos 3 días. Shell acordó en abril comprar ARC (Canadá) por 16.400 M USD; el crudo sigue condicionado por Irán y la oferta.",
-   "risk": "Caída del petróleo por acuerdo geopolítico o exceso de oferta.",
-   "thesis": "Generación de caja, dividendo y recompras con negocio de gas natural licuado.",
-   "breaks": "Recorte de dividendo o recompras por crudo débil.",
-   "valuation": "Sin múltiplos verificados; cotiza ~10% bajo máximos.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "Oil prices: geopolitical risk (OilPrice)",
-     "u": "https://oilprice.com/Energy/Energy-General/Geopolitical-Risk-Keeps-Oil-Prices-Afloat-As-Bearish-Pressure-Builds.amp.html"
-    },
-    {
-     "t": "CVX, SHEL, XOM: oil on track for second weekly loss (TipRanks)",
-     "u": "https://www.tipranks.com/news/cvx-shel-xom-oil-on-track-for-second-weekly-loss-as-oversupply-worries-persist"
+     "t": "Mercado de acciones hoy (TheStreet)",
+     "u": "https://pro.thestreet.com/stock-market-today/2026-11-05"
     }
    ]
   },
   "SONY": {
    "verdict": "mantener",
-   "confidence": 68,
-   "entry": "comprar",
-   "entryConfidence": 62,
-   "watchFor": "",
-   "title": "Récord trimestral y guía anual al alza",
-   "reason": "Fase de tendencia alcista con RSI 60, sin sobrecompra extrema. Resultados récord del T2 y guía elevada respaldan la subida; el riesgo es la volatilidad del mercado y las pérdidas de Sony Honda Mobility.",
-   "news": "Sony anunció ~8-11 un T2 con ingresos +10% y beneficio operativo +45% (622.300 M yenes), y elevó la guía anual a 1,87 billones de yenes de beneficio operativo. Registró una pérdida adicional de ~30.000 M yenes por Sony Honda Mobility.",
-   "risk": "Mercado volátil y exposición a aranceles y a un yen fuerte.",
+   "confidence": 55,
+   "entry": "vigilar",
+   "entryConfidence": 50,
+   "watchFor": "Un retroceso hacia la SMA50 (~24,6 USD).",
+   "title": "Tendencia alcista, +9% en el mes",
+   "reason": "Tendencia alcista con RSI de 60 y sin signos de agotamiento. Tras subir un 9% en el mes, esperar un retroceso mejora la entrada. No he podido verificar la fecha de resultados.",
+   "news": "Sin noticias propias verificadas; fecha de resultados no confirmada.",
+   "risk": "Caída de ventas de juegos o pérdidas en el negocio de coches eléctricos.",
    "thesis": "Mix de entretenimiento, música y sensores de imagen con márgenes crecientes.",
    "breaks": "Caída de ventas de juegos o más pérdidas en el negocio de coches eléctricos.",
-   "valuation": "Beneficio operativo creciendo ~45% con guía al alza; sin múltiplos verificados.",
+   "valuation": "Sin datos de PER verificados.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Sony Q2 Earnings: Operating Income Rises 45% to 622 Billion Yen",
-     "u": "https://www.panabee.com/news/sony-earnings-q2-2027"
-    },
-    {
-     "t": "Transcript: Sony Q2 earnings call (MarketBeat)",
-     "u": "https://www.marketbeat.com/instant-alerts/transcript-what-sony-sony-said-on-its-q2-earnings-call-2026-11-08/"
+     "t": "Mercado de acciones hoy (TheStreet)",
+     "u": "https://pro.thestreet.com/stock-market-today/2026-11-05"
     }
    ]
   },
   "SPOT": {
    "verdict": "mantener",
-   "confidence": 65,
+   "confidence": 60,
    "entry": "vigilar",
    "entryConfidence": 55,
-   "watchFor": "Un retroceso hacia la SMA50 (~541 USD) o resultados del T4 que confirmen la guía de ~820 M € de beneficio operativo.",
-   "title": "Resultados sólidos, valoración exigente",
-   "reason": "Fase de tendencia alcista (+15% en 30 días, RSI 63). El T3 mostró 306 M de suscriptores y guía fuerte, pero parte del alza ya está descontada y conviene mejor precio.",
-   "news": "Spotify presentó el 22-10 ingresos de 4.969 M € (+16%), 306 M de suscriptores y guía del T4 de 5.200 M € de ingresos y 820 M € de beneficio operativo.",
-   "risk": "Valoración exigente ante cualquier decepción y presión en publicidad (+9%).",
+   "watchFor": "Un retroceso hacia la SMA50 (~541 USD) o confirmación de márgenes en el próximo trimestre.",
+   "title": "Tendencia alcista, +15% en el mes",
+   "reason": "Tendencia alcista con +15% en el mes y RSI 63; sube con fuerza, por lo que conviene no perseguir el precio. La tesis de márgenes y suscriptores sigue intacta.",
+   "news": "Ya presentó resultados del tercer trimestre (fuente sin verificar con fuente primaria).",
+   "risk": "Valoración exigente y dependencia de nuevas subidas de precio.",
    "thesis": "Crecimiento de suscriptores, subidas de precio y mejora de márgenes que elevan el beneficio operativo.",
    "breaks": "Estancamiento de suscriptores o márgenes que dejen de mejorar.",
-   "valuation": "Beneficio operativo anual en camino de ~3.300 M €; se cita que buena parte del alza ya está en el precio.",
+   "valuation": "Valoración exigente tras la subida; sin PER verificado.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Spotify on course for $3.3B annual operating profit in 2026",
-     "u": "https://musicbusinessworldwide.com/spotify-is-on-course-for-a-3-3b-annual-operating-profit-in-2026-after-adding-6m-subscribers-in-q3"
-    },
-    {
-     "t": "Spotify Q3 2026 earnings analysis",
-     "u": "https://beancount.io/blog/2026/10/23/spotify-q3-2026-earnings-analysis"
+     "t": "Mercado de acciones hoy (TheStreet)",
+     "u": "https://pro.thestreet.com/stock-market-today/2026-11-05"
     }
    ]
   },
-  "TXN": {
+  "AZN": {
    "verdict": "mantener",
-   "confidence": 60,
+   "confidence": 65,
    "entry": "vigilar",
-   "entryConfidence": 50,
-   "watchFor": "Un retroceso hacia la SMA50 (~282 USD) o datos que confirmen el ciclo de recuperación analógico.",
-   "title": "Recuperación analógica ya muy descontada",
-   "reason": "Fase de tendencia alcista (+3% hoy, +7,6% en 30 días). La recuperación del ciclo analógico y la demanda de centros de datos apoyan, pero tras una gran subida en 2026 parte está descontada y no hay noticias nuevas.",
-   "news": "No hay noticias de noviembre; el último contexto (julio) apuntaba a fin del ajuste de inventarios y demanda de centros de datos casi duplicada, con avisos de que el mercado ya paga la recuperación.",
-   "risk": "Una pausa del ciclo industrial o valoración exigente tras la subida.",
-   "thesis": "Recuperación del ciclo analógico, mayor utilización de fábricas y flujo de caja al moderarse el capex.",
-   "breaks": "Nuevo ajuste de inventarios o guía por debajo de lo esperado.",
-   "valuation": "Subió ~64% en 2026 según una fuente de julio; el múltiplo es exigente (sin dato verificado).",
+   "entryConfidence": 55,
+   "watchFor": "Que supere la SMA50 con holgura y confirme la recuperación (hoy ~186 USD frente a 168 USD de SMA50).",
+   "title": "Resultados sólidos y guía reiterada",
+   "reason": "Fase de recuperación con +19% en 30 días tras unos resultados del 3T con ingresos +7% (16.210 M$) por encima de previsiones. Sector defensivo en un mercado nervioso, pero tras la subida la entrada no es barata.",
+   "news": "Resultados del 30-10: ingresos +7%, beneficio por encima de previsiones y guía 2026 reiterada; la acción subió ~7%.",
+   "risk": "Fracasos en ensayos o presión de precios en EE. UU.",
+   "thesis": "Oncología y cartera de fase III con lecturas positivas, ingresos creciendo a un dígito alto y beneficio más rápido.",
+   "breaks": "Fracasos en ensayos clave de oncología o recorte de guía.",
+   "valuation": "Crecimiento de ingresos +7% y beneficio de doble dígito bajo; sin PER verificado.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Texas Instruments Stock Is Up 64% in 2026 (TIKR)",
-     "u": "https://www.tikr.com/blog/texas-instruments-stock-is-up-64-in-2026-the-analog-chip-recovery-has-only-just-started"
+     "t": "AstraZeneca resultados del tercer trimestre de 2026 (All In View)",
+     "u": "https://www.allinvestview.com/earnings/AZN.L/q3-2026/"
     },
     {
-     "t": "Why Texas Instruments' 2026 outlook has Wall Street re-rating it",
-     "u": "https://www.nasdaq.com/articles/why-texas-instruments-2026-outlook-has-wall-street-re-rating-it"
+     "t": "AstraZeneca sube un 7% tras resultados (MarketBeat)",
+     "u": "https://www.marketbeat.com/instant-alerts/price-astrazeneca-lon-azn-stock-jumps-7-whats-next-2026-10-30/"
     }
    ]
   },
   "UL": {
    "verdict": "mantener",
-   "confidence": 68,
-   "entry": "comprar",
-   "entryConfidence": 62,
-   "watchFor": "",
-   "title": "Inicio de tendencia con guía mejorada",
-   "reason": "Fase de inicio de tendencia alcista con RSI 53 y valor defensivo en un mercado volátil. El T3 batió previsiones y elevó la guía de volumen y margen, aunque la reacción inicial fue floja.",
-   "news": "Unilever informó el 28-10 de ventas subyacentes +5,2% (volumen +2,9%), elevó la guía de volumen y margen operativo, subió el dividendo trimestral un 3% (0,4664 €) y mantiene en marcha la unión de Foods con McCormick.",
-   "risk": "Presión de costes y ejecución de la separación de Foods.",
+   "confidence": 55,
+   "entry": "vigilar",
+   "entryConfidence": 50,
+   "watchFor": "Confirmación de volúmenes crecientes y precio sostenido sobre la SMA50 (~63,6 USD).",
+   "title": "Inicio de tendencia, rebajas de analistas",
+   "reason": "Inicio de tendencia alcista, pero tres casas de análisis han rebajado la acción a mantener. Defensiva en mercado nervioso, aunque sin un catalizador claro.",
+   "news": "Tres intermediarios rebajan Unilever a mantener (fecha sin confirmar).",
+   "risk": "Volúmenes débiles y rebajas de recomendación.",
    "thesis": "Foco en belleza y hogar de mayor margen, crecimiento de volumen y dividendo creciente.",
    "breaks": "Volúmenes que vuelvan a caer o problemas en la operación de Foods.",
-   "valuation": "Crecimiento subyacente de ~5% con guía al alza; sin múltiplos verificados, perfil defensivo.",
-   "catalysts": [
-    {
-     "d": "2027-02-11",
-     "e": "Resultados del T4 y año completo 2026 de Unilever",
-     "imp": "alto"
-    }
-   ],
+   "valuation": "Sin datos de PER verificados; valoración neutral.",
+   "catalysts": [],
    "sources": [
     {
-     "t": "Unilever Q3 2026 Trading Statement",
-     "u": "https://www.investegate.co.uk/announcement/rns/unilever--ulvr/q3-2026-trading-statement/9844580"
+     "t": "Tres casas de análisis rebajan Unilever a mantener (MarketScreener)",
+     "u": "https://in.marketscreener.com/news/three-brokers-cut-unilever-to-hold-from-buy-ce7e5ddeda8df12d"
+    }
+   ]
+  },
+  "BTC-EUR": {
+   "verdict": "vigilar",
+   "confidence": 55,
+   "entry": "vigilar",
+   "entryConfidence": 50,
+   "watchFor": "Recuperar la SMA50 (~72.000 EUR) con entradas netas en los ETF; el régimen cripto está en 52,9.",
+   "title": "Régimen neutral y ETF con salidas",
+   "reason": "Corrección en tendencia alcista con RSI 35, un 25% bajo máximos. Los ETF de Bitcoin sufren la mayor salida semanal en 19 semanas, el miedo es extremo y el momento de altcoins es negativo; no hay confirmación de suelo.",
+   "news": "Bitcoin cae por debajo de 74.000 USD, con salidas de 1.280 M$ semanales de ETF y miedo extremo (25).",
+   "risk": "Pérdida de la SMA200 (~63.700 EUR) con salidas de ETF persistentes.",
+   "thesis": "Adopción institucional vía ETF y escasez; tendencia alcista de fondo mientras la SMA200 siga subiendo.",
+   "breaks": "Cierre sostenido por debajo de la SMA200 con salidas de ETF persistentes.",
+   "valuation": "Régimen cripto neutral (52,9/100): tendencia de BTC alcista en corrección, amplitud débil y flujos de ETF negativos.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "Bitcoin cae por debajo de 74.000 dólares y arrastra el cierre semanal (Cointelegraph)",
+     "u": "https://cointelegraph.com/news/btc-price-nvidia-volatility-three-things-bitcoin-this-week"
     },
     {
-     "t": "Unilever upgrades expected volume growth on strong third quarter",
-     "u": "https://www.ajbell.co.uk/news/articles/unilever-upgrades-expected-volume-growth-strong-third-quarter"
+     "t": "Flujos de los ETF de Bitcoin en noviembre de 2026 (TFTC)",
+     "u": "https://www.tftc.io/bitcoin-etf-flows/november-2026"
     },
     {
-     "t": "What's behind Unilever's third quarter 2026 results",
-     "u": "https://www.unilever.com/news/news-search/2026/whats-behind-unilevers-third-quarter-2026-results/"
+     "t": "Rebote electoral de Bitcoin, desplome de chips y salidas de ETF (Panda Forecast)",
+     "u": "https://pandaforecast.com/crypto-news/bitcoin-midterm-bounce-chip-rout-liquidations-etf-outflows/"
     }
    ]
   }
