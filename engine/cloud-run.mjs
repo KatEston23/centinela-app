@@ -100,6 +100,13 @@ for (const q of fresh) {
   s.quotes[docId(q.symbol)] = { ...q, eurPer: fx[q.currency] ?? null, priceEur: fx[q.currency] ? Math.round(q.price * fx[q.currency] * 100) / 100 : null, updatedAt: at };
   ok++;
 }
+// Salidas a bolsa en vigilancia: el primer precio que llega significa que ya cotiza
+const listed = [];
+for (const w of s.watch || []) {
+  if (!(w.ipo || w.ipoPrice) || w.listedAt) continue;
+  const q = s.quotes[docId(w.symbol)];
+  if (q && q.updatedAt === at && q.price) { w.listedAt = at; listed.push({ w, q }); }
+}
 
 // ---------- 4. Señales por reglas (sin noticias; prudentes) ----------
 const recent = (sym, action) => s.signals.some((x) => x.symbol === sym && x.action === action && now - new Date(x.at) < H20);
@@ -134,6 +141,15 @@ async function notify(title, message, priority, tags) {
   if (!cfg.ntfyTopic) return false;
   const headers = { Title: `=?UTF-8?B?${Buffer.from(title).toString("base64")}?=`, Priority: String(priority), Tags: tags, Actions: `view, Abrir en el navegador, ${cfg.pwaUrl}`, "Content-Type": "text/plain; charset=utf-8" };
   try { const r = await fetch(`${cfg.ntfyServer || "https://ntfy.sh"}/${cfg.ntfyTopic}`, { method: "POST", headers, body: message }); return r.ok; } catch { return false; }
+}
+for (const { w, q } of listed) {
+  const name = (w.name || w.symbol).replace(/\s*\(.*\)$/, "");
+  const title = `${name} (${w.symbol}) ya cotiza`;
+  const reason = `Primer precio: ${money(q.price, q.currency)}` + (w.ipoPrice ? `, ${pct(q.price / w.ipoPrice - 1)} sobre el precio de salida de ${money(w.ipoPrice, q.currency)}` : "") + ". Los primeros días suelen ser muy volátiles.";
+  const sg = { code: "empieza_cotizar", action: "vigilar", confidence: 50, title, reason, risk: "Sin historial todavía: los indicadores técnicos tardarán semanas en ser fiables.", at, symbol: w.symbol, tier: 2, sources: [], price: q.price, currency: q.currency, by: "motor" };
+  sg.notified = await notify(title, reason, 4, "bell");
+  newSignals.push(sg);
+  log.push(`${w.symbol}: empieza a cotizar (${q.price})`);
 }
 let sent = 0;
 for (const sg of newSignals) {
