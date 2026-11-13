@@ -1,17 +1,17 @@
 {
- "at": "2026-11-12T11:41:47.134394+00:00",
- "score": 52.9,
+ "at": "2026-11-13T06:10:29.838132+00:00",
+ "score": 51.4,
  "zone": "NEUTRAL",
  "guidance": "Mixed conditions observed; no strong regime conclusion",
  "components": {
   "btc_trend": {
-   "score": 75,
-   "signal": "BULL PULLBACK (price between 200DMA and 50DMA); 200DMA rising",
+   "score": 65,
+   "signal": "STACK INTACT, PRICE BELOW (deep pullback / early break); 200DMA rising",
    "ok": true
   },
   "alt_breadth": {
    "score": 40,
-   "signal": "42% of 19 tracked alts above 200DMA (5% above 50DMA); short-term breadth rolling over",
+   "signal": "37% of 19 tracked alts above 200DMA (5% above 50DMA); short-term breadth rolling over",
    "ok": true
   },
   "dominance": {
@@ -26,12 +26,12 @@
   },
   "drawdown_vol": {
    "score": 55,
-   "signal": "Drawdown 26.5% from 1y high",
+   "signal": "Drawdown 29.8% from 1y high",
    "ok": true
   },
   "momentum_thrust": {
-   "score": 20,
-   "signal": "BROADLY NEGATIVE: 10% of 20 coins positive over 30d",
+   "score": 35,
+   "signal": "WASHOUT (contrarian: near-total negative momentum): 5% of 20 coins positive over 30d",
    "ok": true
   }
  }
