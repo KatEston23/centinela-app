@@ -361,7 +361,7 @@ function importRevolut(text) {
   for (const r of rows.slice(1)) {
     const typeRaw = (r[c.type] || "").toUpperCase();
     let kind = null;
-    if (/BUY|COMPRA/.test(typeRaw)) kind = "buy"; else if (/SELL|VENTA/.test(typeRaw)) kind = "sell";
+    if (/BUY|COMPRA|IPO|SUBSCRI|SUSCRIP|ALLOCAT|ADJUDIC/.test(typeRaw)) kind = "buy"; else if (/SELL|VENTA/.test(typeRaw)) kind = "sell";
     else if (/DIVIDEND/.test(typeRaw)) kind = "div"; else if (/SPLIT|DESDOBL/.test(typeRaw)) kind = "split";
     else if (/FEE|COMISI/.test(typeRaw)) kind = "fee"; else if (/WITHDRAW|RETIRAD/.test(typeRaw)) kind = "out"; else if (/TOP.?UP|INGRESO|DEP[OÓ]SITO|TRANSFER/.test(typeRaw)) kind = "cash";
     if (!kind) continue;
@@ -373,6 +373,7 @@ function importRevolut(text) {
     const cur = (c.cur > -1 && r[c.cur] ? r[c.cur].trim().toUpperCase() : null) || curOf(r[c.price]) || curOf(r[c.total]) || "USD";
     const fx = c.fx > -1 ? parseNum(r[c.fx]) : null; // unidades de la divisa por 1 EUR en la fecha del movimiento
     if (!date) continue;
+    if (kind === "buy" && !qty) continue; // reservas de fondos de una salida a bolsa: aún no son acciones
     out.push({ d: date, t: ticker, k: kind, q: qty == null ? null : Math.abs(qty), p: price == null ? null : Math.abs(price), tot: total, cur, fx: fx || null });
   }
   out.sort((a, b) => a.d.localeCompare(b.d));
