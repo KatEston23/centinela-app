@@ -947,7 +947,9 @@ try { history.scrollRestoration = "manual"; } catch {}
 const viewNow = () => (VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "cartera");
 const scrollOf = {};
 let lastView = viewNow();
-addEventListener("scroll", () => { scrollOf[viewNow()] = scrollY; }, { passive: true });
+addEventListener("scroll", () => { if (viewNow() === lastView) scrollOf[lastView] = scrollY; }, { passive: true });
+// Al tocar cualquier enlace a otra pestaña se guarda la posición antes de cambiar (la vista nueva puede ser más corta)
+document.addEventListener("click", (e) => { if (e.target.closest?.('a[href^="#"]')) scrollOf[lastView] = scrollY; }, true);
 addEventListener("hashchange", () => {
   const v = viewNow();
   if (v === lastView) return;
