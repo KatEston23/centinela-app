@@ -485,9 +485,17 @@ function renderPlan() {
     el("div", { class: "ap-form" }, el("label", { class: "field" }, "Cantidad a invertir (€)", inp),
       el("div", { class: "ap-quick" }, [100, 200, 300, 500].map((v) => el("button", { class: "chip", type: "button", text: v + " €", onclick: () => { inp.value = v; lsSet(AP_LS, String(v)); renderPlan(); } })))),
     el("div", { id: "ap-out" }));
-  $("#v-oportunidades").prepend(panel);
+  // Ventana propia: se abre desde Inicio («Invertir este mes») y desde Ideas
+  const ICON_AP = '<path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/>';
+  VIEWS.push("aportar");
+  const back = el("a", { class: "ap-back", href: "#cartera", text: "‹ Volver", onclick: (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } } });
+  $("#v-oportunidades").after(el("section", { class: "view", id: "v-aportar", hidden: "" }, back, panel));
   const q = $(".quick");
-  if (q) q.append(el("a", { class: "wide", href: "#oportunidades", onclick: () => setTimeout(() => $("#aporte")?.scrollIntoView({ behavior: "smooth" }), 80) }, svgIcon('<path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/>'), "Invertir este mes"));
+  if (q) q.append(el("a", { class: "wide", href: "#aportar" }, svgIcon(ICON_AP), "Invertir este mes"));
+  $("#v-oportunidades").prepend(el("a", { class: "panel ap-link", href: "#aportar" },
+    el("span", { class: "ap-ic" }, svgIcon(ICON_AP)),
+    el("span", {}, el("b", { text: "Aportación del mes" }), el("small", { text: "Cuánto invertir y en qué, con lo que hay hoy" })),
+    el("span", { class: "ap-go", text: "›" })));
 })();
 const _renderOpp3 = renderOpportunities;
 renderOpportunities = () => { _renderOpp3(); renderPlan(); };
