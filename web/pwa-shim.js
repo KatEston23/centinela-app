@@ -940,6 +940,28 @@ async function renderPushBanner() {
 const _appPanel = appPanel;
 appPanel = () => { _appPanel(); renderPushPanel(); renderPushBanner(); };
 
+// ---- Desplazamiento propio de cada pestaña ----
+// Cada pestaña recuerda dónde se quedó; la primera vez empieza arriba. Tocar la pestaña en la que
+// ya está la sube al principio, como en las apps del iPhone.
+try { history.scrollRestoration = "manual"; } catch {}
+const viewNow = () => (VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "cartera");
+const scrollOf = {};
+let lastView = viewNow();
+addEventListener("scroll", () => { scrollOf[viewNow()] = scrollY; }, { passive: true });
+addEventListener("hashchange", () => {
+  const v = viewNow();
+  if (v === lastView) return;
+  lastView = v;
+  // Tras pintar la vista nueva (route ya la mostró), su posición guardada o el principio
+  const y = scrollOf[v] || 0;
+  scrollTo({ top: y, behavior: "instant" });
+  requestAnimationFrame(() => scrollTo({ top: y, behavior: "instant" }));
+});
+$("nav.tabs")?.addEventListener("click", (e) => {
+  const a = e.target.closest("a[data-view]");
+  if (a && a.dataset.view === viewNow()) { e.preventDefault(); scrollOf[a.dataset.view] = 0; scrollTo({ top: 0, behavior: "smooth" }); }
+});
+
 // Versión del código de la app: «Actualizar» y cada vuelta a la app comprueban si hay una nueva y recargan
 const APP_V = "__APP_VERSION__";
 async function checkAppVersion() {
