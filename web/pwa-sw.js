@@ -15,6 +15,8 @@ self.addEventListener("fetch", (e) => {
   }
   // app y datos: red primero, caché si no hay conexión
   const key = u.pathname.endsWith("data.enc.json") ? new Request(u.origin + u.pathname) : e.request;
-  e.respondWith(fetch(e.request).then((res) => { if (res.ok) { const c = res.clone(); caches.open(V).then((ca) => ca.put(key, c)); } return res; })
+  // La página siempre se revalida con el servidor (GitHub la guarda 10 min en caché)
+  const req = e.request.mode === "navigate" || /\/(index\.html)?$/.test(u.pathname) ? fetch(u.href, { cache: "no-cache", credentials: "same-origin" }) : fetch(e.request);
+  e.respondWith(req.then((res) => { if (res.ok) { const c = res.clone(); caches.open(V).then((ca) => ca.put(key, c)); } return res; })
     .catch(() => caches.match(key, { ignoreSearch: true }).then((r) => r || caches.match("index.html"))));
 });

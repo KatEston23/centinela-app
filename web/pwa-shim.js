@@ -860,7 +860,14 @@ async function checkAppVersion() {
     const r = await fetch("version.json?t=" + Date.now(), { cache: "no-store" });
     if (!r.ok) return false;
     const { v } = await r.json();
-    if (v && v !== APP_V && !APP_V.startsWith("__")) { location.reload(); return true; }
+    if (v && v !== APP_V && !APP_V.startsWith("__")) {
+      // Una sola recarga por versión y minuto, y antes se renueva la caché del navegador
+      const tried = (() => { try { return JSON.parse(sessionStorage.getItem("centinela.reload") || "null"); } catch { return null; } })();
+      if (tried && tried.v === v && Date.now() - tried.t < 60000) return false;
+      try { sessionStorage.setItem("centinela.reload", JSON.stringify({ v, t: Date.now() })); } catch {}
+      await Promise.all(["./", "index.html"].map((p) => fetch(p, { cache: "reload" }).catch(() => {})));
+      location.reload(); return true;
+    }
   } catch {}
   return false;
 }
