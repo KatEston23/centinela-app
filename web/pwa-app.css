@@ -259,9 +259,9 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 #nw-panel .filters{margin-bottom:4px}
 #nw-panel .btn{margin-top:14px}
 .ipo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px}
-.ipo{display:grid;gap:6px;align-content:start;padding:14px;border-radius:16px;background:var(--sunk);border:1px solid var(--line)}
+.ipo-card{display:grid;gap:6px;align-content:start;padding:14px;border-radius:16px;background:var(--sunk);border:1px solid var(--line)}
 .ipo-hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ipo .pill{justify-self:start;font-size:12px;font-weight:700}
-.ipo .body{margin:0;font-size:13.5px;line-height:1.45}
-.ipo .more{font-size:13px;color:var(--accent);font-weight:600;text-decoration:none}
+.ipo-card .pill{justify-self:start;font-size:12px;font-weight:700}
+.ipo-card .body{margin:0;font-size:13.5px;line-height:1.45}
+.ipo-card .more{font-size:13px;color:var(--accent);font-weight:600;text-decoration:none}
 #sig-fresh{margin:-6px 0 10px}

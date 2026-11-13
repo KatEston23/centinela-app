@@ -725,7 +725,7 @@ function renderIpos() {
   p.replaceChildren(el("h2", {}, "Salidas a bolsa", el("small", { text: ` · según la IA, ${ago(S.market.at)}` })),
     el("div", { class: "ipo-grid" }, L.map((x) => {
       const rv = RV[x.revolut] || RV.desconocido;
-      return el("div", { class: "ipo" },
+      return el("div", { class: "ipo-card" },
         el("div", { class: "ipo-hd" }, el("b", { text: x.name }), x.ticker ? el("span", { class: "nw-sym", text: x.ticker }) : null),
         el("div", { class: "nw-meta" }, x.d ? el("span", { text: fmtD(x.d) }) : null, x.market ? el("span", { text: x.market }) : null),
         el("span", { class: "pill hm-" + rv[1], text: rv[0] }),
