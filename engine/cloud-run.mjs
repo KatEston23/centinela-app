@@ -10,6 +10,7 @@ import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 // notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
+import { sendPush, vapidPublic } from "./webpush.mjs";
 import { holdingsFromLedger } from "./parser.mjs";
 import { readState, writeState, decrypt } from "./state.mjs";
 
@@ -25,6 +26,7 @@ s.watch = s.watch || [];
 const log = [];
 const docId = (x) => x.replace(/[^A-Za-z0-9_-]/g, "_");
 const H20 = 20 * 3600e3;
+const TAG_ICON = { chart_with_downwards_trend: "📉", chart_with_upwards_trend: "📈", bell: "🔔", mag: "🔎", sunrise: "🌅" };
 
 // ---------- 1. Revolut X (solo lectura) ----------
 function revx(args) {
@@ -69,6 +71,22 @@ if (cfg.ntfyTopic) {
     for (const m of msgs) {
       let c;
       try { c = decrypt(JSON.parse(m.message)); } catch { continue; } // sin la clave: se ignora
+      // Avisos de la app: alta o baja de un dispositivo (suscripción Web Push)
+      if (c.op === "push-sub" || c.op === "push-unsub") {
+        s.push = s.push || { subs: [] };
+        const ep = String(c.sub?.endpoint || c.endpoint || "");
+        if (/^https:\/\//.test(ep)) {
+          s.push.subs = s.push.subs.filter((x) => x.endpoint !== ep);
+          if (c.op === "push-sub" && c.sub?.keys?.p256dh && c.sub?.keys?.auth) {
+            s.push.subs.push({ endpoint: ep, keys: { p256dh: String(c.sub.keys.p256dh), auth: String(c.sub.keys.auth) }, dev: String(c.dev || "").slice(0, 60), at: c.at, welcome: true });
+            s.push.subs = s.push.subs.slice(-6);
+          }
+          applied++;
+        }
+        if (!s.status.cmdAppliedAt || c.at > s.status.cmdAppliedAt) s.status.cmdAppliedAt = c.at;
+        s.status.cmdSince = m.id;
+        continue;
+      }
       const sym = String(c.symbol || "").toUpperCase().replace(/[^A-Z0-9.^=-]/g, "").slice(0, 20);
       if (!sym || !c.at) continue;
       if (c.op === "watch" && !s.watch.some((w) => w.symbol === sym)) { s.watch.push({ symbol: sym, name: String(c.name || sym).slice(0, 80), addedAt: c.at, by: "usuario" }); applied++; }
@@ -78,6 +96,13 @@ if (cfg.ntfyTopic) {
     }
     if (msgs.length) log.push(`Órdenes del móvil: ${applied} aplicada(s) de ${msgs.length}`);
   } catch (e) { log.push("Órdenes del móvil: no se pudieron leer (" + e.message + ")"); }
+}
+
+// Bienvenida a cada dispositivo recién dado de alta: confirma que los avisos llegan
+for (const sub of [...(s.push?.subs || [])].filter((x) => x.welcome)) {
+  if (!cfg.vapidJwk) break;
+  if (await pushTo(sub, "Avisos de Centinela activados", "A partir de ahora los avisos de su cartera llegan aquí, sin otras apps.", 3, "bell")) { delete sub.welcome; log.push("Avisos: dispositivo nuevo confirmado"); }
+  else if ((sub.fails || 0) >= 3) delete sub.welcome;
 }
 
 // ---------- 2. Símbolos: cartera (prioridad 1) y vigilancia (prioridad 2) ----------
@@ -138,7 +163,23 @@ for (const sym of symbols) {
 }
 
 // ---------- 5. Avisos al móvil (máx. 3; nunca importes del usuario) ----------
+async function pushTo(sub, title, message, priority, tags) {
+  try {
+    const r = await sendPush(sub, { title: `${TAG_ICON[tags] ? TAG_ICON[tags] + " " : ""}${title}`, body: message, tag: tags || "centinela", url: cfg.pwaUrl + "#senales" }, cfg.vapidJwk, { urgency: priority >= 4 ? "high" : "normal" });
+    if (r.ok) { sub.lastOk = at; delete sub.fails; delete sub.lastErr; return true; }
+    if (r.gone) { s.push.subs = s.push.subs.filter((x) => x !== sub); log.push(`Avisos: un dispositivo ya no admite avisos (${r.status}); se olvida`); return false; }
+    sub.fails = (sub.fails || 0) + 1; sub.lastErr = `${r.status} ${r.text}`.slice(0, 160);
+    log.push(`Avisos: error ${r.status} ${r.text}`.slice(0, 200));
+  } catch (e) { sub.fails = (sub.fails || 0) + 1; sub.lastErr = String(e.message || e).slice(0, 160); }
+  return false;
+}
+// Avisos propios de la app (Web Push) a todos sus dispositivos; ntfy solo como respaldo si no llega ninguno
 async function notify(title, message, priority, tags) {
+  if (cfg.vapidJwk && s.push?.subs?.length) {
+    let delivered = 0;
+    for (const sub of [...s.push.subs]) if (await pushTo(sub, title, message, priority, tags)) delivered++;
+    if (delivered) return true;
+  }
   if (!cfg.ntfyTopic) return false;
   const headers = { Title: `=?UTF-8?B?${Buffer.from(title).toString("base64")}?=`, Priority: String(priority), Tags: tags, Actions: `view, Abrir en el navegador, ${cfg.pwaUrl}`, "Content-Type": "text/plain; charset=utf-8" };
   try { const r = await fetch(`${cfg.ntfyServer || "https://ntfy.sh"}/${cfg.ntfyTopic}`, { method: "POST", headers, body: message }); return r.ok; } catch { return false; }
@@ -372,6 +413,8 @@ if (existsSync(notesFile)) {
 }
 
 // ---------- 8. Estado ----------
+// Clave pública de los avisos de la app (la privada solo vive en los secretos de GitHub)
+if (cfg.vapidJwk) { s.push = s.push || { subs: [] }; s.push.key = vapidPublic(cfg.vapidJwk); }
 s.status.portfolioAt = at;
 s.status.engine = "github";
 const aiFresh = s.status.aiAt && now - new Date(s.status.aiAt) < 30 * 3600e3;

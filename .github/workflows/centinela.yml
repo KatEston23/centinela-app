@@ -30,6 +30,7 @@ jobs:
     env:
       PWA_KEY: ${{ secrets.PWA_KEY }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      VAPID_JWK: ${{ secrets.VAPID_JWK }}
       REVOLUTX_CONFIG_DIR: /tmp/revolut-x
       MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '41 7 * * *' && 'scan' || 'portfolio') }}
     steps:

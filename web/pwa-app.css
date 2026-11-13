@@ -265,3 +265,10 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .ipo-card .body{margin:0;font-size:13.5px;line-height:1.45}
 .ipo-card .more{font-size:13px;color:var(--accent);font-weight:600;text-decoration:none}
 #sig-fresh{margin:-6px 0 10px}
+
+/* ---- avisos de la app ---- */
+.push-banner{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:16px 18px;border-color:color-mix(in srgb, var(--accent) 35%, var(--line))}
+.push-banner .note{margin:2px 0 0}
+.pb-actions{display:flex;gap:8px}
+#push-panel .btn.primary{width:100%;margin-top:4px}
+#push-panel .status-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}

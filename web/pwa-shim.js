@@ -263,7 +263,7 @@ async function queueCmd(op, symbol, name) {
     await sendCmd(c);
     lsSet(PEND_LS, JSON.stringify([...pending(), c]));
     applyPending(); renderOpportunities();
-    toast(op === "watch" ? `${symbol} en vigilancia. El vigilante lo incorpora en su próxima revisión (máx. 1 h).` : `${symbol} quitado de vigilancia.`);
+    toast(op === "watch" ? `${symbol} en vigilancia. El vigilante lo incorpora en su próxima revisión (máx. 15 min).` : `${symbol} quitado de vigilancia.`);
   } catch (e) { toast("No se pudo enviar: " + (e.message || e), true); }
 }
 watch = (it) => queueCmd("watch", it.symbol, it.name);
@@ -793,7 +793,7 @@ async function pwaLoad(k) {
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
     S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
-    S.news = d.news || null; S.fund = d.fund || {};
+    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null;
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
@@ -852,6 +852,93 @@ function appPanel() {
       form);
   }
 }
+
+// ---- Avisos propios de la app (Web Push): sin apps externas ----
+// El móvil se suscribe y manda su suscripción cifrada al motor, que desde entonces avisa aquí.
+const PUSH_LS = "centinela.pushEndpoint", PUSH_HIDE_LS = "centinela.pushBannerHidden";
+const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const pushSupported = () => "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+const b64uToBytes = (s) => { const b = atob(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4)); return Uint8Array.from(b, (c) => c.charCodeAt(0)); };
+function deviceLabel() {
+  const u = navigator.userAgent;
+  const dev = /iPhone/.test(u) ? "iPhone" : /iPad/.test(u) || isIOS() ? "iPad" : /Android/.test(u) ? "Android" : /Mac/.test(u) ? "Mac" : /Windows/.test(u) ? "Windows" : "Navegador";
+  return dev + (isStandalone() ? " (app)" : " (navegador)");
+}
+async function currentSub() {
+  if (!pushSupported()) return null;
+  try { const reg = await navigator.serviceWorker.ready; return await reg.pushManager.getSubscription(); } catch { return null; }
+}
+async function enablePush() {
+  // El permiso se pide nada más pulsar (iOS lo exige en el mismo toque)
+  const perm = await Notification.requestPermission();
+  if (perm !== "granted") { toast(perm === "denied" ? "Avisos bloqueados: actívelos en Ajustes del iPhone › Notificaciones › Centinela." : "No se activaron los avisos.", true); renderPushPanel(); return; }
+  try {
+    if (!S.push?.key) throw new Error("falta la clave de avisos; pulse «Actualizar ahora» y vuelva a probar");
+    const reg = await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64uToBytes(S.push.key) });
+    await sendCmd({ op: "push-sub", sub: sub.toJSON(), dev: deviceLabel(), at: new Date().toISOString() });
+    lsSet(PUSH_LS, sub.endpoint);
+    toast("Avisos activados. En unos minutos le llegará uno de bienvenida.");
+  } catch (e) { toast("No se pudieron activar: " + (e.message || e), true); }
+  renderPushPanel(); renderPushBanner();
+}
+async function disablePush() {
+  try {
+    const sub = await currentSub();
+    if (sub) { await sendCmd({ op: "push-unsub", endpoint: sub.endpoint, at: new Date().toISOString() }); await sub.unsubscribe(); }
+    lsSet(PUSH_LS, null); toast("Avisos desactivados en este dispositivo.");
+  } catch (e) { toast("No se pudo: " + (e.message || e), true); }
+  renderPushPanel(); renderPushBanner();
+}
+async function testPush() {
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    await reg.showNotification("🔔 Centinela", { body: "Así se verán sus avisos: caídas fuertes, señales de la IA y el resumen de la mañana.", icon: "icons/icon-192.png", tag: "prueba" });
+  } catch (e) { toast("No se pudo mostrar: " + (e.message || e), true); }
+}
+async function renderPushPanel() {
+  const host = $("#pwa-panel"); if (!host) return;
+  let p = $("#push-panel");
+  if (!p) { p = el("div", { class: "panel", id: "push-panel" }); host.before(p); }
+  const subs = S.push?.subs || [];
+  const sub = await currentSub();
+  const confirmed = sub && subs.some((x) => x.endpoint === sub.endpoint && !x.welcome);
+  const known = sub && subs.some((x) => x.endpoint === sub.endpoint);
+  const kids = [el("h2", {}, "Avisos", el("small", { text: "propios de Centinela, sin otras apps" }))];
+  if (!pushSupported() || (isIOS() && !isStandalone())) {
+    kids.push(el("p", { class: "note", text: isIOS() ? "En iPhone los avisos solo funcionan con la app abierta desde su icono de la pantalla de inicio (Safari › Compartir › Añadir a pantalla de inicio) y con iOS 16.4 o posterior." : "Este navegador no admite avisos de aplicaciones web." }));
+  } else if (Notification.permission === "denied") {
+    kids.push(el("p", { class: "note", text: "Los avisos están bloqueados para Centinela. Actívelos en Ajustes del iPhone › Notificaciones › Centinela (o en los permisos del navegador) y vuelva aquí." }));
+  } else if (!sub) {
+    kids.push(el("p", { class: "note", text: "Reciba aquí mismo las caídas fuertes, las señales de la IA, el aviso de nuevas salidas a bolsa y el resumen de cada mañana. El contenido viaja cifrado: ni Apple ni Google pueden leerlo." }),
+      el("button", { class: "btn primary", type: "button", text: "Activar avisos en este dispositivo", onclick: enablePush }));
+  } else {
+    kids.push(el("div", { class: "status-row" }, el("span", { text: "Este dispositivo" }), el("span", { class: confirmed ? "up" : "flat", text: confirmed ? "✓ recibiendo avisos" : known ? "esperando el aviso de bienvenida" : "pendiente de confirmar (máx. 15 min)" })),
+      el("div", { class: "status-row" }, el("span", { text: "Dispositivos con avisos" }), el("span", { text: String(subs.length) })),
+      confirmed ? el("p", { class: "note", text: "Todo listo: ya puede borrar la app ntfy del móvil. Si algún día los avisos de la app fallan, el motor volverá a usar ntfy como respaldo." }) : null,
+      el("div", { style: "display:flex;gap:8px;flex-wrap:wrap" },
+        el("button", { class: "btn small", type: "button", text: "Ver un aviso de prueba", onclick: testPush }),
+        el("button", { class: "btn small", type: "button", text: "Desactivar aquí", onclick: disablePush })));
+  }
+  p.replaceChildren(...kids.filter(Boolean));
+}
+// En Inicio, una invitación discreta a activarlos (una vez; se puede cerrar)
+async function renderPushBanner() {
+  const old = $("#push-banner");
+  const show = S.loaded && pushSupported() && isStandalone() && Notification.permission === "default" && !lsGet(PUSH_HIDE_LS) && !(await currentSub());
+  if (!show) { old?.remove(); return; }
+  if (old) return;
+  const b = el("div", { class: "panel push-banner", id: "push-banner" },
+    el("div", {}, el("b", { text: "Reciba los avisos aquí" }), el("p", { class: "note", text: "Active los avisos de Centinela y deje de depender de otras apps." })),
+    el("div", { class: "pb-actions" },
+      el("button", { class: "btn primary small", type: "button", text: "Activar", onclick: enablePush }),
+      el("button", { class: "btn small", type: "button", text: "Ahora no", onclick: () => { lsSet(PUSH_HIDE_LS, "1"); b.remove(); } })));
+  $("#summary")?.after(b);
+}
+const _appPanel = appPanel;
+appPanel = () => { _appPanel(); renderPushPanel(); renderPushBanner(); };
 
 // Versión del código de la app: «Actualizar» y cada vuelta a la app comprueban si hay una nueva y recargan
 const APP_V = "__APP_VERSION__";

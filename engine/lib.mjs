@@ -15,6 +15,7 @@ export function loadConfig() {
     ...(env.PWA_KEY ? { pwaKey: env.PWA_KEY } : {}),
     ...(env.NTFY_TOPIC ? { ntfyTopic: env.NTFY_TOPIC } : {}),
     ...(env.NTFY_SERVER ? { ntfyServer: env.NTFY_SERVER } : {}),
+    ...(env.VAPID_JWK ? { vapidJwk: JSON.parse(env.VAPID_JWK) } : {}),
     pwaUrl: env.PWA_URL || "https://kateston23.github.io/centinela-app/",
   };
 }
