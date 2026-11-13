@@ -642,7 +642,7 @@ const helpBox = (title, rows) => el("details", { class: "help" }, el("summary", 
     ["Invertido", "Lo que pagó por lo que tiene ahora. Las acciones en dólares se pasan a euros al cambio de hoy, igual que Revolut."],
     ["Resultado", "Valor actual menos invertido: lo que ganaría (verde) o perdería (rojo) si lo vendiera todo ahora, sin contar comisiones ni impuestos. Debajo, lo mismo en %."],
     ["Barra de colores", "El peso de cada activo en su cartera."],
-    ["Frescura", "Arriba a la derecha: cuándo se actualizaron los precios. Con la app abierta se refrescan cada 15 segundos; si no, cada hora."],
+    ["Frescura", "Arriba a la derecha: cuándo se actualizaron los precios. Con la app abierta se refrescan cada 15 segundos; si no, cada 15 minutos."],
   ]));
   $("#v-oportunidades")?.querySelector("#scan-list")?.before(helpBox("¿Cómo se leen las ideas?", [
     ["Técnico (0–100)", "Nota del gráfico: tendencia, medias de 50 y 200 sesiones, impulso, sobrecompra o sobreventa y volatilidad. Más de 70 es un gráfico fuerte; no dice nada de la empresa."],
@@ -650,7 +650,7 @@ const helpBox = (title, rows) => el("details", { class: "help" }, el("summary", 
     ["Fase", "En qué momento del ciclo está el precio. Las correcciones dentro de una tendencia alcista suelen ser las mejores entradas."],
     ["Datos de valoración", "Cifras reales de la empresa (PER, crecimiento, margen, dividendo, beta). Pase el dedo o el ratón por encima de cada una para ver qué significa."],
     ["Por qué invertir / qué lo cambiaría", "La tesis de la IA y lo que la rompería. Se revisa tres veces al día con las noticias del momento."],
-    ["Últimas noticias", "Titulares reales de las últimas 48 h, actualizados cada hora."],
+    ["Últimas noticias", "Titulares reales de las últimas 48 h, actualizados cada 15 minutos."],
   ]));
 })();
 
@@ -669,10 +669,10 @@ function renderSigFresh() {
   let n = $("#sig-fresh");
   if (!n) { n = el("p", { class: "note", id: "sig-fresh" }); box.querySelector("h2")?.after(n); }
   const nx = nextAiRun();
-  n.textContent = `Revisión de reglas ${ago(S.status?.portfolioAt)} (cada hora) · análisis con IA ${ago(S.status?.aiAt)}${nx ? `, el próximo a las ${hhmm(nx)}` : ""}. Solo aparecen señales nuevas cuando algo cambia.`;
+  n.textContent = `Revisión de reglas ${ago(S.status?.portfolioAt)} (cada 15 min) · análisis con IA ${ago(S.status?.aiAt)}${nx ? `, el próximo a las ${hhmm(nx)}` : ""}. Solo aparecen señales nuevas cuando algo cambia.`;
 }
 
-// ---- Noticias: canal propio con titulares reales (Google Noticias), actualizado cada hora ----
+// ---- Noticias: canal propio con titulares reales (Google Noticias), actualizado cada 15 minutos ----
 VIEWS.push("noticias");
 (function newsView() {
   const nav = $("nav.tabs");
@@ -699,7 +699,7 @@ function renderNews() {
   const chips = el("div", { class: "filters" }, NW_F.map(([k, t]) => el("button", { class: "chip", type: "button", "aria-pressed": String(k === nwFilter), text: t,
     onclick: () => { nwFilter = k; nwMax = 40; lsSet(NW_LS, k); renderNews(); } })));
   p.replaceChildren(el("h2", {}, "Noticias", el("small", { text: S.news?.at ? ` · titulares reales, actualizados ${ago(S.news.at)}` : "" })), chips);
-  if (!N.length) { p.append(el("div", { class: "empty", text: "Las noticias llegarán con la próxima revisión del motor (cada hora)." })); }
+  if (!N.length) { p.append(el("div", { class: "empty", text: "Las noticias llegarán con la próxima revisión del motor (cada 15 minutos)." })); }
   else if (!list.length) p.append(el("div", { class: "empty", text: "No hay titulares de este tema en las últimas 72 h." }));
   else {
     // Agrupadas por día
@@ -818,7 +818,7 @@ function appPanel() {
   p.replaceChildren(
     el("h2", { text: "App del móvil" }),
     el("p", { class: "note", text: "Bitcoin y las criptos de Revolut X se actualizan solas. Si compra o vende acciones en Revolut Invest, suba el Extracto de cuenta (CSV) a Drive › Inversiones › 01 Extractos Revolut › Invest y pídale a Claude que lo importe." }),
-    el("p", { class: "note", text: "El motor revisa su cartera y las noticias cada hora, y el mercado cada mañana, sin necesidad de su PC. El análisis con IA (tesis, valoración, salidas a bolsa) se hace tres veces al día: " + AI_RUNS_UTC.map(([h, m]) => hhmm(new Date(Date.UTC(2026, 0, 1, h, m)))).join(", ") + " (hora de invierno)." }),
+    el("p", { class: "note", text: "El motor revisa su cartera y las noticias cada 15 minutos, y el mercado cada mañana, sin necesidad de su PC. El análisis con IA (tesis, valoración, salidas a bolsa) se hace tres veces al día: " + AI_RUNS_UTC.map(([h, m]) => hhmm(new Date(Date.UTC(2026, 0, 1, h, m)))).join(", ") + " (hora de invierno)." }),
     el("div", { style: "display:flex;gap:8px;flex-wrap:wrap" },
       el("button", { class: "btn small", type: "button", text: "Actualizar ahora", onclick: () => refresh(true) }),
       el("button", { class: "btn small", type: "button", text: "Olvidar la clave", onclick: () => { lsSet(KEY_LS, null); location.reload(); } })),

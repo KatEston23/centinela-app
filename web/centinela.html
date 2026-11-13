@@ -611,7 +611,7 @@ $("#sig-filters").addEventListener("click", (e) => {
 function renderSignals() {
   const box = $("#sig-list"); box.replaceChildren();
   const list = S.signals.filter((s) => sigFilter === "all" || String(s.tier) === sigFilter);
-  if (!list.length) box.append(el("div", { class: "empty", text: S.signals.length ? "No hay señales en este grupo." : "Todavía no hay señales. El vigilante revisa su cartera cada 4 horas y el mercado una vez al día." }));
+  if (!list.length) box.append(el("div", { class: "empty", text: S.signals.length ? "No hay señales en este grupo." : "Todavía no hay señales. El vigilante revisa su cartera cada 15 minutos y el mercado una vez al día." }));
   else list.forEach((s) => box.append(signalNode(s)));
 }
 
@@ -765,7 +765,7 @@ function renderSettings() {
   const es = $("#engine-status"); es.replaceChildren();
   const st = S.status || {};
   const row = (k, v) => es.append(el("div", { class: "status-row" }, el("span", { text: k }), el("span", { class: "num", text: v })));
-  row("Revisión de la cartera (cada 4 h)", ago(st.portfolioAt));
+  row("Revisión de la cartera (cada 15 min)", ago(st.portfolioAt));
   row("Escáner de mercado (diario, 08:30)", ago(st.scanAt));
   row("Motor", st.engine === "github" ? "GitHub · funciona sin su PC" : "PC");
   row("Análisis de noticias con IA", st.aiAt ? (Date.now() - new Date(st.aiAt) < 30 * 3600e3 ? `activo · ${ago(st.aiAt)}` : `en pausa · último ${ago(st.aiAt)}`) : "pendiente");
