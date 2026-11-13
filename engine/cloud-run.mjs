@@ -9,6 +9,7 @@ import { join } from "node:path";
 import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 // notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
+import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { holdingsFromLedger } from "./parser.mjs";
 import { readState, writeState, decrypt } from "./state.mjs";
 
@@ -218,6 +219,18 @@ if (existsSync(regimeFile)) {
   } catch (e) { log.push("Régimen cripto no válido (" + e.message + ")"); }
 }
 
+// ---------- 6c. Noticias reales (cada hora) y métricas de valoración (una vez al día) ----------
+const newsSyms = [...new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol)])];
+const nameOf = (sym) => s.quotes[docId(sym)]?.name || (s.scan?.items || []).find((i) => i.symbol === sym)?.name || s.watch.find((w) => w.symbol === sym)?.name || sym;
+try {
+  const r = await refreshNews(s, newsSyms.map((sym) => ({ sym, name: nameOf(sym) })), mapLimit, now);
+  log.push(`Noticias: ${r.total} titulares (${r.fresh} nuevos${r.errors ? `, ${r.errors} búsquedas fallidas` : ""})`);
+} catch (e) { log.push("Noticias: " + e.message); }
+try {
+  const r = await refreshFundamentals(s, newsSyms, s.finnhubKey || process.env.FINNHUB_KEY, now);
+  if (r.done) log.push(`Valoración: ${r.done} valores actualizados`);
+} catch (e) { log.push("Valoración: " + e.message); }
+
 // ---------- 7. Capa 2 (IA): integra ai/notes.json si es más nuevo que lo último integrado ----------
 // La rutina de Claude solo ve datos públicos de mercado y deja aquí su análisis de noticias.
 const notesFile = join(ROOT, "ai", "notes.json");
@@ -242,6 +255,8 @@ if (existsSync(notesFile)) {
           scenarios: (mk.scenarios || []).slice(0, 3).map((e) => ({ name: tx(e?.name, 60), prob: Math.max(0, Math.min(100, Number(e?.prob) || 0)), effect: tx(e?.effect, 200) })).filter((e) => e.name),
           catalysts: cats(mk.catalysts),
           crypto: tx(nn.crypto?.summary || mk.crypto, 400),
+          // Salidas a bolsa próximas o recientes y si se puede invertir desde Revolut
+          ipos: (mk.ipos || []).slice(0, 8).map((e) => ({ name: tx(e?.name, 60), ticker: tx(e?.ticker, 12), d: tx(e?.d, 20), market: tx(e?.market, 30), revolut: ["sí", "no", "desconocido"].includes(e?.revolut) ? e.revolut : "desconocido", note: tx(e?.note, 220), u: /^https:\/\//.test(e?.u || "") ? e.u : undefined })).filter((e) => e.name),
         };
       }
       const VERDICTS = ["comprar", "reforzar", "mantener", "reducir", "vender", "vigilar"];
@@ -302,7 +317,13 @@ if (existsSync(notesFile)) {
   const cr = s.cryptoRegime ? { at: s.cryptoRegime.at, score: s.cryptoRegime.score, zone: s.cryptoRegime.zone, guidance: s.cryptoRegime.guidance, components: s.cryptoRegime.components } : null;
   // Tesis del día anterior para que la IA las actualice en vez de reescribirlas de cero
   const prevThesis = Object.fromEntries([...pick].filter((x) => s.analysis?.[x]?.thesis).map((x) => [x, { thesis: s.analysis[x].thesis, breaks: s.analysis[x].breaks }]));
-  writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list, cryptoRegime: cr, prevThesis }, null, 1));
+  // Titulares reales de las últimas horas (Google Noticias) y métricas de valoración (Finnhub)
+  const NI = s.news?.items || [];
+  const brief = (x) => ({ t: x.t, src: x.src, at: x.at, u: x.u });
+  const news = Object.fromEntries([...pick].map((x) => [x, NI.filter((n) => n.syms.includes(x)).slice(0, 8).map(brief)]).filter(([, v]) => v.length));
+  const marketNews = NI.filter((n) => n.cats.some((c) => c !== "valor")).slice(0, 30).map((x) => ({ ...brief(x), cats: x.cats }));
+  const fundamentals = Object.fromEntries([...pick].filter((x) => s.fund?.[x]).map((x) => [x, s.fund[x]]));
+  writeFileSync(join(ROOT, "docs", "ai-request.json"), JSON.stringify({ at, symbols: list, cryptoRegime: cr, prevThesis, news, marketNews, fundamentals }, null, 1));
 }
 
 // ---------- 7b. Resumen matinal (una vez al día, entre las 07:00 y las 11:00 de Dublín) ----------

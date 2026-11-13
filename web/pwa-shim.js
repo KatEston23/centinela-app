@@ -562,8 +562,48 @@ function thesisBlock(sym) {
   if (a.breaks) b.append(el("div", { class: "body" }, el("b", { text: "Qué lo cambiaría: " }), a.breaks));
   if (a.valuation) b.append(el("div", { class: "body flat" }, el("b", { text: "Valoración: " }), a.valuation));
   if (a.catalysts?.length) b.append(el("div", { class: "body flat" }, el("b", { text: "Fechas: " }), a.catalysts.map((c) => `${fmtD(c.d)} ${c.e}`).join(" · ")));
+  if (a.at) b.append(el("div", { class: "th-at", text: "Análisis con IA " + ago(a.at) }));
   return b;
 }
+// Datos de valoración reales (Finnhub), en lenguaje llano
+const nf1 = (v) => Number(v).toLocaleString("es-ES", { maximumFractionDigits: 1 });
+function fundChips(sym) {
+  const f = S.fund?.[sym];
+  if (!f) return null;
+  const c = [];
+  if (f.pe != null && f.pe > 0) c.push(["PER " + nf1(f.pe), "Veces que el precio contiene el beneficio anual: cuanto más alto, más caro (la media del S&P 500 ronda 20–25)"]);
+  if (f.revG != null) c.push([`Ventas ${f.revG > 0 ? "+" : ""}${nf1(f.revG)} %`, "Crecimiento de las ventas en el último año"]);
+  if (f.epsG != null) c.push([`Beneficio/acción ${f.epsG > 0 ? "+" : ""}${nf1(f.epsG)} %`, "Crecimiento del beneficio por acción en el último año"]);
+  if (f.margin != null) c.push([`Margen ${nf1(f.margin)} %`, "De cada 100 € que vende, cuántos le quedan de beneficio"]);
+  if (f.divY != null && f.divY > 0.05) c.push([`Dividendo ${nf1(f.divY)} %`, "Rentabilidad anual por dividendo al precio actual"]);
+  if (f.beta != null) c.push([`Beta ${nf1(f.beta)}`, "Cuánto se mueve frente al mercado: 1 = igual; 2 = el doble"]);
+  if (!c.length) return null;
+  return el("div", { class: "fund" }, c.map(([t, tip]) => el("span", { class: "fchip num", title: tip, text: t })));
+}
+// Últimos titulares reales de un valor
+function newsFor(sym, n = 3) {
+  return (S.news?.items || []).filter((x) => (x.syms || []).includes(sym)).slice(0, n);
+}
+function newsList(items, withSyms = false) {
+  const ul = el("ul", { class: "nw-list" });
+  for (const x of items) ul.append(el("li", {},
+    el("a", { href: x.u, target: "_blank", rel: "noopener", text: x.t }),
+    el("div", { class: "nw-meta" },
+      el("span", { text: `${x.src} · ${ago(x.at)}` }),
+      withSyms ? (x.syms || []).slice(0, 3).map((s) => el("span", { class: "nw-sym", text: s.replace(/-EUR$/, "") })) : null,
+      (x.cats || []).includes("ipo") ? el("span", { class: "nw-tag ipo", text: "Salida a bolsa" }) : null,
+      (x.cats || []).includes("revolut") ? el("span", { class: "nw-tag rv", text: "Revolut" }) : null)));
+  return ul;
+}
+const _thesisBlock = thesisBlock;
+thesisBlock = (sym) => {
+  const b = _thesisBlock(sym) || el("div", { class: "thesis" });
+  const f = fundChips(sym);
+  if (f) b.prepend(f);
+  const nw = newsFor(sym);
+  if (nw.length) b.append(el("div", { class: "th-news" }, el("b", { text: "Últimas noticias" }), newsList(nw)));
+  return b.children.length ? b : null;
+};
 const _signalNode2 = signalNode;
 signalNode = (s, compact) => {
   const n = _signalNode2(s, compact);
@@ -591,6 +631,120 @@ renderOpportunities = () => {
 };
 const _renderAll2 = renderAll;
 renderAll = () => { _renderAll2(); renderMarketToday(); };
+
+// ---- Ayudas: cómo leer el resumen y las ideas ----
+const helpBox = (title, rows) => el("details", { class: "help" }, el("summary", { text: title }),
+  el("dl", {}, rows.flatMap(([k, v]) => [el("dt", { text: k }), el("dd", { text: v })])));
+(function helps() {
+  $("#summary")?.append(helpBox("¿Cómo se lee este resumen?", [
+    ["Número grande", "Lo que vale hoy todo lo que tiene en Revolut: acciones, criptos y el efectivo sin invertir de Revolut Invest."],
+    ["Hoy", "Cuánto ha subido o bajado hoy su cartera, en euros y en %. Acciones: frente al cierre anterior (fuera de horario, con el precio de preapertura o cierre ampliado). Cripto: en las últimas 24 h, como Revolut X."],
+    ["Invertido", "Lo que pagó por lo que tiene ahora. Las acciones en dólares se pasan a euros al cambio de hoy, igual que Revolut."],
+    ["Resultado", "Valor actual menos invertido: lo que ganaría (verde) o perdería (rojo) si lo vendiera todo ahora, sin contar comisiones ni impuestos. Debajo, lo mismo en %."],
+    ["Barra de colores", "El peso de cada activo en su cartera."],
+    ["Frescura", "Arriba a la derecha: cuándo se actualizaron los precios. Con la app abierta se refrescan cada 15 segundos; si no, cada hora."],
+  ]));
+  $("#v-oportunidades")?.querySelector("#scan-list")?.before(helpBox("¿Cómo se leen las ideas?", [
+    ["Técnico (0–100)", "Nota del gráfico: tendencia, medias de 50 y 200 sesiones, impulso, sobrecompra o sobreventa y volatilidad. Más de 70 es un gráfico fuerte; no dice nada de la empresa."],
+    ["¿Invertir?", "Veredicto de la IA para quien aún no lo tiene: comprar ahora, vigilar (esperar mejor momento) o evitar. Combina el gráfico, las noticias y la valoración."],
+    ["Fase", "En qué momento del ciclo está el precio. Las correcciones dentro de una tendencia alcista suelen ser las mejores entradas."],
+    ["Datos de valoración", "Cifras reales de la empresa (PER, crecimiento, margen, dividendo, beta). Pase el dedo o el ratón por encima de cada una para ver qué significa."],
+    ["Por qué invertir / qué lo cambiaría", "La tesis de la IA y lo que la rompería. Se revisa tres veces al día con las noticias del momento."],
+    ["Últimas noticias", "Titulares reales de las últimas 48 h, actualizados cada hora."],
+  ]));
+})();
+
+// ---- Hora de los próximos análisis con IA (la rutina corre a las 07:30, 13:30 y 21:30 UTC) ----
+const AI_RUNS_UTC = [[7, 30], [13, 30], [21, 30]];
+function nextAiRun(now = new Date()) {
+  for (let d = 0; d < 2; d++) for (const [h, m] of AI_RUNS_UTC) {
+    const t = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + d, h, m));
+    if (t > now) return t;
+  }
+  return null;
+}
+const hhmm = (t) => t.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
+function renderSigFresh() {
+  const box = $("#last-signals"); if (!box || !S.loaded) return;
+  let n = $("#sig-fresh");
+  if (!n) { n = el("p", { class: "note", id: "sig-fresh" }); box.querySelector("h2")?.after(n); }
+  const nx = nextAiRun();
+  n.textContent = `Revisión de reglas ${ago(S.status?.portfolioAt)} (cada hora) · análisis con IA ${ago(S.status?.aiAt)}${nx ? `, el próximo a las ${hhmm(nx)}` : ""}. Solo aparecen señales nuevas cuando algo cambia.`;
+}
+
+// ---- Noticias: canal propio con titulares reales (Google Noticias), actualizado cada hora ----
+VIEWS.push("noticias");
+(function newsView() {
+  const nav = $("nav.tabs");
+  const a = nav?.querySelector('a[data-view="proyeccion"]');
+  if (a) {
+    a.href = "#noticias"; a.dataset.view = "noticias";
+    a.replaceChildren(svgIcon('<path d="M4 5h13v14a1 1 0 0 0 1 1H5a1 1 0 0 1-1-1z"/><path d="M17 9h3v10a1 1 0 0 1-2 0"/><path d="M7 9h7M7 13h7M7 17h4"/>'), el("span", { text: "Noticias" }));
+  }
+  const sec = el("section", { class: "view", id: "v-noticias", hidden: "" },
+    el("div", { class: "panel", id: "nw-ipo", hidden: "" }),
+    el("div", { class: "panel", id: "nw-panel" }));
+  $("#v-proyeccion").after(sec);
+})();
+const NW_LS = "centinela.newsFilter";
+const NW_F = [["all", "Todas"], ["mine", "Mi cartera"], ["ipo", "Salidas a bolsa"], ["revolut", "Revolut"], ["mercado", "Mercados"], ["cripto", "Cripto"]];
+let nwFilter = lsGet(NW_LS) || "all", nwMax = 40;
+function renderNews() {
+  const p = $("#nw-panel"); if (!p) return;
+  const N = S.news?.items || [];
+  const mine = new Set([...allHoldings().map((h) => h.quote), ...(S.watch || []).map((w) => w.symbol)]);
+  const pass = (x) => nwFilter === "all" ? true : nwFilter === "mine" ? (x.syms || []).some((s) => mine.has(s))
+    : nwFilter === "mercado" ? (x.cats || []).some((c) => c === "mercado" || c === "europa") : (x.cats || []).includes(nwFilter);
+  const list = N.filter(pass);
+  const chips = el("div", { class: "filters" }, NW_F.map(([k, t]) => el("button", { class: "chip", type: "button", "aria-pressed": String(k === nwFilter), text: t,
+    onclick: () => { nwFilter = k; nwMax = 40; lsSet(NW_LS, k); renderNews(); } })));
+  p.replaceChildren(el("h2", {}, "Noticias", el("small", { text: S.news?.at ? ` · titulares reales, actualizados ${ago(S.news.at)}` : "" })), chips);
+  if (!N.length) { p.append(el("div", { class: "empty", text: "Las noticias llegarán con la próxima revisión del motor (cada hora)." })); }
+  else if (!list.length) p.append(el("div", { class: "empty", text: "No hay titulares de este tema en las últimas 72 h." }));
+  else {
+    // Agrupadas por día
+    const day = (iso) => { const d = new Date(iso), t = new Date(); const k = Math.floor((new Date(t.toDateString()) - new Date(d.toDateString())) / 864e5); return k <= 0 ? "Hoy" : k === 1 ? "Ayer" : d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }); };
+    let cur = null, ul = null;
+    for (const x of list.slice(0, nwMax)) {
+      const g = day(x.at);
+      if (g !== cur) { cur = g; p.append(el("h3", { class: "nw-day", text: g })); ul = newsList([], true); p.append(ul); }
+      ul.append(newsList([x], true).firstChild);
+    }
+    if (list.length > nwMax) p.append(el("button", { class: "btn small", type: "button", text: `Ver más (${list.length - nwMax})`, onclick: () => { nwMax += 40; renderNews(); } }));
+  }
+  p.append(el("p", { class: "note", text: "Fuente: Google Noticias en español. Se buscan los temas del mercado y cada valor de su cartera, vigilancia e ideas. Los titulares enlazan al medio original." }));
+  renderIpos();
+}
+// Salidas a bolsa que sigue la IA, con si se puede invertir desde Revolut
+function renderIpos() {
+  const p = $("#nw-ipo"); if (!p) return;
+  const L = S.market?.ipos || [];
+  p.hidden = !L.length;
+  if (!L.length) return;
+  const RV = { "sí": ["Disponible en Revolut", "gain"], no: ["No disponible en Revolut", "loss"], desconocido: ["Revolut: sin confirmar", "flat"] };
+  p.replaceChildren(el("h2", {}, "Salidas a bolsa", el("small", { text: ` · según la IA, ${ago(S.market.at)}` })),
+    el("div", { class: "ipo-grid" }, L.map((x) => {
+      const rv = RV[x.revolut] || RV.desconocido;
+      return el("div", { class: "ipo" },
+        el("div", { class: "ipo-hd" }, el("b", { text: x.name }), x.ticker ? el("span", { class: "nw-sym", text: x.ticker }) : null),
+        el("div", { class: "nw-meta" }, x.d ? el("span", { text: fmtD(x.d) }) : null, x.market ? el("span", { text: x.market }) : null),
+        el("span", { class: "pill hm-" + rv[1], text: rv[0] }),
+        x.note ? el("p", { class: "body", text: x.note }) : null,
+        x.u ? el("a", { class: "more", href: x.u, target: "_blank", rel: "noopener", text: "Leer más" }) : null);
+    })));
+}
+// En Inicio: lo último de su cartera
+function renderHomeNews() {
+  let p = $("#home-news");
+  const mine = new Set(allHoldings().map((h) => h.quote));
+  const items = (S.news?.items || []).filter((x) => (x.syms || []).some((s) => mine.has(s))).slice(0, 5);
+  if (!items.length) { p?.remove(); return; }
+  if (!p) { p = el("div", { class: "panel", id: "home-news" }); ($("#hoy-mkt") || $("#positions")).after(p); }
+  p.replaceChildren(el("h2", {}, "Lo último de su cartera", el("a", { class: "more", href: "#noticias", text: "Todas", onclick: () => { nwFilter = "mine"; lsSet(NW_LS, "mine"); } })), newsList(items, true));
+}
+const _renderAll3 = renderAll;
+renderAll = () => { _renderAll3(); renderNews(); renderHomeNews(); renderSigFresh(); };
+setInterval(() => { if (document.visibilityState === "visible" && S.loaded) renderSigFresh(); }, 60000);
 
 const readOnly = () => Promise.reject({ message: "en la app del móvil solo se consulta; cámbielo en la dashboard de Claude" });
 const stubDb = { doc: () => ({ set: readOnly, update: readOnly, delete: readOnly }) };
@@ -639,6 +793,7 @@ async function pwaLoad(k) {
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
     S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
+    S.news = d.news || null; S.fund = d.fund || {};
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
@@ -663,7 +818,7 @@ function appPanel() {
   p.replaceChildren(
     el("h2", { text: "App del móvil" }),
     el("p", { class: "note", text: "Bitcoin y las criptos de Revolut X se actualizan solas. Si compra o vende acciones en Revolut Invest, suba el Extracto de cuenta (CSV) a Drive › Inversiones › 01 Extractos Revolut › Invest y pídale a Claude que lo importe." }),
-    el("p", { class: "note", text: "El motor revisa su cartera cada hora y el mercado cada mañana, sin necesidad de su PC. El análisis de noticias con IA se añade cada día a las 08:00." }),
+    el("p", { class: "note", text: "El motor revisa su cartera y las noticias cada hora, y el mercado cada mañana, sin necesidad de su PC. El análisis con IA (tesis, valoración, salidas a bolsa) se hace tres veces al día: " + AI_RUNS_UTC.map(([h, m]) => hhmm(new Date(Date.UTC(2026, 0, 1, h, m)))).join(", ") + " (hora de invierno)." }),
     el("div", { style: "display:flex;gap:8px;flex-wrap:wrap" },
       el("button", { class: "btn small", type: "button", text: "Actualizar ahora", onclick: () => refresh(true) }),
       el("button", { class: "btn small", type: "button", text: "Olvidar la clave", onclick: () => { lsSet(KEY_LS, null); location.reload(); } })),
