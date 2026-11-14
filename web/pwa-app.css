@@ -281,3 +281,25 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .ap-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--gain-soft);color:var(--gain)}
 .ap-ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .ap-go{font-size:26px;color:var(--muted);line-height:1}
+
+/* ---- Robo-Advisor ---- */
+.rb-card{background:linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, #7FB2F0), var(--surface))}
+.rb-ic{background:color-mix(in srgb, #7FB2F0 18%, transparent);color:#7FB2F0}
+.rb-num{display:grid;justify-items:end;gap:2px}
+.rb-num b{font:700 17px var(--f-mono)}
+.rb-num small{font-size:12.5px}
+.rb-head .hello h2{font-size:40px;margin:6px 0 14px}
+.rb-kpis,.rb-vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr));gap:10px}
+.rb-kpis>div,.rb-vs>div{display:grid;gap:2px;background:color-mix(in srgb, var(--sunk) 75%, transparent);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.rb-kpis span,.rb-vs span{font-size:12.5px;color:var(--muted)}
+.rb-kpis b,.rb-vs b{font-size:18px}
+.rb-kpis small,.rb-vs small{font-size:12.5px}
+.rb-h3{margin:14px 0 8px;font:700 14px var(--f-display)}
+.rb-funds{display:grid}
+.rb-fund{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.rb-fund:first-child{border-top:0}
+.rb-fn{display:grid;gap:4px;min-width:0}
+.rb-fn b{font-size:14px;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.rb-fv{display:grid;justify-items:end;gap:1px;font-size:12.5px}
+.rb-fv b{font-size:15px}
+#v-robot .ap-back{margin-bottom:-2px}

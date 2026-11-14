@@ -450,18 +450,25 @@ function renderPortfolio() {
   const withCost = H.filter((h) => h.pnl != null);
   const pnl = withCost.reduce((a, h) => a + h.pnl, 0);
   const costKnown = withCost.reduce((a, h) => a + h.costEur, 0);
-  const today = H.reduce((a, h) => a + (h.value && h.q?.change1d != null ? h.value - h.value / (1 + h.q.change1d) : 0), 0);
-  $("#k-value").textContent = H.length ? eur.format(total + (cash || 0)) : "—";
-  $("#k-cost").textContent = cost ? eur.format(cost) : "—";
-  const kp = $("#k-pnl"); kp.textContent = withCost.length ? (pnl > 0 ? "+" : "") + eur.format(pnl) : "—"; kp.className = "v num " + cls(pnl);
-  const kpp = $("#k-pnlp"); kpp.textContent = costKnown ? fmtPct(pnl / costKnown) : " "; kpp.className = "s num " + cls(pnl);
-  const kt = $("#k-today"); kt.textContent = H.length && total ? `Hoy ${today > 0 ? "+" : ""}${eur.format(today)} (${fmtPct(today / (total - today))})` : " "; kt.className = "s num " + cls(today);
+  let today = H.reduce((a, h) => a + (h.value && h.q?.change1d != null ? h.value - h.value / (1 + h.q.change1d) : 0), 0);
+  // Robo-Advisor de Revolut (lo añade la app del móvil si hay extracto importado): suma como un activo más
+  const R = typeof robotTotals === "function" ? robotTotals() : null;
+  const all = total + (R?.value || 0);
+  if (R) today += R.today || 0;
+  const pnlAll = pnl + (R ? R.pnl : 0), costAll = cost + (R ? R.invested : 0), costKnownAll = costKnown + (R ? R.invested : 0);
+  $("#k-value").textContent = H.length || R ? eur.format(all + (cash || 0)) : "—";
+  $("#k-cost").textContent = costAll ? eur.format(costAll) : "—";
+  const kp = $("#k-pnl"); kp.textContent = withCost.length || R ? (pnlAll > 0 ? "+" : "") + eur.format(pnlAll) : "—"; kp.className = "v num " + cls(pnlAll);
+  const kpp = $("#k-pnlp"); kpp.textContent = costKnownAll ? fmtPct(pnlAll / costKnownAll) : " "; kpp.className = "s num " + cls(pnlAll);
+  const kt = $("#k-today"); kt.textContent = all ? `Hoy ${today > 0 ? "+" : ""}${eur.format(today)} (${fmtPct(today / (all - today))})` : " "; kt.className = "s num " + cls(today);
 
   const alloc = $("#alloc"), leg = $("#alloc-legend"); alloc.replaceChildren(); leg.replaceChildren();
-  H.filter((h) => h.value).forEach((h, i) => {
-    const share = h.value / total;
-    alloc.append(el("span", { style: `width:${(share * 100).toFixed(2)}%;background:${seriesColor(i)}`, title: `${h.symbol} ${fmtPct(share, false)}` }));
-    leg.append(el("span", {}, el("i", { style: `background:${seriesColor(i)}` }), `${h.symbol} `, el("span", { class: "num flat", text: fmtPct(share, false) })));
+  const parts = H.filter((h) => h.value).map((h) => [h.symbol, h.value]);
+  if (R?.value) parts.push(["Robot", R.value]);
+  parts.forEach(([name, v], i) => {
+    const share = v / all;
+    alloc.append(el("span", { style: `width:${(share * 100).toFixed(2)}%;background:${seriesColor(i)}`, title: `${name} ${fmtPct(share, false)}` }));
+    leg.append(el("span", {}, el("i", { style: `background:${seriesColor(i)}` }), `${name} `, el("span", { class: "num flat", text: fmtPct(share, false) })));
   });
 
   const body = $("#pos-body"); body.replaceChildren();

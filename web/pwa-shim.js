@@ -801,7 +801,7 @@ async function pwaLoad(k) {
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
     S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
-    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null;
+    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null;
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
@@ -947,6 +947,99 @@ async function renderPushBanner() {
 }
 const _appPanel = appPanel;
 appPanel = () => { _appPanel(); renderPushPanel(); renderPushBanner(); };
+
+// ---- Robo-Advisor de Revolut: ventana propia y suma en el resumen ----
+// Revolut no tiene API: los movimientos salen del extracto del robot y el motor actualiza el precio de
+// sus fondos cada 15 minutos. Solo se observa; Centinela nunca opera.
+function robotTotals() {
+  const R = S.robot;
+  if (!R?.positions?.length) return null;
+  return { value: R.value || 0, invested: R.invested || 0, pnl: R.pnl || 0, today: R.today || 0 };
+}
+VIEWS.push("robot");
+const ICON_ROBOT = '<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/><circle cx="12" cy="3.5" r="1"/>';
+(function robotView() {
+  $("#v-aportar")?.after(el("section", { class: "view", id: "v-robot", hidden: "" },
+    el("a", { class: "ap-back", href: "#cartera", text: "‹ Volver", onclick: (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } } }),
+    el("div", { id: "robot-body", style: "display:grid;gap:14px" })));
+})();
+const eurR = (v, d = 2) => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
+const sgn = (v) => (v > 0 ? "+" : "");
+// Tarjeta en Inicio, debajo de sus posiciones
+function renderRobotCard() {
+  const R = S.robot; let c = $("#robot-card");
+  if (!R?.positions?.length) { c?.remove(); return; }
+  const kids = [
+    el("span", { class: "ap-ic rb-ic" }, svgIcon(ICON_ROBOT)),
+    el("span", {}, el("b", { text: "Robo-Advisor" }), el("small", { text: `${R.positions.length} fondos · ${R.byClass?.map((x) => `${x.name.toLowerCase()} ${fmtPct(x.w, false)}`).slice(0, 2).join(", ")}` })),
+    el("span", { class: "rb-num" }, el("b", { class: "num", text: eurR(R.value) }),
+      el("small", { class: "num " + cls(R.todayPct), text: R.todayPct != null ? `hoy ${fmtPct(R.todayPct)}` : "" })),
+  ];
+  if (!c) { c = el("a", { class: "panel ap-link rb-card", id: "robot-card", href: "#robot" }); $("#positions")?.after(c); }
+  c.replaceChildren(...kids);
+}
+function renderRobot() {
+  const box = $("#robot-body"); if (!box) return;
+  const R = S.robot;
+  if (!R?.positions?.length) {
+    box.replaceChildren(el("div", { class: "panel" }, el("h2", { text: "Robo-Advisor" }),
+      el("p", { class: "note", text: "Suba el extracto de cuenta del Robo-Advisor a Drive › Inversiones › 01 Extractos Revolut y pídame que lo importe." })));
+    return;
+  }
+  const bar = (list) => {
+    const b = el("div", { class: "alloc" }), lg = el("div", { class: "legend" });
+    list.forEach((x, i) => { b.append(el("span", { style: `width:${(x.w * 100).toFixed(2)}%;background:${seriesColor(i)}` })); lg.append(el("span", {}, el("i", { style: `background:${seriesColor(i)}` }), `${x.name} `, el("span", { class: "num flat", text: fmtPct(x.w, false) }))); });
+    return [b, lg];
+  };
+  // 1. Resumen
+  const head = el("div", { class: "panel rb-head" },
+    el("div", { class: "hello" }, el("div", { class: "kick" }, el("i"), "Revolut · Robo-Advisor"), el("h2", { text: eurR(R.value) })),
+    el("div", { class: "rb-kpis" },
+      el("div", {}, el("span", { text: "Aportado" }), el("b", { class: "num", text: eurR(R.invested) })),
+      el("div", {}, el("span", { text: "Resultado" }), el("b", { class: "num " + cls(R.pnl), text: `${sgn(R.pnl)}${eurR(R.pnl)}` }), el("small", { class: "num " + cls(R.pnl), text: R.pnlPct != null ? fmtPct(R.pnlPct) : "" })),
+      el("div", {}, el("span", { text: "Hoy" }), el("b", { class: "num " + cls(R.today), text: `${sgn(R.today)}${eurR(R.today)}` }), el("small", { class: "num " + cls(R.todayPct), text: R.todayPct != null ? fmtPct(R.todayPct) : "" }))),
+    el("p", { class: "note", text: `Desde el ${fmtD(R.startedAt)} · ${R.positions.length} fondos${R.cash > 0.01 ? ` · ${eurR(R.cash)} sin invertir` : ""} · precios ${ago(R.at)}.` }));
+  // 2. Reparto
+  const mix = el("div", { class: "panel" }, el("h2", {}, "Reparto", el("small", { text: "cómo ha repartido el robot su dinero" })),
+    el("h3", { class: "rb-h3", text: "Por tipo de activo" }), ...bar(R.byClass || []),
+    el("h3", { class: "rb-h3", text: "Por región" }), ...bar(R.byRegion || []),
+    el("p", { class: "note", text: "Acciones: buscan crecer y oscilan más. Bonos: renta fija, más estables. Materias primas: protegen frente a la inflación." }));
+  // 3. Fondos
+  const funds = el("div", { class: "panel" }, el("h2", {}, "Fondos", el("small", { text: "de mayor a menor peso" })),
+    el("div", { class: "rb-funds" }, R.positions.map((p) => el("div", { class: "rb-fund" },
+      el("div", { class: "rb-fn" }, el("b", { text: p.name }), el("span", { class: "nw-meta" }, el("span", { class: "nw-sym", text: p.t }), el("span", { text: `${p.cls} · ${p.region}` }))),
+      el("div", { class: "rb-fv" }, el("b", { class: "num", text: fmtPct(p.weight, false) }), el("span", { class: "num flat", text: eurR(p.value) }),
+        el("span", { class: "num " + cls(p.ch1d), text: p.ch1d != null ? fmtPct(p.ch1d) : "—" }))))));
+  // 4. Qué ha hecho
+  const what = (m) => {
+    const b = [];
+    if (m.topup) b.push(`Aportación de ${eurR(m.topup)}`);
+    if (m.out) b.push(`Retirada de ${eurR(m.out)}`);
+    if (m.kind === "Reequilibrio") b.push(`vende ${m.sells.map((x) => x.t).join(", ")} y compra ${m.buys.map((x) => x.t).join(", ")}`);
+    else if (m.buys.length) b.push(m.buys.length > 4 ? `compra ${m.buys.length} fondos por ${eurR(m.buys.reduce((a, x) => a + x.eur, 0))}` : `compra ${m.buys.map((x) => `${x.t} (${eurR(x.eur)})`).join(", ")}`);
+    if (m.kind !== "Reequilibrio" && m.sells.length) b.push(`vende ${m.sells.map((x) => x.t).join(", ")}`);
+    if (m.fees) b.push(`comisión de ${eurR(m.fees)}`);
+    if (m.divs) b.push(`dividendos de ${eurR(m.divs)}`);
+    return b.join(" · ");
+  };
+  const moves = el("div", { class: "panel" }, el("h2", {}, "Qué ha hecho el robot", el("small", { text: "según su extracto" })),
+    el("ul", { class: "hm-cat" }, (R.moves || []).map((m) => el("li", {}, el("span", { class: "num hm-d", text: fmtD(m.d) }), el("span", {}, el("b", { text: m.kind + " · " }), what(m))))),
+    el("p", { class: "note", text: `Extracto importado ${ago(S.robot.ledger?.importedAt)}. Para ver movimientos nuevos (reequilibrios, aportaciones, comisiones), suba un extracto completo a Drive y pídame que lo importe.` }));
+  // 5. ¿Le compensa?
+  const B = R.bench, days = R.startedAt ? Math.floor((Date.now() - new Date(R.startedAt)) / 864e5) : 0;
+  const worth = el("div", { class: "panel" }, el("h2", {}, "¿Le compensa el robot?", el("small", { text: "frente a un fondo indexado del mundo" })),
+    el("div", { class: "rb-vs" },
+      el("div", {}, el("span", { text: "Robot" }), el("b", { class: "num", text: eurR(R.value) }), el("small", { class: "num " + cls(R.pnlPct), text: R.pnlPct != null ? fmtPct(R.pnlPct) : "" })),
+      B ? el("div", {}, el("span", { text: "Indexado MSCI World" }), el("b", { class: "num", text: eurR(B.value) }), el("small", { class: "num " + cls(B.pnlPct), text: B.pnlPct != null ? fmtPct(B.pnlPct) : "" })) : null),
+    el("p", { class: "body", text: `Comisión del robot: 0,75 % al año (unos ${eurR(R.feeYear)} al año con su saldo actual), más el coste de cada fondo. Un indexado del MSCI World (${B?.name || "iShares Core MSCI World"}) cuesta en torno al 0,2 % y no reequilibra: el robot compensa si su reparto más prudente (con bonos) le ahorra caídas que usted no aguantaría.` }),
+    el("p", { class: "note", text: days < 90 ? `Con ${days} día${days === 1 ? "" : "s"} de historia la comparación aún no dice nada: tiene sentido a partir de unos 3 meses.` : "La comparación usa sus mismas aportaciones, en las mismas fechas, en el indexado." }));
+  box.replaceChildren(head, mix, funds, moves, worth,
+    el("p", { class: "note", text: "Centinela solo observa el robot: no puede ni debe operar en él. No es asesoramiento financiero." }));
+}
+const _renderAll4 = renderAll;
+renderAll = () => { _renderAll4(); renderRobotCard(); renderRobot(); };
+const _renderPortfolio2 = renderPortfolio;
+renderPortfolio = () => { _renderPortfolio2(); renderRobotCard(); };
 
 // ---- Desplazamiento propio de cada pestaña ----
 // Cada pestaña recuerda dónde se quedó; la primera vez empieza arriba. Tocar la pestaña en la que

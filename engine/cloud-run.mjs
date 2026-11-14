@@ -11,6 +11,7 @@ import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 import { UNIVERSE } from "./universe.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { sendPush, vapidPublic } from "./webpush.mjs";
+import { updateRobot } from "./robot.mjs";
 import { holdingsFromLedger } from "./parser.mjs";
 import { readState, writeState, decrypt } from "./state.mjs";
 
@@ -274,6 +275,20 @@ try {
   const r = await refreshFundamentals(s, newsSyms, s.finnhubKey || process.env.FINNHUB_KEY, now);
   if (r.done) log.push(`Valoración: ${r.done} valores actualizados`);
 } catch (e) { log.push("Valoración: " + e.message); }
+
+// ---------- 6d. Robo-Advisor de Revolut (precios de sus fondos; los movimientos vienen de su extracto) ----------
+if (s.robot?.ledger?.rows?.length) {
+  try {
+    const R = await updateRobot(s, holdingsFromLedger, now);
+    log.push(`Robo-Advisor: ${R.positions.length} fondos, ${R.priced} con precio, hoy ${R.todayPct != null ? (R.todayPct * 100).toFixed(2) + " %" : "—"}`);
+    // Aviso solo si cae con fuerza en el día (una vez por día; solo porcentajes)
+    const dkey = at.slice(0, 10);
+    if (R.todayPct != null && R.todayPct <= -0.03 && s.status.robotAlertDate !== dkey) {
+      const sent = await notify(`Robo-Advisor cae ${pct(R.todayPct)} hoy`, `Sus fondos del robot bajan en conjunto. Resultado desde que empezó: ${pct(R.pnlPct ?? 0)}.`, 3, "chart_with_downwards_trend");
+      if (sent) s.status.robotAlertDate = dkey;
+    }
+  } catch (e) { log.push("Robo-Advisor: " + e.message); }
+}
 
 // ---------- 7. Capa 2 (IA): integra ai/notes.json si es más nuevo que lo último integrado ----------
 // La rutina de Claude solo ve datos públicos de mercado y deja aquí su análisis de noticias.
