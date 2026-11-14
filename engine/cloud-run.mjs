@@ -45,10 +45,13 @@ if (process.env.REVX_ENABLED !== "0") {
         const tx = JSON.parse(revx(["transaction", "list", "--currencies", a.asset, "--start-date", "1825d", "--limit", "500", "--json"]));
         const rows = (tx.data || []).filter((t) => t.status === "completed").sort((x, y) => x.created_date - y.created_date);
         let qty = 0, cost = 0;
+        const lots = []; // fechas de compra y venta, para que la gráfica de evolución empiece el día real
+        const iso = (v) => new Date(isNaN(Number(v)) ? v : Number(v)).toISOString();
         for (const t of rows) {
-          if (t.type === "buy" && t.destination?.currency === a.asset && t.source?.currency === "EUR") { qty += Number(t.destination.amount); cost += Number(t.source.amount); }
-          else if (t.type === "sell" && t.source?.currency === a.asset && qty > 0) { const q = Math.min(qty, Number(t.source.amount)); cost -= cost * (q / qty); qty -= q; }
+          if (t.type === "buy" && t.destination?.currency === a.asset && t.source?.currency === "EUR") { qty += Number(t.destination.amount); cost += Number(t.source.amount); lots.push({ d: iso(t.created_date), q: Number(t.destination.amount) }); }
+          else if (t.type === "sell" && t.source?.currency === a.asset && qty > 0) { const q = Math.min(qty, Number(t.source.amount)); cost -= cost * (q / qty); qty -= q; lots.push({ d: iso(t.created_date), q: -q }); }
         }
+        if (lots.length) a.lots = lots;
         if (qty > 0 && cost > 0) { a.costEur = Math.round(cost * 100) / 100; a.avgEur = Math.round((cost / qty) * 100) / 100; }
       } catch { /* sin historial */ }
     }

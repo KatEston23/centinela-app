@@ -517,32 +517,45 @@ function drawEvolution() {
   const H = allHoldings().filter((h) => h.q?.history?.length);
   box.replaceChildren();
   if (!H.length) { box.append(el("div", { class: "empty", text: "La gráfica se dibuja cuando haya posiciones y el vigilante haya traído los precios." })); return; }
+  const DAY = 864e5, dayOf = (iso) => Math.floor(new Date(iso).getTime() / DAY);
   const ledger = (S.ledger?.rows || []).filter((r) => ["buy", "sell", "split"].includes(r.k));
-  const days = new Map();
-  for (const h of H) {
-    const fromLedger = h.source === "Revolut Invest";
-    const ev = fromLedger ? ledger.filter((r) => r.t === h.symbol).map((r) => [Math.floor(new Date(r.d).getTime() / 864e5), r.k === "sell" ? -(r.q || 0) : (r.q || 0)]) : [];
-    for (const [d, close] of h.q.history) {
-      let qty = h.qty;
-      if (fromLedger) qty = ev.filter((e) => e[0] <= d).reduce((a, e) => a + e[1], 0);
-      if (qty <= 0) continue;
-      days.set(d, (days.get(d) || 0) + qty * close * (h.q.eurPer ?? 1));
+  // Compras y ventas de cada activo [día, cantidad ±]; null = sin historial (cantidad fija)
+  const eventsOf = (h) => {
+    if (h.source === "Revolut Invest") return ledger.filter((r) => r.t === h.symbol).map((r) => [dayOf(r.d), r.k === "sell" ? -(r.q || 0) : (r.q || 0)]);
+    if (h.source === "Revolut X") { const a = (S.crypto?.assets || []).find((x) => x.asset === h.symbol); if (a?.lots?.length) return a.lots.map((l) => [dayOf(l.d), Number(l.q) || 0]); }
+    return null;
+  };
+  const series = H.map((h) => ({ h, ev: eventsOf(h), px: new Map(h.q.history.map(([d, c]) => [d, c])), fx: h.q.eurPer ?? 1 }));
+  const allDays = [...new Set(series.flatMap((x) => [...x.px.keys()]))].sort((a, b) => a - b);
+  const lastDay = Math.max(Math.floor(Date.now() / DAY), allDays.at(-1));
+  const firstBuy = Math.min(...series.filter((x) => x.ev?.length).flatMap((x) => x.ev.map((e) => e[0])));
+  // Valor de cada día. Los días sin cotización de un activo (fines de semana, festivos, huecos)
+  // usan su último cierre conocido: así la cartera no «cae» los sábados por faltar las acciones.
+  const build = (real) => {
+    const last = new Map(), out = [];
+    for (let d = allDays[0]; d <= lastDay; d++) {
+      for (const x of series) if (x.px.has(d)) last.set(x, x.px.get(d));
+      if (real && d < firstBuy) continue;
+      let v = 0, any = false;
+      for (const x of series) {
+        const p = last.get(x); if (p == null) continue;
+        const qty = real && x.ev ? x.ev.filter((e) => e[0] <= d).reduce((a, e) => a + e[1], 0) : x.h.qty;
+        if (qty > 1e-12) { v += qty * p * x.fx; any = true; }
+      }
+      if (any) out.push([d, v]);
     }
-  }
-  let pts = [...days.entries()].sort((a, b) => a[0] - b[0]);
-  // Cartera reciente: muestra cómo habría ido el último año con las posiciones de hoy
+    return out;
+  };
+  let pts = isFinite(firstBuy) ? build(true) : [];
+  // Cartera reciente: cómo habría ido el último año con las posiciones de hoy, marcando la primera compra
   let simulated = false;
-  if (pts.length < 10) {
-    simulated = true; days.clear();
-    for (const h of H) for (const [d, close] of h.q.history) days.set(d, (days.get(d) || 0) + h.qty * close * (h.q.eurPer ?? 1));
-    pts = [...days.entries()].sort((a, b) => a[0] - b[0]);
-  }
+  if (pts.length < 14) { simulated = true; pts = build(false); }
   if (pts.length < 2) { box.append(el("div", { class: "empty", text: "Aún no hay historia suficiente para dibujar la evolución." })); return; }
-  if (simulated) box.append(el("p", { class: "note evo-note", text: "Su cartera es reciente: así habría evolucionado el último año con las posiciones de hoy." }));
-  lineChart(box, pts.map(([d, v]) => ({ x: d * 864e5, y: v })), { height: 220 });
+  if (simulated) box.append(el("p", { class: "note evo-note", text: "Su cartera es reciente: la línea muestra cómo habrían evolucionado sus posiciones de hoy durante el último año. La raya marca su primera compra." }));
+  lineChart(box, pts.map(([d, v]) => ({ x: d * DAY, y: v })), { height: 220, marker: simulated && isFinite(firstBuy) ? { x: firstBuy * DAY, label: "1.ª compra" } : null });
 }
 
-function lineChart(box, data, { height = 220 } = {}) {
+function lineChart(box, data, { height = 220, marker = null } = {}) {
   const W = Math.max(280, box.clientWidth), Hh = height, pl = 8, pr = 64, pt = 10, pb = 24;
   const xs = data.map((d) => d.x), ys = data.map((d) => d.y);
   const x0 = Math.min(...xs), x1 = Math.max(...xs);
@@ -567,6 +580,11 @@ function lineChart(box, data, { height = 220 } = {}) {
   s.append(sv("path", { d: `${line}L${X(x1)},${Y(y0)}L${X(x0)},${Y(y0)}Z`, fill: `url(#${gid})` }));
   s.append(sv("path", { d: line, fill: "none", stroke: col, "stroke-width": "2", "stroke-linejoin": "round" }));
   s.append(sv("circle", { cx: X(data.at(-1).x), cy: Y(data.at(-1).y), r: "3.5", fill: col }));
+  if (marker && marker.x >= x0 && marker.x <= x1) {
+    const mx = X(marker.x);
+    s.append(sv("line", { x1: mx, x2: mx, y1: pt, y2: Hh - pb, stroke: "var(--accent)", "stroke-width": "1.5", "stroke-dasharray": "4 3" }));
+    const t = sv("text", { x: mx - 4, y: pt + 10, fill: "var(--accent)", "font-size": "11", "font-weight": "600", "text-anchor": "end" }); t.textContent = marker.label; s.append(t);
+  }
   const cross = sv("line", { y1: pt, y2: Hh - pb, stroke: "var(--muted)", "stroke-dasharray": "3 3", opacity: "0" });
   const dot = sv("circle", { r: "4", fill: col, opacity: "0" });
   s.append(cross, dot);
