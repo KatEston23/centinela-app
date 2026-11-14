@@ -1,6 +1,6 @@
 {
- "at": "2026-11-13T06:10:29.838132+00:00",
- "score": 51.4,
+ "at": "2026-11-14T06:11:38.814587+00:00",
+ "score": 45.7,
  "zone": "NEUTRAL",
  "guidance": "Mixed conditions observed; no strong regime conclusion",
  "components": {
@@ -10,8 +10,8 @@
    "ok": true
   },
   "alt_breadth": {
-   "score": 40,
-   "signal": "37% of 19 tracked alts above 200DMA (5% above 50DMA); short-term breadth rolling over",
+   "score": 20,
+   "signal": "32% of 19 tracked alts above 200DMA (5% above 50DMA); short-term breadth rolling over",
    "ok": true
   },
   "dominance": {
@@ -26,7 +26,7 @@
   },
   "drawdown_vol": {
    "score": 55,
-   "signal": "Drawdown 29.8% from 1y high",
+   "signal": "Drawdown 30.7% from 1y high",
    "ok": true
   },
   "momentum_thrust": {
