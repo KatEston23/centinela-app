@@ -1,8 +1,8 @@
 {
- "at": "2026-11-14T07:42:26.024Z",
+ "at": "2026-11-14T13:41:08.088Z",
  "market": {
   "regime": "risk-off",
-  "summary": "Los mercados están dominados por el castigo a la IA: Nvidia acumula un 22 % de caída desde octubre tras abrir su consejo una investigación a Jensen Huang, y el Nasdaq cae bajo su media de 200 días. Pese a ello, Wall Street cerró su mejor semana desde agosto. La Reserva Federal vigila la inflación y la salida a bolsa de Anthropic (18-19 nov) absorbe liquidez, también de cripto.",
+  "summary": "La IA sigue castigada: Nvidia cae otro 3,1 % (acumula -25,9 % en 30 días) mientras su consejo investiga a Jensen Huang por su relación con una ejecutiva de Megaspeed vinculada a China, y AMD cede un 8,8 %. Aun así Wall Street cerró su primera semana en verde desde octubre. El mercado descuenta que la Fed suba tipos en diciembre (Goldman prevé 25 pb en diciembre y marzo) tras un IPC subyacente del 0,3 %, y la OPV de Anthropic (18-19 nov) drena liquidez, también de cripto, con los ETF de Bitcoin sumando 11 sesiones de salidas.",
   "events": [
    {
     "t": "Investigación del consejo a Huang hunde a Nvidia",
@@ -15,6 +15,12 @@
     "impact": "alto",
     "affects": "IA, tecnológicas, cripto (liquidez)",
     "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPREQ5X2YtZk9qRU9zVmtlUTVJZXdzZUM1UWV3Mk0weFBxeS1XVC1mWUpMaFFFc1hORHRhR2I3c1d4WXZsYjBud2FtY2szNktZdkt6TUpIcXNON3kxUFZ0RUNDekRsdktpcmFrbi16dUNnbVVQeUlnSDZoMmRDb1loMVEtTnMweTZrY1FFSlJPcko?oc=5"
+   },
+   {
+    "t": "Wall Street apuesta por tres subidas seguidas de la Fed (IDNFinancials)",
+    "impact": "alto",
+    "affects": "Bonos, tecnológicas de crecimiento, cripto",
+    "u": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQMG1EeG1ZazhiT2xfX2dxUDM0eG5iVnVRVkRWazV6SDRZVjdEQURtMVR6eHBzWUNaczRXM01CbE1KTWRRNllGbndkTm9BRng0LUxIcVgyMVRmVXhnVzBoSkhYc3g4SXlXQWozR051Q0d0YmpBbUhjbTY2MVVEajZrbUNDSjFzbHVPZVNoQ19GVGVhSjkzLUk0MmV6MXVRcDhTY1NzQlBMRVhPNU5faTJVTGZPZVNLQ1JDUjZDeVlQczZDd1RwOXFzc0VHTGt4NFpYc3c?oc=5"
    },
    {
     "t": "El Nasdaq cae bajo su media móvil de 200 días (FXEmpire)",
@@ -39,6 +45,12 @@
     "impact": "bajo",
     "affects": "Bolsa europea, bancos",
     "u": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQSFpENXJqNXotRE5OZjNYd3VfYjdHejBUSzBpd0xVLUhvd3NwVXcxWHB1Y1JnUHZjcXlqZWNvSkNVUmFkQjNDYWJsaG1MeXlOUWRvRGNkdDU3aEpTUmIwVFUxdm9HSEZDNTFnNVlPZGpQR3B4OUw1cF91Rkt1MWhuYmxuT1NON3ZkNEdnZNIBkgFBVV95cUxPbjdXaVlKb2xyekxabExSMjJkWTEyb1hpcDRlb1Z2N1ZMbHA5aENsQUJlYThkZmh1VTFYMUlRSFlxUWh1VlNfODd0cjhMMUZVUTRWQmlRVUhVeTJjaVJmM1h3bTZoUzJEcjBYSUd5RTJ1cVBSSllnWmZwZlJ6WFRYTDEyQVk0ZEp3Y3h4RGp5U1lvZw?oc=5"
+   },
+   {
+    "t": "Los ETF de Bitcoin acumulan salidas de 1.440 M$ y el dólar se fortalece (TradingView)",
+    "impact": "medio",
+    "affects": "Bitcoin, criptomonedas",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5kM1pxQ18tTVE2eTkwbE5MMlVXNW1JMG9WcUhfYXoxN2YxMFp5cHRWd19KQXJTYVVYbVpVMHlLSFJtbDZ6TW90LV9LR1ZJU2dHUkpXdHdUbFQwWUVycl9majJzSnJSQURsQVBfLQ?oc=5"
    }
   ],
   "scenarios": [
@@ -68,6 +80,16 @@
     "d": "2026-11-19",
     "e": "Debut de Anthropic (ANT) en Nasdaq, según informes",
     "imp": "alto"
+   },
+   {
+    "d": "2026-12-09",
+    "e": "Decisión de la Fed (reunión del 8 y 9 de diciembre), con subida de tipos descontada por parte del mercado",
+    "imp": "alto"
+   },
+   {
+    "d": "2026-12-10",
+    "e": "Publicación del IPC de noviembre en EE. UU.",
+    "imp": "alto"
    }
   ],
   "ipos": [
@@ -83,7 +105,7 @@
   ]
  },
  "crypto": {
-  "summary": "El régimen cripto marca 45,7/100 (neutral): la tendencia de BTC resiste (65), pero solo el 32 % de las altcoins supera su media de 200 días (amplitud 20) y el 5 % sube a 30 días, señal de capitulación. BTC cae bajo 68.000 $ por el desvío de liquidez hacia la OPV de Anthropic y el escrutinio del nuevo Congreso."
+  "summary": "El régimen cripto marca 45,7/100 (neutral): la tendencia de BTC resiste (65) pero solo el 32 % de las altcoins supera su SMA200 (amplitud 20) y el 5 % sube a 30 días (capitulación, 35). Bitcoin cae un 4,2 % hoy hasta ~60.600 € con 11 sesiones de salidas en los ETF (1.440 M$ la última racha) y la exclusión de MSTR de los índices MSCI; dominancia y funding sin datos."
  },
  "notes": {
   "NVDA": {
@@ -94,7 +116,7 @@
    "watchFor": "Que los resultados del 3T fiscal (17 o 19 de noviembre, fecha por confirmar) den una guía superior a los 108.000 M$ del trimestre anterior y la investigación del consejo a Jensen Huang no traiga novedades adversas.",
    "title": "Barata y sobrevendida, pero con la CEO en el aire",
    "reason": "Lateral con RSI 24 y caída del 25,9 % en 30 días: sobreventa extrema tras abrirse el 8-nov la investigación del consejo a Huang (más de un 5 % de caída el 9-nov). Con PER 20,8, ventas +83 % y margen neto del 64 % la valoración es razonable, pero el riesgo de titular y los resultados inminentes aconsejan no mover ficha antes.",
-   "news": "El consejo investiga a Huang por informes de una operación de inteligencia extranjera, hay propuesta de demanda colectiva de accionistas y tres presidentes de comités de la Cámara le piden reunirse el 18-nov. La acción acumula en torno a un 22 % de caída desde su máximo de octubre.",
+   "news": "Cae un 3,1 % en el día: HSBC recorta su precio objetivo y se pide el testimonio de Huang (TradingView), con el consejo investigando su relación con una ejecutiva de Megaspeed; Morningstar avisa de qué vigilar en los resultados del 3T.",
    "risk": "Salida o destitución de Huang, o una guía de ventas inferior a lo esperado en plena duda sobre una burbuja de IA.",
    "thesis": "Liderazgo en aceleradores de IA con ventas +83 % y beneficio por acción +125 %, margen neto del 64 % y foso del software CUDA; hoy cotiza a PER 20,8 frente a máximos de 243 $.",
    "breaks": "Que la guía del 4T quede por debajo de los 108.000 M$ de ingresos del 3T o que el consejo concluya algo adverso sobre Huang.",
@@ -129,7 +151,7 @@
    "watchFor": "Cierre diario por encima de la SMA50 (554,6 $) o un retroceso ordenado hacia los 480-500 $ sin nuevas ventas de directivos.",
    "title": "Corrección fuerte con valoración todavía exigente",
    "reason": "Corrección en tendencia alcista: -8,75 % en el día y -17,8 % desde máximos, arrastrada por el castigo a la IA (el Nasdaq 100 perdió unos 340 puntos con AMD y Nebius a la cabeza). Aunque BofA ve hasta 600 $ por las CPU de servidor, un PER de 126 deja poco margen si sigue la rotación.",
-   "news": "FXStreet atribuye la caída del Nasdaq 100 del 13-nov a AMD y Nebius; además un directivo vendió acciones por 5,08 M$ y un consejero otras por más de 5 M$ (notificaciones a la SEC). BofA defiende que la IA agéntica impulsará las CPU de servidor con objetivo de 600 $.",
+   "news": "El Nasdaq 100 perdió unos 340 puntos con AMD y Nebius a la cabeza (FXStreet); un directivo vendió acciones por 5,08 M$ según la SEC (MarketScreener).",
    "risk": "Que la venta masiva de la IA se alargue y el PER de 126 se comprima.",
    "thesis": "Centro de datos por IA y cuota en CPU de servidor, con ventas +42 % y beneficio por acción +127 %.",
    "breaks": "Márgenes brutos por debajo del 55 % o recortes de gasto en IA de grandes clientes en los resultados de febrero.",
@@ -198,7 +220,7 @@
    "watchFor": "Un retroceso hacia la SMA50 (168,8 $) o resultados de febrero con ventas creciendo por encima del 5 %.",
    "title": "Recuperación sólida con ahorro de costes en EE. UU.",
    "reason": "Recuperación tras tocar suelo: +10,7 % en 30 días, RSI 62 y precio sobre la SMA200 (180,2 $). Con PER 25,9, beneficio por acción +17 % y margen neto del 17,7 % la valoración es razonable, pero tras la subida conviene esperar un respiro.",
-   "news": "AstraZeneca elimina unos 600 puestos comerciales en EE. UU. dentro de su plan de ahorro de costes (13-nov, Infobae y El Economista).",
+   "news": "Recorta unos 600 puestos comerciales en EE. UU. dentro de su plan de ahorro de costes, según Bloomberg (MarketScreener, 13-nov).",
    "risk": "Fracaso de un ensayo de oncología o presión de precios de medicamentos en EE. UU.",
    "thesis": "Oncología y ensayos de fase III con lecturas positivas; beneficio por acción +17 % y margen neto del 17,7 %.",
    "breaks": "Fracaso en un ensayo clave de oncología o ventas que crezcan menos del 5 % en los resultados de febrero.",
@@ -268,8 +290,8 @@
    "entryConfidence": 40,
    "watchFor": "Recuperar la SMA200 (≈63.700 €) con el RSI saliendo de sobreventa y mejora de la amplitud de altcoins.",
    "title": "Sobreventa extrema con régimen cripto neutral (45,7)",
-   "reason": "Fase lateral: 61.030 €, -15,4 % en 30 días, RSI 25,8 y por debajo de la SMA50 (71.540 €) y algo de la SMA200 (63.697 €). El régimen cripto es NEUTRAL (45,7/100): la tendencia de BTC aguanta (65) pero la amplitud de altcoins es muy débil (20) y la señal de capitulación (35) invita a esperar confirmación.",
-   "news": "Bitcoin cae por debajo de 68.000 $ mientras el dinero se desvía hacia la OPV de Anthropic (Investing.com), y los demócratas, que toman el Congreso, podrían endurecer el escrutinio a las cripto. La fusión que negocian SpaceX y Tesla juntaría más de 30.000 BTC.",
+   "reason": "Fase lateral: 60.568 €, -4,2 % hoy y -16 % en 30 días, RSI 25 (sobreventa extrema) y -27 % desde máximos. Los ETF de Bitcoin llevan 11 sesiones de salidas (1.440 M$) y el régimen cripto es NEUTRAL (45,7): hasta que cesen las salidas, la sobreventa no basta para entrar.",
+   "news": "Las salidas de los ETF de Bitcoin alcanzan 1.440 M$ y el dólar se fortalece; MSCI excluirá a MSTR de sus índices (TradingView).",
    "risk": "Ruptura bajo mínimos recientes si se confirma la salida de liquidez hacia la OPV de IA.",
    "thesis": "Adopción institucional vía ETF y escasez; tendencia alcista de fondo mientras la SMA200 siga subiendo.",
    "breaks": "Cierre sostenido bajo la SMA200 con salidas de ETF persistentes (ya en curso).",
@@ -373,7 +395,7 @@
    "watchFor": "Retroceso hacia la SMA50 (24,7 $) o una subida de ventas de juegos en los resultados.",
    "title": "Tendencia alcista con cancelación de Fairgames",
    "reason": "Tendencia alcista (+9,6 % en 30 días, RSI 64,9, sobre SMA50 de 24,7 $). Ventas +8 % y dividendo del 0,6 %, pero la cancelación de un shooter reabre dudas sobre su apuesta por juegos como servicio.",
-   "news": "Sony ha cancelado «Fairgames», el shooter de Haven Studios (13-nov, Infobae).",
+   "news": "TIKR la ve ganadora «olvidada» de las reservas récord de GTA VI en PlayStation; Sony y AMD fabrican consolas conmemorativas por los 100 millones de PS5.",
    "risk": "Más cancelaciones en juegos como servicio o pérdidas en coches eléctricos.",
    "thesis": "Mix de entretenimiento, música y sensores de imagen; ventas +8 %.",
    "breaks": "Caída de ventas de juegos o más pérdidas en coches eléctricos.",
@@ -423,7 +445,7 @@
    "watchFor": "Términos concretos de la fusión con SpaceX (posible anuncio en diciembre) y cierre sostenido sobre la SMA200 (382,7 $).",
    "title": "Fusión con SpaceX en el aire y PER de 467",
    "reason": "Recuperación tras el suelo: 390 $, sobre la SMA50 (374,7 $) y casi en la SMA200 (382,7 $), pero con PER 467, beneficio por acción -39 % y margen neto del 3,1 %. La fusión con SpaceX es un riesgo y una opción difícil de valorar.",
-   "news": "Las conversaciones de fusión con SpaceX avanzan hacia un posible acuerdo en diciembre (Quartz); Gary Black ve un «pequeño premio» para los accionistas de Tesla. Musk dice que la flota de Cybercab en Austin se ha multiplicado por diez en un mes.",
+   "news": "Progresan las conversaciones de fusión con SpaceX (Gary Black ve un beneficio marginal para los accionistas de Tesla, TIKR) y Musk dice que la flota de Cybercab en Austin se ha multiplicado por diez en un mes (La Razón).",
    "risk": "Términos desfavorables de la fusión o diluciones.",
    "thesis": "Robotaxi Cybercab y energía como motores, aunque el negocio actual crece solo un 8,3 %.",
    "breaks": "Términos de fusión desfavorables o margen neto por debajo del 3 %.",
@@ -452,7 +474,7 @@
    "watchFor": "Retroceso hacia la SMA50 (283,9 $) o una mejora de pedidos industriales con la guía del próximo trimestre.",
    "title": "Cae un 2,8 % con los semis, PER 39,5",
    "reason": "Tendencia alcista pero -2,84 % en el día, arrastrada por los semiconductores tras la crisis de Nvidia. Ventas +20 % y margen neto del 34 % son sólidos; PER 39,5 es alto para un analógico.",
-   "news": "Una consejera vendió acciones por más de 2,7 M$ (13-nov, TradingView) y el sector cae con el castigo a los chips (Yahoo).",
+   "news": "Cae un 2,8 % con los semiconductores; la consejera Jean Hobby vendió acciones por 2,71 M$ (Investing.com, 13-nov).",
    "risk": "Nuevo ajuste de inventarios o guía por debajo de lo esperado.",
    "thesis": "Recuperación del ciclo analógico, margen neto del 34 % y flujo de caja al moderarse el capex.",
    "breaks": "Nuevo ajuste de inventarios o guía por debajo de lo esperado.",
