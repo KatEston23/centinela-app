@@ -1,0 +1,2285 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Centinela</title>
+<meta name="description" content="Su cartera de Revolut, señales y proyecciones.">
+<meta name="theme-color" content="#141C21">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Centinela">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="robots" content="noindex,nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<style>html,body{margin:0}body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}</style>
+</head><body>
+<title>Centinela de Cartera</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cabecera fija con pestañas; cada vista es una columna de bloques que se apila en móvil. */
+:root{
+  --bg:#F2F4F3; --surface:#FFFFFF; --sunk:#E7EBEA; --line:#D5DCDA;
+  --fg:#15212A; --muted:#5B6A72; --accent:#A8670F; --accent-soft:#F4E6CF;
+  --gain:#17804F; --gain-soft:#DDF1E6; --loss:#BC3A33; --loss-soft:#F8E0DE; --hold:#5B6A72; --hold-soft:#E4E9EA;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1317; --surface:#141C21; --sunk:#1B252B; --line:#26333A;
+  --fg:#E4EBEE; --muted:#8C9BA3; --accent:#E5A84A; --accent-soft:#3A2C17;
+  --gain:#4CC38A; --gain-soft:#14301F; --loss:#F07167; --loss-soft:#3B1C1A; --hold:#8C9BA3; --hold-soft:#222C31;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1317; --surface:#141C21; --sunk:#1B252B; --line:#26333A;
+  --fg:#E4EBEE; --muted:#8C9BA3; --accent:#E5A84A; --accent-soft:#3A2C17;
+  --gain:#4CC38A; --gain-soft:#14301F; --loss:#F07167; --loss-soft:#3B1C1A; --hold:#8C9BA3; --hold-soft:#222C31;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px 4px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand h1{font-family:var(--f-display);font-weight:700;font-size:22px;margin:0;letter-spacing:-.01em}
+.brand .eye{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);align-self:center}
+.fresh{font-size:12.5px;color:var(--muted)}
+.fresh b{font-weight:500;color:var(--fg)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{padding:10px 12px;color:var(--muted);text-decoration:none;font-weight:500;font-size:14px;border-bottom:2px solid transparent;white-space:nowrap}
+nav.tabs a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+nav.tabs a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:20px 48px}
+section.view{display:grid;gap:20px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0}
+.panel h2{font-family:var(--f-display);font-weight:500;font-size:17px;margin:0 0 12px;text-wrap:balance}
+.panel h2 small{font-family:var(--f-body);font-size:12.5px;color:var(--muted);font-weight:400;margin-left:6px}
+.label{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;align-items:end}
+.kpi .v{font-family:var(--f-mono);font-size:22px;font-weight:500;margin-top:2px}
+.kpi.big .v{font-family:var(--f-display);font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.kpi .s{font-size:13px;margin-top:2px}
+.up{color:var(--gain)} .down{color:var(--loss)} .flat{color:var(--muted)}
+.chart{position:relative;width:100%}
+.chart svg{display:block;width:100%;overflow:visible}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12px;padding:6px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .1s}
+.tip.on{opacity:1}
+.tablewrap{overflow-x:auto;margin:0 -4px}
+table.pos{width:100%;border-collapse:collapse;font-size:14px}
+table.pos th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.pos th:first-child,table.pos td:first-child{text-align:left}
+table.pos td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;vertical-align:middle}
+table.pos tr:last-child td{border-bottom:0}
+.tk{font-weight:600}
+.nm{color:var(--muted);font-size:12.5px;max-width:200px;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.p-buy{background:var(--gain-soft);color:var(--gain)}
+.p-sell{background:var(--loss-soft);color:var(--loss)}
+.p-hold{background:var(--hold-soft);color:var(--hold)}
+.p-watch{background:var(--accent-soft);color:var(--accent)}
+.alloc{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--sunk);margin-top:6px}
+.alloc span{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.grid2{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:20px}
+@media (max-width:860px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.sig{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;padding:14px 0;border-top:1px solid var(--line)}
+.sig:first-of-type{border-top:0;padding-top:4px}
+.sig .meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12.5px;color:var(--muted)}
+.sig .ttl{font-weight:600}
+.sig .why{grid-column:2;font-size:14px;max-width:70ch}
+.sig .risk{grid-column:2;font-size:13px;color:var(--muted)}
+.sig .src{grid-column:2;font-size:12.5px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.sig .src a{color:var(--accent)}
+.sig .tick{font-family:var(--f-mono);font-weight:500;font-size:13px;padding-top:2px;min-width:64px}
+.conf{display:inline-flex;align-items:center;gap:6px}
+.conf .bar{width:48px;height:5px;border-radius:3px;background:var(--sunk);overflow:hidden}
+.conf .bar span{display:block;height:100%;background:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:5px 12px;font:500 13px var(--f-body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.opp{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:6px 16px;padding:14px 0;border-top:1px solid var(--line)}
+.opp:first-of-type{border-top:0}
+.opp .hd{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.opp .score{font-family:var(--f-display);font-weight:700;font-size:22px}
+.opp .cty{font-size:11.5px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+.opp .body{font-size:14px;max-width:72ch}
+.opp .side{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+@media (max-width:520px){.opp{grid-template-columns:minmax(0,1fr)}.opp .side{flex-direction:row;align-items:center;justify-content:space-between}}
+button.btn{font:500 14px var(--f-body);border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+button.btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+button.btn.small{padding:4px 10px;font-size:13px}
+button.btn:disabled{opacity:.5;cursor:default}
+.empty{border:1.5px dashed var(--line);border-radius:var(--r);padding:22px;color:var(--muted);font-size:14px}
+.empty strong{color:var(--fg)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;align-items:end}
+.field{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.field input,.field select{font:15px var(--f-body);padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);width:100%;min-width:0}
+.drop{border:1.5px dashed var(--accent);border-radius:var(--r);padding:20px;text-align:center;background:var(--accent-soft);cursor:pointer}
+.drop.over{background:var(--surface)}
+.note{font-size:12.5px;color:var(--muted);max-width:75ch}
+.msg{font-size:14px;padding:10px 12px;border-radius:8px;background:var(--sunk)}
+.msg.err{background:var(--loss-soft);color:var(--loss)}
+.msg.ok{background:var(--gain-soft);color:var(--gain)}
+code.topic{font-family:var(--f-mono);background:var(--sunk);padding:3px 8px;border-radius:6px;font-size:14px;user-select:all;word-break:break-all}
+ol.steps{padding-left:20px;margin:6px 0;display:grid;gap:6px;font-size:14px}
+.status-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.status-row:first-of-type{border-top:0}
+.dis{font-size:12px;color:var(--muted);text-align:center;padding-top:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span class="eye" aria-hidden="true"></span><h1>Centinela</h1></div>
+      <div class="fresh" id="fresh">Conectando con sus datos…</div>
+    </div>
+    <nav class="tabs" aria-label="Secciones">
+      <a href="#cartera" data-view="cartera">Cartera</a>
+      <a href="#senales" data-view="senales">Señales</a>
+      <a href="#oportunidades" data-view="oportunidades">Oportunidades</a>
+      <a href="#proyeccion" data-view="proyeccion">Proyección</a>
+      <a href="#ajustes" data-view="ajustes">Datos y avisos</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- CARTERA -->
+  <section class="view" id="v-cartera">
+    <div class="panel" id="summary">
+      <div class="kpis">
+        <div class="kpi big"><div class="label">Valor de la cartera</div><div class="v num" id="k-value">—</div><div class="s" id="k-today">&nbsp;</div></div>
+        <div class="kpi"><div class="label">Invertido</div><div class="v num" id="k-cost">—</div></div>
+        <div class="kpi"><div class="label">Ganancia / pérdida</div><div class="v num" id="k-pnl">—</div><div class="s num" id="k-pnlp">&nbsp;</div></div>
+      </div>
+      <div style="margin-top:18px">
+        <div class="label">Reparto</div>
+        <div class="alloc" id="alloc"></div>
+        <div class="legend" id="alloc-legend"></div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="panel" id="evo">
+        <h2>Evolución del último año <small>valor aproximado, con el cambio de divisa de hoy; lo invertido usa el cambio de cada compra</small></h2>
+        <div class="chart" id="evo-chart"></div>
+      </div>
+      <div class="panel" id="last-signals">
+        <h2>Últimas señales</h2>
+        <div id="last-sig-list"></div>
+      </div>
+    </div>
+    <div class="panel" id="positions">
+      <h2>Posiciones</h2>
+      <div id="pos-body"></div>
+    </div>
+  </section>
+
+  <!-- SEÑALES -->
+  <section class="view" id="v-senales" hidden>
+    <div class="panel">
+      <h2>Historial de señales</h2>
+      <div class="filters" id="sig-filters">
+        <button class="chip" data-f="all" aria-pressed="true">Todas</button>
+        <button class="chip" data-f="1" aria-pressed="false">Mi cartera</button>
+        <button class="chip" data-f="2" aria-pressed="false">En vigilancia</button>
+        <button class="chip" data-f="3" aria-pressed="false">Mercado</button>
+      </div>
+      <div id="sig-list"></div>
+    </div>
+  </section>
+
+  <!-- OPORTUNIDADES -->
+  <section class="view" id="v-oportunidades" hidden>
+    <div class="panel" id="watch">
+      <h2>En vigilancia <small>se revisan cada día y avisan en buen punto de entrada</small></h2>
+      <div id="watch-list"></div>
+    </div>
+    <div class="panel" id="scan">
+      <h2>Escáner de mercado <small id="scan-at"></small></h2>
+      <div id="scan-list"></div>
+    </div>
+  </section>
+
+  <!-- PROYECCIÓN -->
+  <section class="view" id="v-proyeccion" hidden>
+    <div class="panel">
+      <h2>¿Cuánto podría valer?</h2>
+      <div class="form" id="proj-form">
+        <label class="field">Capital de partida (€)<input id="p-start" type="number" min="0" step="50" inputmode="decimal"></label>
+        <label class="field">Aportación mensual (€)<input id="p-month" type="number" min="0" step="10" value="100" inputmode="decimal"></label>
+        <label class="field">Años<input id="p-years" type="number" min="1" max="30" step="1" value="5"></label>
+        <label class="field">Rentabilidad supuesta
+          <select id="p-model">
+            <option value="prudente">Prudente (7 % acciones, 10 % cripto)</option>
+            <option value="historico">Lo que hizo el último año</option>
+            <option value="custom">La que yo diga</option>
+          </select>
+        </label>
+        <label class="field" id="p-custom-wrap" hidden>Rentabilidad anual (%)<input id="p-custom" type="number" step="0.5" value="8"></label>
+      </div>
+      <div class="kpis" style="margin-top:22px" id="proj-kpis">
+        <div class="kpi"><div class="label">Habrá aportado</div><div class="v num" id="r-inv">—</div></div>
+        <div class="kpi"><div class="label">Escenario malo (1 de cada 10)</div><div class="v num down" id="r-p10">—</div></div>
+        <div class="kpi big"><div class="label">Escenario central</div><div class="v num" id="r-p50">—</div></div>
+        <div class="kpi"><div class="label">Escenario bueno (1 de cada 10)</div><div class="v num up" id="r-p90">—</div></div>
+        <div class="kpi"><div class="label">Probabilidad de perder dinero</div><div class="v num" id="r-loss">—</div></div>
+      </div>
+      <div class="chart" id="proj-chart" style="margin-top:18px"></div>
+      <p class="note" id="proj-note">Se simulan 1.500 futuros posibles mes a mes con la volatilidad real de cada activo de su cartera. La banda clara recoge 8 de cada 10 resultados; la oscura, la mitad central. Es una estimación estadística, no una promesa: el pasado no garantiza nada.</p>
+    </div>
+  </section>
+
+  <!-- DATOS Y AVISOS -->
+  <section class="view" id="v-ajustes" hidden>
+    <div class="panel" id="import">
+      <h2>Movimientos de Revolut Invest</h2>
+      <p class="note">En la app de Revolut: <b>Invest → … → Documentos → Extracto de cuenta (Account statement)</b>, formato <b>Excel/CSV</b>, desde el primer día hasta hoy. Cada importación sustituye a la anterior, así que suba siempre el extracto completo.</p>
+      <label class="drop" id="drop" for="csv">
+        <strong>Elija o arrastre aquí el archivo CSV</strong><br><span class="note">Se lee en su navegador; solo se guardan los movimientos.</span>
+        <input id="csv" type="file" accept=".csv,text/csv" hidden>
+      </label>
+      <div id="import-msg" style="margin-top:12px"></div>
+    </div>
+    <div class="panel" id="manual">
+      <h2>Posiciones a mano <small>para lo que no llegue por CSV ni por Revolut X</small></h2>
+      <div class="form">
+        <label class="field">Símbolo<input id="m-sym" placeholder="BTC-EUR, NVDA, ASML…" autocomplete="off"></label>
+        <label class="field">Cantidad<input id="m-qty" type="number" step="any" inputmode="decimal"></label>
+        <label class="field">Precio medio de compra<input id="m-avg" type="number" step="any" inputmode="decimal"></label>
+        <label class="field">Divisa<select id="m-cur"><option>EUR</option><option>USD</option><option>GBP</option></select></label>
+        <button class="btn primary" id="m-add" type="button">Añadir</button>
+      </div>
+      <div id="manual-list" style="margin-top:12px"></div>
+      <p class="note">Para Bitcoin de Revolut X: si ya está conectado, la cantidad llega sola; aquí solo hace falta su precio medio si quiere ver la ganancia.</p>
+    </div>
+    <div class="panel" id="notif">
+      <h2>Avisos en el móvil</h2>
+      <ol class="steps">
+        <li>Instale la app <b>ntfy</b> (Google Play o App Store).</li>
+        <li>Pulse <b>+</b> y suscríbase a este canal privado: <code class="topic" id="topic">pendiente</code> <button class="btn small" id="copy-topic" type="button">Copiar</button></li>
+        <li>Listo. Las alertas llegan sin importes; los detalles están aquí.</li>
+      </ol>
+    </div>
+    <div class="panel" id="engine">
+      <h2>Estado del vigilante</h2>
+      <div id="engine-status"></div>
+    </div>
+  </section>
+  <p class="dis">Centinela ofrece indicadores estadísticos y resúmenes de noticias. No es asesoramiento financiero: cada decisión es suya.</p>
+</main>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()) if (c != null && c !== false) n.append(c.nodeType ? c : document.createTextNode(String(c)));
+  return n;
+};
+const SVGNS = "http://www.w3.org/2000/svg";
+const sv = (tag, attrs = {}) => { const n = document.createElementNS(SVGNS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
+
+const eur = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 2 });
+const eur0 = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+const fmtMoney = (v, cur = "EUR") => v == null || !isFinite(v) ? "—" : new Intl.NumberFormat("es-ES", { style: "currency", currency: cur, maximumFractionDigits: Math.abs(v) >= 1000 ? 0 : 2 }).format(v);
+const fmtPct = (v, sign = true) => v == null || !isFinite(v) ? "—" : (sign && v > 0 ? "+" : "") + (v * 100).toLocaleString("es-ES", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " %";
+const fmtQty = (v) => v == null ? "—" : v.toLocaleString("es-ES", { maximumFractionDigits: v < 1 ? 8 : 4 });
+const cls = (v) => v == null ? "flat" : v > 0 ? "up" : v < 0 ? "down" : "flat";
+const ago = (iso) => {
+  if (!iso) return "nunca";
+  const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (m < 1) return "ahora mismo"; if (m < 60) return `hace ${m} min`;
+  const h = Math.round(m / 60); if (h < 36) return `hace ${h} h`;
+  return `hace ${Math.round(h / 24)} días`;
+};
+const docId = (sym) => sym.replace(/[^A-Za-z0-9_-]/g, "_");
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const SERIES = ["--accent", "--gain", "#4F7CAC", "#8E5BA8", "#C2685A", "#3C9A9A", "--muted"];
+const seriesColor = (i) => { const c = SERIES[i % SERIES.length]; return c.startsWith("--") ? `var(${c})` : c; };
+
+// ---------- estado ----------
+const S = {
+  ledger: null, crypto: null, settings: {}, positions: { manual: [], cryptoCost: {} },
+  quotes: {}, signals: [], watch: [], scan: null, status: null, loaded: false,
+};
+let db = null;
+
+// ---------- navegación ----------
+const VIEWS = ["cartera", "senales", "oportunidades", "proyeccion", "ajustes"];
+function route() {
+  const v = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "cartera";
+  for (const id of VIEWS) $("#v-" + id).hidden = id !== v;
+  document.querySelectorAll("nav.tabs a").forEach((a) => { if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  if (v === "proyeccion") scheduleProjection();
+  if (v === "cartera") requestAnimationFrame(drawEvolution);
+}
+addEventListener("hashchange", route);
+
+// ---------- CSV de Revolut ----------
+function splitCSV(text) {
+  const first = text.split(/\r?\n/, 1)[0];
+  const delim = (first.match(/;/g) || []).length > (first.match(/,/g) || []).length ? ";" : ",";
+  const rows = []; let row = [], cur = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += c; continue; }
+    if (c === '"') q = true; else if (c === delim) { row.push(cur); cur = ""; }
+    else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cur); if (row.some((x) => x.trim() !== "")) rows.push(row); row = []; cur = ""; }
+    else cur += c;
+  }
+  row.push(cur); if (row.some((x) => x.trim() !== "")) rows.push(row);
+  return rows;
+}
+function parseNum(s) {
+  if (s == null) return null;
+  let t = String(s).replace(/[^\d.,\-]/g, "");
+  if (!t || t === "-" ) return null;
+  const lc = t.lastIndexOf(","), ld = t.lastIndexOf(".");
+  if (lc > -1 && ld > -1) t = lc > ld ? t.replace(/\./g, "").replace(",", ".") : t.replace(/,/g, "");
+  else if (lc > -1) t = /^-?\d{1,3}(,\d{3})+$/.test(t) ? t.replace(/,/g, "") : t.replace(",", ".");
+  const n = Number(t); return isFinite(n) ? n : null;
+}
+function parseDate(s) {
+  s = String(s || "").trim();
+  let m = s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?/);
+  if (m) return new Date(Date.UTC(+m[3], +m[2] - 1, +m[1], +(m[4] || 12), +(m[5] || 0), +(m[6] || 0))).toISOString();
+  const d = new Date(s); return isNaN(d) ? null : d.toISOString();
+}
+function curOf(s) { const m = String(s || "").match(/\b(USD|EUR|GBP|CHF|DKK|SEK|PLN)\b|[$€£]/); if (!m) return null; return { "$": "USD", "€": "EUR", "£": "GBP" }[m[0]] || m[1]; }
+function importRevolut(text) {
+  const rows = splitCSV(text.replace(/^﻿/, ""));
+  if (rows.length && /income from sells|other income|ganancias|p&l|profit/i.test(rows[0].join(" "))) throw new Error("Este es el extracto de ganancias y pérdidas (P&L). No hace falta: suba el extracto de cuenta (Account statement), que es el que tiene sus compras y ventas.");
+  if (rows.length < 2) throw new Error("El archivo está vacío o no tiene filas de datos.");
+  const H = rows[0].map((h) => h.trim().toLowerCase());
+  const find = (...res) => { for (const re of res) { const i = H.findIndex((h) => re.test(h)); if (i > -1) return i; } return -1; };
+  const c = {
+    date: find(/^date/, /^fecha/), ticker: find(/^ticker/, /^s[ií]mbolo/, /^symbol/),
+    type: find(/^type$/, /^tipo$/, /^type/, /^tipo(?! de cambio)/), qty: find(/^quantity/, /^cantidad/),
+    price: find(/^price/, /^precio/), total: find(/^total/, /^importe/), cur: find(/^currency/, /^divisa/, /^moneda/),
+    fx: find(/^fx/, /tipo de cambio/),
+  };
+  const missing = Object.entries({ fecha: c.date, ticker: c.ticker, tipo: c.type }).filter(([, v]) => v < 0).map(([k]) => k);
+  if (missing.length) throw new Error(`No encuentro las columnas ${missing.join(", ")}. Columnas del archivo: ${rows[0].join(" · ")}. ¿Es el extracto de cuenta (Account statement) de Invest?`);
+  const out = [];
+  for (const r of rows.slice(1)) {
+    const typeRaw = (r[c.type] || "").toUpperCase();
+    let kind = null;
+    if (/BUY|COMPRA|IPO|SUBSCRI|SUSCRIP|ALLOCAT|ADJUDIC/.test(typeRaw)) kind = "buy"; else if (/SELL|VENTA/.test(typeRaw)) kind = "sell";
+    else if (/DIVIDEND/.test(typeRaw)) kind = "div"; else if (/SPLIT|DESDOBL/.test(typeRaw)) kind = "split";
+    else if (/FEE|COMISI/.test(typeRaw)) kind = "fee"; else if (/WITHDRAW|RETIRAD/.test(typeRaw)) kind = "out"; else if (/TOP.?UP|INGRESO|DEP[OÓ]SITO|TRANSFER/.test(typeRaw)) kind = "cash";
+    if (!kind) continue;
+    const ticker = (r[c.ticker] || "").trim().toUpperCase();
+    const date = parseDate(r[c.date]);
+    const qty = c.qty > -1 ? parseNum(r[c.qty]) : null;
+    const price = c.price > -1 ? parseNum(r[c.price]) : null;
+    const total = c.total > -1 ? parseNum(r[c.total]) : null;
+    const cur = (c.cur > -1 && r[c.cur] ? r[c.cur].trim().toUpperCase() : null) || curOf(r[c.price]) || curOf(r[c.total]) || "USD";
+    const fx = c.fx > -1 ? parseNum(r[c.fx]) : null; // unidades de la divisa por 1 EUR en la fecha del movimiento
+    if (!date) continue;
+    if (kind === "buy" && !qty) continue; // reservas de fondos de una salida a bolsa: aún no son acciones
+    out.push({ d: date, t: ticker, k: kind, q: qty == null ? null : Math.abs(qty), p: price == null ? null : Math.abs(price), tot: total, cur, fx: fx || null });
+  }
+  out.sort((a, b) => a.d.localeCompare(b.d));
+  return out;
+}
+
+// ---------- posiciones ----------
+function holdingsFromLedger(rows) {
+  const h = {};
+  for (const r of rows || []) {
+    if (!r.t || !["buy", "sell", "split"].includes(r.k)) continue;
+    const x = h[r.t] || (h[r.t] = { symbol: r.t, qty: 0, cost: 0, costEur: 0, cur: r.cur, realized: 0, div: 0 });
+    const q = r.q ?? (r.p ? Math.abs(r.tot || 0) / r.p : 0);
+    if (r.k === "buy") {
+      const amt = r.p != null ? q * r.p : Math.abs(r.tot || 0); x.qty += q; x.cost += amt;
+      // Coste en euros al cambio del día de compra, si el extracto lo trae
+      const amtEur = r.cur === "EUR" ? amt : r.fx ? amt / r.fx : null;
+      x.costEur = x.costEur == null || amtEur == null ? null : x.costEur + amtEur;
+    }
+    else if (r.k === "sell") { const avg = x.qty ? x.cost / x.qty : 0; const sq = Math.min(q, x.qty); const share = x.qty ? sq / x.qty : 0; x.realized += sq * ((r.p ?? avg) - avg); if (x.costEur != null) x.costEur -= x.costEur * share; x.qty -= sq; x.cost -= sq * avg; }
+    else if (r.k === "split") { x.qty += q; }
+  }
+  for (const r of rows || []) if (r.k === "div" && r.t && h[r.t]) h[r.t].div += Math.abs(r.tot || 0);
+  return Object.values(h).filter((x) => x.qty > 1e-9).map((x) => ({ symbol: x.symbol, quote: (S.settings.map || {})[x.symbol] || x.symbol.replace(".", "-"), qty: x.qty, avg: x.cost / x.qty, cur: x.cur, costEurHist: x.costEur, source: "Revolut Invest" }));
+}
+function allHoldings() {
+  const list = holdingsFromLedger(S.ledger?.rows);
+  if (S.crypto?.configured) for (const a of S.crypto.assets || []) {
+    if (["EUR", "USD", "GBP"].includes(a.asset)) continue;
+    const cc = (S.positions.cryptoCost || {})[a.asset];
+    // Coste: el que ponga el usuario a mano, si no el calculado del historial de Revolut X
+    const costHist = cc?.avg == null && a.costEur != null && a.avgEur != null ? a.qty * a.avgEur : null;
+    list.push({ symbol: a.asset, quote: `${a.asset}-EUR`, qty: a.qty, avg: cc?.avg ?? a.avgEur ?? null, cur: "EUR", source: "Revolut X", costEurHist: costHist });
+  }
+  for (const m of S.positions.manual || []) {
+    if (list.some((x) => x.quote === m.symbol)) continue;
+    list.push({ symbol: m.symbol.replace(/-EUR$|-USD$/, ""), quote: m.symbol, qty: m.qty, avg: m.avg ?? null, cur: m.cur || "EUR", source: "A mano" });
+  }
+  return list.map((h) => {
+    const q = S.quotes[docId(h.quote)];
+    // El precio medio está en la divisa de compra; se pasa a euros con el cambio de hoy
+    const rate = h.cur === "EUR" ? 1 : q?.currency === h.cur ? q.eurPer : null;
+    const value = q && q.priceEur != null ? h.qty * q.priceEur : null;
+    // Como Revolut: acciones en dólares se comparan con su precio medio en dólares al cambio de hoy
+    // (el resultado no mezcla la subida o bajada del euro); lo que se compró en euros, con su coste en euros
+    const costEur = h.cur !== "EUR" && h.avg != null && rate != null ? h.qty * h.avg * rate : h.costEurHist != null ? h.costEurHist : h.avg != null && rate != null ? h.qty * h.avg * rate : null;
+    return { ...h, q, value, costEur, pnl: value != null && costEur != null ? value - costEur : null };
+  }).sort((a, b) => (b.value || 0) - (a.value || 0));
+}
+const latestSignalFor = (sym) => S.signals.find((s) => s.symbol === sym);
+
+// ---------- render: cartera ----------
+// Efectivo sin invertir en Revolut Invest, sacado del extracto (ingresos − compras + ventas + dividendos − comisiones − retiradas)
+function investCash() {
+  const by = {};
+  for (const r of S.ledger?.rows || []) {
+    const v = Math.abs(r.tot || 0), sign = { cash: 1, sell: 1, div: 1, buy: -1, fee: -1, out: -1 }[r.k];
+    if (!sign || !r.cur) continue;
+    by[r.cur] = (by[r.cur] || 0) + sign * v;
+  }
+  let eurTotal = 0;
+  for (const [cur, amt] of Object.entries(by)) {
+    const rate = cur === "EUR" ? 1 : Object.values(S.quotes).find((q) => q.currency === cur && q.eurPer)?.eurPer;
+    if (rate == null) return null;
+    eurTotal += amt * rate;
+  }
+  return Math.abs(eurTotal) < 0.005 ? 0 : eurTotal;
+}
+function renderPortfolio() {
+  const H = allHoldings();
+  const cash = investCash();
+  const total = H.reduce((a, h) => a + (h.value || 0), 0);
+  const cost = H.reduce((a, h) => a + (h.costEur || 0), 0);
+  const withCost = H.filter((h) => h.pnl != null);
+  const pnl = withCost.reduce((a, h) => a + h.pnl, 0);
+  const costKnown = withCost.reduce((a, h) => a + h.costEur, 0);
+  let today = H.reduce((a, h) => a + (h.value && h.q?.change1d != null ? h.value - h.value / (1 + h.q.change1d) : 0), 0);
+  // Robo-Advisor de Revolut (lo añade la app del móvil si hay extracto importado): suma como un activo más
+  const R = typeof robotTotals === "function" ? robotTotals() : null;
+  const all = total + (R?.value || 0);
+  if (R) today += R.today || 0;
+  const pnlAll = pnl + (R ? R.pnl : 0), costAll = cost + (R ? R.invested : 0), costKnownAll = costKnown + (R ? R.invested : 0);
+  $("#k-value").textContent = H.length || R ? eur.format(all + (cash || 0)) : "—";
+  $("#k-cost").textContent = costAll ? eur.format(costAll) : "—";
+  const kp = $("#k-pnl"); kp.textContent = withCost.length || R ? (pnlAll > 0 ? "+" : "") + eur.format(pnlAll) : "—"; kp.className = "v num " + cls(pnlAll);
+  const kpp = $("#k-pnlp"); kpp.textContent = costKnownAll ? fmtPct(pnlAll / costKnownAll) : " "; kpp.className = "s num " + cls(pnlAll);
+  const kt = $("#k-today"); kt.textContent = all ? `Hoy ${today > 0 ? "+" : ""}${eur.format(today)} (${fmtPct(today / (all - today))})` : " "; kt.className = "s num " + cls(today);
+
+  const alloc = $("#alloc"), leg = $("#alloc-legend"); alloc.replaceChildren(); leg.replaceChildren();
+  const parts = H.filter((h) => h.value).map((h) => [h.symbol, h.value]);
+  if (R?.value) parts.push(["Robot", R.value]);
+  parts.forEach(([name, v], i) => {
+    const share = v / all;
+    alloc.append(el("span", { style: `width:${(share * 100).toFixed(2)}%;background:${seriesColor(i)}`, title: `${name} ${fmtPct(share, false)}` }));
+    leg.append(el("span", {}, el("i", { style: `background:${seriesColor(i)}` }), `${name} `, el("span", { class: "num flat", text: fmtPct(share, false) })));
+  });
+
+  const body = $("#pos-body"); body.replaceChildren();
+  if (!H.length) {
+    body.append(el("div", { class: "empty" }, el("strong", { text: "Aún no hay posiciones. " }),
+      "Importe el extracto de Revolut Invest o añada una posición a mano en ", el("a", { href: "#ajustes", text: "Datos y avisos" }),
+      ". Las criptos de Revolut X aparecerán solas en cuanto el vigilante se conecte."));
+  } else {
+    const t = el("table", { class: "pos" });
+    t.append(el("thead", {}, el("tr", {}, ["Activo", "Cantidad", "Precio medio", "Precio", "Hoy", "Valor", "Resultado", "90 días", "Señal"].map((x) => el("th", { text: x })))));
+    const tb = el("tbody");
+    H.forEach((h) => {
+      const q = h.q, sig = latestSignalFor(h.quote);
+      tb.append(el("tr", {},
+        el("td", {}, el("div", { class: "tk", text: h.symbol }), el("div", { class: "nm", text: q?.name || h.source })),
+        el("td", { class: "num", text: fmtQty(h.qty) }),
+        el("td", { class: "num", text: h.avg != null ? fmtMoney(h.avg, h.cur) : "—" }),
+        el("td", { class: "num", text: q ? fmtMoney(q.price, q.currency) : "—" }),
+        el("td", { class: "num " + cls(q?.change1d), text: fmtPct(q?.change1d) }),
+        el("td", { class: "num", text: h.value != null ? eur.format(h.value) : "—" }),
+        el("td", { class: "num " + cls(h.pnl) }, h.pnl != null ? `${h.pnl > 0 ? "+" : ""}${eur.format(h.pnl)} · ${fmtPct(h.pnl / h.costEur)}` : "—"),
+        el("td", {}, q?.history ? spark(q.history.slice(-90).map((x) => x[1]), 96, 28) : "—"),
+        el("td", {}, sig ? actionPill(sig.action) : el("span", { class: "flat", text: "—" }))));
+    });
+    t.append(tb);
+    body.append(el("div", { class: "tablewrap" }, t));
+    if (cash) body.append(el("p", { class: "note", text: `Efectivo sin invertir en Revolut Invest: ${eur.format(cash)} (incluido en el valor total, como en Revolut).` }));
+    const rsiNotes = H.filter((h) => h.q?.rsi14 != null).map((h) => `${h.symbol}: RSI ${h.q.rsi14.toFixed(0)}${h.q.rsi14 < 30 ? " (sobreventa)" : h.q.rsi14 > 70 ? " (sobrecompra)" : ""}, ${fmtPct(h.q.drawdown)} desde máximos`);
+    if (rsiNotes.length) body.append(el("p", { class: "note", text: rsiNotes.join(" · ") }));
+  }
+  const ls = $("#last-sig-list"); ls.replaceChildren();
+  const top = S.signals.slice(0, 4);
+  if (!top.length) ls.append(el("div", { class: "empty", text: "Aquí aparecerán las señales del vigilante: comprar más, mantener o reducir, con su motivo y su nivel de confianza." }));
+  else top.forEach((s) => ls.append(signalNode(s, true)));
+  drawEvolution();
+}
+
+function spark(vals, w, h) {
+  const s = sv("svg", { viewBox: `0 0 ${w} ${h}`, width: w, height: h, role: "img", "aria-label": "Tendencia de 90 días" });
+  if (!vals || vals.length < 2) return s;
+  const mn = Math.min(...vals), mx = Math.max(...vals), sx = w / (vals.length - 1), sy = (h - 4) / ((mx - mn) || 1);
+  const pts = vals.map((v, i) => `${(i * sx).toFixed(1)},${(h - 2 - (v - mn) * sy).toFixed(1)}`);
+  const up = vals.at(-1) >= vals[0];
+  s.append(sv("polyline", { points: pts.join(" "), fill: "none", stroke: up ? "var(--gain)" : "var(--loss)", "stroke-width": "1.5", "stroke-linejoin": "round" }));
+  const [lx, ly] = pts.at(-1).split(",");
+  s.append(sv("circle", { cx: lx, cy: ly, r: "2.2", fill: up ? "var(--gain)" : "var(--loss)" }));
+  return s;
+}
+
+// Evolución: cantidad que tenía cada día (según movimientos) × cierre del día
+function drawEvolution() {
+  const box = $("#evo-chart"); if (!box || box.offsetParent === null) return;
+  const H = allHoldings().filter((h) => h.q?.history?.length);
+  box.replaceChildren();
+  if (!H.length) { box.append(el("div", { class: "empty", text: "La gráfica se dibuja cuando haya posiciones y el vigilante haya traído los precios." })); return; }
+  const DAY = 864e5, dayOf = (iso) => Math.floor(new Date(iso).getTime() / DAY);
+  const ledger = (S.ledger?.rows || []).filter((r) => ["buy", "sell", "split"].includes(r.k));
+  // Compras y ventas de cada activo [día, cantidad ±]; null = sin historial (cantidad fija)
+  const eventsOf = (h) => {
+    if (h.source === "Revolut Invest") return ledger.filter((r) => r.t === h.symbol).map((r) => [dayOf(r.d), r.k === "sell" ? -(r.q || 0) : (r.q || 0)]);
+    if (h.source === "Revolut X") { const a = (S.crypto?.assets || []).find((x) => x.asset === h.symbol); if (a?.lots?.length) return a.lots.map((l) => [dayOf(l.d), Number(l.q) || 0]); }
+    return null;
+  };
+  const series = H.map((h) => ({ h, ev: eventsOf(h), px: new Map(h.q.history.map(([d, c]) => [d, c])), fx: h.q.eurPer ?? 1 }));
+  const allDays = [...new Set(series.flatMap((x) => [...x.px.keys()]))].sort((a, b) => a - b);
+  const lastDay = Math.max(Math.floor(Date.now() / DAY), allDays.at(-1));
+  const firstBuy = Math.min(...series.filter((x) => x.ev?.length).flatMap((x) => x.ev.map((e) => e[0])));
+  // Valor de cada día. Los días sin cotización de un activo (fines de semana, festivos, huecos)
+  // usan su último cierre conocido: así la cartera no «cae» los sábados por faltar las acciones.
+  const build = (real) => {
+    const last = new Map(), out = [];
+    for (let d = allDays[0]; d <= lastDay; d++) {
+      for (const x of series) if (x.px.has(d)) last.set(x, x.px.get(d));
+      if (real && d < firstBuy) continue;
+      let v = 0, any = false;
+      for (const x of series) {
+        const p = last.get(x); if (p == null) continue;
+        const qty = real && x.ev ? x.ev.filter((e) => e[0] <= d).reduce((a, e) => a + e[1], 0) : x.h.qty;
+        if (qty > 1e-12) { v += qty * p * x.fx; any = true; }
+      }
+      if (any) out.push([d, v]);
+    }
+    return out;
+  };
+  let pts = isFinite(firstBuy) ? build(true) : [];
+  // Cartera reciente: cómo habría ido el último año con las posiciones de hoy, marcando la primera compra
+  let simulated = false;
+  if (pts.length < 14) { simulated = true; pts = build(false); }
+  if (pts.length < 2) { box.append(el("div", { class: "empty", text: "Aún no hay historia suficiente para dibujar la evolución." })); return; }
+  if (simulated) box.append(el("p", { class: "note evo-note", text: "Su cartera es reciente: la línea muestra cómo habrían evolucionado sus posiciones de hoy durante el último año. La raya marca su primera compra." }));
+  lineChart(box, pts.map(([d, v]) => ({ x: d * DAY, y: v })), { height: 220, marker: simulated && isFinite(firstBuy) ? { x: firstBuy * DAY, label: "1.ª compra" } : null });
+}
+
+function lineChart(box, data, { height = 220, marker = null } = {}) {
+  const W = Math.max(280, box.clientWidth), Hh = height, pl = 8, pr = 64, pt = 10, pb = 24;
+  const xs = data.map((d) => d.x), ys = data.map((d) => d.y);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs);
+  let y0 = Math.min(...ys), y1 = Math.max(...ys); const pad = (y1 - y0) * 0.08 || y1 * 0.05 || 1; y0 -= pad; y1 += pad;
+  const X = (x) => pl + (x - x0) / (x1 - x0 || 1) * (W - pl - pr), Y = (y) => pt + (1 - (y - y0) / (y1 - y0 || 1)) * (Hh - pt - pb);
+  const s = sv("svg", { viewBox: `0 0 ${W} ${Hh}`, height: Hh, role: "img", "aria-label": "Evolución del valor de la cartera" });
+  const ticks = 4;
+  for (let i = 0; i <= ticks; i++) {
+    const v = y0 + (y1 - y0) * i / ticks, y = Y(v);
+    s.append(sv("line", { x1: pl, x2: W - pr, y1: y, y2: y, stroke: "var(--line)", "stroke-width": "1" }));
+    const t = sv("text", { x: W - pr + 6, y: y + 4, fill: "var(--muted)", "font-size": "11", "font-family": "var(--f-mono)" }); t.textContent = eur0.format(v); s.append(t);
+  }
+  const months = new Intl.DateTimeFormat("es-ES", { month: "short" });
+  let last = -1;
+  data.forEach((d) => { const dt = new Date(d.x); const m = dt.getUTCMonth(); if (m !== last && dt.getUTCDate() <= 7) { last = m; const t = sv("text", { x: X(d.x), y: Hh - 6, fill: "var(--muted)", "font-size": "11", "text-anchor": "middle" }); t.textContent = months.format(dt).replace(".", ""); if (X(d.x) > 20 && X(d.x) < W - pr - 10) s.append(t); } });
+  const line = data.map((d, i) => `${i ? "L" : "M"}${X(d.x).toFixed(1)},${Y(d.y).toFixed(1)}`).join("");
+  const up = data.at(-1).y >= data[0].y, col = up ? "var(--gain)" : "var(--loss)";
+  const gid = "g" + Math.random().toString(36).slice(2, 7);
+  const defs = sv("defs"); const g = sv("linearGradient", { id: gid, x1: 0, x2: 0, y1: 0, y2: 1 });
+  g.append(sv("stop", { offset: "0", "stop-color": up ? css("--gain") : css("--loss"), "stop-opacity": ".22" }), sv("stop", { offset: "1", "stop-color": up ? css("--gain") : css("--loss"), "stop-opacity": "0" }));
+  defs.append(g); s.append(defs);
+  s.append(sv("path", { d: `${line}L${X(x1)},${Y(y0)}L${X(x0)},${Y(y0)}Z`, fill: `url(#${gid})` }));
+  s.append(sv("path", { d: line, fill: "none", stroke: col, "stroke-width": "2", "stroke-linejoin": "round" }));
+  s.append(sv("circle", { cx: X(data.at(-1).x), cy: Y(data.at(-1).y), r: "3.5", fill: col }));
+  if (marker && marker.x >= x0 && marker.x <= x1) {
+    const mx = X(marker.x);
+    s.append(sv("line", { x1: mx, x2: mx, y1: pt, y2: Hh - pb, stroke: "var(--accent)", "stroke-width": "1.5", "stroke-dasharray": "4 3" }));
+    const t = sv("text", { x: mx - 4, y: pt + 10, fill: "var(--accent)", "font-size": "11", "font-weight": "600", "text-anchor": "end" }); t.textContent = marker.label; s.append(t);
+  }
+  const cross = sv("line", { y1: pt, y2: Hh - pb, stroke: "var(--muted)", "stroke-dasharray": "3 3", opacity: "0" });
+  const dot = sv("circle", { r: "4", fill: col, opacity: "0" });
+  s.append(cross, dot);
+  box.append(s);
+  const tip = el("div", { class: "tip" }); box.append(tip);
+  const df = new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "short", year: "numeric" });
+  const move = (ev) => {
+    const r = s.getBoundingClientRect(); const px = (ev.clientX - r.left) * (W / r.width);
+    let best = data[0]; for (const d of data) if (Math.abs(X(d.x) - px) < Math.abs(X(best.x) - px)) best = d;
+    cross.setAttribute("x1", X(best.x)); cross.setAttribute("x2", X(best.x)); cross.setAttribute("opacity", "1");
+    dot.setAttribute("cx", X(best.x)); dot.setAttribute("cy", Y(best.y)); dot.setAttribute("opacity", "1");
+    tip.textContent = `${df.format(new Date(best.x))} · ${eur.format(best.y)}`;
+    tip.style.left = `${Math.min(Math.max(X(best.x) * r.width / W, 70), r.width - 70)}px`; tip.style.top = `${Y(best.y) * r.height / Hh}px`; tip.classList.add("on");
+  };
+  s.addEventListener("pointermove", move); s.addEventListener("pointerdown", move);
+  s.addEventListener("pointerleave", () => { tip.classList.remove("on"); cross.setAttribute("opacity", "0"); dot.setAttribute("opacity", "0"); });
+}
+
+// ---------- señales ----------
+const ACTIONS = { comprar: ["Comprar", "p-buy"], reforzar: ["Reforzar", "p-buy"], mantener: ["Mantener", "p-hold"], reducir: ["Reducir", "p-sell"], vender: ["Vender", "p-sell"], vigilar: ["Vigilar", "p-watch"], evitar: ["Evitar", "p-sell"] };
+function actionPill(a) { const [t, c] = ACTIONS[a] || [a || "—", "p-hold"]; return el("span", { class: "pill " + c, text: t }); }
+const TIERS = { 1: "Mi cartera", 2: "En vigilancia", 3: "Mercado" };
+function signalNode(s, compact = false) {
+  const dt = new Date(s.at);
+  const n = el("div", { class: "sig" },
+    el("div", { class: "tick", text: (s.symbol || "").replace(/-EUR$/, "") }),
+    el("div", { class: "meta" }, actionPill(s.action), el("span", { class: "ttl", text: s.title || "" }),
+      el("span", { class: "conf", title: "Confianza" }, el("span", { class: "bar" }, el("span", { style: `width:${Math.max(0, Math.min(100, s.confidence || 0))}%` })), `${s.confidence ?? "—"} %`),
+      el("span", { text: `${TIERS[s.tier] || ""} · ${dt.toLocaleDateString("es-ES", { day: "numeric", month: "short" })} ${dt.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })}` })),
+    el("div", { class: "why", text: s.reason || "" }));
+  if (!compact) {
+    if (s.risk) n.append(el("div", { class: "risk", text: "Riesgo: " + s.risk }));
+    if (s.sources?.length) n.append(el("div", { class: "src" }, s.sources.slice(0, 4).map((x) => /^https:\/\//.test(x.u || "") ? el("a", { href: x.u, target: "_blank", rel: "noopener", text: x.t || "Fuente" }) : el("span", { text: x.t || "" }))));
+  }
+  return n;
+}
+let sigFilter = "all";
+$("#sig-filters").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-f]"); if (!b) return;
+  sigFilter = b.dataset.f; document.querySelectorAll("#sig-filters .chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))); renderSignals();
+});
+function renderSignals() {
+  const box = $("#sig-list"); box.replaceChildren();
+  const list = S.signals.filter((s) => sigFilter === "all" || String(s.tier) === sigFilter);
+  if (!list.length) box.append(el("div", { class: "empty", text: S.signals.length ? "No hay señales en este grupo." : "Todavía no hay señales. El vigilante revisa su cartera cada 15 minutos y el mercado una vez al día." }));
+  else list.forEach((s) => box.append(signalNode(s)));
+}
+
+// ---------- oportunidades ----------
+function renderOpportunities() {
+  const wl = $("#watch-list"); wl.replaceChildren();
+  if (!S.watch.length) wl.append(el("div", { class: "empty", text: "Nada en vigilancia. Pulse «Vigilar» en una oportunidad del escáner y la revisaré a diario." }));
+  else S.watch.forEach((w) => {
+    const q = S.quotes[docId(w.symbol)];
+    wl.append(el("div", { class: "status-row" },
+      el("span", {}, el("b", { text: w.symbol + " " }), el("span", { class: "flat", text: w.name || "" })),
+      el("span", { class: "num " + cls(q?.change1d) }, q ? `${fmtMoney(q.price, q.currency)} · ${fmtPct(q.change1d)}` : "pendiente de precio", " ",
+        el("button", { class: "btn small", type: "button", onclick: () => unwatch(w) , text: "Quitar" }))));
+  });
+  const sc = $("#scan-list"); sc.replaceChildren();
+  $("#scan-at").textContent = S.scan?.at ? `actualizado ${ago(S.scan.at)} · ${S.scan.analyzed || "?"} valores revisados` : "";
+  const items = S.scan?.items || [];
+  if (!items.length) { sc.append(el("div", { class: "empty", text: "El escáner diario revisará más de cien empresas, ETFs y criptos de EE. UU., Europa, Asia y Latinoamérica disponibles en Revolut, y dejará aquí las mejores candidatas con su motivo y su riesgo." })); return; }
+  items.forEach((it) => {
+    const watched = S.watch.some((w) => w.symbol === it.symbol);
+    sc.append(el("div", { class: "opp" },
+      el("div", {},
+        el("div", { class: "hd" }, el("span", { class: "score num", title: "Puntuación técnica (0-100)" }, String(it.score ?? "—"), el("small", { text: "técnico" })), el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" }), it.country ? el("span", { class: "cty", text: it.country }) : null, it.verdict ? actionPill(it.verdict) : null),
+        it.verdict ? el("div", { class: "decision d-" + it.verdict, text: ({ comprar: "¿Invertir? Sí: buen momento para entrar.", vigilar: "¿Invertir? Todavía no: mejor esperar.", evitar: "¿Invertir? No, por ahora." })[it.verdict] || "" }) : null,
+        it.phaseLabel ? el("div", { class: "phase ph-" + it.phase }, el("b", { text: "Fase: " + it.phaseLabel }), " · " + (it.phaseNote || "")) : null,
+        el("div", { class: "body", text: it.reason || (it.reasons || []).join("; ") }),
+        it.news ? el("div", { class: "body flat", text: "Noticias: " + it.news }) : null,
+        it.risk ? el("div", { class: "body flat", text: "Riesgo: " + it.risk }) : null,
+        it.watchFor ? el("div", { class: "body", text: "Para entrar: " + it.watchFor }) : null),
+      el("div", { class: "side" },
+        it.spark ? spark(it.spark, 120, 34) : null,
+        el("span", { class: "num " + cls(it.change1d), text: `${fmtMoney(it.price, it.currency || "USD")} ${fmtPct(it.change1d)}` }),
+        el("button", { class: "btn small" + (watched ? "" : " primary"), type: "button", onclick: () => watched ? unwatch({ symbol: it.symbol }) : watch(it), text: watched ? "Vigilando" : "Vigilar" }))));
+  });
+}
+async function watch(it) { if (!db) return; try { await db.doc("watch/" + docId(it.symbol)).set({ symbol: it.symbol, name: it.name || "", addedAt: new Date().toISOString(), by: "usuario" }); } catch (e) { toast("No se pudo guardar: " + (e.message || e.code), true); } }
+async function unwatch(w) { if (!db) return; try { await db.doc("watch/" + docId(w.symbol)).delete(); } catch (e) { toast("No se pudo quitar: " + (e.message || e.code), true); } }
+
+// ---------- proyección (Monte Carlo) ----------
+let projTimer = null;
+function scheduleProjection() { clearTimeout(projTimer); projTimer = setTimeout(runProjection, 120); }
+["#p-start", "#p-month", "#p-years", "#p-model", "#p-custom"].forEach((s) => $(s).addEventListener("input", () => { $("#p-custom-wrap").hidden = $("#p-model").value !== "custom"; scheduleProjection(); }));
+function randn() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+function runProjection() {
+  if ($("#v-proyeccion").hidden) return;
+  const H = allHoldings().filter((h) => h.value);
+  const startInput = $("#p-start");
+  const portVal = H.reduce((a, h) => a + h.value, 0);
+  if (startInput.value === "" ) startInput.value = portVal ? Math.round(portVal) : 1000;
+  const start = Math.max(0, +startInput.value || 0), monthly = Math.max(0, +$("#p-month").value || 0);
+  const years = Math.min(30, Math.max(1, Math.round(+$("#p-years").value || 1))), model = $("#p-model").value, custom = (+$("#p-custom").value || 0) / 100;
+  let assets = H.map((h) => ({ w: h.value / portVal, kind: h.q?.kind || "stock", sigma: h.q?.volAnnual ?? (h.q?.kind === "crypto" ? 0.6 : 0.25), muLog: h.q?.muAnnual ?? null }));
+  if (!assets.length) assets = [{ w: 1, kind: "stock", sigma: 0.18, muLog: null }];
+  for (const a of assets) {
+    a.sigma = Math.min(Math.max(a.sigma, 0.05), 1.2);
+    if (model === "historico" && a.muLog != null) a.m = Math.min(Math.max(a.muLog, -0.5), 0.6);
+    else { const r = model === "custom" ? custom : a.kind === "crypto" ? 0.10 : 0.07; a.m = Math.log(1 + r) - a.sigma * a.sigma / 2; }
+  }
+  const N = 1500, M = years * 12, dt = 1 / 12, rho = 0.5, sr = Math.sqrt(rho), sq = Math.sqrt(1 - rho);
+  const snaps = Array.from({ length: M + 1 }, () => new Float64Array(N));
+  for (let p = 0; p < N; p++) {
+    const v = assets.map((a) => start * a.w);
+    snaps[0][p] = start;
+    for (let m = 1; m <= M; m++) {
+      const z0 = randn(); let tot = 0;
+      for (let i = 0; i < assets.length; i++) { const a = assets[i]; const z = sr * z0 + sq * randn(); v[i] = v[i] * Math.exp(a.m * dt + a.sigma * Math.sqrt(dt) * z) + monthly * a.w; tot += v[i]; }
+      snaps[m][p] = tot;
+    }
+  }
+  const pc = (arr, k) => arr[Math.min(arr.length - 1, Math.floor(k * arr.length))];
+  const band = snaps.map((a, m) => { const s = Array.from(a).sort((x, y) => x - y); return { m, p10: pc(s, .1), p25: pc(s, .25), p50: pc(s, .5), p75: pc(s, .75), p90: pc(s, .9), inv: start + monthly * m }; });
+  const end = band[M], fin = Array.from(snaps[M]);
+  $("#r-inv").textContent = eur0.format(end.inv);
+  $("#r-p10").textContent = eur0.format(end.p10);
+  $("#r-p50").textContent = eur0.format(end.p50);
+  $("#r-p90").textContent = eur0.format(end.p90);
+  $("#r-loss").textContent = fmtPct(fin.filter((x) => x < end.inv).length / N, false);
+  fanChart($("#proj-chart"), band, years);
+}
+function fanChart(box, band, years) {
+  box.replaceChildren();
+  const W = Math.max(280, box.clientWidth), Hh = 260, pl = 8, pr = 70, pt = 10, pb = 24;
+  const ymax = Math.max(...band.map((b) => b.p90)) * 1.04, ymin = 0, M = band.length - 1;
+  const X = (m) => pl + m / M * (W - pl - pr), Y = (v) => pt + (1 - (v - ymin) / (ymax - ymin || 1)) * (Hh - pt - pb);
+  const s = sv("svg", { viewBox: `0 0 ${W} ${Hh}`, height: Hh, role: "img", "aria-label": "Proyección del valor de la cartera" });
+  for (let i = 0; i <= 4; i++) { const v = ymax * i / 4, y = Y(v); s.append(sv("line", { x1: pl, x2: W - pr, y1: y, y2: y, stroke: "var(--line)" })); const t = sv("text", { x: W - pr + 6, y: y + 4, fill: "var(--muted)", "font-size": "11", "font-family": "var(--f-mono)" }); t.textContent = eur0.format(v); s.append(t); }
+  const step = years <= 10 ? 1 : 5;
+  for (let yv = step; yv <= years; yv += step) { const t = sv("text", { x: X(yv * 12), y: Hh - 6, fill: "var(--muted)", "font-size": "11", "text-anchor": "middle" }); t.textContent = `${yv} a`; s.append(t); }
+  const area = (lo, hi) => band.map((b, i) => `${i ? "L" : "M"}${X(b.m).toFixed(1)},${Y(b[hi]).toFixed(1)}`).join("") + band.slice().reverse().map((b) => `L${X(b.m).toFixed(1)},${Y(b[lo]).toFixed(1)}`).join("") + "Z";
+  s.append(sv("path", { d: area("p10", "p90"), fill: "var(--accent)", opacity: ".14" }));
+  s.append(sv("path", { d: area("p25", "p75"), fill: "var(--accent)", opacity: ".26" }));
+  const ln = (k) => band.map((b, i) => `${i ? "L" : "M"}${X(b.m).toFixed(1)},${Y(b[k]).toFixed(1)}`).join("");
+  s.append(sv("path", { d: ln("inv"), fill: "none", stroke: "var(--muted)", "stroke-width": "1.5", "stroke-dasharray": "5 4" }));
+  s.append(sv("path", { d: ln("p50"), fill: "none", stroke: "var(--accent)", "stroke-width": "2.2" }));
+  const lbl = (txt, v, col) => { const t = sv("text", { x: W - pr - 4, y: Y(v) - 6, fill: col, "font-size": "11.5", "text-anchor": "end", "font-weight": "600" }); t.textContent = txt; s.append(t); };
+  lbl("central", band[M].p50, "var(--accent)"); lbl("aportado", band[M].inv, "var(--muted)");
+  box.append(s);
+  const tip = el("div", { class: "tip" }); box.append(tip);
+  s.addEventListener("pointermove", (ev) => {
+    const r = s.getBoundingClientRect(); const px = (ev.clientX - r.left) * (W / r.width);
+    const m = Math.max(0, Math.min(M, Math.round((px - pl) / (W - pl - pr) * M))); const b = band[m];
+    tip.textContent = `Mes ${m} · central ${eur0.format(b.p50)} · aportado ${eur0.format(b.inv)}`;
+    tip.style.left = `${Math.min(Math.max(X(m) * r.width / W, 110), r.width - 110)}px`; tip.style.top = `${Y(b.p50) * r.height / Hh}px`; tip.classList.add("on");
+  });
+  s.addEventListener("pointerleave", () => tip.classList.remove("on"));
+}
+
+// ---------- datos y avisos ----------
+function toast(text, err = false) { const m = $("#import-msg"); m.replaceChildren(el("div", { class: "msg " + (err ? "err" : "ok"), text })); }
+async function handleFile(file) {
+  if (!file) return;
+  if (!db) { toast("No hay conexión con el almacén de datos. Abra la página con su sesión de Claude iniciada.", true); return; }
+  try {
+    const text = await file.text();
+    const rows = importRevolut(text);
+    if (!rows.length) throw new Error("No he encontrado compras, ventas ni dividendos en el archivo.");
+    const doc = { rows, fileName: file.name, importedAt: new Date().toISOString() };
+    if (JSON.stringify(doc).length > 240000) throw new Error("El extracto es demasiado grande para guardarlo de una vez.");
+    await db.doc("ledger/invest").set(doc);
+    S.ledger = doc;
+    const H = holdingsFromLedger(rows);
+    await savePortfolioSummary();
+    toast(`Importados ${rows.length} movimientos de ${file.name}. Posiciones abiertas: ${H.map((h) => `${h.symbol} (${fmtQty(h.qty)})`).join(", ") || "ninguna"}. El vigilante traerá sus precios en la próxima revisión.`);
+  } catch (e) { toast(e.message || String(e), true); }
+}
+$("#csv").addEventListener("change", (e) => handleFile(e.target.files[0]));
+const drop = $("#drop");
+drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
+drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); handleFile(e.dataTransfer.files[0]); });
+
+async function savePortfolioSummary() {
+  if (!db) return;
+  const H = allHoldings();
+  const symbols = H.map((h) => ({ symbol: h.quote, label: h.symbol, qty: h.qty, avg: h.avg, cur: h.cur, source: h.source }));
+  await db.doc("portfolio/summary").set({ symbols, updatedAt: new Date().toISOString() });
+}
+$("#m-add").addEventListener("click", async () => {
+  const symbol = $("#m-sym").value.trim().toUpperCase(), qty = parseNum($("#m-qty").value), avg = parseNum($("#m-avg").value), cur = $("#m-cur").value;
+  if (!symbol || !qty) { toast("Indique al menos el símbolo y la cantidad.", true); return; }
+  const manual = (S.positions.manual || []).filter((m) => m.symbol !== symbol).concat([{ symbol, qty, avg, cur }]);
+  try { await db.doc("settings/positions").set({ ...S.positions, manual }); S.positions.manual = manual; await savePortfolioSummary(); ["#m-sym", "#m-qty", "#m-avg"].forEach((s) => $(s).value = ""); toast(`${symbol} añadido. El vigilante traerá su precio en la próxima revisión.`); }
+  catch (e) { toast("No se pudo guardar: " + (e.message || e.code), true); }
+});
+function renderSettings() {
+  const ml = $("#manual-list"); ml.replaceChildren();
+  for (const m of S.positions.manual || []) ml.append(el("div", { class: "status-row" },
+    el("span", {}, el("b", { text: m.symbol }), ` · ${fmtQty(m.qty)} a ${m.avg != null ? fmtMoney(m.avg, m.cur) : "precio sin indicar"}`),
+    el("button", { class: "btn small", type: "button", text: "Quitar", onclick: async () => { const manual = S.positions.manual.filter((x) => x !== m); try { await db.doc("settings/positions").set({ ...S.positions, manual }); S.positions.manual = manual; await savePortfolioSummary(); } catch (e) { toast("No se pudo quitar: " + (e.message || e.code), true); } } })));
+  $("#topic").textContent = S.settings.ntfyTopic || "pendiente";
+  const es = $("#engine-status"); es.replaceChildren();
+  const st = S.status || {};
+  const row = (k, v) => es.append(el("div", { class: "status-row" }, el("span", { text: k }), el("span", { class: "num", text: v })));
+  row("Revisión de la cartera (cada 15 min)", ago(st.portfolioAt));
+  row("Escáner de mercado (diario, 08:30)", ago(st.scanAt));
+  row("Motor", st.engine === "github" ? "GitHub · funciona sin su PC" : "PC");
+  row("Análisis de noticias con IA", st.aiAt ? (Date.now() - new Date(st.aiAt) < 30 * 3600e3 ? `activo · ${ago(st.aiAt)}` : `en pausa · último ${ago(st.aiAt)}`) : "pendiente");
+  row("Revolut X", S.crypto?.configured ? `conectado · ${ago(S.crypto.at)}` : "sin conectar");
+  row("Extracto de Invest", S.ledger ? `${S.ledger.rows.length} movimientos` : "sin importar");
+  if (S.ledger) {
+    row("· Último importado", ago(S.ledger.importedAt));
+    // Si la revisión importó el extracto (misma pasada, < 15 min), lo dice; si no, no había nada nuevo
+    const chk = st.statementCheckedAt ? new Date(st.statementCheckedAt) - new Date(S.ledger.importedAt) : null;
+    row("· Drive revisado", chk == null ? "pendiente" : ago(st.statementCheckedAt) + (chk < 15 * 60e3 ? " · extracto nuevo importado" : " · sin extractos nuevos"));
+  }
+  if (st.note) es.append(el("p", { class: "note", text: st.note }));
+}
+$("#copy-topic").addEventListener("click", async () => {
+  const t = $("#topic").textContent;
+  try { await navigator.clipboard.writeText(t); $("#copy-topic").textContent = "Copiado"; }
+  catch { const r = document.createRange(); r.selectNodeContents($("#topic")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+});
+
+function renderFresh() {
+  const f = $("#fresh");
+  if (!db) { f.textContent = S.loaded ? "Sin conexión con sus datos" : "Conectando con sus datos…"; return; }
+  const at = S.status?.portfolioAt;
+  f.replaceChildren("Precios ", el("b", { text: at ? ago(at) : "pendientes" }));
+}
+function renderAll() { renderPortfolio(); renderSignals(); renderOpportunities(); renderSettings(); renderFresh(); if (!$("#v-proyeccion").hidden) scheduleProjection(); }
+
+// ---------- conexión con la BD ----------
+let rafPending = false;
+const rerender = () => { if (rafPending) return; rafPending = true; requestAnimationFrame(() => { rafPending = false; renderAll(); }); };
+async function connect() {
+  const timer = setTimeout(() => { S.loaded = true; renderFresh(); }, 10000);
+  try { db = await window.claude?.use?.("db"); } catch { db = null; }
+  clearTimeout(timer); S.loaded = true;
+  if (!db) { renderAll(); return; }
+  const onErr = () => {};
+  const docSub = (path, fn) => db.doc(path).onSnapshot((s) => { fn(s.exists ? s.data() : null); rerender(); }, onErr);
+  docSub("ledger/invest", (d) => S.ledger = d);
+  docSub("crypto/revx", (d) => S.crypto = d);
+  docSub("settings/main", (d) => S.settings = d || {});
+  docSub("settings/positions", (d) => S.positions = { manual: [], cryptoCost: {}, ...(d || {}) });
+  docSub("scan/latest", (d) => S.scan = d);
+  docSub("status/engine", (d) => S.status = d);
+  db.collection("quotes").onSnapshot((snap) => { S.quotes = {}; snap.docs.forEach((d) => S.quotes[d.id] = d.data()); rerender(); }, onErr);
+  db.collection("signals").orderBy("at", "desc").limit(150).onSnapshot((snap) => { S.signals = snap.docs.map((d) => ({ id: d.id, ...d.data() })); rerender(); }, onErr);
+  db.collection("watch").onSnapshot((snap) => { S.watch = snap.docs.map((d) => d.data()); rerender(); }, onErr);
+}
+let rw = 0; addEventListener("resize", () => { clearTimeout(rw); rw = setTimeout(() => { drawEvolution(); if (!$("#v-proyeccion").hidden) scheduleProjection(); }, 150); });
+setInterval(renderFresh, 60000);
+// ---------- modo app del móvil (inyectado por engine/pwa.mjs) ----------
+// Sustituye la BD de claude.ai por data.enc.json, cifrado con AES-256-GCM.
+// La clave se escribe una vez y se guarda solo en este dispositivo.
+const KEY_LS = "centinela.key";
+const lsGet = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+const lsSet = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} };
+const normKey = (k) => String(k || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+const b64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+let pwaDash = null, pwaLoading = false, pwaLastAt = null;
+
+const pwaStyle = document.createElement("style");
+pwaStyle.textContent = `
+#import,#manual{display:none!important}
+.lock{position:fixed;inset:0;z-index:50;background:var(--bg);display:grid;place-items:center;padding:24px}
+.lock .card{width:min(380px,100%);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 22px;display:grid;gap:14px;text-align:center}
+.lock .eye{width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 7px var(--accent-soft);justify-self:center;margin-bottom:6px}
+.lock h2{font-family:var(--f-display);margin:0;font-size:24px}
+.lock input{font:500 18px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--sunk);color:var(--fg);width:100%}
+.lock .err{color:var(--loss);font-size:14px;min-height:1.2em}
+.ptoast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;max-width:calc(100% - 32px);box-shadow:0 6px 24px rgba(0,0,0,.2)}
+#fresh{cursor:pointer}
+`;
+document.head.appendChild(pwaStyle);
+
+toast = (text, err = false) => {
+  document.querySelectorAll(".ptoast").forEach((n) => n.remove());
+  const n = el("div", { class: "ptoast", text, role: "status" });
+  if (err) n.style.background = "var(--loss)";
+  document.body.appendChild(n);
+  setTimeout(() => n.remove(), 4200);
+};
+
+// ---- piel de app: barra inferior, héroe, tarjetas ----
+const ICONS = {
+  cartera: ["Inicio", '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>'],
+  senales: ["Señales", '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'],
+  oportunidades: ["Ideas", '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>'],
+  proyeccion: ["Futuro", '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>'],
+  ajustes: ["Ajustes", '<path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>'],
+};
+const svgIcon = (inner) => { const t = document.createElement("template"); t.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${inner}</svg>`; return t.content.firstChild; };
+(function skin() {
+  const eye = $(".brand .eye");
+  if (eye) eye.replaceWith(el("img", { class: "logo", src: "icons/icon-192.png", alt: "" }));
+  const nav = $("nav.tabs");
+  nav.querySelectorAll("a").forEach((a) => { const [label, ic] = ICONS[a.dataset.view] || [a.textContent, ""]; a.replaceChildren(svgIcon(ic), el("span", { text: label })); });
+  document.body.appendChild(nav);
+  const h = new Date().getHours();
+  const hi = h >= 6 && h < 13 ? "Buenos días" : h >= 13 && h < 21 ? "Buenas tardes" : "Buenas noches";
+  $("#summary").prepend(el("div", { class: "hello" }, el("div", { class: "kick" }, el("i"), "Centinela · Su cartera"), el("h2", { text: hi + ", Fran" })));
+  const quick = el("div", { class: "quick" },
+    el("a", { class: "primary", href: "#senales" }, svgIcon(ICONS.senales[1]), "Ver señales"),
+    el("a", { href: "#proyeccion" }, svgIcon(ICONS.proyeccion[1]), "Proyección"));
+  $("#summary").after(quick);
+  quick.after($("#positions"));
+  const pnlLabel = $("#k-pnl")?.previousElementSibling; if (pnlLabel) pnlLabel.textContent = "Resultado";
+  $("#last-signals h2").append(el("a", { class: "more", href: "#senales", text: "Ver todas" }));
+  $("#positions h2").append(el("a", { class: "more", href: "#oportunidades", text: "Ideas" }));
+})();
+const AV = ["#F0B354", "#4FD195", "#7FB2F0", "#C79BEA", "#FF9C8A", "#6FD6D6"];
+const avColor = (s) => AV[[...s].reduce((a, c) => a + c.charCodeAt(0), 0) % AV.length];
+let pwaLogos = {};
+// Logo real si lo hay (viene dentro de los datos cifrados); si no, iniciales de color
+const avatar = (sym, cls = "av") => {
+  const src = pwaLogos[sym] || pwaLogos[sym + "-EUR"] || pwaLogos[sym + "-USD"];
+  if (src) return el("div", { class: cls + " has-logo" }, el("img", { src, alt: "", loading: "lazy" }));
+  return el("div", { class: cls, style: `background:${avColor(sym)}`, text: sym.replace(/-(EUR|USD)$/, "").slice(0, 4) });
+};
+const _renderOpportunities = renderOpportunities;
+renderOpportunities = () => {
+  _renderOpportunities();
+  document.querySelectorAll("#scan-list .opp .hd").forEach((hd) => {
+    const b = hd.querySelector("b"); if (!b) return;
+    hd.prepend(avatar(b.textContent, "av sm"));
+  });
+};
+const _renderPortfolio = renderPortfolio;
+renderPortfolio = () => {
+  _renderPortfolio();
+  // columnas: Activo, Cantidad, Precio medio, Precio, Hoy, Valor, Resultado, 90 días, Señal
+  const CLS = ["c-name", "c-qty", "c-avg", "c-price", "c-today", "c-val", "c-res", "c-spark", "c-sig"];
+  document.querySelectorAll("table.pos tbody tr").forEach((tr) => {
+    const tds = [...tr.children];
+    tds.forEach((td, i) => td.classList.add(CLS[i]));
+    const sym = tds[0].querySelector(".tk")?.textContent || "?";
+    const [qty, avg, price, today] = [tds[1], tds[2], tds[3], tds[4]].map((t) => t.textContent);
+    tds[3].textContent = price;
+    tds[1].classList.replace("c-qty", "c-meta");
+    tds[1].replaceChildren(`${qty} uds · medio ${avg} · hoy `, el("span", { class: tds[4].className.replace(/num|c-today/g, "").trim(), text: today }));
+    // Fuera de horario el precio es el de preapertura/cierre ampliado (como Revolut); se indica el cierre oficial
+    const hq = allHoldings().find((h) => h.symbol === sym || h.quote === sym)?.q;
+    if (hq?.regularPrice != null && hq.extSession) tds[1].append(` · ${hq.extSession === "pre" ? "precio de preapertura" : "precio de cierre ampliado"}, cierre ${fmtMoney(hq.regularPrice, hq.currency)}`);
+    tds[2].classList.add("c-hide"); tds[4].classList.add("c-hide");
+    tds[7].querySelector("svg")?.setAttribute("preserveAspectRatio", "none");
+    tr.prepend(el("td", { class: "c-av" }, avatar(sym)));
+  });
+  if (typeof renderMarkets === "function" && S.loaded) renderMarkets();
+};
+const _signalNode = signalNode;
+signalNode = (s, compact) => {
+  const n = _signalNode(s, compact); n.dataset.a = s.action || "";
+  const t = n.querySelector(".tick"), src = pwaLogos[s.symbol];
+  if (t && src) { t.classList.add("has-logo"); t.replaceChildren(el("img", { src, alt: s.symbol })); }
+  return n;
+};
+// ---- precios en directo mientras la app está abierta ----
+// Cripto: Binance (público, sin clave). Acciones: Finnhub, con la clave gratuita que el usuario
+// guarda solo en este móvil. Los proveedores ven qué valores se consultan, nunca cuántos tiene.
+const FH_LS = "centinela.finnhub";
+let liveAt = 0, liveTimer = null, pwaFinnhub = null;
+async function liveTick() {
+  if (document.visibilityState !== "visible" || !S.loaded) return;
+  // Clave de Finnhub: la del móvil si el usuario puso una; si no, la que viaja cifrada en sus datos
+  const fh = lsGet(FH_LS) || pwaFinnhub;
+  let changed = 0;
+  await Promise.all(allHoldings().map(async (h) => {
+    const q = h.q; if (!q) return;
+    try {
+      if (q.kind === "crypto") {
+        const r = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${encodeURIComponent(h.quote.replace(/-/g, ""))}`);
+        if (!r.ok) return;
+        const j = await r.json(), p = Number(j.lastPrice);
+        if (!p) return;
+        q.price = p; q.priceEur = q.currency === "EUR" ? p : p * (q.eurPer || 1); q.change1d = Number(j.priceChangePercent) / 100; changed++;
+      } else if (fh) {
+        const r = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(h.quote)}&token=${encodeURIComponent(fh)}`);
+        if (!r.ok) return;
+        const j = await r.json();
+        if (!j.c) return;
+        // Fuera de horario Finnhub solo da el cierre: no pisa el precio de preapertura/cierre ampliado del motor
+        if (q.extAt && (!j.t || j.t * 1000 < new Date(q.extAt).getTime())) return;
+        q.price = j.c; q.priceEur = Math.round(j.c * (q.eurPer || 1) * 100) / 100; q.change1d = (j.dp ?? 0) / 100;
+        q.liveClosed = j.t && Date.now() / 1000 - j.t > 20 * 60; changed++;
+      }
+    } catch { /* sin conexión: se mantiene el último precio */ }
+  }));
+  if (changed) { liveAt = Date.now(); renderPortfolio(); renderFresh(); }
+}
+function startLive() {
+  if (liveTimer) return;
+  liveTick();
+  liveTimer = setInterval(liveTick, 15000);
+}
+const _renderFresh = renderFresh;
+renderFresh = () => {
+  _renderFresh();
+  const f = $("#fresh"), at = S.status?.portfolioAt;
+  const live = Date.now() - liveAt < 60000;
+  f.classList.toggle("live", live);
+  f.classList.toggle("stale", !live && (!at || Date.now() - new Date(at).getTime() > 3 * 3600e3));
+  if (live) f.replaceChildren(el("b", { text: "En directo" }));
+};
+
+// ---- estado de los mercados (abierto, preapertura, cierre ampliado, cerrado) ----
+// Horarios oficiales en la hora local de cada bolsa; festivos completos y medias sesiones de NYSE/Nasdaq.
+const US_HOLIDAYS = new Set(["2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
+  "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26", "2027-05-31", "2027-06-18", "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24"]);
+const US_HALF = new Set(["2026-11-27", "2026-12-24", "2027-11-26"]);
+const MARKETS = {
+  us: { name: "Wall Street", flag: "🇺🇸", tz: "America/New_York", pre: 240, open: 570, close: 960, post: 1200, holidays: US_HOLIDAYS, half: US_HALF },
+  de: { name: "Fráncfort", flag: "🇩🇪", tz: "Europe/Berlin", open: 540, close: 1050 },
+  uk: { name: "Londres", flag: "🇬🇧", tz: "Europe/London", open: 480, close: 990 },
+  eu: { name: "Euronext", flag: "🇪🇺", tz: "Europe/Paris", open: 540, close: 1050 },
+  jp: { name: "Tokio", flag: "🇯🇵", tz: "Asia/Tokyo", open: 540, close: 930 },
+  crypto: { name: "Cripto", flag: "₿", always: true },
+};
+function localParts(tz, d = new Date()) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short", hour12: false }).formatToParts(d).map((x) => [x.type, x.value]));
+  return { date: `${p.year}-${p.month}-${p.day}`, mins: (Number(p.hour) % 24) * 60 + Number(p.minute), wd: p.weekday };
+}
+const dur = (m) => m >= 1440 ? `${Math.floor(m / 1440)} d ${Math.floor((m % 1440) / 60)} h` : m >= 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m} min`;
+function marketStatus(key, now = new Date()) {
+  const M = MARKETS[key];
+  if (!M) return null;
+  if (M.always) return { key, ...M, state: "abierto", label: "Abierto 24/7", detail: "" };
+  const isTradingDay = (d) => { const lp = localParts(M.tz, d); return !["Sat", "Sun"].includes(lp.wd) && !(M.holidays && M.holidays.has(lp.date)); };
+  const lp = localParts(M.tz, now);
+  const close = M.half && M.half.has(lp.date) ? 780 : M.close;
+  const trading = isTradingDay(now);
+  // Minutos hasta la próxima apertura (busca el siguiente día hábil)
+  const nextOpen = () => {
+    if (trading && lp.mins < (M.pre ?? M.open)) return (M.pre ?? M.open) - lp.mins;
+    for (let k = 1; k <= 7; k++) { const d = new Date(now.getTime() + k * 864e5); if (isTradingDay(d)) return k * 1440 - lp.mins + (M.pre ?? M.open); }
+    return null;
+  };
+  if (trading && lp.mins >= M.open && lp.mins < close) return { key, ...M, state: "abierto", label: "Abierta", detail: `cierra en ${dur(close - lp.mins)}` };
+  if (trading && M.pre != null && lp.mins >= M.pre && lp.mins < M.open) return { key, ...M, state: "pre", label: "Preapertura", detail: `abre en ${dur(M.open - lp.mins)}` };
+  if (trading && M.post != null && lp.mins >= close && lp.mins < (M.half && M.half.has(lp.date) ? 1020 : M.post)) return { key, ...M, state: "post", label: "Cierre ampliado", detail: "after-hours" };
+  const n = nextOpen();
+  const why = !trading && M.holidays && M.holidays.has(lp.date) ? "festivo · " : ["Sat", "Sun"].includes(lp.wd) ? "fin de semana · " : "";
+  return { key, ...M, state: "cerrado", label: "Cerrada", detail: why + (n != null ? `${M.pre != null ? "preapertura" : "abre"} en ${dur(n)}` : "") };
+}
+// Bolsa de cada valor: por su mercado de cotización (los ADR cotizan en EE. UU.)
+function marketOf(q) {
+  if (!q) return null;
+  if (q.kind === "crypto") return "crypto";
+  const ex = String(q.exchange || "").toLowerCase();
+  if (/nasdaq|nyse|nms|nyq|nca|nasdaqgs|nasdaqgm|arca|bats|cboe/.test(ex) || q.currency === "USD") return "us";
+  if (/xetra|frankfurt|ger/.test(ex)) return "de";
+  if (/london|lse/.test(ex)) return "uk";
+  if (/paris|amsterdam|euronext|madrid|milan/.test(ex)) return "eu";
+  if (/tokyo|jpx/.test(ex)) return "jp";
+  return null;
+}
+function marketBar() {
+  const used = new Set(["us", "crypto", ...Object.values(S.quotes || {}).map(marketOf).filter(Boolean)]);
+  return el("div", { class: "mkt-bar" }, [...used].map((k) => {
+    const st = marketStatus(k);
+    return el("div", { class: "mkt m-" + st.state }, el("span", { class: "dot" }), el("b", { text: `${st.flag} ${st.name}` }), el("span", { text: st.label }), st.detail ? el("small", { text: st.detail }) : "");
+  }));
+}
+function renderMarkets() {
+  for (const [host, id] of [["#v-cartera", "mkt-home"], ["#v-oportunidades", "mkt-ideas"]]) {
+    const view = $(host); if (!view) continue;
+    const old = document.getElementById(id);
+    const bar = marketBar(); bar.id = id;
+    if (old) old.replaceWith(bar); else view.prepend(bar);
+  }
+  // Etiqueta en cada posición
+  document.querySelectorAll("table.pos tbody tr").forEach((tr) => {
+    const sym = tr.querySelector(".tk")?.textContent; if (!sym) return;
+    const h = allHoldings().find((x) => x.symbol === sym);
+    const st = marketStatus(marketOf(h?.q));
+    if (!st) return;
+    tr.querySelector(".mk-tag")?.remove();
+    tr.querySelector(".c-name")?.append(el("span", { class: "mk-tag m-" + st.state, text: st.state === "abierto" ? (st.always ? "24/7" : "mercado abierto") : st.label.toLowerCase() }));
+  });
+}
+setInterval(() => { if (document.visibilityState === "visible" && S.loaded) renderMarkets(); }, 30000);
+
+// ---- vigilancia desde el móvil ----
+// La orden viaja cifrada con su clave (AES-GCM) por un canal ntfy privado; el motor de GitHub
+// la recoge en su siguiente revisión horaria. Mientras, la app la muestra como «pendiente».
+const PEND_LS = "centinela.pending";
+let pwaTopic = null;
+const pending = () => { try { return JSON.parse(lsGet(PEND_LS) || "[]"); } catch { return []; } };
+async function encryptForEngine(obj) {
+  const k = lsGet(KEY_LS); if (!k) throw new Error("sin clave");
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(k), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt, iterations: 210000 }, base, { name: "AES-GCM", length: 256 }, false, ["encrypt"]);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(obj))));
+  const b = (u) => btoa(String.fromCharCode(...u));
+  return { v: 1, iter: 210000, salt: b(salt), iv: b(iv), ct: b(ct) };
+}
+async function sendCmd(cmd) {
+  if (!pwaTopic) throw new Error("sin canal");
+  const r = await fetch(`https://ntfy.sh/${encodeURIComponent(pwaTopic + "-cmd")}`, { method: "POST", body: JSON.stringify(await encryptForEngine(cmd)) });
+  if (!r.ok) throw new Error("ntfy " + r.status);
+}
+function applyPending() {
+  const appliedAt = S.status?.cmdAppliedAt || "";
+  const list = pending().filter((c) => c.at > appliedAt); // las ya aplicadas por el motor se olvidan
+  lsSet(PEND_LS, JSON.stringify(list));
+  for (const c of list) {
+    if (c.op === "watch" && !S.watch.some((w) => w.symbol === c.symbol)) S.watch.push({ symbol: c.symbol, name: c.name, addedAt: c.at, by: "usuario", pending: true });
+    if (c.op === "unwatch") S.watch = S.watch.filter((w) => w.symbol !== c.symbol);
+  }
+}
+async function queueCmd(op, symbol, name) {
+  const c = { op, symbol, name: name || "", at: new Date().toISOString() };
+  try {
+    await sendCmd(c);
+    lsSet(PEND_LS, JSON.stringify([...pending(), c]));
+    applyPending(); renderOpportunities();
+    toast(op === "watch" ? `${symbol} en vigilancia. El vigilante lo incorpora en su próxima revisión (máx. 15 min).` : `${symbol} quitado de vigilancia.`);
+  } catch (e) { toast("No se pudo enviar: " + (e.message || e), true); }
+}
+watch = (it) => queueCmd("watch", it.symbol, it.name);
+unwatch = (w) => queueCmd("unwatch", w.symbol, w.name);
+const _renderOpp2 = renderOpportunities;
+const GROUPS = {
+  comprar: ["Para invertir ahora", "Buen punto de entrada: el técnico, las noticias y la valoración acompañan."],
+  vigilar: ["Para vigilar", "Interesantes, pero conviene esperar a un mejor precio o a una confirmación."],
+  evitar: ["Descartadas por ahora", "No resultan atractivas en este momento."],
+  none: ["Sin analizar todavía", "Solo puntuación técnica; la IA las revisará en su próximo análisis."],
+};
+renderOpportunities = () => {
+  _renderOpp2();
+  // Agrupa las candidatas del escáner según convenga invertir, vigilar o descartar
+  const items = S.scan?.items || [];
+  let last = null;
+  document.querySelectorAll("#scan-list .opp").forEach((node, i) => {
+    const it = items[i]; if (!it) return;
+    const g = GROUPS[it.verdict] ? it.verdict : "none";
+    if (g !== last && !OPP_BY_TECH) {
+      node.before(el("div", { class: "opp-group g-" + g }, el("h3", { text: GROUPS[g][0] }), el("p", { class: "note", text: GROUPS[g][1] })));
+      last = g;
+    }
+    if (it.verdict && it.confidence != null) node.querySelector(".hd .pill")?.after(el("span", { class: "flat num", style: "font-size:12.5px", text: `confianza ${it.confidence} %` }));
+  });
+  // Marca las que aún esperan al motor
+  document.querySelectorAll("#watch-list .status-row").forEach((row) => {
+    const sym = row.querySelector("b")?.textContent.trim();
+    if (S.watch.find((w) => w.symbol === sym)?.pending) row.querySelector("span")?.append(el("span", { class: "pill p-watch", style: "margin-left:6px", text: "pendiente" }));
+  });
+};
+
+// ---- aportación del mes: cómo repartir lo que va a invertir ----
+// Todo se calcula en este móvil con los datos ya descifrados: la cantidad no sale de aquí.
+const AP_LS = "centinela.aporte";
+const VERD = { comprar: "comprar", reforzar: "comprar", mantener: "mantener", vigilar: "vigilar", reducir: "evitar", vender: "evitar", evitar: "evitar" };
+const V_BASE = { comprar: 1, mantener: 0.6, vigilar: 0.35, evitar: 0 };
+const PH_MULT = { correccion: 1.15, alcista: 1, acumulacion: 1, lateral: 0.8, sin_datos: 0.75, rebote: 0.6, debil: 0.5, distribucion: 0.4, bajista: 0.25 };
+const MIN_TICKET = 10, CRYPTO_CAP = 0.3, ONE_CAP = 0.5, NEW_CAP = 0.25, MAX_LINES = 4;
+const shortTxt = (t, n = 230) => !t ? "" : t.length <= n ? t : t.slice(0, t.lastIndexOf(" ", n)) + "…";
+
+function planCandidates() {
+  const H = allHoldings();
+  const total = H.reduce((a, h) => a + (h.value || 0), 0);
+  const recent = (s) => s && Date.now() - new Date(s.at).getTime() < 36 * 3600e3;
+  const out = [];
+  for (const h of H) {
+    const q = h.q || {};
+    const sigs = S.signals.filter((s) => s.symbol === h.quote);
+    const s = sigs.find((x) => x.by === "ia" && recent(x)) || sigs.find(recent) || sigs[0];
+    out.push({ sym: h.symbol, quote: h.quote, name: q.name || h.symbol, held: true, kind: q.kind || (h.source === "Revolut X" ? "crypto" : "stock"),
+      value: h.value || 0, share: total ? (h.value || 0) / total : 0, verdict: s ? VERD[s.action] || "mantener" : "mantener", action: s?.action || "mantener",
+      conf: s?.confidence ?? 50, phase: q.phase, phaseLabel: q.phaseLabel, rsi: q.rsi14, why: s?.reason || "", sigAt: s?.at });
+  }
+  // Activos de su cartera que hoy no merecen más dinero
+  const weak = out.filter(isWeak);
+  // Ideas nuevas: las mejores del escáner que la IA da por buenas y que no tiene ya.
+  // Si algo de su cartera flojea, se buscan más (y con algo menos de exigencia) para sustituirlo.
+  const held = new Set(H.map((h) => h.quote));
+  const minConf = weak.length ? 50 : 60, nIdeas = Math.min(3, 2 + weak.length);
+  (S.scan?.items || []).filter((it) => it.verdict === "comprar" && !held.has(it.symbol) && (it.confidence ?? 0) >= minConf).slice(0, nIdeas).forEach((it) =>
+    out.push({ sym: it.symbol, quote: it.symbol, name: it.name || it.symbol, held: false, kind: it.kind || "stock", value: 0, share: 0, verdict: "comprar", action: "comprar",
+      conf: it.confidence, phase: it.phase, phaseLabel: it.phaseLabel, rsi: it.rsi14, why: it.reason || "", country: it.country }));
+  return { list: out, total, weak };
+}
+const BAD_PH = new Set(["bajista", "debil", "distribucion"]), GOOD_PH = new Set(["alcista", "correccion", "acumulacion"]);
+function isWeak(c) { return c.held && (c.verdict === "evitar" || BAD_PH.has(c.phase) || planScore(c) < 0.2); }
+function weakWhy(c) {
+  if (c.verdict === "evitar") return "las noticias aconsejan no aumentar";
+  if (BAD_PH.has(c.phase)) return "está en fase «" + (c.phaseLabel || c.phase) + "»";
+  if (c.rsi > 70) return "ha subido demasiado deprisa";
+  return c.verdict === "vigilar" ? "la IA aconseja esperar" : "hoy su momento es flojo";
+}
+
+function planScore(c) {
+  let s = V_BASE[c.verdict] * Math.max(0, Math.min(100, c.conf ?? 50)) / 100 * (PH_MULT[c.phase] ?? 0.75);
+  if (c.rsi > 70) s *= 0.6; else if (c.rsi != null && c.rsi < 30 && c.phase !== "bajista") s *= 1.1;
+  if (c.held && c.share > 0.5) s *= 0.8;          // ya pesa mucho: no concentrar más
+  if (!c.held) s *= 0.9;                          // lo nuevo, con algo más de prudencia
+  return s;
+}
+
+// Reparte respetando topes; lo que no cabe en ningún sitio queda en reserva
+function capFill(items, amount) {
+  let left = amount;
+  const cap = (c) => Math.min(c.held || c.instead ? (items.length === 1 ? 1 : ONE_CAP) : NEW_CAP, 1) * amount;
+  items.forEach((c) => (c.eur = 0));
+  for (let round = 0; round < 8 && left > 0.01; round++) {
+    const open = items.filter((c) => c.eur < cap(c) - 0.01 && !(c.kind === "crypto" && items.filter((x) => x.kind === "crypto").reduce((a, x) => a + x.eur, 0) >= CRYPTO_CAP * amount - 0.01));
+    const sw = open.reduce((a, c) => a + c.w, 0); if (!open.length || !sw) break;
+    let used = 0;
+    for (const c of open) {
+      let add = left * c.w / sw;
+      add = Math.min(add, cap(c) - c.eur);
+      if (c.kind === "crypto") add = Math.min(add, CRYPTO_CAP * amount - items.filter((x) => x.kind === "crypto").reduce((a, x) => a + x.eur, 0));
+      c.eur += Math.max(0, add); used += Math.max(0, add);
+    }
+    left -= used; if (used < 0.01) break;
+  }
+  return left;
+}
+
+function buildPlan(amount) {
+  const { list, total, weak } = planCandidates();
+  list.forEach((c) => { c.score = planScore(c); });
+  // Si hay una alternativa con señal de compra, el dinero de lo que flojea va a ella
+  const alts = list.filter((c) => !c.held);
+  if (alts.length) weak.forEach((w, i) => { w.replacedBy = alts[Math.min(i, alts.length - 1)].sym; w.score = 0; alts[Math.min(i, alts.length - 1)].instead = (alts[Math.min(i, alts.length - 1)].instead || []).concat(w.sym); });
+  const best = Math.max(0, ...list.map((c) => c.score));
+  // Si nada convence, parte se queda esperando una mejor ocasión
+  let reserve = best >= 0.4 ? 0 : amount * Math.min(0.6, (0.4 - best) / 0.4 * 0.6);
+  let pool = list.filter((c) => c.score > 0.03).sort((a, b) => b.score - a.score).slice(0, MAX_LINES);
+  const out = () => list.filter((c) => !pool.includes(c));
+  for (let k = 0; k < 6; k++) {
+    // Peso: 60 % según la calidad de la señal, 40 % hacia lo que pesa poco en su cartera
+    const sum = pool.reduce((a, c) => a + c.score, 0) || 1;
+    const inv = amount - reserve, after = total + inv;
+    const gaps = pool.map((c) => Math.max(0, c.score / sum * after - c.value));
+    const gs = gaps.reduce((a, g) => a + g, 0);
+    pool.forEach((c, i) => { c.target = c.score / sum; c.w = 0.6 * c.target + 0.4 * (gs ? gaps[i] / gs : c.target); });
+    const extra = capFill(pool, inv);
+    const small = pool.filter((c) => c.eur < Math.min(MIN_TICKET, inv)).sort((a, b) => a.eur - b.eur);
+    if (small.length && pool.length > 1) { pool = pool.filter((c) => c !== small[0]); small[0].tooSmall = true; continue; }
+    reserve += extra; break;
+  }
+  if (!pool.length) reserve = amount;
+  // Redondeo a euros enteros (o céntimos si es poco) cuadrando el total
+  const step = amount >= 50 ? 1 : 0.01;
+  pool.forEach((c) => (c.eur = Math.round(c.eur / step) * step));
+  reserve = pool.length ? Math.round(reserve / step) * step : amount;
+  const diff = amount - reserve - pool.reduce((a, c) => a + c.eur, 0);
+  if (pool.length && Math.abs(diff) >= step / 2) pool[0].eur += diff;
+  pool = pool.filter((c) => c.eur > 0).sort((a, b) => b.eur - a.eur);
+  // Sin alternativa comprable: las mejores candidatas a vigilar, para que sepa qué viene
+  const held = new Set(list.filter((c) => c.held).map((c) => c.quote));
+  const watchAlts = weak.length && !alts.length ? (S.scan?.items || []).filter((it) => it.verdict === "vigilar" && !held.has(it.symbol) && GOOD_PH.has(it.phase))
+    .sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0) || (b.score ?? 0) - (a.score ?? 0)).slice(0, 2) : [];
+  return { amount, total, pool, reserve, weak, watchAlts, skipped: out().filter((c) => c.held || c.tooSmall) };
+}
+
+function planWhy(c, plan) {
+  const bits = [];
+  if (c.held && c.share > 0.5) bits.push(`ya es el ${fmtPct(c.share, false)} de su cartera, así que le doy algo menos para no concentrar`);
+  else if (c.held && plan.total && c.share < (c.target ?? 0) - 0.08) bits.push(`pesa poco en su cartera (${fmtPct(c.share, false)}), así que va reforzándolo`);
+  if (c.rsi > 70) bits.push(`RSI ${c.rsi.toFixed(0)}: está caro a corto plazo`);
+  if (c.kind === "crypto") bits.push("la cripto se limita al " + Math.round(CRYPTO_CAP * 100) + " % de cada aportación por su volatilidad");
+  return bits.join("; ");
+}
+function skipWhy(c) {
+  if (c.replacedBy) return `${weakWhy(c)}, así que este mes su parte va a ${c.replacedBy}, que sí está en punto de compra`;
+  if (c.tooSmall) return "le tocaría tan poco que no compensa una operación aparte; lo sumo a las demás";
+  if (c.verdict === "evitar") return "las noticias y el análisis aconsejan no aumentar ahora" + (c.why ? ": " + shortTxt(c.why, 160) : "");
+  if (c.phase === "bajista") return "está en tendencia bajista: mejor no meter más hasta que gire";
+  if (c.rsi > 70) return `RSI ${c.rsi.toFixed(0)}: ha subido demasiado deprisa, mejor esperar`;
+  return "esta vez hay opciones con mejor momento";
+}
+
+function renderPlan() {
+  const box = $("#ap-out"); if (!box) return;
+  const amount = parseFloat(String($("#ap-amount").value).replace(",", "."));
+  box.replaceChildren();
+  if (!S.loaded) return;
+  if (!(amount > 0)) { box.append(el("p", { class: "note", text: "Escriba cuánto va a invertir este mes y le propongo el reparto." })); return; }
+  const P = buildPlan(amount);
+  const fmt = (v) => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: amount >= 50 ? 0 : 2 }).format(v);
+  const parts = [...P.pool.map((c) => ({ k: c.sym, v: c.eur })), ...(P.reserve > 0 ? [{ k: "Reserva", v: P.reserve }] : [])];
+  const bar = el("div", { class: "alloc ap-bar" }), leg = el("div", { class: "legend" });
+  parts.forEach((p, i) => {
+    const col = p.k === "Reserva" ? "var(--muted)" : seriesColor(i);
+    bar.append(el("span", { style: `width:${(p.v / amount * 100).toFixed(2)}%;background:${col}` }));
+    leg.append(el("span", {}, el("i", { style: `background:${col}` }), `${p.k} `, el("span", { class: "num flat", text: fmtPct(p.v / amount, false) })));
+  });
+  box.append(bar, leg);
+  P.pool.forEach((c) => {
+    const why = planWhy(c, P);
+    box.append(el("div", { class: "ap-line" },
+      avatar(c.quote),
+      el("div", { class: "ap-main" },
+        el("div", { class: "ap-hd" }, el("b", { text: c.sym }), el("span", { class: "flat", text: c.name }), c.held ? null : el("span", { class: "pill p-buy", text: c.instead ? "En lugar de " + c.instead.join(" y ") : "Nueva" })),
+        el("div", { class: "ap-tags" }, actionPill(c.action), c.phaseLabel ? el("span", { class: "flat", text: c.phaseLabel }) : null, el("span", { class: "flat", text: `confianza ${c.conf ?? "—"} %` })),
+        c.why ? el("div", { class: "body", text: shortTxt(c.why) }) : null,
+        why ? el("div", { class: "body flat", text: "Reparto: " + why + "." }) : null,
+        el("div", { class: "ap-where", text: c.kind === "crypto" ? "Comprar en Revolut X" : "Comprar en Revolut Invest" })),
+      el("div", { class: "ap-amt" }, el("b", { class: "num", text: fmt(c.eur) }), el("span", { class: "num flat", text: fmtPct(c.eur / amount, false) }))));
+  });
+  if (P.reserve > 0) box.append(el("div", { class: "ap-line ap-res" },
+    el("div", { class: "av", style: "background:var(--sunk);color:var(--muted)", text: "€" }),
+    el("div", { class: "ap-main" }, el("div", { class: "ap-hd" }, el("b", { text: "Reserva" })),
+      el("div", { class: "body", text: P.pool.length ? "Ahora mismo nada convence lo suficiente para invertirlo todo: guarde esta parte y úsela cuando aparezca una señal de compra." : "Hoy no veo ningún punto de entrada claro. Mejor esperar: le avisaré cuando lo haya." })),
+    el("div", { class: "ap-amt" }, el("b", { class: "num", text: fmt(P.reserve) }), el("span", { class: "num flat", text: fmtPct(P.reserve / amount, false) }))));
+  if (P.skipped.length) box.append(el("div", { class: "ap-skip" }, el("h3", { text: "Esta vez no" }),
+    ...P.skipped.map((c) => el("p", {}, el("b", { text: c.sym + ": " }), skipWhy(c) + "."))));
+  if (P.watchAlts.length) {
+    const flojos = P.weak.map((c) => `${c.sym} (${weakWhy(c)})`).join(" y ");
+    box.append(el("div", { class: "ap-alt" }, el("h3", { text: "Alternativas a " + P.weak.map((c) => c.sym).join(" y ") }),
+      el("p", { class: "note", text: `${flojos} no está en su mejor momento. Hoy ninguna empresa del escáner tiene señal clara de compra, así que no le meto dinero aún, pero estas son las que mejor pinta tienen para sustituirlo:` }),
+      ...P.watchAlts.map((it) => {
+        const watched = S.watch.some((w) => w.symbol === it.symbol);
+        return el("div", { class: "ap-line" }, avatar(it.symbol),
+          el("div", { class: "ap-main" },
+            el("div", { class: "ap-hd" }, el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" })),
+            el("div", { class: "ap-tags" }, actionPill("vigilar"), it.phaseLabel ? el("span", { class: "flat", text: it.phaseLabel }) : null, el("span", { class: "flat", text: `confianza ${it.confidence ?? "—"} %` })),
+            el("div", { class: "body", text: shortTxt(it.reason || "") }),
+            it.watchFor ? el("div", { class: "body", text: "Para entrar: " + it.watchFor }) : null),
+          el("div", { class: "ap-amt" }, el("button", { class: "btn small" + (watched ? "" : " primary"), type: "button", text: watched ? "Vigilando" : "Vigilar", onclick: () => watched ? unwatch({ symbol: it.symbol }) : watch(it) })));
+      }),
+      el("p", { class: "note", text: "Si las pone en vigilancia, le aviso en cuanto entren en punto de compra y pasarán a este reparto." })));
+  }
+  const sigAt = P.pool.concat(P.skipped).map((c) => c.sigAt).filter(Boolean).sort().at(-1);
+  box.append(el("p", { class: "note", text: `Calculado con las señales de ${sigAt ? ago(sigAt) : "—"} y el escáner de ${S.scan?.at ? ago(S.scan.at) : "—"}. Si un activo no aparece, es que hoy no está en buen momento. Es una propuesta orientativa, no asesoramiento financiero: las compras las hace usted en Revolut, y pocas operaciones grandes cuestan menos en comisiones que muchas pequeñas.` }));
+}
+
+(function planPanel() {
+  const saved = lsGet(AP_LS) || "";
+  const inp = el("input", { id: "ap-amount", type: "number", min: "0", step: "10", inputmode: "decimal", placeholder: "200", value: saved });
+  inp.addEventListener("input", () => { lsSet(AP_LS, inp.value || null); renderPlan(); });
+  const panel = el("div", { class: "panel", id: "aporte" },
+    el("h2", {}, "Aportación del mes", el("small", { text: "dígame cuánto va a invertir y le digo cómo repartirlo" })),
+    el("div", { class: "ap-form" }, el("label", { class: "field" }, "Cantidad a invertir (€)", inp),
+      el("div", { class: "ap-quick" }, [100, 200, 300, 500].map((v) => el("button", { class: "chip", type: "button", text: v + " €", onclick: () => { inp.value = v; lsSet(AP_LS, String(v)); renderPlan(); } })))),
+    el("div", { id: "ap-out" }));
+  // Ventana propia: se abre desde Inicio («Invertir este mes») y desde Ideas
+  const ICON_AP = '<path d="M12 3v18M17 7H9.5a3 3 0 0 0 0 6h5a3 3 0 0 1 0 6H6"/>';
+  VIEWS.push("aportar");
+  const back = el("a", { class: "ap-back", href: "#cartera", text: "‹ Volver", onclick: (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } } });
+  $("#v-oportunidades").after(el("section", { class: "view", id: "v-aportar", hidden: "" }, back, panel));
+  const q = $(".quick");
+  if (q) q.append(el("a", { class: "wide", href: "#aportar" }, svgIcon(ICON_AP), "Invertir este mes"));
+  $("#v-oportunidades").prepend(el("a", { class: "panel ap-link", href: "#aportar" },
+    el("span", { class: "ap-ic" }, svgIcon(ICON_AP)),
+    el("span", {}, el("b", { text: "Aportación del mes" }), el("small", { text: "Cuánto invertir y en qué, con lo que hay hoy" })),
+    el("span", { class: "ap-go", text: "›" })));
+})();
+const _renderOpp3 = renderOpportunities;
+renderOpportunities = () => { _renderOpp3(); renderPlan(); };
+
+// ---- Mercado hoy: noticias que mueven el mercado, escenarios, régimen cripto y fechas clave ----
+// Lo escribe la capa de IA con las skills market-news-analyst, scenario-analyzer, catalyst-calendar
+// y crypto-regime-analyzer. Todo son datos públicos de mercado.
+const ZONE_ES = { "RISK-ON": ["Apetito por el riesgo", "gain"], "STRONG RISK-ON": ["Mucho apetito por el riesgo", "gain"], "HEALTHY": ["Sano", "gain"], "NEUTRAL": ["Neutral", "flat"], "CAUTION": ["Precaución", "loss"], "RISK-OFF": ["Aversión al riesgo", "loss"], "CRITICAL": ["Muy negativo", "loss"] };
+const COMP_ES = { btc_trend: "Tendencia de BTC", alt_breadth: "Amplitud de altcoins", dominance: "Dominancia de BTC", funding: "Apalancamiento", drawdown_vol: "Caída y volatilidad", momentum_thrust: "Impulso" };
+const REG_ES = { "risk-on": ["Apetito por el riesgo", "gain"], neutral: ["Neutral", "flat"], "risk-off": ["Aversión al riesgo", "loss"] };
+const IMP_ES = { alto: "loss", medio: "warn", bajo: "flat", high: "loss", medium: "warn", low: "flat" };
+const fmtD = (d) => { const t = new Date(d); return isNaN(t) ? d : t.toLocaleDateString("es-ES", { day: "numeric", month: "short" }); };
+function upcomingCatalysts() {
+  const held = new Set(allHoldings().map((h) => h.quote));
+  const out = [];
+  for (const c of S.market?.catalysts || []) out.push({ ...c, sym: null });
+  // Las fechas de sus valores; si el panorama general ya trae ese mismo día, no se repite
+  const mkDays = new Set(out.map((c) => c.d));
+  for (const [sym, a] of Object.entries(S.analysis || {})) if (held.has(sym)) for (const c of a.catalysts || []) if (!mkDays.has(c.d)) out.push({ ...c, sym });
+  const today = new Date(new Date().toDateString());
+  return out.filter((c) => { const t = new Date(c.d); return isNaN(t) || t >= today; })
+    .sort((a, b) => String(a.d).localeCompare(String(b.d))).slice(0, 6);
+}
+function renderMarketToday() {
+  let p = $("#hoy-mkt");
+  const M = S.market, R = S.cryptoRegime;
+  if (!M && !R) { if (p) p.remove(); return; }
+  if (!p) { p = el("div", { class: "panel", id: "hoy-mkt" }); $("#positions").after(p); }
+  p.replaceChildren(el("h2", {}, "Mercado hoy", el("small", { text: M?.at ? ` · análisis de ${ago(M.at)}` : "" })));
+  if (M) {
+    const rg = REG_ES[(M.regime || "").toLowerCase()];
+    if (rg) p.append(el("div", { class: "hm-reg" }, el("span", { class: "pill hm-" + rg[1], text: rg[0] })));
+    if (M.summary) p.append(el("p", { class: "hm-sum", text: M.summary }));
+    if (M.events?.length) {
+      p.append(el("h3", { text: "Noticias que mueven el mercado" }));
+      const ul = el("ul", { class: "hm-ev" });
+      for (const e of M.events) ul.append(el("li", {}, el("i", { class: "hm-dot hm-" + (IMP_ES[(e.impact || "").toLowerCase()] || "flat"), title: "Impacto " + (e.impact || "") }),
+        el("div", {}, e.u ? el("a", { href: e.u, target: "_blank", rel: "noopener", text: e.t }) : el("b", { text: e.t }), e.affects ? el("span", { class: "flat", text: " · " + e.affects }) : null)));
+      p.append(ul);
+    }
+    if (M.scenarios?.length) {
+      p.append(el("h3", { text: "Escenarios" }));
+      for (const sc of M.scenarios) p.append(el("div", { class: "hm-sc" }, el("div", { class: "hm-sch" }, el("b", { text: sc.name }), el("span", { class: "num flat", text: `${sc.prob} %` })),
+        el("div", { class: "hm-bar" }, el("span", { style: `width:${sc.prob}%` })), sc.effect ? el("div", { class: "body flat", text: sc.effect }) : null));
+    }
+  }
+  if (R) {
+    const z = ZONE_ES[String(R.zone || "").toUpperCase()] || [R.zone, "flat"];
+    p.append(el("h3", { text: "Mercado cripto" }));
+    p.append(el("div", { class: "hm-cr" }, el("div", { class: "hm-score num " + z[1], text: String(Math.round(R.score)) }),
+      el("div", {}, el("b", { text: z[0] }), el("div", { class: "flat", text: `Régimen 0–100 · ${ago(R.at)}` }))));
+    const comp = el("div", { class: "hm-comp" });
+    for (const [k, c] of Object.entries(R.components || {})) if (c.ok) comp.append(el("div", {}, el("span", { text: COMP_ES[k] || k }), el("div", { class: "hm-bar" }, el("span", { style: `width:${c.score}%` })), el("span", { class: "num flat", text: String(c.score) })));
+    p.append(comp);
+    if (M?.crypto) p.append(el("p", { class: "body", text: M.crypto }));
+  }
+  const cats = upcomingCatalysts();
+  if (cats.length) {
+    p.append(el("h3", { text: "Próximas fechas clave" }));
+    const ul = el("ul", { class: "hm-cat" });
+    for (const c of cats) ul.append(el("li", {}, el("span", { class: "num hm-d", text: fmtD(c.d) }), el("span", {}, c.sym ? el("b", { text: c.sym.replace(/-EUR$/, "") + " · " }) : null, c.e)));
+    p.append(ul);
+  }
+  p.append(el("p", { class: "note", text: "Lectura orientativa del mercado con IA y datos públicos; no es asesoramiento financiero." }));
+}
+// Tesis de inversión: por qué, qué la rompería, valoración y fechas, en señales e ideas
+function thesisBlock(sym) {
+  const a = S.analysis?.[sym];
+  if (!a || !(a.thesis || a.breaks || a.valuation)) return null;
+  const b = el("div", { class: "thesis" });
+  if (a.thesis) b.append(el("div", { class: "body" }, el("b", { text: "Por qué invertir: " }), a.thesis));
+  if (a.breaks) b.append(el("div", { class: "body" }, el("b", { text: "Qué lo cambiaría: " }), a.breaks));
+  if (a.valuation) b.append(el("div", { class: "body flat" }, el("b", { text: "Valoración: " }), a.valuation));
+  if (a.catalysts?.length) b.append(el("div", { class: "body flat" }, el("b", { text: "Fechas: " }), a.catalysts.map((c) => `${fmtD(c.d)} ${c.e}`).join(" · ")));
+  if (a.at) b.append(el("div", { class: "th-at", text: "Análisis con IA " + ago(a.at) }));
+  return b;
+}
+// Datos de valoración reales (Finnhub), en lenguaje llano
+const nf1 = (v) => Number(v).toLocaleString("es-ES", { maximumFractionDigits: 1 });
+function fundChips(sym) {
+  const f = S.fund?.[sym];
+  if (!f) return null;
+  const c = [];
+  if (f.pe != null && f.pe > 0) c.push(["PER " + nf1(f.pe), "Veces que el precio contiene el beneficio anual: cuanto más alto, más caro (la media del S&P 500 ronda 20–25)"]);
+  if (f.revG != null) c.push([`Ventas ${f.revG > 0 ? "+" : ""}${nf1(f.revG)} %`, "Crecimiento de las ventas en el último año"]);
+  if (f.epsG != null) c.push([`Beneficio/acción ${f.epsG > 0 ? "+" : ""}${nf1(f.epsG)} %`, "Crecimiento del beneficio por acción en el último año"]);
+  if (f.margin != null) c.push([`Margen ${nf1(f.margin)} %`, "De cada 100 € que vende, cuántos le quedan de beneficio"]);
+  if (f.divY != null && f.divY > 0.05) c.push([`Dividendo ${nf1(f.divY)} %`, "Rentabilidad anual por dividendo al precio actual"]);
+  if (f.beta != null) c.push([`Beta ${nf1(f.beta)}`, "Cuánto se mueve frente al mercado: 1 = igual; 2 = el doble"]);
+  if (!c.length) return null;
+  return el("div", { class: "fund" }, c.map(([t, tip]) => el("span", { class: "fchip num", title: tip, text: t })));
+}
+// Últimos titulares reales de un valor
+function newsFor(sym, n = 3) {
+  return (S.news?.items || []).filter((x) => (x.syms || []).includes(sym)).slice(0, n);
+}
+function newsList(items, withSyms = false) {
+  const ul = el("ul", { class: "nw-list" });
+  for (const x of items) ul.append(el("li", {},
+    el("a", { href: x.u, target: "_blank", rel: "noopener", text: x.t }),
+    el("div", { class: "nw-meta" },
+      el("span", { text: `${x.src} · ${ago(x.at)}` }),
+      withSyms ? (x.syms || []).slice(0, 3).map((s) => el("span", { class: "nw-sym", text: s.replace(/-EUR$/, "") })) : null,
+      (x.cats || []).includes("ipo") ? el("span", { class: "nw-tag ipo", text: "Salida a bolsa" }) : null,
+      (x.cats || []).includes("revolut") ? el("span", { class: "nw-tag rv", text: "Revolut" }) : null)));
+  return ul;
+}
+const _thesisBlock = thesisBlock;
+thesisBlock = (sym) => {
+  const b = _thesisBlock(sym) || el("div", { class: "thesis" });
+  const f = fundChips(sym);
+  if (f) b.prepend(f);
+  const nw = newsFor(sym);
+  if (nw.length) b.append(el("div", { class: "th-news" }, el("b", { text: "Últimas noticias" }), newsList(nw)));
+  return b.children.length ? b : null;
+};
+const _signalNode2 = signalNode;
+signalNode = (s, compact) => {
+  const n = _signalNode2(s, compact);
+  if (!compact && s.by === "ia") { const t = thesisBlock(s.symbol); if (t) n.append(t); }
+  return n;
+};
+const _renderOpp4 = renderOpportunities;
+renderOpportunities = () => {
+  _renderOpp4();
+  document.querySelectorAll("#scan-list .opp").forEach((o) => {
+    if (o.querySelector(".thesis")) return;
+    const sym = o.querySelector(".hd b")?.textContent; const t = sym && thesisBlock(sym);
+    if (t) o.append(t);
+  });
+};
+// Ideas ordenadas por puntuación técnica, de mayor a menor (el veredicto sigue en cada tarjeta)
+var OPP_BY_TECH = true;
+const _renderOpp5 = renderOpportunities;
+renderOpportunities = () => {
+  const orig = S.scan?.items;
+  if (orig) S.scan.items = [...orig].sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+  try { _renderOpp5(); } finally { if (orig) S.scan.items = orig; }
+  const sc = $("#scan-list");
+  if (sc && sc.querySelector(".opp") && !sc.querySelector(".opp-order")) sc.prepend(el("p", { class: "note opp-order", text: "Ordenadas por puntuación técnica, de mayor a menor." }));
+};
+const _renderAll2 = renderAll;
+renderAll = () => { _renderAll2(); renderMarketToday(); };
+
+// ---- Ayudas: cómo leer el resumen y las ideas ----
+const helpBox = (title, rows) => el("details", { class: "help" }, el("summary", { text: title }),
+  el("dl", {}, rows.flatMap(([k, v]) => [el("dt", { text: k }), el("dd", { text: v })])));
+(function helps() {
+  $("#summary")?.append(helpBox("¿Cómo se lee este resumen?", [
+    ["Número grande", "Lo que vale hoy todo lo que tiene en Revolut: acciones, criptos y el efectivo sin invertir de Revolut Invest."],
+    ["Hoy", "Cuánto ha subido o bajado hoy su cartera, en euros y en %. Acciones: frente al cierre anterior (fuera de horario, con el precio de preapertura o cierre ampliado). Cripto: en las últimas 24 h, como Revolut X."],
+    ["Invertido", "Lo que pagó por lo que tiene ahora. Las acciones en dólares se pasan a euros al cambio de hoy, igual que Revolut."],
+    ["Resultado", "Valor actual menos invertido: lo que ganaría (verde) o perdería (rojo) si lo vendiera todo ahora, sin contar comisiones ni impuestos. Debajo, lo mismo en %."],
+    ["Barra de colores", "El peso de cada activo en su cartera."],
+    ["Frescura", "Arriba a la derecha: cuándo se actualizaron los precios. Con la app abierta se refrescan cada 15 segundos; si no, cada 15 minutos."],
+  ]));
+  $("#v-oportunidades")?.querySelector("#scan-list")?.before(helpBox("¿Cómo se leen las ideas?", [
+    ["Técnico (0–100)", "Nota del gráfico: tendencia, medias de 50 y 200 sesiones, impulso, sobrecompra o sobreventa y volatilidad. Más de 70 es un gráfico fuerte; no dice nada de la empresa."],
+    ["¿Invertir?", "Veredicto de la IA para quien aún no lo tiene: comprar ahora, vigilar (esperar mejor momento) o evitar. Combina el gráfico, las noticias y la valoración."],
+    ["Fase", "En qué momento del ciclo está el precio. Las correcciones dentro de una tendencia alcista suelen ser las mejores entradas."],
+    ["Datos de valoración", "Cifras reales de la empresa (PER, crecimiento, margen, dividendo, beta). Pase el dedo o el ratón por encima de cada una para ver qué significa."],
+    ["Por qué invertir / qué lo cambiaría", "La tesis de la IA y lo que la rompería. Se revisa tres veces al día con las noticias del momento."],
+    ["Últimas noticias", "Titulares reales de las últimas 48 h, actualizados cada 15 minutos."],
+  ]));
+})();
+
+// ---- Hora de los próximos análisis con IA (la rutina corre a las 07:30, 13:30 y 21:30 UTC) ----
+const AI_RUNS_UTC = [[7, 30], [13, 30], [21, 30]];
+function nextAiRun(now = new Date()) {
+  for (let d = 0; d < 2; d++) for (const [h, m] of AI_RUNS_UTC) {
+    const t = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + d, h, m));
+    if (t > now) return t;
+  }
+  return null;
+}
+const hhmm = (t) => t.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" });
+function renderSigFresh() {
+  const box = $("#last-signals"); if (!box || !S.loaded) return;
+  let n = $("#sig-fresh");
+  if (!n) { n = el("p", { class: "note", id: "sig-fresh" }); box.querySelector("h2")?.after(n); }
+  const nx = nextAiRun();
+  n.textContent = `Revisión de reglas ${ago(S.status?.portfolioAt)} (cada 15 min) · análisis con IA ${ago(S.status?.aiAt)}${nx ? `, el próximo a las ${hhmm(nx)}` : ""}. Solo aparecen señales nuevas cuando algo cambia.`;
+}
+
+// ---- Noticias: canal propio con titulares reales (Google Noticias), actualizado cada 15 minutos ----
+VIEWS.push("noticias");
+(function newsView() {
+  const nav = $("nav.tabs");
+  const a = nav?.querySelector('a[data-view="proyeccion"]');
+  if (a) {
+    a.href = "#noticias"; a.dataset.view = "noticias";
+    a.replaceChildren(svgIcon('<path d="M4 5h13v14a1 1 0 0 0 1 1H5a1 1 0 0 1-1-1z"/><path d="M17 9h3v10a1 1 0 0 1-2 0"/><path d="M7 9h7M7 13h7M7 17h4"/>'), el("span", { text: "Noticias" }));
+  }
+  const sec = el("section", { class: "view", id: "v-noticias", hidden: "" },
+    el("div", { class: "panel", id: "nw-ipo", hidden: "" }),
+    el("div", { class: "panel", id: "nw-panel" }));
+  $("#v-proyeccion").after(sec);
+})();
+const NW_LS = "centinela.newsFilter";
+const NW_F = [["all", "Todas"], ["mine", "Mi cartera"], ["ipo", "Salidas a bolsa"], ["revolut", "Revolut"], ["mercado", "Mercados"], ["cripto", "Cripto"]];
+let nwFilter = lsGet(NW_LS) || "all", nwMax = 40;
+function renderNews() {
+  const p = $("#nw-panel"); if (!p) return;
+  const N = S.news?.items || [];
+  const mine = new Set([...allHoldings().map((h) => h.quote), ...(S.watch || []).map((w) => w.symbol)]);
+  const pass = (x) => nwFilter === "all" ? true : nwFilter === "mine" ? (x.syms || []).some((s) => mine.has(s))
+    : nwFilter === "mercado" ? (x.cats || []).some((c) => c === "mercado" || c === "europa") : (x.cats || []).includes(nwFilter);
+  const list = N.filter(pass);
+  const chips = el("div", { class: "filters" }, NW_F.map(([k, t]) => el("button", { class: "chip", type: "button", "aria-pressed": String(k === nwFilter), text: t,
+    onclick: () => { nwFilter = k; nwMax = 40; lsSet(NW_LS, k); renderNews(); } })));
+  p.replaceChildren(el("h2", {}, "Noticias", el("small", { text: S.news?.at ? ` · titulares reales, actualizados ${ago(S.news.at)}` : "" })), chips);
+  if (!N.length) { p.append(el("div", { class: "empty", text: "Las noticias llegarán con la próxima revisión del motor (cada 15 minutos)." })); }
+  else if (!list.length) p.append(el("div", { class: "empty", text: "No hay titulares de este tema en las últimas 72 h." }));
+  else {
+    // Agrupadas por día
+    const day = (iso) => { const d = new Date(iso), t = new Date(); const k = Math.floor((new Date(t.toDateString()) - new Date(d.toDateString())) / 864e5); return k <= 0 ? "Hoy" : k === 1 ? "Ayer" : d.toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }); };
+    let cur = null, ul = null;
+    for (const x of list.slice(0, nwMax)) {
+      const g = day(x.at);
+      if (g !== cur) { cur = g; p.append(el("h3", { class: "nw-day", text: g })); ul = newsList([], true); p.append(ul); }
+      ul.append(newsList([x], true).firstChild);
+    }
+    if (list.length > nwMax) p.append(el("button", { class: "btn small", type: "button", text: `Ver más (${list.length - nwMax})`, onclick: () => { nwMax += 40; renderNews(); } }));
+  }
+  p.append(el("p", { class: "note", text: "Fuente: Google Noticias en español. Se buscan los temas del mercado y cada valor de su cartera, vigilancia e ideas. Los titulares enlazan al medio original." }));
+  renderIpos();
+}
+// Salidas a bolsa que sigue la IA, con si se puede invertir desde Revolut
+function renderIpos() {
+  const p = $("#nw-ipo"); if (!p) return;
+  const L = S.market?.ipos || [];
+  p.hidden = !L.length;
+  if (!L.length) return;
+  const RV = { "sí": ["Disponible en Revolut", "gain"], no: ["No disponible en Revolut", "loss"], desconocido: ["Revolut: sin confirmar", "flat"] };
+  p.replaceChildren(el("h2", {}, "Salidas a bolsa", el("small", { text: ` · según la IA, ${ago(S.market.at)}` })),
+    el("div", { class: "ipo-grid" }, L.map((x) => {
+      const rv = RV[x.revolut] || RV.desconocido;
+      return el("div", { class: "ipo-card" },
+        el("div", { class: "ipo-hd" }, el("b", { text: x.name }), x.ticker ? el("span", { class: "nw-sym", text: x.ticker }) : null),
+        el("div", { class: "nw-meta" }, x.d ? el("span", { text: fmtD(x.d) }) : null, x.market ? el("span", { text: x.market }) : null),
+        el("span", { class: "pill hm-" + rv[1], text: rv[0] }),
+        x.note ? el("p", { class: "body", text: x.note }) : null,
+        x.u ? el("a", { class: "more", href: x.u, target: "_blank", rel: "noopener", text: "Leer más" }) : null);
+    })));
+}
+// En Inicio: lo último de su cartera
+function renderHomeNews() {
+  let p = $("#home-news");
+  const mine = new Set(allHoldings().map((h) => h.quote));
+  const items = (S.news?.items || []).filter((x) => (x.syms || []).some((s) => mine.has(s))).slice(0, 5);
+  if (!items.length) { p?.remove(); return; }
+  if (!p) { p = el("div", { class: "panel", id: "home-news" }); ($("#hoy-mkt") || $("#positions")).after(p); }
+  p.replaceChildren(el("h2", {}, "Lo último de su cartera", el("a", { class: "more", href: "#noticias", text: "Todas", onclick: () => { nwFilter = "mine"; lsSet(NW_LS, "mine"); } })), newsList(items, true));
+}
+const _renderAll3 = renderAll;
+renderAll = () => { _renderAll3(); renderNews(); renderHomeNews(); renderSigFresh(); };
+setInterval(() => { if (document.visibilityState === "visible" && S.loaded) renderSigFresh(); }, 60000);
+
+const readOnly = () => Promise.reject({ message: "en la app del móvil solo se consulta; cámbielo en la dashboard de Claude" });
+const stubDb = { doc: () => ({ set: readOnly, update: readOnly, delete: readOnly }) };
+
+function lockScreen(msg = "") {
+  document.querySelector(".lock")?.remove();
+  const input = el("input", { id: "pwa-key", placeholder: "XXXX-XXXX-XXXX-XXXX", autocomplete: "off", autocapitalize: "characters", spellcheck: "false", inputmode: "text" });
+  const err = el("div", { class: "err", text: msg });
+  const go = el("button", { class: "btn primary", type: "button", text: "Abrir" });
+  const submit = async () => {
+    const k = normKey(input.value);
+    if (k.length < 12) { err.textContent = "La clave tiene 16 caracteres."; return; }
+    go.disabled = true; err.textContent = "";
+    const ok = await pwaLoad(k);
+    go.disabled = false;
+    if (ok) { lsSet(KEY_LS, k); document.querySelector(".lock")?.remove(); }
+    else err.textContent = "Esa clave no abre sus datos.";
+  };
+  go.addEventListener("click", submit);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
+  document.body.appendChild(el("div", { class: "lock" },
+    el("div", { class: "card" },
+      el("span", { class: "eye", "aria-hidden": "true" }),
+      el("h2", { text: "Centinela" }),
+      el("p", { class: "note", text: "Escriba su clave de acceso. Solo se pide la primera vez en este móvil." }),
+      input, go, err)));
+  setTimeout(() => input.focus(), 50);
+}
+
+async function decryptBundle(k, env) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(k), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt: b64(env.salt), iterations: env.iter }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(env.iv) }, key, b64(env.ct));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+
+async function pwaLoad(k) {
+  if (pwaLoading) return false;
+  pwaLoading = true;
+  try {
+    const r = await fetch("data.enc.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const d = await decryptBundle(k, await r.json());
+    S.ledger = d.ledger; S.crypto = d.crypto; S.settings = d.settings || {};
+    S.positions = { manual: [], cryptoCost: {}, ...(d.positions || {}) };
+    S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
+    S.signals = d.signals || []; S.watch = d.watch || [];
+    S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
+    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null;
+    if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
+    pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
+    pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
+    db = stubDb; S.loaded = true;
+    renderAll(); appPanel(); startLive();
+    if (!$("#v-cartera").hidden) requestAnimationFrame(drawEvolution);
+    return true;
+  } catch (e) {
+    if (e && e.name === "OperationError") return false;      // clave incorrecta
+    if (!navigator.onLine) toast("Sin conexión: muestro lo último guardado");
+    else toast("No se pudieron cargar los datos", true);
+    return e && e.name !== "OperationError" && S.loaded;
+  } finally { pwaLoading = false; }
+}
+
+function appPanel() {
+  let p = $("#pwa-panel");
+  if (!p) {
+    p = el("div", { class: "panel", id: "pwa-panel" });
+    $("#v-ajustes").prepend(p);
+  }
+  p.replaceChildren(
+    el("h2", { text: "App del móvil" }),
+    el("p", { class: "note", text: "Bitcoin y las criptos de Revolut X se actualizan solas. Si compra o vende acciones en Revolut Invest, suba el Extracto de cuenta (CSV) a Drive › Inversiones › 01 Extractos Revolut › Invest y pídale a Claude que lo importe." }),
+    el("p", { class: "note", text: "El motor revisa su cartera y las noticias cada 15 minutos, y el mercado cada mañana, sin necesidad de su PC. El análisis con IA (tesis, valoración, salidas a bolsa) se hace tres veces al día: " + AI_RUNS_UTC.map(([h, m]) => hhmm(new Date(Date.UTC(2026, 0, 1, h, m)))).join(", ") + " (hora de invierno)." }),
+    el("div", { style: "display:flex;gap:8px;flex-wrap:wrap" },
+      el("button", { class: "btn small", type: "button", text: "Actualizar ahora", onclick: () => refresh(true) }),
+      el("button", { class: "btn small", type: "button", text: "Olvidar la clave", onclick: () => { lsSet(KEY_LS, null); location.reload(); } })),
+    el("p", { class: "note", text: pwaLastAt ? "Datos publicados " + ago(pwaLastAt) + "." : "" }));
+  // Clave de Finnhub para precios de acciones en directo (solo se guarda en este móvil)
+  const has = !!(lsGet(FH_LS) || pwaFinnhub);
+  const inp = el("input", { id: "fh-key", placeholder: has ? "Clave guardada · escriba otra para cambiarla" : "Pegue aquí su clave de Finnhub", autocomplete: "off", spellcheck: "false" });
+  let lp = $("#live-panel");
+  if (!lp) { lp = el("div", { class: "panel", id: "live-panel" }); p.after(lp); }
+  const form = el("div", { class: "form" },
+    el("label", { class: "field" }, "Clave de Finnhub", inp),
+    el("button", { class: "btn primary", type: "button", text: "Guardar", onclick: () => { const v = inp.value.trim(); if (!/^[A-Za-z0-9]{10,}$/.test(v)) { toast("Esa clave no parece válida", true); return; } lsSet(FH_LS, v); inp.value = ""; toast("Clave guardada en este móvil"); appPanel(); liveTick(); } }),
+    lsGet(FH_LS) ? el("button", { class: "btn", type: "button", text: "Quitar la de este móvil", onclick: () => { lsSet(FH_LS, null); appPanel(); } }) : "");
+  const live = Date.now() - liveAt < 60000;
+  const ok = (t, d) => el("div", { class: "status-row" }, el("span", { text: t }), el("span", { class: "up", text: d }));
+  if (has) {
+    // Ya configurado: estado y, solo si lo pide, el formulario para cambiar la clave
+    form.hidden = true;
+    lp.replaceChildren(
+      el("h2", { text: "Precios en directo" }),
+      ok("Criptomonedas (Binance)", "✓ activo"),
+      ok("Acciones (Finnhub)", "✓ clave configurada"),
+      el("p", { class: "note", text: live ? "Actualizándose ahora cada 15 segundos mientras la app está abierta." : "Se actualizan cada 15 segundos mientras la app está abierta y el mercado cotiza." }),
+      el("button", { class: "btn small", type: "button", text: "Cambiar clave", onclick: (e) => { form.hidden = false; e.target.remove(); } }),
+      form);
+  } else {
+    lp.replaceChildren(
+      el("h2", { text: "Precios en directo" }),
+      ok("Criptomonedas (Binance)", "✓ activo"),
+      el("p", { class: "note" }, "Para las acciones hace falta una clave gratuita de Finnhub: regístrese en ", el("a", { href: "https://finnhub.io/register", target: "_blank", rel: "noopener", text: "finnhub.io" }), ", copie su «API key» y péguela aquí."),
+      form);
+  }
+}
+
+// ---- Avisos propios de la app (Web Push): sin apps externas ----
+// El móvil se suscribe y manda su suscripción cifrada al motor, que desde entonces avisa aquí.
+const PUSH_LS = "centinela.pushEndpoint", PUSH_HIDE_LS = "centinela.pushBannerHidden";
+const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const pushSupported = () => "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+const b64uToBytes = (s) => { const b = atob(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4)); return Uint8Array.from(b, (c) => c.charCodeAt(0)); };
+function deviceLabel() {
+  const u = navigator.userAgent;
+  const dev = /iPhone/.test(u) ? "iPhone" : /iPad/.test(u) || isIOS() ? "iPad" : /Android/.test(u) ? "Android" : /Mac/.test(u) ? "Mac" : /Windows/.test(u) ? "Windows" : "Navegador";
+  return dev + (isStandalone() ? " (app)" : " (navegador)");
+}
+async function currentSub() {
+  if (!pushSupported()) return null;
+  try { const reg = await navigator.serviceWorker.ready; return await reg.pushManager.getSubscription(); } catch { return null; }
+}
+async function enablePush() {
+  // El permiso se pide nada más pulsar (iOS lo exige en el mismo toque)
+  const perm = await Notification.requestPermission();
+  if (perm !== "granted") { toast(perm === "denied" ? "Avisos bloqueados: actívelos en Ajustes del iPhone › Notificaciones › Centinela." : "No se activaron los avisos.", true); renderPushPanel(); return; }
+  try {
+    if (!S.push?.key) throw new Error("falta la clave de avisos; pulse «Actualizar ahora» y vuelva a probar");
+    const reg = await navigator.serviceWorker.ready;
+    let sub = await reg.pushManager.getSubscription();
+    if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64uToBytes(S.push.key) });
+    await sendCmd({ op: "push-sub", sub: sub.toJSON(), dev: deviceLabel(), at: new Date().toISOString() });
+    lsSet(PUSH_LS, sub.endpoint);
+    toast("Avisos activados. En unos minutos le llegará uno de bienvenida.");
+  } catch (e) { toast("No se pudieron activar: " + (e.message || e), true); }
+  renderPushPanel(); renderPushBanner();
+}
+async function disablePush() {
+  try {
+    const sub = await currentSub();
+    if (sub) { await sendCmd({ op: "push-unsub", endpoint: sub.endpoint, at: new Date().toISOString() }); await sub.unsubscribe(); }
+    lsSet(PUSH_LS, null); toast("Avisos desactivados en este dispositivo.");
+  } catch (e) { toast("No se pudo: " + (e.message || e), true); }
+  renderPushPanel(); renderPushBanner();
+}
+async function testPush() {
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    await reg.showNotification("🔔 Centinela", { body: "Así se verán sus avisos: caídas fuertes, señales de la IA y el resumen de la mañana.", icon: "icons/icon-192.png", tag: "prueba" });
+  } catch (e) { toast("No se pudo mostrar: " + (e.message || e), true); }
+}
+async function renderPushPanel() {
+  const host = $("#pwa-panel"); if (!host) return;
+  let p = $("#push-panel");
+  if (!p) { p = el("div", { class: "panel", id: "push-panel" }); host.before(p); }
+  const subs = S.push?.subs || [];
+  const sub = await currentSub();
+  const confirmed = sub && subs.some((x) => x.endpoint === sub.endpoint && !x.welcome);
+  const known = sub && subs.some((x) => x.endpoint === sub.endpoint);
+  const kids = [el("h2", {}, "Avisos", el("small", { text: "propios de Centinela, sin otras apps" }))];
+  if (!pushSupported() || (isIOS() && !isStandalone())) {
+    kids.push(el("p", { class: "note", text: isIOS() ? "En iPhone los avisos solo funcionan con la app abierta desde su icono de la pantalla de inicio (Safari › Compartir › Añadir a pantalla de inicio) y con iOS 16.4 o posterior." : "Este navegador no admite avisos de aplicaciones web." }));
+  } else if (Notification.permission === "denied") {
+    kids.push(el("p", { class: "note", text: "Los avisos están bloqueados para Centinela. Actívelos en Ajustes del iPhone › Notificaciones › Centinela (o en los permisos del navegador) y vuelva aquí." }));
+  } else if (!sub) {
+    kids.push(el("p", { class: "note", text: "Reciba aquí mismo las caídas fuertes, las señales de la IA, el aviso de nuevas salidas a bolsa y el resumen de cada mañana. El contenido viaja cifrado: ni Apple ni Google pueden leerlo." }),
+      el("button", { class: "btn primary", type: "button", text: "Activar avisos en este dispositivo", onclick: enablePush }));
+  } else {
+    kids.push(el("div", { class: "status-row" }, el("span", { text: "Este dispositivo" }), el("span", { class: confirmed ? "up" : "flat", text: confirmed ? "✓ recibiendo avisos" : known ? "esperando el aviso de bienvenida" : "pendiente de confirmar (máx. 15 min)" })),
+      el("div", { class: "status-row" }, el("span", { text: "Dispositivos con avisos" }), el("span", { text: String(subs.length) })),
+      confirmed ? el("p", { class: "note", text: "Todo listo: ya puede borrar la app ntfy del móvil. Si algún día los avisos de la app fallan, el motor volverá a usar ntfy como respaldo." }) : null,
+      el("div", { style: "display:flex;gap:8px;flex-wrap:wrap" },
+        el("button", { class: "btn small", type: "button", text: "Ver un aviso de prueba", onclick: testPush }),
+        el("button", { class: "btn small", type: "button", text: "Desactivar aquí", onclick: disablePush })));
+  }
+  p.replaceChildren(...kids.filter(Boolean));
+}
+// En Inicio, una invitación discreta a activarlos (una vez; se puede cerrar)
+async function renderPushBanner() {
+  const old = $("#push-banner");
+  const show = S.loaded && pushSupported() && isStandalone() && Notification.permission === "default" && !lsGet(PUSH_HIDE_LS) && !(await currentSub());
+  if (!show) { old?.remove(); return; }
+  if (old) return;
+  const b = el("div", { class: "panel push-banner", id: "push-banner" },
+    el("div", {}, el("b", { text: "Reciba los avisos aquí" }), el("p", { class: "note", text: "Active los avisos de Centinela y deje de depender de otras apps." })),
+    el("div", { class: "pb-actions" },
+      el("button", { class: "btn primary small", type: "button", text: "Activar", onclick: enablePush }),
+      el("button", { class: "btn small", type: "button", text: "Ahora no", onclick: () => { lsSet(PUSH_HIDE_LS, "1"); b.remove(); } })));
+  $("#summary")?.after(b);
+}
+const _appPanel = appPanel;
+appPanel = () => { _appPanel(); renderPushPanel(); renderPushBanner(); };
+
+// ---- Robo-Advisor de Revolut: ventana propia y suma en el resumen ----
+// Revolut no tiene API: los movimientos salen del extracto del robot y el motor actualiza el precio de
+// sus fondos cada 15 minutos. Solo se observa; Centinela nunca opera.
+function robotTotals() {
+  const R = S.robot;
+  if (!R?.positions?.length) return null;
+  return { value: R.value || 0, invested: R.invested || 0, pnl: R.pnl || 0, today: R.today || 0 };
+}
+VIEWS.push("robot");
+const ICON_ROBOT = '<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/><circle cx="12" cy="3.5" r="1"/>';
+(function robotView() {
+  $("#v-aportar")?.after(el("section", { class: "view", id: "v-robot", hidden: "" },
+    el("a", { class: "ap-back", href: "#cartera", text: "‹ Volver", onclick: (e) => { if (history.length > 1) { e.preventDefault(); history.back(); } } }),
+    el("div", { id: "robot-body", style: "display:grid;gap:14px" })));
+})();
+const eurR = (v, d = 2) => new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
+const sgn = (v) => (v > 0 ? "+" : "");
+// Tarjeta en Inicio, debajo de sus posiciones
+function renderRobotCard() {
+  const R = S.robot; let c = $("#robot-card");
+  if (!R?.positions?.length) { c?.remove(); return; }
+  const kids = [
+    el("span", { class: "ap-ic rb-ic" }, svgIcon(ICON_ROBOT)),
+    el("span", {}, el("b", { text: "Robo-Advisor" }), el("small", { text: `${R.positions.length} fondos · ${R.byClass?.map((x) => `${x.name.toLowerCase()} ${fmtPct(x.w, false)}`).slice(0, 2).join(", ")}` })),
+    el("span", { class: "rb-num" }, el("b", { class: "num", text: eurR(R.value) }),
+      el("small", { class: "num " + cls(R.todayPct), text: R.todayPct != null ? `hoy ${fmtPct(R.todayPct)}` : "" })),
+  ];
+  if (!c) { c = el("a", { class: "panel ap-link rb-card", id: "robot-card", href: "#robot" }); $("#positions")?.after(c); }
+  c.replaceChildren(...kids);
+}
+function renderRobot() {
+  const box = $("#robot-body"); if (!box) return;
+  const R = S.robot;
+  if (!R?.positions?.length) {
+    box.replaceChildren(el("div", { class: "panel" }, el("h2", { text: "Robo-Advisor" }),
+      el("p", { class: "note", text: "Suba el extracto de cuenta del Robo-Advisor a Drive › Inversiones › 01 Extractos Revolut y pídame que lo importe." })));
+    return;
+  }
+  const bar = (list) => {
+    const b = el("div", { class: "alloc" }), lg = el("div", { class: "legend" });
+    list.forEach((x, i) => { b.append(el("span", { style: `width:${(x.w * 100).toFixed(2)}%;background:${seriesColor(i)}` })); lg.append(el("span", {}, el("i", { style: `background:${seriesColor(i)}` }), `${x.name} `, el("span", { class: "num flat", text: fmtPct(x.w, false) }))); });
+    return [b, lg];
+  };
+  // 1. Resumen
+  const head = el("div", { class: "panel rb-head" },
+    el("div", { class: "hello" }, el("div", { class: "kick" }, el("i"), "Revolut · Robo-Advisor"), el("h2", { text: eurR(R.value) })),
+    el("div", { class: "rb-kpis" },
+      el("div", {}, el("span", { text: "Aportado" }), el("b", { class: "num", text: eurR(R.invested) })),
+      el("div", {}, el("span", { text: "Resultado" }), el("b", { class: "num " + cls(R.pnl), text: `${sgn(R.pnl)}${eurR(R.pnl)}` }), el("small", { class: "num " + cls(R.pnl), text: R.pnlPct != null ? fmtPct(R.pnlPct) : "" })),
+      el("div", {}, el("span", { text: "Hoy" }), el("b", { class: "num " + cls(R.today), text: `${sgn(R.today)}${eurR(R.today)}` }), el("small", { class: "num " + cls(R.todayPct), text: R.todayPct != null ? fmtPct(R.todayPct) : "" }))),
+    el("p", { class: "note", text: `Desde el ${fmtD(R.startedAt)} · ${R.positions.length} fondos${R.cash > 0.01 ? ` · ${eurR(R.cash)} sin invertir` : ""} · precios ${ago(R.at)}.` }));
+  // 2. Reparto
+  const mix = el("div", { class: "panel" }, el("h2", {}, "Reparto", el("small", { text: "cómo ha repartido el robot su dinero" })),
+    el("h3", { class: "rb-h3", text: "Por tipo de activo" }), ...bar(R.byClass || []),
+    el("h3", { class: "rb-h3", text: "Por región" }), ...bar(R.byRegion || []),
+    el("p", { class: "note", text: "Acciones: buscan crecer y oscilan más. Bonos: renta fija, más estables. Materias primas: protegen frente a la inflación." }));
+  // 3. Fondos
+  const funds = el("div", { class: "panel" }, el("h2", {}, "Fondos", el("small", { text: "de mayor a menor peso" })),
+    el("div", { class: "rb-funds" }, R.positions.map((p) => el("div", { class: "rb-fund" },
+      el("div", { class: "rb-fn" }, el("b", { text: p.name }), el("span", { class: "nw-meta" }, el("span", { class: "nw-sym", text: p.t }), el("span", { text: `${p.cls} · ${p.region}` }))),
+      el("div", { class: "rb-fv" }, el("b", { class: "num", text: fmtPct(p.weight, false) }), el("span", { class: "num flat", text: eurR(p.value) }),
+        el("span", { class: "num " + cls(p.ch1d), text: p.ch1d != null ? fmtPct(p.ch1d) : "—" }))))));
+  // 4. Qué ha hecho
+  const what = (m) => {
+    const b = [];
+    if (m.topup) b.push(`Aportación de ${eurR(m.topup)}`);
+    if (m.out) b.push(`Retirada de ${eurR(m.out)}`);
+    if (m.kind === "Reequilibrio") b.push(`vende ${m.sells.map((x) => x.t).join(", ")} y compra ${m.buys.map((x) => x.t).join(", ")}`);
+    else if (m.buys.length) b.push(m.buys.length > 4 ? `compra ${m.buys.length} fondos por ${eurR(m.buys.reduce((a, x) => a + x.eur, 0))}` : `compra ${m.buys.map((x) => `${x.t} (${eurR(x.eur)})`).join(", ")}`);
+    if (m.kind !== "Reequilibrio" && m.sells.length) b.push(`vende ${m.sells.map((x) => x.t).join(", ")}`);
+    if (m.fees) b.push(`comisión de ${eurR(m.fees)}`);
+    if (m.divs) b.push(`dividendos de ${eurR(m.divs)}`);
+    return b.join(" · ");
+  };
+  const moves = el("div", { class: "panel" }, el("h2", {}, "Qué ha hecho el robot", el("small", { text: "según su extracto" })),
+    el("ul", { class: "hm-cat" }, (R.moves || []).map((m) => el("li", {}, el("span", { class: "num hm-d", text: fmtD(m.d) }), el("span", {}, el("b", { text: m.kind + " · " }), what(m))))),
+    el("p", { class: "note", text: `Extracto importado ${ago(S.robot.ledger?.importedAt)}. Para ver movimientos nuevos (reequilibrios, aportaciones, comisiones), suba un extracto completo a Drive y pídame que lo importe.` }));
+  // 5. ¿Le compensa?
+  const B = R.bench, days = R.startedAt ? Math.floor((Date.now() - new Date(R.startedAt)) / 864e5) : 0;
+  const worth = el("div", { class: "panel" }, el("h2", {}, "¿Le compensa el robot?", el("small", { text: "frente a un fondo indexado del mundo" })),
+    el("div", { class: "rb-vs" },
+      el("div", {}, el("span", { text: "Robot" }), el("b", { class: "num", text: eurR(R.value) }), el("small", { class: "num " + cls(R.pnlPct), text: R.pnlPct != null ? fmtPct(R.pnlPct) : "" })),
+      B ? el("div", {}, el("span", { text: "Indexado MSCI World" }), el("b", { class: "num", text: eurR(B.value) }), el("small", { class: "num " + cls(B.pnlPct), text: B.pnlPct != null ? fmtPct(B.pnlPct) : "" })) : null),
+    el("p", { class: "body", text: `Comisión del robot: 0,75 % al año (unos ${eurR(R.feeYear)} al año con su saldo actual), más el coste de cada fondo. Un indexado del MSCI World (${B?.name || "iShares Core MSCI World"}) cuesta en torno al 0,2 % y no reequilibra: el robot compensa si su reparto más prudente (con bonos) le ahorra caídas que usted no aguantaría.` }),
+    el("p", { class: "note", text: days < 90 ? `Con ${days} día${days === 1 ? "" : "s"} de historia la comparación aún no dice nada: tiene sentido a partir de unos 3 meses.` : "La comparación usa sus mismas aportaciones, en las mismas fechas, en el indexado." }));
+  box.replaceChildren(head, mix, funds, moves, worth,
+    el("p", { class: "note", text: "Centinela solo observa el robot: no puede ni debe operar en él. No es asesoramiento financiero." }));
+}
+const _renderAll4 = renderAll;
+renderAll = () => { _renderAll4(); renderRobotCard(); renderRobot(); };
+const _renderPortfolio2 = renderPortfolio;
+renderPortfolio = () => {
+  _renderPortfolio2(); renderRobotCard();
+  // Cripto regalada por Revolut (curso «Aprende y gana»): no tiene coste, así que no hay resultado que calcular
+  for (const a of (S.crypto?.assets || []).filter((x) => x.reward)) {
+    document.querySelectorAll("table.pos tbody tr").forEach((tr) => {
+      if (tr.querySelector(".tk")?.textContent !== a.asset) return;
+      const res = tr.querySelector(".c-res"); if (res) { res.className = "num c-res up"; res.textContent = "Regalo de Revolut"; }
+      const nm = tr.querySelector(".c-name .nm"); if (nm) nm.textContent = "Recompensa del curso de Revolut";
+    });
+  }
+};
+
+// ---- Desplazamiento propio de cada pestaña ----
+// Cada pestaña recuerda dónde se quedó; la primera vez empieza arriba. Tocar la pestaña en la que
+// ya está la sube al principio, como en las apps del iPhone.
+try { history.scrollRestoration = "manual"; } catch {}
+const viewNow = () => (VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : "cartera");
+const scrollOf = {};
+let lastView = viewNow();
+addEventListener("scroll", () => { if (viewNow() === lastView) scrollOf[lastView] = scrollY; }, { passive: true });
+// Al tocar cualquier enlace a otra pestaña se guarda la posición antes de cambiar (la vista nueva puede ser más corta)
+document.addEventListener("click", (e) => { if (e.target.closest?.('a[href^="#"]')) scrollOf[lastView] = scrollY; }, true);
+addEventListener("hashchange", () => {
+  const v = viewNow();
+  if (v === lastView) return;
+  lastView = v;
+  // Tras pintar la vista nueva (route ya la mostró), su posición guardada o el principio
+  const y = scrollOf[v] || 0;
+  scrollTo({ top: y, behavior: "instant" });
+  requestAnimationFrame(() => scrollTo({ top: y, behavior: "instant" }));
+});
+$("nav.tabs")?.addEventListener("click", (e) => {
+  const a = e.target.closest("a[data-view]");
+  if (a && a.dataset.view === viewNow()) { e.preventDefault(); scrollOf[a.dataset.view] = 0; scrollTo({ top: 0, behavior: "smooth" }); }
+});
+
+// Versión del código de la app: «Actualizar» y cada vuelta a la app comprueban si hay una nueva y recargan
+const APP_V = "8847d26b25";
+async function checkAppVersion() {
+  try {
+    const r = await fetch("version.json?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return false;
+    const { v } = await r.json();
+    if (v && v !== APP_V && !APP_V.startsWith("__")) {
+      // Una sola recarga por versión y minuto, y antes se renueva la caché del navegador
+      const tried = (() => { try { return JSON.parse(sessionStorage.getItem("centinela.reload") || "null"); } catch { return null; } })();
+      if (tried && tried.v === v && Date.now() - tried.t < 60000) return false;
+      try { sessionStorage.setItem("centinela.reload", JSON.stringify({ v, t: Date.now() })); } catch {}
+      await Promise.all(["./", "index.html"].map((p) => fetch(p, { cache: "reload" }).catch(() => {})));
+      location.reload(); return true;
+    }
+  } catch {}
+  return false;
+}
+async function refresh(manual = false) {
+  if (await checkAppVersion()) return;
+  const k = lsGet(KEY_LS);
+  if (!k) return;
+  const ok = await pwaLoad(k);
+  if (manual && ok) toast("Datos al día");
+}
+
+function pwaStart() {
+  db = null; S.loaded = false; renderFresh();
+  const m = location.hash.match(/[#&]k=([A-Za-z0-9-]+)/);
+  if (m) { lsSet(KEY_LS, normKey(m[1])); history.replaceState(null, "", location.pathname + "#cartera"); route(); }
+  const k = lsGet(KEY_LS);
+  if (!k) lockScreen();
+  else pwaLoad(k).then((ok) => { if (!ok && !S.loaded) { lsSet(KEY_LS, null); lockScreen("La clave guardada ya no sirve. Escríbala de nuevo."); } });
+  $("#fresh").addEventListener("click", () => refresh(true));
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") refresh(); });
+  setInterval(() => { if (document.visibilityState === "visible") refresh(); }, 10 * 60 * 1000);
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+
+route(); renderAll(); pwaStart();
+})();
+</script>
+
+<style>
+/* Centinela · piel de app para el móvil. Se inyecta solo en la PWA. */
+[hidden]{display:none!important}
+:root{
+  --bg:#F3F0E9; --surface:#FFFFFF; --sunk:#ECE7DD; --line:rgba(30,25,15,.09);
+  --fg:#17120B; --muted:#6E665A; --accent:#B4700F; --accent-soft:#F6E7CC;
+  --glass:rgba(255,255,255,.78); --bar:#1B1712; --bar-fg:#CFC6B8; --bar-on:#FFFFFF;
+  --glow:rgba(214,146,44,.22); --r:22px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#090D11; --surface:#111920; --sunk:#18222A; --line:rgba(255,255,255,.07);
+  --fg:#EEF2F4; --muted:#8B98A1; --accent:#F0B354; --accent-soft:rgba(240,179,84,.14);
+  --gain:#4FD195; --gain-soft:rgba(79,209,149,.13); --loss:#FF7B70; --loss-soft:rgba(255,123,112,.13);
+  --hold:#9AA6AE; --hold-soft:rgba(154,166,174,.13);
+  --glass:rgba(17,25,32,.72); --bar:rgba(20,28,35,.88); --bar-fg:#8B98A1; --bar-on:#FFFFFF;
+  --glow:rgba(240,179,84,.16); color-scheme:dark}}
+
+html{background:var(--bg)}
+body{min-height:100dvh;font-size:15px;
+  background:
+    radial-gradient(120% 60% at 85% -10%, var(--glow), transparent 60%),
+    radial-gradient(90% 50% at -10% 30%, color-mix(in srgb, var(--gain) 7%, transparent), transparent 60%),
+    var(--bg);
+  background-attachment:fixed}
+body::before{display:none}
+.wrap{max-width:720px}
+
+/* ---- cabecera flotante ---- */
+header.top{position:sticky;top:0;z-index:20;background:linear-gradient(var(--bg) 55%, transparent);border:0;padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-bottom:6px}
+header.top .wrap{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.topbar{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--line);border-radius:22px;padding:10px 12px 10px 10px;flex-wrap:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.brand{align-items:center;gap:10px}
+.brand .logo{width:38px;height:38px;border-radius:11px;display:block;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.brand .eye{display:none}
+.brand h1{font-size:25px;letter-spacing:-.02em}
+.brand h1::after{content:".";color:var(--accent)}
+.fresh{display:flex;align-items:center;gap:6px;background:var(--sunk);border-radius:999px;padding:7px 12px;font-size:12.5px;white-space:nowrap}
+.fresh::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gain);box-shadow:0 0 0 3px var(--gain-soft)}
+.fresh.stale::before{background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.fresh.live{color:var(--gain)}
+.fresh.live b{color:var(--gain)}
+.fresh.live::before{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 2px var(--gain-soft)}50%{box-shadow:0 0 0 6px transparent}}
+
+/* ---- barra inferior ---- */
+nav.tabs{position:fixed;z-index:30;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 10px);
+  max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:7px;border-radius:26px;overflow:visible;
+  background:var(--bar);-webkit-backdrop-filter:blur(20px) saturate(1.5);backdrop-filter:blur(20px) saturate(1.5);border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 7px;border:0;border-radius:19px;color:var(--bar-fg);font-size:11px;font-weight:600;letter-spacing:.01em;transition:background .2s,color .2s}
+nav.tabs a svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs a[aria-current="page"]{color:#1B1206;background:var(--accent);border:0}
+main{padding-top:6px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 112px)}
+main.wrap{padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+
+/* ---- tarjetas ---- */
+section.view{gap:14px}
+section.view:not([hidden]){animation:rise .32s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel{border-radius:var(--r);padding:20px 18px;border:1px solid var(--line);box-shadow:0 1px 0 rgba(255,255,255,.03) inset,0 10px 30px rgba(0,0,0,.08)}
+.panel h2{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:-.01em;margin-bottom:14px;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px}
+.panel h2 small{margin-left:0;font-weight:400;font-size:12.5px;flex-basis:100%}
+.panel h2 .more{margin-left:auto;font:600 12.5px var(--f-body);color:var(--fg);background:var(--sunk);border-radius:999px;padding:6px 12px;text-decoration:none;align-self:center}
+.grid2{gap:14px}
+.empty{border-radius:16px}
+
+/* ---- héroe ---- */
+#summary{position:relative;overflow:hidden;padding:22px 20px 20px;
+  background:radial-gradient(90% 90% at 100% 0%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 65%), linear-gradient(160deg, color-mix(in srgb, var(--surface) 92%, var(--accent)), var(--surface))}
+#summary::after{content:"";position:absolute;right:-40px;top:-40px;width:170px;height:170px;border-radius:50%;border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);box-shadow:0 0 0 22px color-mix(in srgb, var(--accent) 6%, transparent),0 0 0 48px color-mix(in srgb, var(--accent) 4%, transparent);pointer-events:none}
+.hello .kick{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:7px}
+.hello .kick i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.hello h2{font-family:var(--f-display);font-size:30px;font-weight:700;letter-spacing:-.02em;margin:8px 0 14px}
+#summary .kpis{grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}
+#summary .kpi.big{grid-column:1/-1}
+#summary .kpi.big .label{display:none}
+#summary .kpi.big .v{font-size:46px;line-height:1}
+#summary .kpi.big .s{display:inline-flex;margin-top:10px;padding:5px 11px;border-radius:999px;font-weight:600;font-size:13px}
+#summary .kpi.big .s.down{background:var(--loss-soft)} #summary .kpi.big .s.up{background:var(--gain-soft)}
+#summary .kpi:not(.big){background:color-mix(in srgb, var(--sunk) 75%, transparent);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+#summary .kpi:not(.big) .v{font-size:19px}
+#summary .kpi:not(.big) .s{font-size:12.5px}
+#summary .alloc{height:8px;border-radius:999px}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick a{display:flex;align-items:center;justify-content:center;gap:8px;padding:15px 10px;border-radius:18px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);box-shadow:0 8px 22px rgba(0,0,0,.08)}
+.quick a.primary{background:var(--accent);color:#1B1206;border-color:transparent}
+.quick a svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.evo-note{margin:-4px 0 8px}
+
+/* ---- posiciones como tarjetas ---- */
+.tablewrap{overflow:visible;margin:0}
+table.pos,table.pos tbody{display:block}
+table.pos thead{display:none}
+#evo h2 small{display:none}
+table.pos tr{display:grid;grid-template-columns:44px minmax(0,1fr) auto;grid-template-areas:"av name val" "av price res" "spark spark spark" "meta meta sig";gap:2px 12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+table.pos tr:last-child{border-bottom:0}
+table.pos td{display:block;padding:0;border:0!important;text-align:left;white-space:nowrap}
+table.pos td.c-av{grid-area:av;align-self:start}
+table.pos td.c-name{grid-area:name}
+table.pos td.c-val{grid-area:val;text-align:right;font-weight:600;font-size:16px}
+table.pos td.c-res{grid-area:res;text-align:right;font-size:12.5px}
+table.pos td.c-price{grid-area:price;font-size:12.5px;color:var(--muted)}
+table.pos td.c-spark{grid-area:spark}
+table.pos td.c-spark{margin-top:8px}
+table.pos td.c-spark svg{width:100%;height:34px}
+table.pos td.c-spark polyline{vector-effect:non-scaling-stroke;stroke-width:2}
+table.pos td.c-spark circle{display:none}
+table.pos td.c-meta{grid-area:meta;font-size:12px;color:var(--muted);margin-top:6px;white-space:normal;min-width:0;font-family:var(--f-body)}
+table.pos td.c-sig{grid-area:sig;text-align:right;margin-top:6px}
+table.pos td.c-hide{display:none}
+.av{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font:700 13px var(--f-display);letter-spacing:.02em;color:#1B1206}
+.nm{max-width:none;white-space:nowrap}
+.av.has-logo,.sig .tick.has-logo{background:#fff;padding:7px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.av.has-logo img,.sig .tick.has-logo img{width:100%;height:100%;object-fit:contain;display:block}
+.av.sm{width:36px;height:36px;border-radius:11px;font-size:11px;flex:none}
+.av.sm.has-logo{padding:6px}
+
+/* ---- señales ---- */
+.sig{grid-template-columns:44px minmax(0,1fr);gap:4px 12px;padding:16px 0}
+.sig .tick{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;min-width:0;padding:0;font:700 12px var(--f-display);background:var(--sunk);grid-row:span 4;align-self:start}
+.sig[data-a="comprar"] .tick,.sig[data-a="reforzar"] .tick{background:var(--gain-soft);color:var(--gain)}
+.sig[data-a="reducir"] .tick,.sig[data-a="vender"] .tick{background:var(--loss-soft);color:var(--loss)}
+.sig[data-a="vigilar"] .tick{background:var(--accent-soft);color:var(--accent)}
+.sig .meta .ttl{flex-basis:100%;font-size:15px;color:var(--fg);order:-1}
+.sig .why{font-size:14px;color:color-mix(in srgb, var(--fg) 85%, var(--muted))}
+.sig .src a{display:inline-block;background:var(--sunk);padding:4px 10px;border-radius:999px;text-decoration:none;color:var(--fg);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#last-sig-list .sig .why{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.filters{gap:8px;margin-bottom:10px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+.chip{padding:8px 14px;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--accent);color:#1B1206;border-color:var(--accent)}
+
+/* ---- oportunidades ---- */
+.opp{padding:16px 0}
+.opp .hd{align-items:center}
+.opp .score{min-width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);color:var(--accent)}
+.opp .body{font-size:14px;margin-top:4px}
+.opp .side button{border-radius:999px;padding:8px 14px}
+.mkt-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:8px}
+.mkt{min-width:0;display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;padding:9px 12px;border-radius:14px;background:var(--surface);border:1px solid var(--line);font-size:13px}
+.mkt .dot{grid-row:1 / span 3;width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.mkt b{grid-column:2;font-weight:600}
+.mkt span:not(.dot){grid-column:2;color:var(--fg)}
+.mkt small{grid-column:2;color:var(--muted);font-size:11.5px}
+.mkt.m-abierto .dot{background:var(--gain);box-shadow:0 0 0 3px var(--gain-soft)}
+.mkt.m-pre .dot,.mkt.m-post .dot{background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.mkt.m-cerrado .dot{background:var(--loss);box-shadow:0 0 0 3px var(--loss-soft)}
+.mk-tag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:600;vertical-align:2px;background:var(--sunk);color:var(--muted)}
+.mk-tag.m-abierto{background:var(--gain-soft);color:var(--gain)}
+.mk-tag.m-pre,.mk-tag.m-post{background:var(--accent-soft);color:var(--accent)}
+.mk-tag.m-cerrado{background:var(--loss-soft);color:var(--loss)}
+.opp .score{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;gap:3px;height:48px;min-width:48px}
+.opp .score small{font:600 8.5px var(--f-body);letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.decision{margin-top:8px;font-weight:700;font-size:14.5px}
+.decision.d-comprar{color:var(--gain)} .decision.d-vigilar{color:var(--accent)} .decision.d-evitar{color:var(--loss)}
+.phase{margin-top:6px;font-size:13px;color:var(--muted);padding:8px 10px;border-radius:10px;background:var(--sunk);border-left:3px solid var(--muted)}
+.phase b{color:var(--fg);font-weight:600}
+.phase.ph-alcista,.phase.ph-correccion,.phase.ph-acumulacion{border-left-color:var(--gain)}
+.phase.ph-distribucion,.phase.ph-rebote,.phase.ph-lateral{border-left-color:var(--accent)}
+.phase.ph-bajista,.phase.ph-debil{border-left-color:var(--loss)}
+.opp-group{margin:18px 0 2px;padding:12px 14px;border-radius:14px;background:var(--sunk)}
+.opp-group:first-child{margin-top:0}
+.opp-group h3{margin:0;font:700 16px var(--f-display)}
+.opp-group .note{margin:2px 0 0}
+.opp-group.g-comprar{background:var(--gain-soft)} .opp-group.g-comprar h3{color:var(--gain)}
+.opp-group.g-vigilar{background:var(--accent-soft)} .opp-group.g-vigilar h3{color:var(--accent)}
+.opp-group.g-evitar{background:var(--loss-soft)} .opp-group.g-evitar h3{color:var(--loss)}
+.opp-group + .opp{border-top:0}
+.pill{padding:4px 10px}
+
+/* ---- formularios ---- */
+.field input,.field select{border-radius:14px;padding:12px 12px;font-size:16px;background:var(--sunk);border-color:var(--line)}
+button.btn{border-radius:14px;padding:10px 16px}
+button.btn.small,a.btn.small{border-radius:999px;padding:7px 14px}
+a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;color:var(--fg);border:1px solid var(--line);background:var(--surface)}
+#proj-kpis{grid-template-columns:1fr 1fr;gap:10px}
+#proj-kpis .kpi{background:var(--sunk);border-radius:16px;padding:12px 14px}
+#proj-kpis .kpi.big{grid-column:1/-1;order:-1;background:color-mix(in srgb, var(--accent) 14%, var(--sunk))}
+#proj-kpis .kpi .v{font-size:18px}
+#proj-kpis .kpi.big .v{font-size:32px}
+.dis{padding:6px 8px 0}
+/* aportación del mes */
+.quick a.wide{grid-column:1/-1;background:color-mix(in srgb, var(--gain) 16%, var(--surface));border-color:color-mix(in srgb, var(--gain) 35%, transparent)}
+#aporte{background:linear-gradient(160deg, color-mix(in srgb, var(--surface) 90%, var(--gain)), var(--surface))}
+.ap-form{display:grid;gap:10px}
+.ap-quick{display:flex;gap:8px;flex-wrap:wrap}
+.ap-bar{margin-top:16px}
+.ap-line{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:14px 0;border-top:1px solid var(--line)}
+.ap-line:first-of-type{border-top:0}
+.ap-main{display:grid;gap:5px;min-width:0}
+.ap-hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.ap-hd b{font-size:16px}
+.ap-tags{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.ap-main .body{font-size:13.5px;line-height:1.45}
+.ap-where{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.ap-amt{display:grid;justify-items:end;gap:2px}
+.ap-amt b{font-size:19px}
+.ap-amt span{font-size:12.5px}
+.ap-res .body{color:var(--muted)}
+.ap-skip{margin-top:10px;padding:12px 14px;border-radius:14px;background:var(--sunk);font-size:13.5px}
+.ap-skip h3{margin:0 0 6px;font:700 15px var(--f-display)}
+.ap-skip p{margin:4px 0;line-height:1.45}
+.ap-alt{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--accent-soft)}
+.ap-alt h3{margin:0 0 4px;font:700 15px var(--f-display);color:var(--accent)}
+.ap-alt .ap-line{border-top-color:color-mix(in srgb, var(--accent) 25%, transparent)}
+/* mercado hoy */
+#hoy-mkt h3{margin:18px 0 8px;font:700 15px var(--f-display)}
+#hoy-mkt .hm-sum{margin:8px 0 0;line-height:1.5;font-size:14.5px}
+.hm-reg .pill{font-weight:700}
+.pill.hm-gain{background:var(--gain-soft);color:var(--gain)}
+.pill.hm-loss{background:var(--loss-soft);color:var(--loss)}
+.pill.hm-flat{background:var(--sunk);color:var(--muted)}
+.hm-ev,.hm-cat{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.hm-ev li{display:grid;grid-template-columns:10px 1fr;gap:10px;align-items:start;font-size:13.5px;line-height:1.45}
+.hm-ev a{color:var(--fg);font-weight:600;text-decoration:none}
+.hm-dot{width:8px;height:8px;border-radius:50%;margin-top:6px;background:var(--muted)}
+.hm-dot.hm-loss{background:var(--loss)}.hm-dot.hm-warn{background:var(--accent)}
+.hm-sc{display:grid;gap:5px;padding:8px 0}
+.hm-sch{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.hm-bar{height:6px;border-radius:6px;background:var(--sunk);overflow:hidden}
+.hm-bar span{display:block;height:100%;background:var(--accent);border-radius:6px}
+.hm-cr{display:flex;gap:14px;align-items:center}
+.hm-score{font:700 34px var(--f-display);min-width:56px}
+.hm-score.gain{color:var(--gain)}.hm-score.loss{color:var(--loss)}
+.hm-comp{display:grid;gap:7px;margin-top:12px;font-size:12.5px}
+.hm-comp>div{display:grid;grid-template-columns:minmax(0,9.5em) 1fr 2.2em;gap:10px;align-items:center}
+.hm-comp .num{text-align:right}
+.hm-cat li{display:grid;grid-template-columns:4.2em 1fr;gap:10px;font-size:13.5px;line-height:1.4}
+.hm-d{color:var(--accent);font-weight:600}
+.thesis{display:grid;gap:5px;margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--sunk);font-size:13px;line-height:1.45}
+.thesis b{color:var(--fg)}
+.sig .thesis{grid-column:2;margin-top:6px}
+
+/* ---- ayudas plegables ---- */
+.help{margin-top:16px;border-top:1px solid var(--line);padding-top:12px;position:relative;z-index:1}
+.help summary{cursor:pointer;font-weight:600;font-size:13.5px;color:var(--accent);list-style:none;display:flex;align-items:center;gap:6px}
+.help summary::-webkit-details-marker{display:none}
+.help summary::before{content:"?";display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--accent-soft);font-size:11.5px;font-weight:700}
+.help[open] summary{margin-bottom:10px}
+.help dl{margin:0;display:grid;grid-template-columns:minmax(0,8.5em) 1fr;gap:8px 14px;font-size:13.5px;line-height:1.45}
+.help dt{font-weight:700}
+.help dd{margin:0;color:var(--muted)}
+@media (max-width:420px){.help dl{grid-template-columns:1fr;gap:2px}.help dd{margin-bottom:8px}}
+#v-oportunidades .help{margin:0 0 12px;border:0;padding:0}
+
+/* ---- datos de valoración y noticias por valor ---- */
+.fund{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.fchip{font-size:12px;padding:4px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--line);white-space:nowrap;cursor:help}
+.th-at{font-size:11.5px;color:var(--muted)}
+.th-news{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px;margin-top:4px}
+.th-news>b{font-size:13.5px}
+.nw-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.nw-list li{display:grid;gap:3px;min-width:0}
+.nw-list a{color:var(--fg);font-weight:600;font-size:14px;line-height:1.4;text-decoration:none;overflow-wrap:anywhere}
+.nw-list a:hover{text-decoration:underline}
+.nw-meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;color:var(--muted)}
+.nw-sym{font:600 11px var(--f-mono);padding:2px 7px;border-radius:6px;background:var(--sunk);color:var(--fg)}
+.nw-tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.nw-tag.ipo{background:var(--accent-soft);color:var(--accent)}
+.nw-tag.rv{background:color-mix(in srgb, #7FB2F0 18%, transparent);color:#7FB2F0}
+.nw-day{margin:18px 0 10px;font:700 13px var(--f-body);text-transform:capitalize;color:var(--muted);letter-spacing:.02em}
+#nw-panel .filters{margin-bottom:4px}
+#nw-panel .btn{margin-top:14px}
+.ipo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:10px}
+.ipo-card{display:grid;gap:6px;align-content:start;padding:14px;border-radius:16px;background:var(--sunk);border:1px solid var(--line)}
+.ipo-hd{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ipo-card .pill{justify-self:start;font-size:12px;font-weight:700}
+.ipo-card .body{margin:0;font-size:13.5px;line-height:1.45}
+.ipo-card .more{font-size:13px;color:var(--accent);font-weight:600;text-decoration:none}
+#sig-fresh{margin:-6px 0 10px}
+
+/* ---- avisos de la app ---- */
+.push-banner{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:16px 18px;border-color:color-mix(in srgb, var(--accent) 35%, var(--line))}
+.push-banner .note{margin:2px 0 0}
+.pb-actions{display:flex;gap:8px}
+#push-panel .btn.primary{width:100%;margin-top:4px}
+#push-panel .status-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+
+/* ---- aportación del mes: ventana propia ---- */
+.ap-back{justify-self:start;display:inline-flex;align-items:center;gap:4px;font:600 14px var(--f-body);color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none}
+.ap-link{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:16px 18px;text-decoration:none;color:var(--fg);background:linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, var(--gain)), var(--surface))}
+.ap-link b{display:block;font:700 16px var(--f-display)}
+.ap-link small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.ap-ic{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--gain-soft);color:var(--gain)}
+.ap-ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ap-go{font-size:26px;color:var(--muted);line-height:1}
+
+/* ---- Robo-Advisor ---- */
+.rb-card{background:linear-gradient(160deg, color-mix(in srgb, var(--surface) 88%, #7FB2F0), var(--surface))}
+.rb-ic{background:color-mix(in srgb, #7FB2F0 18%, transparent);color:#7FB2F0}
+.rb-num{display:grid;justify-items:end;gap:2px}
+.rb-num b{font:700 17px var(--f-mono)}
+.rb-num small{font-size:12.5px}
+.rb-head .hello h2{font-size:40px;margin:6px 0 14px}
+.rb-kpis,.rb-vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr));gap:10px}
+.rb-kpis>div,.rb-vs>div{display:grid;gap:2px;background:color-mix(in srgb, var(--sunk) 75%, transparent);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.rb-kpis span,.rb-vs span{font-size:12.5px;color:var(--muted)}
+.rb-kpis b,.rb-vs b{font-size:18px}
+.rb-kpis small,.rb-vs small{font-size:12.5px}
+.rb-h3{margin:14px 0 8px;font:700 14px var(--f-display)}
+.rb-funds{display:grid}
+.rb-fund{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line)}
+.rb-fund:first-child{border-top:0}
+.rb-fn{display:grid;gap:4px;min-width:0}
+.rb-fn b{font-size:14px;font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+.rb-fv{display:grid;justify-items:end;gap:1px;font-size:12.5px}
+.rb-fv b{font-size:15px}
+#v-robot .ap-back{margin-bottom:-2px}
+</style>
+</body></html>

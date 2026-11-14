@@ -1,0 +1,1177 @@
+{
+ "at": "2026-11-14T17:35:27.717Z",
+ "symbols": [
+  {
+   "symbol": "AMD",
+   "name": "Advanced Micro Devices, Inc.",
+   "kind": "stock",
+   "price": 534.06,
+   "currency": "USD",
+   "change1d": -0.0875,
+   "change30d": -0.0501,
+   "rsi14": 50.4,
+   "drawdown": -0.1776,
+   "sma50": 554.5522,
+   "sma200": 423.1181,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": 79
+  },
+  {
+   "symbol": "ANT",
+   "technicalScore": null
+  },
+  {
+   "symbol": "AZN",
+   "name": "AstraZeneca PLC",
+   "kind": "stock",
+   "price": 184.45,
+   "currency": "USD",
+   "change1d": 0.0004,
+   "change30d": 0.1066,
+   "rsi14": 61.9,
+   "drawdown": -0.1195,
+   "sma50": 168.806,
+   "sma200": 180.1832,
+   "phase": "Recuperación (posible suelo superado)",
+   "technicalScore": 81
+  },
+  {
+   "symbol": "BP",
+   "name": "BP p.l.c.",
+   "kind": "stock",
+   "price": 45.7,
+   "currency": "USD",
+   "change1d": -0.0026,
+   "change30d": -0.0566,
+   "rsi14": 44,
+   "drawdown": -0.1095,
+   "sma50": 46.4226,
+   "sma200": 43.4688,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": 80
+  },
+  {
+   "symbol": "BTC-EUR",
+   "name": "Bitcoin EUR",
+   "kind": "crypto",
+   "price": 59647.22,
+   "currency": "EUR",
+   "change1d": -0.045,
+   "change30d": -0.1728,
+   "rsi14": 23.8,
+   "drawdown": -0.2834,
+   "sma50": 71512.8157,
+   "sma200": 63689.9796,
+   "phase": "Lateral",
+   "technicalScore": null
+  },
+  {
+   "symbol": "CRM",
+   "name": "Salesforce, Inc.",
+   "kind": "stock",
+   "price": 217.84,
+   "currency": "USD",
+   "change1d": 0.0012,
+   "change30d": -0.1171,
+   "rsi14": 39.5,
+   "drawdown": -0.1818,
+   "sma50": 235.277,
+   "sma200": 197.9859,
+   "phase": "Lateral",
+   "technicalScore": 84
+  },
+  {
+   "symbol": "LLY",
+   "name": "Eli Lilly and Company",
+   "kind": "stock",
+   "price": 1443.5,
+   "currency": "USD",
+   "change1d": 0.0114,
+   "change30d": 0.1533,
+   "rsi14": 69.7,
+   "drawdown": 0,
+   "sma50": 1241.0784,
+   "sma200": 1109.3242,
+   "phase": "Tendencia alcista",
+   "technicalScore": 79
+  },
+  {
+   "symbol": "MON-EUR",
+   "name": "Monad USD",
+   "kind": "crypto",
+   "price": 0.0157,
+   "currency": "USD",
+   "change1d": -0.0404,
+   "change30d": -0.2741,
+   "rsi14": 33,
+   "drawdown": -0.666,
+   "sma50": 0.0227,
+   "sma200": 0.0237,
+   "phase": "Tendencia bajista",
+   "technicalScore": null
+  },
+  {
+   "symbol": "NVDA",
+   "name": "NVIDIA Corporation",
+   "kind": "stock",
+   "price": 161.01,
+   "currency": "USD",
+   "change1d": -0.0312,
+   "change30d": -0.2588,
+   "rsi14": 24.3,
+   "drawdown": -0.327,
+   "sma50": 214.6104,
+   "sma200": 204.1816,
+   "phase": "Lateral",
+   "technicalScore": null
+  },
+  {
+   "symbol": "SHEL",
+   "name": "Shell plc",
+   "kind": "stock",
+   "price": 98.98,
+   "currency": "USD",
+   "change1d": 0.0043,
+   "change30d": -0.0441,
+   "rsi14": 43.2,
+   "drawdown": -0.0893,
+   "sma50": 99.6998,
+   "sma200": 89.6206,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null
+  },
+  {
+   "symbol": "SONY",
+   "name": "Sony Group Corporation",
+   "kind": "stock",
+   "price": 27.07,
+   "currency": "USD",
+   "change1d": 0.0154,
+   "change30d": 0.0964,
+   "rsi14": 64.9,
+   "drawdown": -0.1013,
+   "sma50": 24.691,
+   "sma200": 22.4576,
+   "phase": "Tendencia alcista",
+   "technicalScore": 85
+  },
+  {
+   "symbol": "SPOT",
+   "name": "Spotify Technology S.A.",
+   "kind": "stock",
+   "price": 612.63,
+   "currency": "USD",
+   "change1d": 0.0236,
+   "change30d": 0.1486,
+   "rsi14": 62.6,
+   "drawdown": -0.0437,
+   "sma50": 542.9596,
+   "sma200": 502.2611,
+   "phase": "Tendencia alcista",
+   "technicalScore": 81
+  },
+  {
+   "symbol": "TSLA",
+   "name": "Tesla, Inc.",
+   "kind": "stock",
+   "price": 390.22,
+   "currency": "USD",
+   "change1d": -0.0182,
+   "change30d": 0.0766,
+   "rsi14": 53.5,
+   "drawdown": -0.2034,
+   "sma50": 374.7406,
+   "sma200": 382.7309,
+   "phase": "Recuperación (posible suelo superado)",
+   "technicalScore": 79
+  },
+  {
+   "symbol": "TXN",
+   "name": "Texas Instruments Incorporated",
+   "kind": "stock",
+   "price": 303.6,
+   "currency": "USD",
+   "change1d": -0.0284,
+   "change30d": 0.0877,
+   "rsi14": 54.8,
+   "drawdown": -0.0863,
+   "sma50": 283.8708,
+   "sma200": 264.7731,
+   "phase": "Tendencia alcista",
+   "technicalScore": 80
+  },
+  {
+   "symbol": "UL",
+   "name": "Unilever PLC",
+   "kind": "stock",
+   "price": 66.21,
+   "currency": "USD",
+   "change1d": 0.0027,
+   "change30d": 0.0241,
+   "rsi14": 55,
+   "drawdown": -0.1123,
+   "sma50": 63.6658,
+   "sma200": 62.5788,
+   "phase": "Inicio de tendencia alcista",
+   "technicalScore": 81
+  }
+ ],
+ "cryptoRegime": {
+  "at": "2026-11-14T06:11:38.814587+00:00",
+  "score": 45.7,
+  "zone": "NEUTRAL",
+  "guidance": "Mixed conditions observed; no strong regime conclusion",
+  "components": {
+   "btc_trend": {
+    "score": 65,
+    "signal": "STACK INTACT, PRICE BELOW (deep pullback / early break); 200DMA rising",
+    "ok": true
+   },
+   "alt_breadth": {
+    "score": 20,
+    "signal": "32% of 19 tracked alts above 200DMA (5% above 50DMA); short-term breadth rolling over",
+    "ok": true
+   },
+   "dominance": {
+    "score": 50,
+    "signal": "NO DATA: Need >= 31 daily dominance points",
+    "ok": false
+   },
+   "funding": {
+    "score": 50,
+    "signal": "NO DATA: Need funding for >= 2 symbols",
+    "ok": false
+   },
+   "drawdown_vol": {
+    "score": 55,
+    "signal": "Drawdown 30.7% from 1y high",
+    "ok": true
+   },
+   "momentum_thrust": {
+    "score": 35,
+    "signal": "WASHOUT (contrarian: near-total negative momentum): 5% of 20 coins positive over 30d",
+    "ok": true
+   }
+  }
+ },
+ "prevThesis": {
+  "NVDA": {
+   "thesis": "Liderazgo en aceleradores de IA con ventas +83 % y beneficio por acción +125 %, margen neto del 64 % y foso del software CUDA; hoy cotiza a PER 20,8 frente a máximos de 243 $.",
+   "breaks": "Que la guía del 4T quede por debajo de los 108.000 M$ de ingresos del 3T o que el consejo concluya algo adverso sobre Huang."
+  },
+  "SHEL": {
+   "thesis": "Generación de caja, dividendo del 3,9 %, recompras y negocio de gas natural licuado.",
+   "breaks": "Recorte de dividendo o recompras por crudo débil."
+  },
+  "BTC-EUR": {
+   "thesis": "Adopción institucional vía ETF y escasez; tendencia alcista de fondo mientras la SMA200 siga subiendo.",
+   "breaks": "Cierre sostenido bajo la SMA200 con salidas de ETF persistentes (ya en curso)."
+  },
+  "MON-EUR": {
+   "thesis": "Apuesta por una cadena de alto rendimiento con adopción de desarrolladores, sujeta a que mejore el mercado de altcoins.",
+   "breaks": "Cierre bajo el último mínimo o que el régimen cripto caiga por debajo de 40."
+  },
+  "ANT": {
+   "thesis": "Líder de IA generativa con fuerte demanda institucional y una oferta sobresuscrita seis veces.",
+   "breaks": "Precio de salida muy por encima del rango previsto o cierre del primer día por debajo del precio de OPV."
+  },
+  "UL": {
+   "thesis": "Foco en belleza y hogar de mayor margen (20 % neto) y dividendo del 4 %.",
+   "breaks": "Ventas que sigan cayendo más de un 10 % o que se frustre la venta de Foods."
+  },
+  "SONY": {
+   "thesis": "Mix de entretenimiento, música y sensores de imagen; ventas +8 %.",
+   "breaks": "Caída de ventas de juegos o más pérdidas en coches eléctricos."
+  },
+  "CRM": {
+   "thesis": "Agentforce y Data 360 como motor de reaceleración, margen neto del 22 % y recompras.",
+   "breaks": "Ventas que crezcan menos del 10 % en el próximo trimestre."
+  },
+  "SPOT": {
+   "thesis": "Suscriptores en crecimiento, subidas de precio y margen neto del 18,4 %.",
+   "breaks": "Estancamiento de suscriptores o margen neto por debajo del 15 %."
+  },
+  "AZN": {
+   "thesis": "Oncología y ensayos de fase III con lecturas positivas; beneficio por acción +17 % y margen neto del 17,7 %.",
+   "breaks": "Fracaso en un ensayo clave de oncología o ventas que crezcan menos del 5 % en los resultados de febrero."
+  },
+  "BP": {
+   "thesis": "Caja, dividendo del 4,8 % y reestructuración con ventas +26 %.",
+   "breaks": "Recorte de recompras o dividendo si el crudo cae de forma sostenida."
+  },
+  "TXN": {
+   "thesis": "Recuperación del ciclo analógico, margen neto del 34 % y flujo de caja al moderarse el capex.",
+   "breaks": "Nuevo ajuste de inventarios o guía por debajo de lo esperado."
+  },
+  "LLY": {
+   "thesis": "Líder en GLP-1 con ventas +45,5 %, margen neto del 32 % y nueva capacidad productiva.",
+   "breaks": "Ventas que crezcan menos del 30 % o datos de fase III de retatrutida peores de lo esperado."
+  },
+  "AMD": {
+   "thesis": "Centro de datos por IA y cuota en CPU de servidor, con ventas +42 % y beneficio por acción +127 %.",
+   "breaks": "Márgenes brutos por debajo del 55 % o recortes de gasto en IA de grandes clientes en los resultados de febrero."
+  },
+  "TSLA": {
+   "thesis": "Robotaxi Cybercab y energía como motores, aunque el negocio actual crece solo un 8,3 %.",
+   "breaks": "Términos de fusión desfavorables o margen neto por debajo del 3 %."
+  }
+ },
+ "news": {
+  "NVDA": [
+   {
+    "t": "Nvidia, infidelidad y perdidas millonarias",
+    "src": "Antena 3 Noticias",
+    "at": "2026-11-14T14:51:16.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPc3JZUXNBdVJmTms4NzVBN3p3THNGY0NOalhGX2xWSnBVNmRyeTRnaG5uODcyVWpNOGN4R3lIRVNCWXJhOXlfVDMzZlR3YkpjY3pCQU13bUNzWmN0U1hPNDc5cks3d1JlNFBxSE9RVVM3alRiUjROMlJBV3NWU09BNGlFbGwtX0x0eWpoSThfbjBia1oya2RkczNDSlo3S0VQeE5WdXFkR2dXb214VDNIU0ZCNk5jRE1p0gG4AUFVX3lxTFBQbmJDQ0FlZlg0SXFyMlhfNWlrRHpDYUtCRWVyZW5lZjZ1aTBCd2ZoNlgycTBwWGN2TjBXQ3dsdS03NXZDRTVVVjRwcG82dlgxZ2RCOE1Bc0htbEl2VG9wYzRkZ20tbmlFaVdQMEFKUmhTdVNKX2ZvZkFDVnNJUXVFbmc3cWladzNTakJTRkM5eGl6aWdWd2NSOGI0X2plUWE4LXNwNDd1aVM2TFVMRmFfcU5jNG9UVTU?oc=5"
+   },
+   {
+    "t": "Estos son los siete multimillonarios de Nvidia que han perdido un tercio de su fortuna por el escándalo de Jensen Huang",
+    "src": "Forbes España",
+    "at": "2026-11-14T14:28:51.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOX3lHYWVhZU5fRWdKRGw2MTNhUlpBLUFwb2djZ1EyV1dRQ3Q1UHNpTW1wTnBFTGxPem1wa0ZBTEtfV3NLckxHMnp1RUVoQ2FpVVZfUzVQSHZ2M2RqdXFEWlBTNmt4b081N1BqVGpTblNOX3pNTjMwV0ZuNDFCOTJ6SUxGVUFPRGxVWGRtOUVnZ2FRbEY5V2YzTF9zTTA4MGdTMnp4VWVVbDBKRXdwN1picTFYWTZHdlJlTjdMSVRzclZNeWRMUHJ4QTZuTWZtbnh1TWJLUk5FZXZLM01LY0sxRzJWd2NwRC15RkhTclBCWXM?oc=5"
+   },
+   {
+    "t": "Jensen Huang: presunto espionaje y relaciones extramatrimoniales dejan a Nvidia sin su CEO estrella",
+    "src": "DW.com",
+    "at": "2026-11-14T11:30:21.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOYlg5WGNTRFpsYlBBV25sV0VlcjZ1MG9ockQ5Q21CdTFobGVENnN5ajdrVFFyb2xuSWo3TkNqWnYxc3VJNl9tMDFuTFFXblRWOU5SVE9NZUN4Ny1Ec2hHZDJZd1ZRUWlzWEQ2aktLc0FrcHIyS0FvVmRuTjhEUFRKQ0ZUd0NMd3RTZUlRREJ2OC1xbVh1SDVrMEFYMGlnWjJWQnNtbXpFTVJfRWYwdHlUanl3Rk5NckY2eUl0QTVqckRJUFRFekV1NUdKMVZIeThtRXVON1FseTR4cHdq0gHcAUFVX3lxTE81SXIwMmZPcXpnWUxBODVGWUI5VmpIcGxJdHRfXzNUbm5fVmJGSGF6dE1PUEIwQ0pHcHJJYTRKT1dKQ2NOSUNVVmdIRnBRQXdPUE9JY0haUkZVYm5wZ01RYm5CSXgzSDlsY3diMEh2TTBtSktiZmlmYTBXSzBYTVJsZng4cmFQQ3ExOXhlSDdadEpTWUtmdlJKQXVtX2JOV1M1dHd5TnhRYXY4N3Z4QWVmNWN6QVp6a0hhSmY5Mk9ydVBhRjFXaXYzSFF0cG10WmZ6RldfZnpJY21rMGM?oc=5"
+   },
+   {
+    "t": "Aspectos a tener en cuenta en los resultados de Nvidia",
+    "src": "Morningstar",
+    "at": "2026-11-14T10:00:35.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNOEw1UXdNdXJEbGpodTR3TGJMR2xrZkZFQlVpbXdlZF9saUFMX2paYkN3X3hxRHYxWkotLXZzZXRzam9ycnhxTmZ5Y1Ewc29heExqUHVFRk1rWFFBcWJpeHVjUFhOQURMeUVhY1RCcDBUWGxrRi12TTNralB3RU9Hbm5MZ3k4ZnZZblZoVklVcWYzc1Vld2FTcktiWUJ3Wmt5bGRHS0JGcGpWR2ZEX0NYNUVhNVpUV1JtanAtQzRMRnRKLURHenhqa0djcmlNalhYcWZiWFdIVEVpNEVzY3lEcnpjc19lNENjTHU0T2wtNC1QdHRG?oc=5"
+   },
+   {
+    "t": "¿Quién será el CEO de NVIDIA?",
+    "src": "MuyComputerPRO",
+    "at": "2026-11-14T09:35:15.000Z",
+    "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1jWUJMQkJ4Q1JuUWRKMGNlQlRmbjJiWThHM2REclJOTmlzd0h6Y1duZVhqZXFZVEdsTGhCR1pPWkJrUm12WHB1SzNTdTh4Ukx6M21VWFZmQzdKcW1XU2xhU3FGUGNfVXlGMGFhY0l6M3FSa01VZFVfOA?oc=5"
+   },
+   {
+    "t": "Mario Esteban, catedrático, sobre la dimisión del CEO de Nvidia por su relación sentimental con una espía china: \"Producen los semiconductores más avanzados que hay y son necesarios para desarrollar IA\"",
+    "src": "COPE",
+    "at": "2026-11-14T09:10:18.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi2gJBVV95cUxONnVmYzZ5M2dJNVQxc1RSaTZ5LTYxUGdENUI5M0t4dVUzRTVrZGdUZXdTa2VWakJzbEpzVjFVZzBiZkhuWk5hS29RN2thM2JfMlRRdG51a3ZONHZWN0VuZldWWS1kTm9FMmNHM2tlTkU3RWYzZ1lFeHN3SjRaUWdUNmhWY1M4WWpGNk9JcDA0NnFEdW5Ld0hzY0hoX1dfWU5heFdFN2RLWVJLUVNybDBxSlpmUS11N0VzcXZBOFZLSFplM0tadFRscmhubjNtNVU1R2tiMUxsR3RTRW9tem1sclBSOGt4M3d2alRaalo0bEdJZ2VNbHpUeU45dWxzVVhWUjBPU2ZDdzIyS0diTDRTYXV6a2c5akZMakRhd1FYVlBBUGl0RVNNazd6NzdBdkdlcUVfWGZBdEE4RWtqWFFVWjYyY3F5aVh0V3F5WG1hSlNuUEpISUJOdUtR0gHfAkFVX3lxTE8wS1hGRWprSDktTXVWODdZUmtYRGFuZVB1YWVKSGh1Q1Vpc1dHRllqX0ltd3dIN3FWUEtoQ0czejJkaTlEME5fZWVwcHRjTFlqTW1NckNVckp3T3FsRGpBVFU0QXRVR09zODBCc2FDOGtMa0VrOEduWHRNUm0taWs4cExjUFNfbjNRSi03dVRoNDFUNUI5OXptNDcwUDJfUlVCcnF4MzZQV2RQbDh0enRmMXBGa090TkdQTmZDUjh0azZpU2pWcWJiQlE0RmswTTdaQ1JDeTRZbkFmODN1Ykc5aUVYdVZydW9qLTFDNHZtX1lWcEhNV3VZN1V4MXlmOUpuYktfdkhDVUZGNFZhUlB5Y0hzcTlyMFZJM2syclFrU0VtUHVQdWYzYkhMbWRTVVVWVTNqczBrT0dCZzNWUTdVRnJfTzJLbUhlZFltcGtjQ3lIMHl2bmdveG1ROWRJZw?oc=5"
+   },
+   {
+    "t": "Datos clave: NVIDIA cae; HSBC recorta su precio objetivo; el Senado pide el testimonio de Huang",
+    "src": "TradingView",
+    "at": "2026-11-14T08:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBZcnBYelVsTFVYZUFHSEdnR0l4azZIano4SnlWT0pscnZBNjFaWjhKYjRZbFpsQTB5MGI5bk13c1dVVFFFVWtLOUJvWi03azE0TC1hOXdrRVFudm9Ic0xNcW05b3FIU3NzMGZzeA?oc=5"
+   },
+   {
+    "t": "¿Puede el ‘caso Nvidia’ resquebrajar la hegemonía de la IA en Bolsa?",
+    "src": "El Periódico",
+    "at": "2026-11-14T05:01:08.000Z",
+    "u": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSlNnaFNxUTFhNmh0Ri1TLUxsajZvZVJJQ3JodElTb1M5ZEhWREZ1cG52NENJa3RyYWI1UkI2OXMwSi1iXzlpM21VLWpseFBnb2FYVkx3Qk52NjJmd1cxSGhRUGUwWTFiNWNEa1NqbGRjcGhoTTEwLUw1RnN1b2tiLXJsY0ZWdktYWmFPMjB2THZ3SDVtRjRxNmNXYlnSAZwBQVVfeXFMUHR6OXh0MEFiR2pHTzVFanNWZWo4Rkd2LVJ2ZFhqLUY5aVpEWl9WT0hCZkNvNXhGcWdleW5tTjMtaGYzbnFFYWVHSlB0VDJLMkdDWG1SNXBYdDEzamN2ZHpOckxydy1GTHVpRURhWnFDOUtwdzZ1ek5XN3R1ZS0tcDJIVXgxWjRfWXpMd3VNd3VJalI4TXFtR0VXamRl?oc=5"
+   }
+  ],
+  "SHEL": [
+   {
+    "t": "Obregón y Shell firman cinco órdenes de servicio en Amana",
+    "src": "La iguana TV",
+    "at": "2026-11-13T21:59:58.000Z",
+    "u": "https://news.google.com/rss/articles/CBMifEFVX3lxTE43TVpDdy1xR3RZblAtTVlDeUJ6TkxpMWphNTg4QlZESFUtTGd2bXZSYXhnSk9wVW5DX3VHdGpCbk1yVlFhd0tXaEMzdHVhWS1kanFZOS1ZVHkzaHZsVThzN004M3pCZnd4QkNYWlVFQ0lQU3pWNmNnRDhWSUc?oc=5"
+   },
+   {
+    "t": "Presidenta (E) Delcy Rodríguez supervisa en el Estado Monagas avances de la alianza energética con Shell",
+    "src": "Noticias Barquisimeto",
+    "at": "2026-11-13T18:50:24.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPU3pXSEhsX0RNdDNITDBCRmQ2X3JWV0hRSWVUVUtLUTRDeV9zN2xiNkJFSEstbElPZDFJTHBXWjFRRHJoR1ZQbnZpa2NiMUczZjlPME9zaWtPRkhxaXI5UzF6WEZueXJvQUJhcURzU291OXdCTUdteU5Dc0FFSmZ0aDlyQnhWdTNEcVEtWWhJbHBrdk9mVlFleEtRMXAtdVJQTlVMNFFUTi1BOE9hQjVJX0JUWGNfNzdHNXZIMVhJekY5T0FrSnRQWFFBeF8zUU5HY0ZBejNBZw?oc=5"
+   }
+  ],
+  "BTC-EUR": [
+   {
+    "t": "Bitcoin cae a mínimo de 3 meses de $65,000 mientras un analista advierte sobre la cuarta ola de capitulación",
+    "src": "Cryptonews.net",
+    "at": "2026-11-14T17:02:05.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WVk91d0hGelZ4by05TmdySmQyN3pIcjhvZGhSekdJRVFuSmVBMzNfMG1SaE5NSklhcGN4MVR6U2dpZEhVMFJHWVZGcjFmQzVQenBxaDN2YUJVcVNF?oc=5"
+   },
+   {
+    "t": "Strategy pierde USD 7.000 millones en el papel con la caída del precio de bitcoin",
+    "src": "CriptoNoticias",
+    "at": "2026-11-14T15:39:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOMExWMzhEOThmSlNaS3VRTXQtSUNDaDRMZjV3MV9iZDEzSHBEcXJPY0FOcDZUNGVQTTBGUm12eGsxN0s0V2NQUjU3dmxLSDR4VGRGTGNVMXN2TklrSGE1Rllsal9wTUtPM0V1YU9STW1ENm85V1Nrb0tGSWg5ZWExUUN3clRaSmtVOFd6YTV4SkZoSkR0OXE3R2FoSQ?oc=5"
+   },
+   {
+    "t": "Una extensión de navegador de Bitcoin con 50.000 usuarios se vende por USD $55.650",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-14T13:11:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOdEdPQkt6U1dsN2dOQWl0ZVpYanBWVmo2RDRsVU13UXNydWk5SjVJaktteDlFQU5xbnlqLThvQ0Z6NklpblYyMWJzU0lMMWNjdGRNQzFVNTJjVFRyWjU0LXJGM3BJRlpxcnJQN2RodlZUOWM1WnF2U1FOMV9ZY0RsZ2pMOUtMMHFHV2VfRm9MeVlEcVl2dFpOQmxBdnRLSVhlRlVOSGQ5VUItQnBrekw3THJZYXlhSXJNaldVUlNZQQ?oc=5"
+   },
+   {
+    "t": "Datos clave: Las salidas de los ETF de Bitcoin alcanzan $1.44 mil millones y el dólar se fortalece",
+    "src": "TradingView",
+    "at": "2026-11-14T12:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5kM1pxQ18tTVE2eTkwbE5MMlVXNW1JMG9WcUhfYXoxN2YxMFp5cHRWd19KQXJTYVVYbVpVMHlLSFJtbDZ6TW90LV9LR1ZJU2dHUkpXdHdUbFQwWUVycl9majJzSnJSQURsQVBfLQ?oc=5"
+   },
+   {
+    "t": "Cuándo COMPRAR y VENDER BITCOIN: Los Errores que Te Pueden Dejar ATRAPADO",
+    "src": "Howl.Link",
+    "at": "2026-11-14T11:30:01.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiO0FVX3lxTE5Pa1hhdTBJSXpPWlpRNlJCRDhTejBQNDB1U3hQRnl0NHZtWUFOVW1DdDRaZldfLWlXTXlR?oc=5"
+   },
+   {
+    "t": "Carlos Lozano advierte: la caída de Bitcoin podría continuar pese a breves repuntes",
+    "src": "Negocios.com",
+    "at": "2026-11-14T11:08:09.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQa0FfSFJ6d2JCaUY2bFd1Q1RCdXQtNDNMaWI5b1UzS0JWVU5yTUtDNTZPMHJ0SmppQk5KQWZ2N3lHM1BuenVjTHhuTjVOS2dwSXZwcmw5WjlGVUtwLWg0bnJkVE95eHpDSk1FZnpOaTdmcTVfOHNtd3J6SWJ1SUV2SXA3VmJqUHhWdE45VHMxRm51ZzVYb3pxNXVhLWk5aWVqcm9QMmhaWWVqSHpqNkk0NER4YlBsVGdMaE9CWUZzeWg4VzhnY2RDdEtTVGdOTGkwOG5j0gHYAUFVX3lxTE02SjFTNGRWdkMyR0V5a1BZcXluNmtOdkVQZEF4Uk1uS0g5MnpyMVpZOERtbXE5RFJYSGNRNlNHTmpfSzZhNHd0S2ZENjVpMnVwZzJPODN5QjZ2OGxTYzRwbE5HbmdrSDJ3UENCS3lEblN4dXI1cDZRS1RscjAwdEYxQUh6MGdxcHc3RGR0N29EQzEwYlZZUXVPRTRuWVJhaFhZTGNrVWJmRDA2YUlYUzBqY1F4cVR1Y01OLXgwRVNhYjE3T2FCdE5fU2hfUTJPTW4ta0s1c3h4WQ?oc=5"
+   },
+   {
+    "t": "¿Cuáles son las últimas novedades sobre Bitcoin y qué necesitas saber? ¿Qué podría provocar su recuperación?",
+    "src": "Cryptonews.net",
+    "at": "2026-11-14T10:12:49.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5GRmgycHNqSXItZmhvdy1MMUkzcTA3bWphWHN2UzlVZEtmREhZVFdnUWRTZWxyeGJvQVpYZzE1Mlo3V3FLcFB3Y0xjMk91ckpDU1JncHFNaVh0QTJO?oc=5"
+   },
+   {
+    "t": "¿Bitcoin nunca más registrará un nuevo máximo histórico? Analistas debaten en X",
+    "src": "BeInCrypto",
+    "at": "2026-11-14T08:35:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTXpxeUUyYVVhSTh4V0JmT2ZOTVdzX2liLTJ0R0tabU1LYjFfSWZvMGxoQXAwY09lNVY0LVhjdjZTZVQ5SWR6YzhaMEtQVVprX19lMUFFRkdBNjROY0ZWX0ZRb29JSXh6M1dRZGlpU0lyTlkyd0lBbVlHN3EyTTY0cnRjZGRoWVJ5N2c?oc=5"
+   }
+  ],
+  "MON-EUR": [
+   {
+    "t": "Mon Laferte empeora de salud tras su presentación en los Latin Grammy 2026 🗣️ \"Pérdida total de la voz\" https://mile.io/3WJ4Fwn",
+    "src": "Facebook",
+    "at": "2026-11-14T01:52:13.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNaC0wYmNkMkZuMjgyZENnRXpMWF9VQS1iODNLNWs3ZEQ2cmtaU3J6ZWRrWnhYSE9RM216WlhDWDZKbXhKWHl1RXg3YVNESTRGRVpoZ0gxN1Jtdk04T2VxZV9RXzFveHpaRDZfcW1sNERiajZwZ0p6ODZOOW9SS2VLamN6aklzT1lvVzZCbFFiV0RBMWhnVTZCRnNPTmxJUHAtN1FybWtnckFuWENiOHFyMll0SlVGRjdtbjRrbnJaaUg5cW5VT1M5N3hnZzZqSVZET19XS0w5MENpZ2h1ZUN0bE4wVHItLUFnVXJhdmdUZTN5Sms?oc=5"
+   },
+   {
+    "t": "Obra de teatro 'Una nit vaig somiar que mon pare era Déu' en Ferreries",
+    "src": "Menorca - Es diari",
+    "at": "2026-11-14T01:26:21.000Z",
+    "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQb0N6dFdKZ2JZdmY1Y2puUXRtS1JQcDQyQzVNR2E1eXVYMzNZcF9nZWM2aEtCWndfVlpVRFNsRFdKZldwUUpmSWRqQmpXeVpTVk03cXhQVWtrWWtCVHo1MWx2WkVfQjM4UE82bWp0SFp3S0ZJLTNhVFBsLU43OTI2ZFJSWDFCb3E1ekQwZWktRUZSR2N3NjlGQUp3?oc=5"
+   },
+   {
+    "t": "¿Qué tiene Mon Laferte? La cantante EMPEORA de salud tras su presentación en los Latin Grammy 2026",
+    "src": "Milenio",
+    "at": "2026-11-13T22:02:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNTUl1Um5FUVVkYlFXQnZHb1R6T0o5d3hFNFNsOS1PVENyeDJzYlN5ZXZ4V18yWkotWmlydmY2QzRzOUU0N2pQZXJjT0c0VXVjd3Q0MmNfOXVsZno4VzlfR1BDM0FnMk45aENFYnN3enBUaXcyQVRaVHBkMXRKam1JUm5SeTFmNDlYTHhqTU8zVUVwMXBRMVZJRGlVbXgzNEg2Q1QzUFBFONIBpwFBVV95cUxQWmNoVUFmbjdHeFZ5MEtsNmd5Zno1M3lPQVpfY0hHUVhKNFlRSGRTXzFqNHU1a0RBOHFCMzBGcFY1VUx2TDlkNDhiQlAzUVRJNUgyQ0xidm1QNTh2eHcxUWp0RkExSW1yOHdjcFN0bFlWYmVsVjBpdGU1NGl3b2ZvLUJBbHJBTFo0ajhraDlTMjE1Wmw5QlVhdmlFSXMwRnpfWFR4YmpEOA?oc=5"
+   },
+   {
+    "t": "Mon Laferte pasa por mal momento y reconoce que no le gustó como cantó en su última presentación",
+    "src": "Infobae",
+    "at": "2026-11-13T20:34:07.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQZVEycktHaHV1UnR1MEVkV1FzM3RTank0UVB5YU1wbnVmY0NaS3VpaDMtb2ZXTkJ2WE8tNGF4QjdYTEV6VEctQkhBZVl5TE9MeUd6QzA2U0VqTjVnWFRGS0J5T3dVVU9WWDFsZDhPZmhfeUZaUll1SjMwZmQ2YVhlS3J1NG9NbXhrWHBoTHhLZlQyNnYzay1na1lWSlR4OXNhTkZBYkk3V0pWWG5hb2YyR0VhQzBUTGdQYUdVanhVWkJxMEdzeEFPemVrT3B4c0tHTzdWM2hWYk9yVFdEd053YTRB0gH8AUFVX3lxTE9PQXVRSTRMalBrNFZuY01XVGJCQ0ZzbTJxbEt5Y0ViNEl2d2ozcWtlb2RyY1FOUnhyX1Z1UnBzVjZHVy1qNjRTSjNwN21neF82N0k5MXZNRG1MWFFrUWd3UXRZdi1Nal9BQ3VCZ1hrRmNraXpneUd0YUR2YkhhWHBXcnM0VDQ2b0g0a1NJVXE0bHF0ck1uejJhdWFEamxWWTdMMXN6dGIxcWRTT21mYW9fYXNzNGFmbUhOVF9NZFZnWFZGWUxsMVFHU1V3SWNYMEstdnVxdkprNHd3Y0VjTXZVS01RM2h4MXA5R3RaUG1neUh1eDUwSGR1Yk8wMA?oc=5"
+   }
+  ],
+  "ANT": [
+   {
+    "t": "Anthropic: la madre de todas las salidas a Bolsa (que puede poner en riesgo a la humanidad con su IA) donde hay más en juego que mucho dinero",
+    "src": "EL PAÍS",
+    "at": "2026-11-14T16:45:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMisAJBVV95cUxQc21pSVZWeXVJSmJ6aU9UZXhhNkYzdUVGMGxqMDVESC1BZnRkZ3lMV1d5ZXJIUjJqdUs5Ni1HN2pkS0tkXzhEdnZkaGRXZUxkZXdCemt1WEo5VXNyeDJnUU5OcGtTNDZFaVE2Tm1ZRnBDR25sYVFRLXVPM0xIY2IxdVNwakZsSkNrTnl0R0k4WlozNEJ6V0ZzdjNEU09EWmFEYnNEeVNleTI4OW12UlVlc3JxaWR4U015bFNOSWxlVS1KeG9odGxMYmF2UEh0bldLT2Ezb09xeG4yNzFDbV9qU3EwREpSaHdHUm53eHVSZGp4VWNqSUEzdFlKM2VCUEoxSDFDaXRlR2plNTVrZENnN3M2MHVmZUxlM0YtNnhxZHgzMlB0Z19Qdy1hSTAtOHIy0gHEAkFVX3lxTE9CUHdfOFg2bUlia1VLTGp5M3plc3VzUHp5LU5fV3dWaG8tVV9wdGpPYVQ4UEliNzZwamxtME1QbFlXakozeldkSmpxN3laZmlSN2pJQnJPZkdoQWV3cUt5RDdBb2l6T19VeWY3SUVPNUUzWVNnMGRwYWJNTF9NbVpzeE5PaU1aNHNoYjBmSGVvNlNWRGdoVXI4Z1VfSWNrYktkYlVQd3pNLWJSWUIwVGI3RHVwYnd4RHBib2l6a0V1R1RRbU5RQmRxUG4xUm15MFdWZ3ROWEVJN0NodTU2ZF9uRnpUVUY0YVJrTERHR3ZjV1lUeG1SbkpkMlRJb3hvTmpwVkQyVzhNMGFWenA3bTNoOEpvMWhudWhia0txdzFuWG9NUzhSc0NkX1ZpVzN5Q3BkeEp2MUJuT29WYUplbVluNVMzcQ?oc=5"
+   },
+   {
+    "t": "Anthropic sale a bolsa: US$1,4 billones con ticker ANT",
+    "src": "El Ecosistema Startup",
+    "at": "2026-11-14T15:21:50.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQYkJkMDlYSU16emZwN2RCeXZySGxWSVZwWG54X1M1dVlHaVhrOUFLTTlDbE1RQW1Ta0lZMVJ3a1M1cHJzRUFLbzRhWHhuVlVhX29xV1Y5X0J6WEJYVkxBd0tBRkxvRDh1cWU5Y0R1Vi11UUltVTB2WmF6eVJaU3BSOUZQblE0NGhLTXc?oc=5"
+   },
+   {
+    "t": "La salida a bolsa de Anthropic recibió seis veces más pedidos que las acciones disponibles",
+    "src": "Infobae",
+    "at": "2026-11-14T14:25:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOaW9Ld2g0XzZtN2R2TWdhR3dkRHBLdUxIM3otdzZCSmpHUHFYVl9JTllsUVExQThDcndLS0V5X1dxaHU3YUtydVdDMklWa2liaTc4NVlBN3RmdVJ6RkUtM0xKWnAwOXNLSVdSelNQRXBLQ3FoOUlJSl9VcS1fdXFZZlc0bElqTWNPMG9hNGlIY0FwdnhsSGNTcm5BeTlPUU51RmYzOVJXVEo4VmY2YlQxYjBBeHJ6RXlzT2Z5M1hmTVVEQ2pRZ3NqMktvRjHSAecBQVVfeXFMUGxIOVh6OWdnZnlkSTFsU3ZwdUl3QmplM2tFd3BvTkc2SlV4RWkxOGdtTmxCSjBGSGJTU1RPd0ZaaWExeGtHZFpfRkQ0aVd2NlN5QmJsTkgwSjJfUzR4YUdiYzNmS1VyMFA0N1lUTHRLZElFWUlYcDhyRXNVcUN2bnRQS1dPZmVBZlNjNWZodnRQNzh5d1dfeldleU5PR1JpNmtNd000VkNQSjN1eHBkcXA2NnpoUnF5Ym9OS0wxZEQxQVJ6MGZ0RlVDR1NCUjBERkdLLWpibW1vOVQzeE55Wm1wa2pjaVdv?oc=5"
+   },
+   {
+    "t": "Anthropic quiere superar a SpaceX con la mayor IPO de la historia y deja que Wall Street influya",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-14T13:29:49.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPSDNYRmdiZWdRazJuMUdvNE1KdWFXMEJ6T25UNG9XS2hEWHJuZVJKaERYVURzaGJVcDJuX2diaVpLMzlYc25RT3I4TXBGMW9zbHZSM2hKYmUyeVdBTDFzNzRmX0llNlR5a3VlaFY1LXNRMF9Cb2VhTHhyTW9hWEEtVi1RaFE0RkhsdU45ZGwzdkhOYjNzUllpN0k1QjVmWk5vRGJBcmRpdDFPNmhDTmY4UFM5UUc5Z0pCd1dyajVtRlBFVVI3eG5Hd1E2M0E3WlpHQXc?oc=5"
+   },
+   {
+    "t": "Datos clave: La salida a bolsa de Anthropic PBC atrae una demanda seis veces superior a la oferta; gira de presentación y riesgos relacionados con China",
+    "src": "TradingView",
+    "at": "2026-11-14T08:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBWc1drSE43OTNoaGVXRTNydl92cDFsQmxEUm5ISWlSRVhlak9ESEkzRU1ISGR5SG83TzJwWWVHc3pqNGRWVXF4dWcwRUc1UFJ2SjJYV3pTOWdPanYwM1BWWmcwT0tPVHo0cXlWRw?oc=5"
+   },
+   {
+    "t": "El CEO de Anthropic dice que el momento del IPO y las condiciones del mercado no son una prioridad",
+    "src": "KuCoin",
+    "at": "2026-11-14T07:10:44.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQVnJqbVhaWmRTMnlDbXl3MFU2b1U1c21YZGFvVmc3THpmOE9QSGdFSlA5LTBKM040cHEzX3o4cjZJcDl3M0h0dTZfcGhPMUk0STdWWFlENG5FZ1JkM1YzOGVfNW5TRldSZG5kYTFmN082ajQ2bE5lZmF1TGFpbDVkZTV1NlhLb2UyTGZkQjdpYU9rd2w4Vy1JZnVieWQxNEpyZWNKY2NrOEg2S00?oc=5"
+   },
+   {
+    "t": "Dario Amodei analiza el dilema de Anthropic antes de su salida a bolsa",
+    "src": "Business Insider España",
+    "at": "2026-11-14T05:30:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNUFhiNy1mbm9KaVRDT0pDRy12amVJOTNQMFdtOGIzRzVFRDlidWRtNVh6VW10MzMydElEMkRSSVRqY1hUUGxUQjRfNUdnWHM5bWtRZ1lYS1VmLUlvS0hWVmxBR25fenhEdVlSSkFWenZ4cUFaQjJkN3Z3OFRRQVRqaXFnQkVuYm5RMTdqbHY2Mm1FMnRFZVAzUjh1OGhoRWJ5M0oybDdjdzFwOWozTkRSQ3lIakUyandfUFVtN091MGZtS2Z6TG9WcEJYMjI5czdyZlR1T2RKRFJNVkowaE90TUpReXBLN2hTZ09fZ1BlUkRhWjR3V0w3Yno0QTZyXzQ?oc=5"
+   },
+   {
+    "t": "Dario Amodei asegura ante los inversores antes de la salida a bolsa que espera que la compañía \"prometa menos y cumpla más\"",
+    "src": "Business Insider España",
+    "at": "2026-11-14T05:30:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNUFhiNy1mbm9KaVRDT0pDRy12amVJOTNQMFdtOGIzRzVFRDlidWRtNVh6VW10MzMydElEMkRSSVRqY1hUUGxUQjRfNUdnWHM5bWtRZ1lYS1VmLUlvS0hWVmxBR25fenhEdVlSSkFWenZ4cUFaQjJkN3Z3OFRRQVRqaXFnQkVuYm5RMTdqbHY2Mm1FMnRFZVAzUjh1OGhoRWJ5M0oybDdjdzFwOWozTkRSQ3lIakUyandfUFVtN091MGZtS2Z6TG9WcEJYMjI5czdyZlR1T2RKRFJNVkowaE90TUpReXBLN2hTZ09fZ1BlUkRhWjR3V0w3Yno0QTZyXzQ?oc=5"
+   }
+  ],
+  "UL": [
+   {
+    "t": "Los fabricantes de bienes de consumo admiten que habrá nuevos aumentos de precios en 2027.",
+    "src": "Grande Consumo",
+    "at": "2026-11-13T20:03:59.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQQmdwRFBkZC1EeXF5MEZ6Wk5WNHhyRU56NE82eU5peDVNSUJaSnlyWTl5aHlKMDkwMWRMelRBZlpwaVk1VHhqMGdqRmFySV8xQ09JTDhIdHdUY2JFT0l5aVRueXVvcmM2a1RfalkyREZkVTJnQjdIOHBGVFU2d2lQUU4xWFRvdHJuSDVGZW9xME9BQUJQbHlzWmZ0UlhzVjFyWHZRN0hTakNqUQ?oc=5"
+   }
+  ],
+  "SONY": [
+   {
+    "t": "Tom Rothman, CEO de Sony Pictures, tiene claro que Spider-Man: Brand New Day debe aspirar al Óscar a la mejor película del año",
+    "src": "HobbyConsolas",
+    "at": "2026-11-14T13:20:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNdnVZQURBSWhYMi1LRGNqNUltV1J6ZDZzM1ZRaHFlWlRiU1dxZ2VtOXA0UjhZdUh4RWt3Y01UTDNPLXN6c3FuUGNaVTZzQ1AzcTVfVEZseVJvQ2FMYUlPUFA1UmNRVldrZ3hhaUVuemNlY0ZhRGlZUFUxZFZuWjUxQlFCeFVjWG5lNWxQTTZlM2Q0N2I0TGtDZGpHR0JNc1BvbGNiOEFoVm5NRTlOYmxqdVNpX1JtUWJ5TUNDZFdfLXVBR0xWV0t4STlKV0pKSkxydkYzWVY4VUlXQTkwZG1ucWItQjNZRzh3WUpmSWxEeFBUQmdacXc?oc=5"
+   },
+   {
+    "t": "Forget Take-Two: Sony Is the Overlooked Winner of GTA VI’s Huge Preorders",
+    "src": "TIKR.com",
+    "at": "2026-11-14T12:41:26.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQOEdkcmFHNXFRQ0JYdFNPUjlaRUNIc1pSQzU4M19wam9pckNKMVZOT1BjU3h5alBVSE5oRkFRdW11ZUpRVWFjQTdMQ1J6cTdCRlVGa1hVandVVFNXMzRWQkhqcHM2UWxKdDJfN2NUSUxTb2t3Nk5JcldzaW54VFlMam9TRlRXeVZSQ1BpNmFrWkdvVmFzUDZZb3dQSm41YmVKN2sw?oc=5"
+   },
+   {
+    "t": "Sony y AMD celebran los 100 millones de PS5 firmando consolas recién fabricadas",
+    "src": "todojuegos.com",
+    "at": "2026-11-14T10:32:18.000Z",
+    "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOMU13WkpBa2ViRU9hUXIweWNIdUk1V2RPWkI3M2c0N2paQ2RUOGxEY1Z4Q2dUdndCcV9BQnJ6eWUybDZtYV8tVW1IYkN5U3p1Z1ByX0d4SmZJOWtjMEVGU3d4Y1FoSjRERnlSUm5ROFFTaTkzcVV3Y3BPSEh5WjI3a2dVOHFRTGF3SlB0dGtJZHphZE5pLS1iZ2EwVVdLQldERkpNLV9xa0xVVHhJU21QNWQxTW1DUQ?oc=5"
+   },
+   {
+    "t": "Indecopi multa a empresa por importar mandos que imitaban marcas de Sony",
+    "src": "Mercado Negro",
+    "at": "2026-11-14T02:54:59.000Z",
+    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE56bWl6Q3YwNVItT1lCVV8zbXdVSWM0OFM5djQzMEVveFN4djN5QTZhQnFsWWdMLTItRzg5bU9rTlpDbUVuX2VIS3FncmhhQ2dIWXQtUEx2ejdPcVIwS0Y5RFhER25UMDFkbDJiOHJtUjI?oc=5"
+   }
+  ],
+  "CRM": [
+   {
+    "t": "Salesforce Buys Cresta 13 Days After Braze Because Voice Is “Hardest to Get Right”",
+    "src": "TIKR.com",
+    "at": "2026-11-14T14:38:10.000Z",
+    "u": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNb1JjWm9lNTNIaGRvSkhrMHBXUWpCZUJtZENlQ2NKRURTS2NqUTBLQzlGTTBPRGlDZVIwdkVQLTY1WEJxQ0NXeXFPLXY3Q0UxWVk0TTljUHJOSm93MFlXdWYzNHNKUFNjbFNia1pYdHhsVE1uWTl1MzhrSVBpeVV5S09pUUdBN2pNbTVQTUVyZ2stWng0aFpHLWNUOFMtS3pPWFMzNGUxd1g5Xy1YRmxJ?oc=5"
+   },
+   {
+    "t": "Precio de las acciones, noticias, cotización e historial de Salesforce, Inc. (CRM)",
+    "src": "Yahoo Finanzas",
+    "at": "2026-11-14T08:40:41.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9kOWN5cUVadjZXTmdRdGFyM3plZzNkNHZJcWNfWEoxbzdxdThKaWtMYXZ0RmVTV1NlRk9pTFpUeUhKTDVwYUROTENyWUxYUVAxUXJMZDV3?oc=5"
+   },
+   {
+    "t": "Demostración Conoce a Slackbot: tu asistente en Slack",
+    "src": "Salesforce",
+    "at": "2026-11-14T03:17:40.000Z",
+    "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAtajBDM3hJN2c4QjdoYnEzTXVzczRrR0ctSlhieFp4ZW9MVlZKNlluYkozcHE5VHdXLTcyaWJ0N3RtbnBXSHh4QTNLMUktS0l4VFNPM1FQaEYwTUt2TGVPYnB4ekhOampHWHpCUzV6cS1tUFhQ?oc=5"
+   },
+   {
+    "t": "Demostración de Agentforce Coworker: configuración y descripción general",
+    "src": "Salesforce",
+    "at": "2026-11-14T03:17:39.000Z",
+    "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE53TXUzRmZUR3ZFb2lrc2U5aHhkTmhJOU9PTTZMMzBZVjZYd3F2SnY1cVkyNkVJaUFoRFJBSnRaX2RxVi1fejloTXdHV0Z4NVliSDl4NzBJX21uaEZ2Ql9tUVlCb2xMNTZvcG9SeUM1RU1sX19zUlZ5cHU2OA?oc=5"
+   },
+   {
+    "t": "Acerca de Salesforce (Stove Tokenized Stock)",
+    "src": "Coinbase",
+    "at": "2026-11-13T21:47:01.000Z",
+    "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBZN2UxLTdFMlI0VkhzWEVPRDBXNkd4c1c3U0lDZzE0LVhiNXRrOE5UMDVhbGdIRDd5R1RQNHRLY2JzNk9nRjEzSzVCZlNpR1RsbEo2QTN1eFVKUzI1RnptRzlVcjViRzhmcHlaSWsxS2hOa040Znp2cw?oc=5"
+   }
+  ],
+  "SPOT": [
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de Zillow Group, Inc. (Z)",
+    "src": "Yahoo",
+    "at": "2026-11-14T05:25:57.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5JZ25lYllEdk5hTGllMGJTbEVYbnJBUFVPWWhPckgzazZqaUlqajc0ZnhRWEZrTHM1TG5BMy1BTGhUVDNaOFJHaWNza09Qdw?oc=5"
+   }
+  ],
+  "AZN": [
+   {
+    "t": "Astrazeneca recorta unos 600 empleos de su equipo de ventas en EEUU como parte de su plan de ahorro",
+    "src": "Diario Estrategia",
+    "at": "2026-11-14T03:49:26.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPOFFXODFNb2RKYl9qbzdvWlFZTTRkUG4yM0xGcC1LbHFpTFVyb05QbnVockpjXzZsUGNnN0xtTFVUREhFTk1yRHRVcU5ONFoxZUJHZUNVcVZKcE03Q0tWSlVIZlUyYlpSeHpRMVVqWDlXTU15UmJiOUJteXVxUUNlREFiOFdrb1lYUmNNQ0htVGZBZ29haE9mTDVhNGhiLWQ0R0pMd3hoYklibklDYXR5VE1GRV9WMEVKOVNyVXgzNUoxSE81Z3J0Ui02MlN3WFlXeWJsb0lR?oc=5"
+   },
+   {
+    "t": "AstraZeneca elimina aproximadamente 600 puestos de ventas…",
+    "src": "Uruguay Al Día",
+    "at": "2026-11-13T20:27:38.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQdVlfak1rbFRmUXFjaWxOSTd6U1FJenIta05yODBfbHpDOU55Y0otTzJjOGpMX0VrQ204QndoZ1BUaVZXUlNoSlpWQWJ1SzhSTXoxWXR5dm9CVTNlUVpucFFRaUxhNm1uRE9fY3V0RzRqWFZpUnNreDJOYlgxbE1KMUJhaVlqeVVkN2dTaEEzVzNqbzJJQnJiVk9ZbGJYMkJFRklFWWFwYmdvN1pSaVRyOURyYkJFdDBadV91RFFjUktwREU4Umh3Z3RMTnJSTENBRktGVlcycGtWQQ?oc=5"
+   },
+   {
+    "t": "AstraZeneca suprime 600 puestos comerciales en Estados Unidos",
+    "src": "MarketScreener España",
+    "at": "2026-11-13T19:27:13.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNazZOQnI1Mm9nazduZnR5VVJRM3pNNWNtZVVYQlo5T09MbVdCYUwwQXFHb3I0c1J2MDUySHFQVzFJWVZxYVFFMmVDV2VrSTI5VnZBSi0wcEFqMW9WWHk0NTBwUXdFSU5wT1RhUTRJdllhVkFqRHhnaEpZd21VSmM2WUFiQWw3M0NfUTNvam9CeE9manQ5bzJQOU9MSWF0eHZERDNUcVJnbzJMS21CZ1VUajVuQktfSE9r?oc=5"
+   }
+  ],
+  "BP": [
+   {
+    "t": "Venezuela promete reparar gasoducto con Colombia antes de marzo para reactivar el suministro de gas",
+    "src": "Bloomberg Línea",
+    "at": "2026-11-14T15:06:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxQQVp5S0ZrZFZCN0wybDY2MVdneGxBSGp4VjV1ZUk0c3cxRFM4ckdLSms2OEVMR0Jla0plWTIxRFEzVWQyX0FkR2N3WVBtYXFtRkdIbXRVcnF5MVViV2oydUZiZnpnNHNXdkZPUnVrcGNhNmJIeW9rNUJwYzBaZnBQakZEbDNuWEx2OWlwTkNicFRBdGUxWE5Ja0ZGMlJqdmNnN2gyTWNqRVV2a1ZQR2xQQ21WLWJJRTdlOVZiQnVSemllSzgzMXU4anQzd1hvbU55WTk3c19jM195aXJzYlFWX3p0YkNvUnNQRXF30gH_AUFVX3lxTE5IdzkwRWVYaWRvbjdxcDNLUEFWWHhDMVJXXzlvbzJFbHBscC13dzNjUzdkWUtycjZjMTBMdmREVnVJMmw1dUJBUjZaMml5ai13VXhMUUdhUUlWOVhiR0NYdFMzbTVCeHBxVFIxNWJDWnd0aUU0Q3BmdW8zOHFrX2I4d3JhYkI0dloxLVBFT0oxU1VtUmJEM1RMOTNVdDdacWJwLVBZTmRMRGN4QjRsTy10R0xfY0dUZjU3TDZXeU5oaWFjRGJBaHR3bmEtY2JjUXZnME9BM3NubHBCZ1FGVzk5VUlhVG9ndWFNQV9JV2toRGpkVVpNODVtUUNxejNRbw?oc=5"
+   },
+   {
+    "t": "¡HA ESTADO PARALIZADO DESDE 2015! Según Bloomberg, en marzo Venezuela promete reactivar gasoducto binacional con Colombia",
+    "src": "Howl.Link",
+    "at": "2026-11-14T13:28:38.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiO0FVX3lxTE9IX1EycV9GM0hyZ2E3bWtOV0E0WVlZUFdzRXZFNnFtSlhkQ3lqZURUU3BCZGZ4c1NOSWo4?oc=5"
+   },
+   {
+    "t": "Bloomberg | Venezuela promete reactivar en marzo el gasoducto con Colombia, paralizado desde 2015",
+    "src": "AlbertoNews",
+    "at": "2026-11-14T11:30:43.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPY3prTjFUZ09uS2FJdmtuRldvTHhqaVRCczJuOWVZTGo1YVhFY0M0RGlZXzR3XzFaVGxYaG4xQ1FCSFV5ZnhyZkRqZ3dFN1RqUHBFSUVTdzZRMmlYYnFDU1FGaEFEekNYNEo0OTdlYU15MHlrTDB2enRBYUlSQTRtZ2FZa2VTX0dVaWVCcGctcFVJWm0xUF9VTGxIcGZfUmxmN2NYd2lOWjFpd0swVmlEclhlemxFWTNVX0lMMHB4U09rMVNEWUZUbHFJTQ?oc=5"
+   },
+   {
+    "t": "BP PLC (BPE.SG) Gráfico de rendimientos estacionales",
+    "src": "Yahoo Finanzas",
+    "at": "2026-11-13T23:54:58.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9nRzVnQTJyQlpVaWYtajdaTC1yTGVIVW1iQk5CSndtdEd0V21SRGJkdUU2RTF4WlY1TzNwRjdRZzlaM2RtbkEzV3poWkhtamwxVXBrMmRWOERnUWFUT1Z6b1F2RlI3MXBVMkE?oc=5"
+   },
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de YPF Sociedad Anónima (YPFD.BA)",
+    "src": "Yahoo",
+    "at": "2026-11-13T23:06:22.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB1MWZiV2VYcDJRczBYMkR4RzNndzR1bWp4X3pKa1hiV0VOT3JJaTV0bFJrYXVRazZuSmdiZnZIazFkVDhLUGlLaTRZT205MVMtaGZfM29B?oc=5"
+   }
+  ],
+  "TXN": [
+   {
+    "t": "Directora de Texas Instruments Jean Hobby vende acciones por 2,71 millones de dólares",
+    "src": "Investing.com España",
+    "at": "2026-11-14T07:32:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOYWh0MWJERlI1QWFkdUQyMFBiR0puamNjSlI0UVRNazIya211M09sXzFNeTlNbmFNNFRkN2xDRE0xWGtWaWlFWHBtZURJNWFuWUdyYzd2YlcwSDhGNzRGZGI5T3g3OW11OHpJWHpsb1Jld2NMVUJDVWpuOGpLalo3TkNMellzd3ZaczM0SUxsYTZ5VGhuMUxiSExhSy1NcW0tOXBDSG9mVnpTX0JZZDdPUDg2MlJIT0syT244bnBMUnpWSkRNSzREQmhQaEhubi1fYUFOa0lsVnpnTFZDSE1rY1Z3?oc=5"
+   },
+   {
+    "t": "Una consejera de Texas Instruments vendió acciones por más de $2.7 millones",
+    "src": "TradingView",
+    "at": "2026-11-13T21:20:01.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBhamhVbEE1ZVBVQUZXWXM1NkZHMHA0TkQtQlZ3b1oyNFNBclZyaGZ4R2RndVE2bzcxd3BKd0JaSmZ5UnQ3d0h4dEhLMGVoaHZvMUJVSnlBdHR3Mnh4VU95c1pKeVE4Q3JsQnIxbA?oc=5"
+   }
+  ],
+  "LLY": [
+   {
+    "t": "Lilly presenta resultados de ensayos sobre obesidad en ObesityWeek 2026",
+    "src": "Investing.com España",
+    "at": "2026-11-14T17:05:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQaWtYcmU2dWxpa1NhNW5OZDlDU2pVb1VoMjhJRE8tQnVQS00xeV82amFZTEREbmJxVC1aSG9pdWlTNGNRTzFRTFZJV2FvcXQ0c1I2eTY5WGJuSXh1bkE3d0MwZ2VkdHZXLTl5Z2plN1lReGllcnlCalVUa2lEcklSeDJMM2NjZTFUYm02RUhsd3ZpNTY1NDVUcS1qa3pzREtHNDVsMWc4ZUM4NUIydFo3bVRDVVBZU3ZxUkhWUzU3TV9Jc21yVVE?oc=5"
+   },
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de Eli Lilly and Company (LLY)",
+    "src": "Yahoo",
+    "at": "2026-11-14T09:21:45.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE80WE9EVHNiWmpxT0lYejNIMFlkcmNhTVRSX3NrQlhlbVEyVXBPM2h2R2RnX3pGOWh2YldFaGhyYm9qaVhuZWttaUk0UndKdGh2?oc=5"
+   }
+  ],
+  "AMD": [
+   {
+    "t": "Perfil y datos de empresa de Advanced Micro Devices Inc (AMD0.MU)",
+    "src": "Yahoo",
+    "at": "2026-11-13T23:52:37.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE44b1AwODhTN241cXo1VjhWaW05ZnNrWFN5VFZQa2U3WTZaV0VyZE9JQXpNck5UeUhhbVVXeWg4QWw5QU9uemhrX2RNeExrNDl1U3I0Y09NUmREVlJod0g0Mw?oc=5"
+   },
+   {
+    "t": "22 Big Funds Bought Advanced Micro Devices. It’s 31% Below Its High. Bargain or Trap?",
+    "src": "TIKR.com",
+    "at": "2026-11-13T23:48:45.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1DekFYemY1ZWlMZllGcTR3bmZYY2xaVEJfMERLMzZ4QldubmlabXNTQjdmVTE2VzhPN3NHUWlFdDhsUUgzZkVVSFdNYUEtVFh6SmFPZUhTNVlnb2prR1VpMEU3X3RiaG9OWjBlM0JicWtZSEh3bUdzZGxB?oc=5"
+   },
+   {
+    "t": "El Nasdaq 100 pierde 340 puntos arrastrado por Advanced Micro Devices y Nebius Group",
+    "src": "FXStreet",
+    "at": "2026-11-13T21:41:06.000Z",
+    "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQeUtyV195RGhGVGxBcnV4aktLZXVXb3ZGaEoxR1pWcDI2ME9sNjR5amJ5VWRxTm4tR0g5Zl9TS1FWWHU4NG5ycXIyanRCOE9Sd2hUOVdiZTduZ1Z3djVEZFZucEE1dVhKQ1NXMkJhYVhsWDFGZW8yb05sdWx5RzV6a2pRbHdCeHpkVnJkZFJNV0pjc3VTc3pBUTJHNTBXcVNHUERseTBsWEk4V2pWaEVnbHFVRi11Ym5YRHFKQlpmeTFTN3RM?oc=5"
+   },
+   {
+    "t": "Un directivo de Advanced Micro Devices vende acciones por valor de 5.083.920 USD, según una notificación reciente a la SEC",
+    "src": "MarketScreener España",
+    "at": "2026-11-13T21:26:40.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOVmNPSk9oZ3c4Ykp6YlhBeGZOdDlFMFZkLXNaMmFWeURpVV96ejhVZXN1YVY4MVUydG5YelVFMUdzcURWOU9STldRaXpmQXQwN1lRSWZKSWFTY1MtYnZlemxud2FMR2dUN25YZVFHdE9MMWZnakZwUmJjUHlhbmF3NGsyYkd6REJKbjF0dkZheEF3c01reUprYURveXlWYThWc3NRMDRCb2pzZlJaa3UzbTg1WDFhTDV2M1hBSm9BYzdQOE45VmpNWDU4bzl4ejhvdmVBa2R1UzNYZ2N0d1VCYkN6SGNpa3N1OUhJ?oc=5"
+   },
+   {
+    "t": "Un consejero de Advanced Micro Devices vendió acciones por más de $5 millones",
+    "src": "TradingView",
+    "at": "2026-11-13T21:20:01.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBUQ2R5RkkzUjNneXhNQkdxSFJtaTh0bnRTR1hoVW5SRWNfVGJmZkJpMjgzTFF6M1I1V1A2NWJ6TkVxZzB4UWFQUGlqYXdha2ZyT2NYcWNWUkJ5RERnMUZCcjgtSGJyOTNwclhSNg?oc=5"
+   }
+  ],
+  "TSLA": [
+   {
+    "t": "SpaceX y Tesla estudian una fusión que podría reabrir la puerta al S&P 500",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-14T15:59:24.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNVkhGOEVfVmR4NmVRTV9FVmp6NkJxY0RoZ244TzcwcFRhTHM0Z00zX1hSYWJBN0lfajZfRXBwN0VTQVpXZFlPQzNhUnZyUzdKeVJLUElSZzJSYjJuME1GbE9id0FIZ1hmcGlVZ0FwZnJBNHA5dDI4QjAzQmRaUFAycG9hdjRrU1J2M05DMlVNbXRYU1RibTV6UVQ2dVJSdmtteEY0a0tiaFM4MldIX2xDRVZ0dw?oc=5"
+   },
+   {
+    "t": "Tesla ofreció a clientes seleccionados el Cybercab por USD 29.990, pero exige pagar una suscripción mensual para usarlo",
+    "src": "Infobae",
+    "at": "2026-11-14T13:49:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNTEpFdmo0U3dXREdoMnZxVmp5QnRLS3lCSHlJUnhEWFRsV0dyaG9VSmNZTGNtaDNFTVEyTFNCSEhlVE55VFltaE84NnJZUlBCbEhCdmI1M0tjZHhLWnFNbTRGX2xnc25ublBtekxqM2hfTEY4RFEyTFNpc00ydHk0eUFUeGtHcHBhQWFFQmloakZ1UWk1eE5yZmI5SFFjRW5jSU1MMEtPZUwxdEtGeFRSeGt6ZG9NUy1mc0FRQXU3UVU3WlRabWFCOFRQb2g2akV3N09FU3VDTmp2ckx0VkdySFY3aTdYUms2bTdSTDJzeUfSAYsCQVVfeXFMTXF5VUhPdjctRU9QRENOeGdHZEtiakVob0xfbll5ZnVnOHFRRWNyMVltUGtDWVNUdF9RWUdHWXBQeU5MVWM3a0M1eXNqdzZmYVRvekdlNDllakpzSTdiQlhyTVQtRlFQbnlQbGRMcUNEbGRTeWdCaFR6RExCZUo5N2Y0RDQ1dFhtZXotOFI3aHprLU1zMkc1TGtaMGk3TDIxLVVWWUd1OVI0aDdkREdfVmQzNm9kZ0pobm9sYnZ3a25YUXQ3VEhQZ3FkRnNuYm1ybExIazgtdlgzSTZwbHBhUFFxMTJMV2R5cEYzMmdtUDBQQmtMWmdxNmxxM2FHUTlIeWtyU1ptT3dMTktB?oc=5"
+   },
+   {
+    "t": "Elon Musk podría ganar una fortuna con la fusión entre Tesla y SpaceX",
+    "src": "iProUP",
+    "at": "2026-11-14T11:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOb21OOENnZWpjUk9YWmhMam1VNlBkMEhLMmY5OEtleDM4elA5OUM2T25rdWpsTDRQeDVIdVVVSjRtbjEzUDdWQ183OWJNc2o2V08yMGFobG96NlNabHJISEZWNVVTNnU1VjFFNjdPWVRlYWtwazk0czZuWnRYRnVxd2hhbkNFUTZ3U3dVNzlkVGlFZ0k3RkNKa3VuQi1zRnAtSXBTSmt1bFd0T2fSAbABQVVfeXFMT2RveU9Pdm9Ubm1YMXkyNkl6Z3FkTUROQmd1WWtiN29kYW1RN20wdXZqczkzdGVzYW5WaW0yRlNsdnR2NW92dFEwWjY4MVBYNXlHRE83YTZPWTdLMzZDSXdKUWgzRVUxVzhTLUJfSzQwRTlxbU5wNVZLdFpkdWQ3b09fMFluaC1TbVQ2SXlnT3JzTENfM0hIdTNjNm82alBCaWp3a3N2aXlOcW4zb1B4bGI?oc=5"
+   },
+   {
+    "t": "Is Tesla Stock Worth Buying Now on Robotaxi & FSD Progress?",
+    "src": "TradingView",
+    "at": "2026-11-14T02:15:01.000Z",
+    "u": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOX282MjRIeFphZWZyM3gxUTRBVXVRNW5nYkU2dVBFV0M5V056QzVQOEcwcHhiWnRJNXBYaG9sNG5yaTR1b2pOWFpZT3E2U2ltcEY2bnJabkpfN2NrdEVTTUZPR1hJOThLeGtIQzVPUDRneUdyZ0ZsbjFEZmtRMDE4eDJqZVVNd0h3cE0ybWw4NFpvSXNKajAxeTQyVldZV2pRWHk1N3g4ejFRZXNzTlFKOQ?oc=5"
+   }
+  ]
+ },
+ "marketNews": [
+  {
+   "t": "Ethereum (ETH) bajo presión: señales de sobreventa y riesgos para el 14 de noviembre de 2026",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T17:09:26.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQMnVTaE1ub3BzMUM4SDJBdzF0ejFJMWVqbmF3WnRpWF9NTkl2ZEtzQVFkN2pmcWpIaFotdEdUVFkyWDctV1pzNS0yQzVGMGFWdURUS0MwZ0FLNHFkaWZTOElVZ2NDdllzaDBkd3FOMWNVNkNwYXowckM1Z19DNDdhT2xtWlhEMjFUekx6bWVyenFNOWN0b0NzTF9pemtmMUNTV3BiYW16aWh3cGRKRlZWbjRwRU8zUkg4ckdodHJIbWtiSWFBcUViRQ?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Bitcoin retrocede 2,48% y amplía la presión bajista el 14 de noviembre de 2026",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T17:05:14.000Z",
+   "u": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOLW5PZm51dk1FNWpEUXJiWGQ5a2JEXy15LThwdHYtWTlaMDQ2cERwNzdTRllpSUdHSWFkQXZ1ZFl1RGZiMVNCSjRyck84cEhwWUxVS1NwenN6NF9zUndncnkyRl9GWU5sNlBwdWZBSXluMmtxMDZnVTdmd053UUNGaGh2WHBPT3ZzeG9Ub2VVWGw5Z05sVEFRZWpqTXNDemdaNXBhVHVTZDViLTloRjRuT1NqRjE2SVk?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "El proyecto de escalabilidad de Ethereum, MegaETH, reduce su personal en un 20% mientras persigue negocios en inteligencia artificial",
+   "src": "Cryptonews.net",
+   "at": "2026-11-14T17:02:07.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBId1M1OEZ4aGVMOFNDR3Q1NkplQlZRZ3JTX21mSTh0WWJXUURoOGc1QzVDTzBTTWFONEFQOXhZYUJyMl8yV1hPbXVQTlg0MV83YzhZaHZRQ2ZIdTY2RlE?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Bitcoin cae a mínimo de 3 meses de $65,000 mientras un analista advierte sobre la cuarta ola de capitulación",
+   "src": "Cryptonews.net",
+   "at": "2026-11-14T17:02:05.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WVk91d0hGelZ4by05TmdySmQyN3pIcjhvZGhSekdJRVFuSmVBMzNfMG1SaE5NSklhcGN4MVR6U2dpZEhVMFJHWVZGcjFmQzVQenBxaDN2YUJVcVNF?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Stellar crece más que Ethereum y Solana en fondos tokenizados",
+   "src": "Observatorio Blockchain",
+   "at": "2026-11-14T16:00:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOMVV4OGFCcmEzeHZIWkxzbXNSNDNORWNBYi0tMGtUYXc2MWpmWnNCR3Ntd3JXbUZFYld3UDhsS0tSUnc2Q3NNc19yZ1ZKMmtqQW82TjRxY3FtaWhWb2hjWVBhSU9jSG1uWWFnMzR0LVZWNktseUpQRlJoc0hJODE3c3pWQUVfbjJvY2x2NS1EUnd4VEpfTEE?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "SpaceX y Tesla estudian una fusión que podría reabrir la puerta al S&P 500",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T15:59:24.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNVkhGOEVfVmR4NmVRTV9FVmp6NkJxY0RoZ244TzcwcFRhTHM0Z00zX1hSYWJBN0lfajZfRXBwN0VTQVpXZFlPQzNhUnZyUzdKeVJLUElSZzJSYjJuME1GbE9id0FIZ1hmcGlVZ0FwZnJBNHA5dDI4QjAzQmRaUFAycG9hdjRrU1J2M05DMlVNbXRYU1RibTV6UVQ2dVJSdmtteEY0a0tiaFM4MldIX2xDRVZ0dw?oc=5",
+   "cats": [
+    "mercado",
+    "valor"
+   ]
+  },
+  {
+   "t": "ETF de Bitcoin pierden USD $2.350 millones en dos semanas y BlackRock suma 11 jornadas de retiros",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T15:39:24.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQaWduRnJtVmJuakdydmViOElBbkgzemgzbzh3YU5Kb3dYeFE2a3pGd3Jvejc0WXJOQzJtbFg4c2tyN1lISUQ3UERmd1BUTFd0ZGxSQ1lRNEhRMWdoQVlqZ2VyZ2ZtN25qN3hpZ2pXV0luTjBGcmh4WnZjSmQ0aWp2U00zd1FRb2FlV2tsclladFhrSmNrUHppNDZpTFFRejZndFZacUVCRW1KWFZORk1zTzBjX0h2QnFlX3NGR1FqTjl2MHdiTFVjbTRtU244YkVuMWlzRmlad2h3QQ?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Strategy pierde USD 7.000 millones en el papel con la caída del precio de bitcoin",
+   "src": "CriptoNoticias",
+   "at": "2026-11-14T15:39:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOMExWMzhEOThmSlNaS3VRTXQtSUNDaDRMZjV3MV9iZDEzSHBEcXJPY0FOcDZUNGVQTTBGUm12eGsxN0s0V2NQUjU3dmxLSDR4VGRGTGNVMXN2TklrSGE1Rllsal9wTUtPM0V1YU9STW1ENm85V1Nrb0tGSWg5ZWExUUN3clRaSmtVOFd6YTV4SkZoSkR0OXE3R2FoSQ?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Sam Bankman-Fried habría ganado unos USD $40.000 millones con la próxima IPO de Anthropic",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T15:29:24.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOaGt6dWdYS2U0dENLT216NnNXaURiQnNKcjhWLWhqcDZOdkV0RnFRbGltSjI4SXdtTjdFS244ektXNjVtRVBPdzgzVHh0dTh3X29aRkR5UXU2LXVVYnpkRS13UWRIWFM2bjdFR2laU3BtY1N1ZUc5ZC1CdmU3ZVY1SnIybml6UlYtTHNwS01DLXB2UFNsc2VDV0FMcHdhN0FGdmZ1emFfM2VjRW1lMWRwMTFKVnVNTTBzb0t3ajc3VmlwUktPLXBZQ1U4NmZFenJoRm03WnB3?oc=5",
+   "cats": [
+    "ipo"
+   ]
+  },
+  {
+   "t": "Anthropic sale a bolsa: US$1,4 billones con ticker ANT",
+   "src": "El Ecosistema Startup",
+   "at": "2026-11-14T15:21:50.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQYkJkMDlYSU16emZwN2RCeXZySGxWSVZwWG54X1M1dVlHaVhrOUFLTTlDbE1RQW1Ta0lZMVJ3a1M1cHJzRUFLbzRhWHhuVlVhX29xV1Y5X0J6WEJYVkxBd0tBRkxvRDh1cWU5Y0R1Vi11UUltVTB2WmF6eVJaU3BSOUZQblE0NGhLTXc?oc=5",
+   "cats": [
+    "mercado",
+    "ipo",
+    "valor"
+   ]
+  },
+  {
+   "t": "La salida a bolsa de Anthropic recibió seis veces más pedidos que las acciones disponibles",
+   "src": "Infobae",
+   "at": "2026-11-14T14:25:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOaW9Ld2g0XzZtN2R2TWdhR3dkRHBLdUxIM3otdzZCSmpHUHFYVl9JTllsUVExQThDcndLS0V5X1dxaHU3YUtydVdDMklWa2liaTc4NVlBN3RmdVJ6RkUtM0xKWnAwOXNLSVdSelNQRXBLQ3FoOUlJSl9VcS1fdXFZZlc0bElqTWNPMG9hNGlIY0FwdnhsSGNTcm5BeTlPUU51RmYzOVJXVEo4VmY2YlQxYjBBeHJ6RXlzT2Z5M1hmTVVEQ2pRZ3NqMktvRjHSAecBQVVfeXFMUGxIOVh6OWdnZnlkSTFsU3ZwdUl3QmplM2tFd3BvTkc2SlV4RWkxOGdtTmxCSjBGSGJTU1RPd0ZaaWExeGtHZFpfRkQ0aVd2NlN5QmJsTkgwSjJfUzR4YUdiYzNmS1VyMFA0N1lUTHRLZElFWUlYcDhyRXNVcUN2bnRQS1dPZmVBZlNjNWZodnRQNzh5d1dfeldleU5PR1JpNmtNd000VkNQSjN1eHBkcXA2NnpoUnF5Ym9OS0wxZEQxQVJ6MGZ0RlVDR1NCUjBERkdLLWpibW1vOVQzeE55Wm1wa2pjaVdv?oc=5",
+   "cats": [
+    "ipo",
+    "valor"
+   ]
+  },
+  {
+   "t": "Bitcoin bajo los USD $70.000: diez señales de alerta y diez posibles motores de recuperación",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T14:24:40.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOXzdlUnVIN2JXd0xRLVJpT3pvMGRYcFBBSGV6aVlGQzdudjQ3R05GSVpUdDlVUVZhd0o1T1F6RFRBQTB3OGExeVYwVGpyQ1dBMDd3YkRsQ2k5N1RXZmpiWVpYMHdPSzNqUmV3OUtNcjl6SkQyOU9JQ2VTTjNwYTVianFPWTdidm1JaVVzMXl0TTg1RzJYbTZ3UWVOUmU2bVdNMGFFaGNWaWhYYmZqUTB5b0VwVTRzTUhYWEtiU2duc3B3d0xheW9LclJn?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Strategy pierde USD $7.200 millones a medida que Bitcoin se desploma bajo USD $67.000",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T14:18:59.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNSWZ4QTd6MlhFSnZkVjhPVU9rOWNSUTVpdmhKbHYtYXpoSjA2eUxXN2ljUnZ4OXBZc1U2UmtwSlczOXgzS01GZlpOcHhpWktfVmZyUnYyTEJDVU1Zc25rbEpyQ3hiQWNvWGxsMlRETFNaM0h4eXktTlRuaEhXZ1lfS1NGZ1RsMEpIcTZrR3BrODVvcDBzc2ZOVGJHOE9JbDJreHJCR0dubFR1R2NxSmh6QVByTWQ0a3lXaW1sWWtlYkc?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Este es el precio de la criptomoneda ethereum este 14 de noviembre",
+   "src": "Infobae",
+   "at": "2026-11-14T14:16:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNY1Z5N21hQXFyYk16WndENXNFam9acGxQYXp0THBBZDhtUEIwSU91cXZmYTFMTF91dC1vTV9uSGtmaXJ1UmtZdjZQVjRxLWl2YXlKeGlXRW5WcWdyV2dyblJhQTNYaVJ3OTlBaWN4bDhiQ1BKZ2ZkcjZQcTZxMWp4UDdnaGpCYXR5S1hrazY2V01KZGNyNFYxaGoybTNneXdSU3hoVWVfVDcxU0g00gHHAUFVX3lxTFBGX2xKb0xaV0tGSk5xd1ZLSjZwb1VoYThtbk9LblpXSTFLNVJYN04zamU0OHdudXBCZE1EcmFXcDd3YWR0aGE1VF9TU1pqUDNtSFVkZWRsLUFPVWg3Qzdsd0pCcnhvSV9Oc3A1a0tvS1NYa1BBR00xZTRsd0tFVl9fUUx2cDVXUGVJZ0ZUaVMzR3RGYXJUMUtVblk0ZWcwM0lrZk9tQ2dsZUR0NjNrWjFRZnBVbFh2T2FXUTJVUjZZOFVjMmlYM2s?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Una billetera con Bitcoin desde 2011 mueve 40 BTC tras recibir un aviso judicial",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:49:41.000Z",
+   "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPc214bzRSQWVHTVlpcWZsZmR3R3hpOXZzb0Y2eUk0Z0pqYTc0cDBNNW9zVVRyQ3hRT3lwT1lSSkZ0NmR2am9WR2dDZnJDVFRVYzh1WktvNzJmRkNfd1FsQmUxaUJkRnZxVlZ3YnBMV0J4WWNLaGZBakNKSE5ZM01HOVY0U3ZhdEFoMVdVXy1wNmQ3aE1ZU0tWMXZsMlUybU9DbVE5R2JJLUJlbzdGQ2lkZFlJcHozV3pnNXI1UkFGWQ?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Twenty One Capital ganó USD $1.000 millones con Bitcoin, pero su CEO advierte: «Eso no es un negocio",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:44:22.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOUGx4OWcxNnFBdExiNXA2a2ZGcHdILUpIaDdoZS1UYU5CRHBneW5qa0dUQmJ1bW1ja3FqMFEyR2lfS3BOcnBQZWtKWFBXMDlvQlJhY29uUk8wSFJleTZMS0R3OGNQVmdQQ0ptMVNuZUJTMGZYa0N1UnNXd1cwMC03V2haa1BiUjUteTgzaURKTHlwWWlfZ1BFcE5wWXJIQldUUGhVYkh6eGhuLXVXaHA1Rldadm5JYTZkLUwtT2NPZ0c5Q3RSZGdQbktDX0FjVEVHSkE?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "JPMorgan eleva a casi USD $1.000 millones sus inversiones con exposición a Bitcoin",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:41:15.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPQ1hDUzZldXJqckY5VWM1UVQzekdiSndRS084MXc1enlJMnZqSElMRTRqelA5R2RYZERJV1JLSWlDcmFHY3Bkdk01YzkzRFFuX1N3Y1BYUmpuNE42aFExY2N3SzFQWTJLLVNRMkJCRVBzeENlNFByUU1waUdKSC15N181RW92bkoxRFdDbTlxMmdHM0F2QTVHTE9EWktVZGNNdndJcFUwZUdlWV9rQnJWNnVCdVdYTWgtbV9rTDR1a0NMa0pjdlgxZHhJNFJHUmgzbFpoRg?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Anthropic quiere superar a SpaceX con la mayor IPO de la historia y deja que Wall Street influya",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:29:49.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPSDNYRmdiZWdRazJuMUdvNE1KdWFXMEJ6T25UNG9XS2hEWHJuZVJKaERYVURzaGJVcDJuX2diaVpLMzlYc25RT3I4TXBGMW9zbHZSM2hKYmUyeVdBTDFzNzRmX0llNlR5a3VlaFY1LXNRMF9Cb2VhTHhyTW9hWEEtVi1RaFE0RkhsdU45ZGwzdkhOYjNzUllpN0k1QjVmWk5vRGJBcmRpdDFPNmhDTmY4UFM5UUc5Z0pCd1dyajVtRlBFVVI3eG5Hd1E2M0E3WlpHQXc?oc=5",
+   "cats": [
+    "ipo",
+    "valor"
+   ]
+  },
+  {
+   "t": "Strive dice que sobreviviría incluso si Bitcoin cayera a un centavo",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:29:20.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxONGNHYTI4bUJpbERTRDYwaUVUbXdrMVZVSzBERVhiZTdoamgzbDc5Y0I4amIxQ3YtdlQyMXV0dmc5UXdUcHRZMVZEQ3EwMHRRNExEMGxDV0hoMm10ZHFWa2tHbnowWlVUZ3J3TU5HcG9KNnFOd2VhZ2szRkpOX29CTjRrc0ZqTU5NdXFpdndnOHNDY1hKZnRTazFkQ2hiQ0k1X2lIaGVQazBIZEU?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Ethereum mantiene el consenso pese a una falla de acceso vinculada a la nube",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:29:20.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQanY0N3M2dUZCYkRhYUFxOTktVEU5RVhNUzBKek9OV043am1XY2RyVFpOYkVzcnJ3ZVdhM2pXTzZwVnc1RkMtYjVVbTRPVHctX1ZUeDQzS2MwR1VyV1R4dVRURUJSS3F4c0g5amQ1S3VGRUt0RVp2dk5JRDFzakJva1hsQmwtTE0ySmFnWmk0b2syN0hMeV9HR2MtM2lUMW4xNkxWb2NIaldqRmdvaDkyVEs0ZHU5djYtTkE?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Una extensión de navegador de Bitcoin con 50.000 usuarios se vende por USD $55.650",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T13:11:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOdEdPQkt6U1dsN2dOQWl0ZVpYanBWVmo2RDRsVU13UXNydWk5SjVJaktteDlFQU5xbnlqLThvQ0Z6NklpblYyMWJzU0lMMWNjdGRNQzFVNTJjVFRyWjU0LXJGM3BJRlpxcnJQN2RodlZUOWM1WnF2U1FOMV9ZY0RsZ2pMOUtMMHFHV2VfRm9MeVlEcVl2dFpOQmxBdnRLSVhlRlVOSGQ5VUItQnBrekw3THJZYXlhSXJNaldVUlNZQQ?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "ETF de criptomonedas pierden alrededor de USD $1.531 millones en una semana",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-14T12:23:16.000Z",
+   "u": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNSldQWVYxeWZ6WkNBWHBDMmRpbTNWeDQxV09mTFp4c3o3cDFSMkdZZF9MRk40QkNsUmNuN18zdHpyQVRyVHI0b3F5dUQtN3hqSVc1LUtlVG42UkxUaW5pd2Z5WVh5UHJHMWdYQlpFaC05c2pJck05QlJPMnNPdWl2T2dtM0FmejB0N1c1TDZ6U3hLM3o0c0tSZWJyUTltVW9iWTREdlVuQUJxZ2xsQWt4dmdqa28?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Datos clave: Las salidas de los ETF de Bitcoin alcanzan $1.44 mil millones y el dólar se fortalece",
+   "src": "TradingView",
+   "at": "2026-11-14T12:00:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5kM1pxQ18tTVE2eTkwbE5MMlVXNW1JMG9WcUhfYXoxN2YxMFp5cHRWd19KQXJTYVVYbVpVMHlLSFJtbDZ6TW90LV9LR1ZJU2dHUkpXdHdUbFQwWUVycl9majJzSnJSQURsQVBfLQ?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Key facts: Bitcoin ETF outflows hit $1.44 billion; dollar firms",
+   "src": "TradingView",
+   "at": "2026-11-14T12:00:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQYmVzXzk4TGxzZW1FSXpnZ2ZJdC1Sc2JOLS1pNWcybW9MVEloSnE5V3dUV0d3Y3R1Z0xnNlVqRU9SLWh6LXpwWEdwWk5McHpNUk1kWnBoSXk5X0xTaXR4VndtQzdDeGtCMXZaMVUxeWJsQUl4clIzOEdWa1UxSWI0RmtvLTZNRVZrSl92ck95c1h5THpFSldNMWhORXU3TFo2Wl9ReDViU2VaM1lGb1FtalpPazUzLUY5TVBObDh3?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "El falso negocio de los 300 euros que atrapó a un menor en una estafa con criptomonedas",
+   "src": "Tribuna de Ávila.",
+   "at": "2026-11-14T11:50:30.000Z",
+   "u": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOUXdBTnFvSUlHa29STmJ6bVVVTkZ0bWRsWHJuQk9jQ3A1cFJybER3YktkT1VkSzZiVG1RaU5QSnVfLXlkbXNaVWNoVjRyNnRIamUyMXY4ZFBEZl9SWHYzYzFZekdRMjhPanlZeGpSQ0ZsMkYyUUxwaWdaeGQ3eXNSTUZ3TXRhY3Y0RGtfN1M5MEx1NE00LUVhT3poUGlCQ1YxLVJLa2tXQmpZVHNsbjdKT2VxOU5xSHRzUTBDV3NMYU1KelhtbUpSZzJyaWY?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Índice IBEX 35 hoy | Cotización IBEX",
+   "src": "Rankia",
+   "at": "2026-11-14T11:32:23.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE80Ym5TWnpSdXA4Q0pqTnJEcEZJOTRsdzY3eGg2MU9aenBUZE45amVQc1k5R1U3R0JfMTVtUnN6M0dHWjdxVEVveW1WdlJTZ0dJYmlKdGduZFg2SzJONF84cVViUm8?oc=5",
+   "cats": [
+    "europa"
+   ]
+  },
+  {
+   "t": "Cuándo COMPRAR y VENDER BITCOIN: Los Errores que Te Pueden Dejar ATRAPADO",
+   "src": "Howl.Link",
+   "at": "2026-11-14T11:30:01.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiO0FVX3lxTE5Pa1hhdTBJSXpPWlpRNlJCRDhTejBQNDB1U3hQRnl0NHZtWUFOVW1DdDRaZldfLWlXTXlR?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Predicción de bitcoin: once sesiones de salidas en el IBIT",
+   "src": "CryptoTicker.io",
+   "at": "2026-11-14T11:16:18.000Z",
+   "u": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9rU2x2TjlkVlNyRHpCZ21KYmZYSGRSb3hHTkNOT1lIUmQxSWxFQmdMMklzRHlId1FRTzdJOHY5SGRmbGpXX1ROa29mR0NNZElLWEM0cVBjdjktVVBZQkcxNWhTTTlMTE9sLVpJci1XTlNWOFA3andj?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Hernández de Cos se perfila como continuador del legado de Lagarde al frente del BCE",
+   "src": "Infobae",
+   "at": "2026-11-14T11:16:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOdXQxdThiNm9LaWQxUjhXNUZ0UDV2MWlIZ0wtaGFXalFLblEtVGpzQnJrcnVkdktseGJmam41SGVoaldxVU9tRW02OS04RWxQdVBMMXZfWW92S1RETVBNc0JFR3E2eHI3S3FCQnI3cjkxbWpiUEhfNHpBRTQyR0tDTXNsVWJxMDNqNkM4Z2oyamEtUmlFMW4wMG9BMkRTVDVEd0xtdEtqWUZzTUQtYXl1VDhhTWZmZ3IzWlBnbWJFY1lDYThCU29IRHZxc3RFOGdTdWNR0gHuAUFVX3lxTE9oTTAteDBaN2N1eGs4eUhfRTRHUFhKVDBaOTltWHJHUGUycHRnT0NXNmdMQ1NSMS12SVdfbVJlanRSV1ljd1RkNnc5S0tDbXh0QWQ0YkRZa0UteldyZmtVX056dERmTzZZZm1uYU1RTmRIRDNHMjBBbHBfc2oxVHJlRDFUVEFrb2tDZi1nSEthZDdvaGtQZnk1b21Cajl0eXJWaGQyRE5kY1g0cFZIRTcwaE5rRVNPdlkwa2Q0TnNNSjNVbXBRUmxvNlgxbHBjOE9oLVM0U2VtSXNJOEc4aGQ2YW1iUXZaT0NDeFluWVE?oc=5",
+   "cats": [
+    "europa"
+   ]
+  },
+  {
+   "t": "Carlos Lozano advierte: la caída de Bitcoin podría continuar pese a breves repuntes",
+   "src": "Negocios.com",
+   "at": "2026-11-14T11:08:09.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQa0FfSFJ6d2JCaUY2bFd1Q1RCdXQtNDNMaWI5b1UzS0JWVU5yTUtDNTZPMHJ0SmppQk5KQWZ2N3lHM1BuenVjTHhuTjVOS2dwSXZwcmw5WjlGVUtwLWg0bnJkVE95eHpDSk1FZnpOaTdmcTVfOHNtd3J6SWJ1SUV2SXA3VmJqUHhWdE45VHMxRm51ZzVYb3pxNXVhLWk5aWVqcm9QMmhaWWVqSHpqNkk0NER4YlBsVGdMaE9CWUZzeWg4VzhnY2RDdEtTVGdOTGkwOG5j0gHYAUFVX3lxTE02SjFTNGRWdkMyR0V5a1BZcXluNmtOdkVQZEF4Uk1uS0g5MnpyMVpZOERtbXE5RFJYSGNRNlNHTmpfSzZhNHd0S2ZENjVpMnVwZzJPODN5QjZ2OGxTYzRwbE5HbmdrSDJ3UENCS3lEblN4dXI1cDZRS1RscjAwdEYxQUh6MGdxcHc3RGR0N29EQzEwYlZZUXVPRTRuWVJhaFhZTGNrVWJmRDA2YUlYUzBqY1F4cVR1Y01OLXgwRVNhYjE3T2FCdE5fU2hfUTJPTW4ta0s1c3h4WQ?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  }
+ ],
+ "fundamentals": {
+  "NVDA": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 20.77,
+   "ps": 13.22,
+   "pb": 20.77,
+   "revG": 83.38,
+   "epsG": 125.15,
+   "margin": 63.66,
+   "divY": 0.03,
+   "beta": 2.35,
+   "hi52": 243.37,
+   "lo52": 148.8
+  },
+  "SHEL": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 8.39,
+   "ps": 0.85,
+   "pb": 1.36,
+   "revG": 19.41,
+   "epsG": 137.13,
+   "margin": 10.18,
+   "divY": 3.88,
+   "beta": 0.01,
+   "hi52": 4110,
+   "lo52": 2554
+  },
+  "ANT": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": null,
+   "ps": null,
+   "pb": null,
+   "revG": null,
+   "epsG": null,
+   "margin": null,
+   "divY": null,
+   "beta": null,
+   "hi52": null,
+   "lo52": null
+  },
+  "UL": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 13.71,
+   "ps": 2.76,
+   "pb": 7.21,
+   "revG": -10.66,
+   "epsG": 68.37,
+   "margin": 20.16,
+   "divY": 3.95,
+   "beta": 0.79,
+   "hi52": 5525,
+   "lo52": 4068
+  },
+  "SONY": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": null,
+   "ps": 1.95,
+   "pb": 2.62,
+   "revG": 8,
+   "epsG": null,
+   "margin": -1.03,
+   "divY": 0.61,
+   "beta": 0.39,
+   "hi52": 4776,
+   "lo52": 3043
+  },
+  "CRM": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 18.53,
+   "ps": 4.08,
+   "pb": 3.93,
+   "revG": 11.23,
+   "epsG": 59.27,
+   "margin": 21.99,
+   "divY": null,
+   "beta": 1.29,
+   "hi52": 269.11,
+   "lo52": 146.32
+  },
+  "SPOT": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 34.38,
+   "ps": 6.34,
+   "pb": 10.19,
+   "revG": 9.03,
+   "epsG": 311.93,
+   "margin": 18.43,
+   "divY": null,
+   "beta": 1.51,
+   "hi52": 668.5,
+   "lo52": 405
+  },
+  "AZN": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 25.91,
+   "ps": 4.58,
+   "pb": 4.87,
+   "revG": 7.32,
+   "epsG": 17.38,
+   "margin": 17.68,
+   "divY": 2.3,
+   "beta": 1.31,
+   "hi52": 15730,
+   "lo52": 11404
+  },
+  "BP": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 12.84,
+   "ps": 0.49,
+   "pb": 1.84,
+   "revG": 26.34,
+   "epsG": 496.14,
+   "margin": 3.81,
+   "divY": 4.79,
+   "beta": -0.36,
+   "hi52": 638.5,
+   "lo52": 413.35
+  },
+  "TXN": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 39.47,
+   "ps": 13.52,
+   "pb": 13.33,
+   "revG": 20.27,
+   "epsG": 40.7,
+   "margin": 34.25,
+   "divY": 3.39,
+   "beta": 1.42,
+   "hi52": 334.03,
+   "lo52": 152.73
+  },
+  "LLY": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 48.68,
+   "ps": 15.53,
+   "pb": 27.05,
+   "revG": 45.51,
+   "epsG": 50.65,
+   "margin": 31.9,
+   "divY": 0.75,
+   "beta": 0.37,
+   "hi52": 1460,
+   "lo52": 850.51
+  },
+  "AMD": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 114.52,
+   "ps": 19.2,
+   "pb": 14.51,
+   "revG": 41.87,
+   "epsG": 127.4,
+   "margin": 16.77,
+   "divY": null,
+   "beta": 2.62,
+   "hi52": 658.52,
+   "lo52": 188.22
+  },
+  "TSLA": {
+   "at": "2026-11-14T16:05:31.506Z",
+   "pe": 467.15,
+   "ps": 14.52,
+   "pb": 15.71,
+   "revG": 8.3,
+   "epsG": -39.17,
+   "margin": 3.11,
+   "divY": null,
+   "beta": 1.78,
+   "hi52": 498.83,
+   "lo52": 297.38
+  }
+ }
+}
