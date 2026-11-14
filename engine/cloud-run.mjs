@@ -121,6 +121,8 @@ const tier2 = new Set(s.watch.map((w) => w.symbol).filter((x) => !tier1.has(x)))
 
 // ---------- 3. Precios e indicadores ----------
 const symbols = [...tier1, ...tier2];
+// Precio en euros: a céntimos si vale 10 € o más; con 6 decimales si es más barato (criptos de céntimos)
+const roundPx = (v) => (v >= 10 ? Math.round(v * 100) / 100 : Math.round(v * 1e6) / 1e6);
 // Criptos que en Yahoo tienen otro símbolo (choque de nombres): se guardan con el nombre de siempre
 const YF_ALIAS = { "MON-EUR": "MON30495-USD" }; // Monad (MON-USD en Yahoo es otra moneda, PocMon)
 const fresh = await mapLimit(symbols, 4, async (sym) => {
@@ -134,7 +136,7 @@ for (const q of fresh) {
   if (q.error || q.price == null) { log.push(`${q.symbol}: sin precio (${q.error || "vacío"})`); continue; }
   const prev = s.quotes[docId(q.symbol)];
   q.prevSma200Side = prev && prev.sma200 ? Math.sign(prev.price - prev.sma200) : null;
-  s.quotes[docId(q.symbol)] = { ...q, eurPer: fx[q.currency] ?? null, priceEur: fx[q.currency] ? Math.round(q.price * fx[q.currency] * 100) / 100 : null, updatedAt: at };
+  s.quotes[docId(q.symbol)] = { ...q, eurPer: fx[q.currency] ?? null, priceEur: fx[q.currency] ? roundPx(q.price * fx[q.currency]) : null, updatedAt: at };
   ok++;
 }
 // Salidas a bolsa en vigilancia: el primer precio que llega significa que ya cotiza
