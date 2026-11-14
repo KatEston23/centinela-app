@@ -30,7 +30,7 @@ export const TOPICS = [
   { cat: "cripto", q: "bitcoin OR criptomonedas OR ethereum when:1d" },
 ];
 const IPO_RE = /salida a bolsa|\bOPV\b|\bIPO\b|debut(a|ar|ó)? (bursátil|en (bolsa|el Nasdaq|Wall Street|la bolsa))|empieza a cotizar|comienza a cotizar|cotizar por primera vez|pre-?IPO/i;
-const CRYPTO_NAMES = { BTC: "bitcoin", ETH: "ethereum", SOL: "solana", XRP: "XRP", ADA: "cardano", DOGE: "dogecoin" };
+const CRYPTO_NAMES = { MON: "Monad cripto", BTC: "bitcoin", ETH: "ethereum", SOL: "solana", XRP: "XRP", ADA: "cardano", DOGE: "dogecoin" };
 
 /** Nombre buscable de un valor: «NVIDIA Corporation» → «NVIDIA», «BTC-EUR» → «bitcoin». */
 export function searchName(sym, name) {

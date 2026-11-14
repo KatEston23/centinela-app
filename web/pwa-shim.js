@@ -1039,7 +1039,17 @@ function renderRobot() {
 const _renderAll4 = renderAll;
 renderAll = () => { _renderAll4(); renderRobotCard(); renderRobot(); };
 const _renderPortfolio2 = renderPortfolio;
-renderPortfolio = () => { _renderPortfolio2(); renderRobotCard(); };
+renderPortfolio = () => {
+  _renderPortfolio2(); renderRobotCard();
+  // Cripto regalada por Revolut (curso «Aprende y gana»): no tiene coste, así que no hay resultado que calcular
+  for (const a of (S.crypto?.assets || []).filter((x) => x.reward)) {
+    document.querySelectorAll("table.pos tbody tr").forEach((tr) => {
+      if (tr.querySelector(".tk")?.textContent !== a.asset) return;
+      const res = tr.querySelector(".c-res"); if (res) { res.className = "num c-res up"; res.textContent = "Regalo de Revolut"; }
+      const nm = tr.querySelector(".c-name .nm"); if (nm) nm.textContent = "Recompensa del curso de Revolut";
+    });
+  }
+};
 
 // ---- Desplazamiento propio de cada pestaña ----
 // Cada pestaña recuerda dónde se quedó; la primera vez empieza arriba. Tocar la pestaña en la que

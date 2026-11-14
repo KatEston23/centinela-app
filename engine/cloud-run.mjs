@@ -54,6 +54,8 @@ if (process.env.REVX_ENABLED !== "0") {
         }
         if (lots.length) a.lots = lots;
         if (qty > 0 && cost > 0) { a.costEur = Math.round(cost * 100) / 100; a.avgEur = Math.round((cost / qty) * 100) / 100; }
+        // Cripto regalada por Revolut (cursos «Aprende y gana»): sin compras en EUR, solo recompensas
+        if (!(cost > 0) && rows.some((t) => t.type === "reward")) { a.reward = true; a.rewardUsd = Math.round(rows.filter((t) => t.type === "reward").reduce((x, t) => x + Number(t.destination?.amount || 0), 0) * 100) / 100; }
       } catch { /* sin historial */ }
     }
     s.crypto = { configured: true, at, assets };
@@ -119,7 +121,12 @@ const tier2 = new Set(s.watch.map((w) => w.symbol).filter((x) => !tier1.has(x)))
 
 // ---------- 3. Precios e indicadores ----------
 const symbols = [...tier1, ...tier2];
-const fresh = await mapLimit(symbols, 4, (sym) => analyze(sym, { ext: true }));
+// Criptos que en Yahoo tienen otro símbolo (choque de nombres): se guardan con el nombre de siempre
+const YF_ALIAS = { "MON-EUR": "MON30495-USD" }; // Monad (MON-USD en Yahoo es otra moneda, PocMon)
+const fresh = await mapLimit(symbols, 4, async (sym) => {
+  const q = await analyze(YF_ALIAS[sym] || sym, { ext: true });
+  return YF_ALIAS[sym] && q && !q.error ? { ...q, symbol: sym, yahoo: YF_ALIAS[sym] } : q;
+});
 const fx = { EUR: 1 };
 for (const c of new Set(fresh.filter((q) => !q.error).map((q) => q.currency))) { try { fx[c] = await fxEurPer(c); } catch { fx[c] = null; } }
 let ok = 0;
