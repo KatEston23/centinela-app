@@ -1,8 +1,8 @@
 {
- "at": "2026-11-15T07:42:19.291Z",
+ "at": "2026-11-15T13:41:19.371Z",
  "market": {
   "regime": "risk-off",
-  "summary": "El mercado entra en la semana en modo defensivo: el IPC de octubre subió un 0,4 % mensual (previsto 0,3 %) y los futuros descuentan con ~85-88 % de probabilidad una subida de tipos de la Fed el 9-dic. A eso se suma la dimisión de Jensen Huang como CEO de Nvidia el 12-nov, con la acción llegando a caer un 13 % ese día, y la caída del bitcoin, con salidas de ETF de ~1.070 M$ del 9 al 13-nov. Esta semana toca Nvidia (resultados), la OPV de Anthropic y la sucesión de Lagarde en el BCE, donde suena De Cos.",
+  "summary": "El mercado entra en la semana en modo defensivo: el IPC de octubre subió un 0,4 % mensual (previsto 0,3 %) y los futuros descuentan con ~85-88 % de probabilidad una subida de la Fed el 9-dic. Se suma la dimisión de Jensen Huang como CEO de Nvidia (la acción cae otro 3,1 % en la última sesión, tras −13 % intradía el 12-nov) y el desplome de bitcoin, con más de 2.000 M$ en liquidaciones y salidas de ETF de ~2.350 M$ (TradingView/iProUP). Esta semana: resultados de Nvidia (17-nov según prensa), la OPV de Anthropic, donde inversores presionan por una valoración inferior a 1,5 billones tras la corrección del Nasdaq (WSJ), y la sucesión de Lagarde en el BCE, con De Cos como candidato.",
   "events": [
    {
     "t": "Dimite Jensen Huang como CEO de Nvidia; Kress, interina (Fox Business)",
@@ -17,10 +17,16 @@
     "u": "https://crypto.news/bitcoin-price-falls-below-74000-as-hot-us-cpi-fuels-fed-rate-hike-fears/"
    },
    {
-    "t": "Bitcoin cae por salidas de ETF y liquidaciones; ether pierde un 9 % (Cryptoticker)",
+    "t": "Bitcoin cae a 62.000 $ con más de 2.000 M$ en liquidaciones y 2.350 M$ de salidas de ETF (Cryptonews/TradingView)",
     "impact": "alto",
     "affects": "Criptomonedas y valores ligados como Strategy",
     "u": "https://cryptoticker.io/en/crypto-news-bitcoin-falls-to-63500-fed-hike-bets-november-14-2026/"
+   },
+   {
+    "t": "Firmus, respaldada por Nvidia, busca 3.000 M$ tras una OPV fallida (Investing.com)",
+    "impact": "medio",
+    "affects": "Salidas a bolsa de IA e infraestructura de datos",
+    "u": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQRVZ4eUstUWs1dVlueEJqU3BwcWZzYXlvOVg2dHNhNXN2SjRGY1liakFNOThURkpObHk3WmtvekpaUjgxZ2pPOHpPQzRYRXlyMmFlVXRXaU9xYkxBbEQzSTdGMThhc1BmUnNqdU5SYmgtX09HNmJIZkVadjJtU1pGUEdkSXl3WjJXQ1I0OVNpWjVFUDY4Z1psX0Y4czNfc0J4NmFQRlpqSjEzSWo1WFh3MnYtSUNWSnlX?oc=5"
    },
    {
     "t": "Anthropic fija su OPV en 70-78 dólares, hasta 64.400 M$ (Decrypt)",
@@ -87,13 +93,13 @@
     "d": "2026-11-19",
     "market": "Nasdaq",
     "revolut": "desconocido",
-    "note": "825 millones de acciones a 70-78 $ (hasta 64.400 M$), valoración de 1,26-1,41 billones; pricing el 18-nov y ~20 % para minoristas. Ninguna fuente confirma si se podrá suscribir desde Revolut.",
+    "note": "825 millones de acciones a 70-78 $ (hasta 64.400 M$; los bancos pueden añadir 123,75 millones), valoración de 1,26-1,41 billones; pricing el 18-nov y ~20 % para minoristas. El WSJ cuenta que inversores presionan por una valoración inferior a 1,5 billones tras la corrección del Nasdaq. Ninguna fuente confirma si se podrá suscribir desde Revolut.",
     "u": "https://decrypt.co/382939/anthropic-sets-ipo-price-range-at-70-to-78-valuing-company-at-up-to-1-4-trillion"
    }
   ]
  },
  "crypto": {
-  "summary": "El régimen cripto marca 33,6 sobre 100 (RISK_OFF): pesan la amplitud de altcoins (10/100; solo el 16 % de 19 sobre su SMA200) y el momentum (35, solo el 5 % de 20 monedas en positivo a 30 días), mientras que dominancia y funding no tienen datos. Bitcoin cae a ~58.300 € (−18 % en 30 días) con salidas de ETF de ~1.070 M$ en la semana del 9 al 13-nov y un IPC que refuerza la subida de la Fed: prudencia aunque el RSI de 22,8 apunte a sobreventa."
+  "summary": "El régimen cripto marca 33,6 sobre 100 (RISK_OFF): pesan la amplitud de altcoins (10/100; solo el 16 % de 19 sobre su SMA200) y el momentum (35, solo el 5 % de 20 monedas en positivo a 30 días); dominancia y funding sin datos. Bitcoin cotiza a ~59.600 € (−16,5 % en 30 días) con más de 2.000 M$ en liquidaciones y salidas de ETF de ~2.350 M$ (TradingView); las reservas de Binance tocan mínimos de cinco años (DiarioBitcoin). Prudencia aunque el RSI de 27,7 apunte a sobreventa."
  },
  "notes": {
   "NVDA": {
@@ -103,12 +109,12 @@
    "entryConfidence": 50,
    "watchFor": "Esperar a los resultados del 17-nov: guía de ingresos del próximo trimestre y quién dirige la compañía; el RSI de 24 invita a un rebote pero no a entrar antes de saberlo.",
    "title": "Nvidia sin Huang: resultados con el RSI en 24",
-   "reason": "Fase «Lateral» con caída del 25,9 % en 30 días (RSI 24,3, 33 % bajo máximos) tras la dimisión inmediata de Jensen Huang el 12-nov por sus relaciones extramatrimoniales, una con una mujer que los servicios de inteligencia de EE. UU. consideran espía china. La valoración es baja para su historia (PER 20,8, ventas +83 %, margen neto 63,7 %), pero hasta ver la guía y el sucesor la prudencia manda.",
-   "news": "Huang dimitió el 12-nov y la CFO Colette Kress es CEO interina mientras el consejo busca sustituto; la acción llegó a caer un 13 % ese día y recortó al −4 % (Yahoo Finanzas). Musk y empleados impulsan una petición para que vuelva (RTVE).",
+   "reason": "Fase «Lateral» con caída del 25,9 % en 30 días (RSI 24,3, 33 % bajo máximos de 243 $) y otro −3,1 % en la última sesión tras la dimisión de Jensen Huang el 12-nov por una relación con una mujer a la que la inteligencia de EE. UU. señala como espía china. La valoración es baja para su historia (PER 20,4, ventas +83 %, margen neto 63,7 %), pero con las opciones descontando un movimiento de ±10,6 % en resultados conviene esperar a la guía y al sucesor.",
+   "news": "Huang dimitió el 12-nov y la CFO Colette Kress es CEO interina; Musk impulsa una petición con más de 100.000 firmas para que vuelva (20Minutos) y TradingView recoge una caída del 4 % por el informe de sucesión. El mercado de opciones descuenta ±10,6 % tras resultados (MarketPulse).",
    "risk": "Incertidumbre de gobierno corporativo, posibles restricciones de exportación por la investigación sobre China y beta de 2,35.",
    "thesis": "Liderazgo en aceleradores de IA con ventas +83 % y beneficio por acción +125 %, margen neto 63,7 % y foso de software CUDA; además participa con 10.000 M$ en la OPV de Anthropic, cliente de cómputo.",
    "breaks": "Que la guía del próximo trimestre quede por debajo de los 65.000 M$ de ingresos previstos para el trimestre en curso, o que la investigación derive en pérdida de licencias de exportación.",
-   "valuation": "PER 20,8 y precio/ventas 13,2 con ventas +83 %: barato frente a su media reciente y a AMD (PER 114), pero con 33 % de caída desde máximos de 243 $.",
+   "valuation": "PER 20,4 y precio/ventas 13 con ventas +83 %: barato frente a AMD (PER 115), pero 33 % bajo máximos de 243 $.",
    "catalysts": [
     {
      "d": "2026-11-17",
@@ -139,7 +145,7 @@
    "watchFor": "Que recupere su media de 50 sesiones (554,6 $) tras los resultados de Nvidia, o que corrija hacia los 480 $ con el PER bajando.",
    "title": "AMD cae un 8,8 % en una corrección alcista",
    "reason": "Fase de corrección en tendencia alcista: cae un 8,75 % en el día y un 5 % en 30 días, por debajo de su SMA50 (554,6 $) pero muy sobre la SMA200 (423,1 $). No hay titular propio que lo explique; coincide con el castigo a Nvidia tras la salida de Huang. Con PER 114,5 está cara incluso con ventas +41,9 %.",
-   "news": "Sin noticia propia en 48 h; arrastrada por el desplome de Nvidia y por la salida a bolsa de Anthropic, donde AMD figura entre las siete tecnológicas que comprarán acciones sin voto (Decrypt).",
+   "news": "Simply Wall St señala que AMD vuelve a captar atención tras superar previsiones de beneficio y lanzar productos de IA, pero hoy cae con Nvidia; además es una de las siete tecnológicas que comprarán acciones sin voto de Anthropic (Decrypt).",
    "risk": "Valoración exigente (PER 114,5, precio/ventas 19) y beta 2,62 en un mercado que descuenta una subida de tipos en diciembre.",
    "thesis": "Centro de datos por IA y cuota en CPU de servidor, con ventas +41,9 % y beneficio por acción +127 %.",
    "breaks": "Margen bruto por debajo del 55 % o recortes de gasto en IA de grandes clientes en los resultados de febrero.",
@@ -231,13 +237,13 @@
    "entry": "evitar",
    "entryConfidence": 70,
    "watchFor": "Recuperar la SMA200 (≈63.650 €) con cierre semanal y que las salidas de los ETF se frenen; el régimen debería superar 40.",
-   "title": "Bitcoin cae a 58.300 € con ETF en salidas",
-   "reason": "Fase «débil, bajo su media de 200»: 58.373 €, −18,2 % en 30 días, −29,9 % desde máximos y RSI 22,8 (sobreventa extrema). Los ETF de bitcoin de EE. UU. sacaron unos 1.070 M$ del 9 al 13-nov y el IPC de octubre (+0,4 % mensual) alimenta una subida de tipos en diciembre; con régimen 33,6 (risk-off) se rompe la tesis.",
-   "news": "Bitcoin cae hacia 58.300 € por salidas de ETF y liquidaciones (Investing.com); Strategy acumula unos 7.000 M$ de pérdidas latentes (CriptoNoticias) y Cryptonews habla de una posible cuarta ola de capitulación.",
+   "title": "Bitcoin cae a 59.600 € con ETF en salidas",
+   "reason": "Fase «débil, bajo su media de 200»: 59.575 €, −16,5 % en 30 días, −28,4 % desde máximos y RSI 27,7 (sobreventa). Las liquidaciones superan los 2.000 M$ y los ETF de EE. UU. acumulan salidas de ~2.350 M$; el IPC de octubre (+0,4 % mensual) alimenta una subida de la Fed el 9-dic y, con régimen 33,6 (risk-off), la tesis está rota.",
+   "news": "Bitcoin cae a 62.000 $ con liquidaciones de más de 2.000 M$ (Cryptonews.net) y los ETF pierden 2.350 M$ con las posiciones cortas disparadas (TradingView); Peter Schiff advierte de 50.000 $ (Cryptonews).",
    "risk": "Más liquidaciones y salidas de ETF; la sobreventa puede dar rebotes pero no cambia la tendencia.",
    "thesis": "Adopción institucional vía ETF y escasez; la tendencia de fondo ya no la respalda: cotiza bajo la SMA200 y bajo la SMA50 (71.169 €).",
    "breaks": "Ya cumplido: cierre bajo la SMA200 (≈63.650 €) con salidas de ETF y régimen por debajo de 40 (33,6).",
-   "valuation": "Sin PER: flujos negativos de ETF (≈1.070 M$ en cinco sesiones), drawdown del 30 % y 16 % de las altcoins sobre su SMA200.",
+   "valuation": "Sin PER: salidas de ETF de ~2.350 M$, drawdown del 28 % y solo el 16 % de las altcoins sobre su SMA200.",
    "catalysts": [
     {
      "d": "2026-12-09",
@@ -435,7 +441,7 @@
    "watchFor": "Un retroceso hacia la SMA50 (283,9 $) o ver tras los resultados de Nvidia que los chips no siguen cayendo.",
    "title": "Texas Instruments cae un 2,8 % con los chips",
    "reason": "Tendencia alcista: +8,8 % en 30 días pero −2,84 % hoy, sin titular propio que lo explique; coincide con el castigo a los chips tras la salida de Huang. PER 39,5 con ventas +20,3 % y margen neto 34,3 %: valoración alta para un negocio analógico.",
-   "news": "Una directora, Jean Hobby, vendió acciones por 2,71 M$ (Investing.com); sin noticias operativas esta semana.",
+   "news": "Cae un 2,8 % arrastrada por los chips tras la salida de Huang de Nvidia (Kienyke); una directora, Jean Hobby, vendió acciones por 2,71 M$ (Investing.com).",
    "risk": "Valoración alta (PER 39,5, precio/ventas 13,5) y ciclo de chips sensible a Nvidia.",
    "thesis": "Recuperación del ciclo analógico, margen neto del 34 % y mejora de caja al moderarse el capex.",
    "breaks": "Nuevo ajuste de inventarios o ventas que crezcan menos del 10 % en el próximo trimestre.",
@@ -455,8 +461,8 @@
    "entryConfidence": 45,
    "watchFor": "Ver el precio final del 18-nov (rango 70-78 $) y el cierre del primer día del 19-nov frente a ese precio antes de entrar.",
    "title": "Anthropic: OPV de hasta 64.400 M$ el 19-nov",
-   "reason": "Aún no cotiza (sin precio ni fase técnica). Rango de 70-78 $ por acción, 825 millones de acciones en Nasdaq y valoración de hasta 1,4 billones; el libro ya está cubierto. Históricamente comprar el primer día rinde de media un −6 % a 60 sesiones (TradingKey), por lo que conviene esperar.",
-   "news": "Fija el rango de 70-78 $ y fecha pricing el 18-nov con debut el 19-nov; siete tecnológicas, entre ellas Nvidia, Google, Microsoft y AMD, comprarán 26.000 M$ en acciones sin voto (Decrypt).",
+   "reason": "Aún no cotiza (sin precio ni fase técnica). Rango de 70-78 $, 825 millones de acciones en Nasdaq y valoración de hasta 1,4 billones; el libro está cubierto, pero el WSJ cuenta que inversores piden bajar la valoración de 1,5 billones tras el castigo tecnológico. Comprar el primer día rinde de media un −6 % a 60 sesiones (TradingKey): conviene esperar al precio final.",
+   "news": "Rango 70-78 $, pricing el 18-nov y debut el 19-nov; siete tecnológicas comprarán 26.000 M$ en acciones sin voto (Decrypt). Activistas protestan por el riesgo para ahorros de jubilación (Infobae) y Diari ARA habla de una salida desinflada.",
    "risk": "Valoración de hasta 1,4 billones, control del 50,1 % de los votos por una sola acción de los cofundadores y volatilidad del primer día.",
    "thesis": "Líder en IA generativa con fuerte demanda institucional y libro cubierto en el rango.",
    "breaks": "Precio de salida por encima de 78 $ o cierre del primer día por debajo del precio de OPV.",
