@@ -1,17 +1,17 @@
 {
- "at": "2026-11-14T06:11:38.814587+00:00",
- "score": 45.7,
- "zone": "NEUTRAL",
- "guidance": "Mixed conditions observed; no strong regime conclusion",
+ "at": "2026-11-15T06:11:24.430332+00:00",
+ "score": 33.6,
+ "zone": "RISK_OFF",
+ "guidance": "Defensive market conditions observed; review existing risk controls",
  "components": {
   "btc_trend": {
-   "score": 65,
-   "signal": "STACK INTACT, PRICE BELOW (deep pullback / early break); 200DMA rising",
+   "score": 45,
+   "signal": "STACK INTACT, PRICE BELOW (deep pullback / early break); 200DMA falling",
    "ok": true
   },
   "alt_breadth": {
-   "score": 20,
-   "signal": "32% of 19 tracked alts above 200DMA (5% above 50DMA); short-term breadth rolling over",
+   "score": 10,
+   "signal": "16% of 19 tracked alts above 200DMA (5% above 50DMA)",
    "ok": true
   },
   "dominance": {
@@ -25,8 +25,8 @@
    "ok": false
   },
   "drawdown_vol": {
-   "score": 55,
-   "signal": "Drawdown 30.7% from 1y high",
+   "score": 45,
+   "signal": "Drawdown 33.7% from 1y high; volatility elevated (top third of 1y range)",
    "ok": true
   },
   "momentum_thrust": {
