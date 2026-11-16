@@ -98,10 +98,24 @@ export function publishApp() {
   rmSync(dir, { recursive: true, force: true });
 }
 
-// El último estado publicado vive en la rama gh-pages (data.enc.json)
+// El último estado publicado vive en la rama gh-pages (data.enc.json).
+// Si no se puede leer, el motor se detiene: empezar con un estado vacío y publicarlo borraría
+// todo lo que no regenera el motor (cartera importada, Robo-Advisor, historial). Así pasó el
+// 16-11-2026 a las 01:09 UTC: un fallo puntual del fetch dejó la app solo con las criptos.
+const sleep = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 function fetchPublished() {
-  try { git("fetch -q --depth=1 origin gh-pages"); return git("show FETCH_HEAD:data.enc.json"); }
-  catch { const f = join(DOCS, "data.enc.json"); return existsSync(f) ? readFileSync(f, "utf8") : null; }
+  let lastErr;
+  for (let i = 1; i <= 3; i++) {
+    try { git("fetch -q --depth=1 origin gh-pages"); return git("show FETCH_HEAD:data.enc.json"); }
+    catch (e) { lastErr = e; if (i < 3) sleep(5000 * i); }
+  }
+  // Copia local (rutinas de Claude en el PC); en GitHub Actions no existe docs/ en main
+  const f = join(DOCS, "data.enc.json");
+  if (existsSync(f)) return readFileSync(f, "utf8");
+  // Empezar de cero solo si se pide de forma explícita (primera instalación)
+  if (process.env.CENTINELA_ALLOW_EMPTY === "1") return null;
+  throw new Error("No pude leer el estado publicado (gh-pages); no publico nada para no borrar datos. "
+    + String(lastErr?.stderr || lastErr?.message || "").trim().slice(0, 300));
 }
 
 async function main() {
