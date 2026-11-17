@@ -303,3 +303,20 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .rb-fv{display:grid;justify-items:end;gap:1px;font-size:12.5px}
 .rb-fv b{font-size:15px}
 #v-robot .ap-back{margin-bottom:-2px}
+
+/* ---- sugerencias ---- */
+.sug{display:grid;gap:5px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--sunk);border-left:3px solid var(--muted)}
+.sug-keep{border-left-color:var(--gain)}
+.sug-trim{border-left-color:var(--accent)}
+.sug-sell{border-left-color:var(--loss)}
+.sug-hd{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;align-items:baseline}
+.sug-hd b{font-size:14.5px}
+.sug-keep .sug-hd b{color:var(--gain)}
+.sug-trim .sug-hd b{color:var(--accent)}
+.sug-sell .sug-hd b{color:var(--loss)}
+.sug-hd .num{font-size:13px;color:var(--fg)}
+.sug .body{font-size:13.5px;line-height:1.45}
+.sug-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.sug-row:first-of-type{border-top:0}
+.sug-sym{display:flex;gap:8px;align-items:baseline;margin-bottom:6px;flex-wrap:wrap}
+.thesis .sug{margin-bottom:4px}

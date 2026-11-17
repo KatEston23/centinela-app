@@ -948,6 +948,83 @@ async function renderPushBanner() {
 const _appPanel = appPanel;
 appPanel = () => { _appPanel(); renderPushPanel(); renderPushBanner(); };
 
+// ---- Sugerencia por posición: ¿vender?, ¿cuánto? y ¿qué hacer con ese dinero? ----
+// Reglas transparentes sobre el veredicto de la IA, la fase del gráfico, el resultado y el peso en la cartera.
+// Es una propuesta orientativa, no asesoramiento: las operaciones las decide y hace usted en Revolut.
+const BAD_PHASE = new Set(["bajista", "debil", "rebote"]);
+function suggestFor(h, ctx) {
+  const q = h.q || {}, sg = latestSignalFor(h.quote), act = sg?.action, conf = sg?.confidence ?? 0;
+  const pnlPct = h.pnl != null && h.costEur ? h.pnl / h.costEur : null;
+  const weight = ctx.total ? (h.value || 0) / ctx.total : 0;
+  const reward = (S.crypto?.assets || []).some((a) => a.asset === h.symbol && a.reward);
+  let share = 0; const why = [];
+  if (act === "vender" && conf >= 70) { share = 1; why.push(`la IA recomienda vender (confianza ${conf} %)`); }
+  else if (act === "reducir" && conf >= 60) { share = conf >= 75 ? 0.5 : 0.25; why.push(`la IA recomienda reducir (confianza ${conf} %)`); }
+  if (pnlPct != null && pnlPct <= -0.2 && BAD_PHASE.has(q.phase)) { share = Math.max(share, 0.5); why.push(`pierde un ${fmtPct(-pnlPct, false)} y la tendencia es ${String(q.phaseLabel || "").toLowerCase()}`); }
+  if (pnlPct != null && pnlPct >= 0.4 && ((q.rsi14 ?? 0) > 75 || q.phase === "distribucion")) { share = Math.max(share, 0.25); why.push(`gana un ${fmtPct(pnlPct, false)} y está ${q.phase === "distribucion" ? "en distribución" : "sobrecomprada"}: asegurar parte del beneficio`); }
+  if (weight > 0.5 && !["comprar", "reforzar"].includes(act)) { const cut = (weight - 0.4) / weight; if (cut > share) { share = cut; why.push(`pesa el ${fmtPct(weight, false)} de su cartera: bajarlo al 40 % reparte el riesgo`); } }
+  share = Math.min(1, Math.round(share * 100) / 100);
+  if (!share) {
+    const keep = act === "reforzar" || act === "comprar" ? `la IA ve margen para reforzar (confianza ${conf} %)`
+      : BAD_PHASE.has(q.phase) && (q.rsi14 ?? 50) < 30 ? `está en sobreventa (RSI ${Math.round(q.rsi14)}): vender ahora suele ser vender en el peor momento`
+      : act ? `el veredicto de la IA es ${act} (confianza ${conf} %)` : "no hay señales para vender";
+    return { verb: "No vender", cls: "keep", share: 0, why: [keep], reward };
+  }
+  const units = h.qty * share, eurV = (h.value || 0) * share;
+  // Por debajo de 5 € no compensa: comisiones y mínimos de Revolut se comen el movimiento
+  if (eurV < 5) return { verb: "No vender", cls: "keep", share: 0, why: [...why, `serían solo ${eur.format(eurV)}: no compensa por comisiones y mínimos`], reward };
+  const gain = pnlPct != null && pnlPct > 0 ? (h.pnl || 0) * share : 0;
+  // Destino del dinero: la mejor idea de compra, una posición que la IA quiere reforzar o, si no, reserva
+  const held = new Set(ctx.H.map((x) => x.quote));
+  const idea = (S.scan?.items || []).filter((i) => i.verdict === "comprar" && (i.confidence ?? 0) >= 60 && !held.has(i.symbol)).sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))[0];
+  const add = ctx.H.filter((x) => x.quote !== h.quote).map((x) => ({ x, s: latestSignalFor(x.quote) })).find((y) => ["reforzar", "comprar"].includes(y.s?.action) && (y.s.confidence ?? 0) >= 60);
+  const crypto = q.kind === "crypto", where = crypto ? "Revolut X" : "Revolut Invest";
+  let dest;
+  if (idea) dest = `Comprar ${idea.symbol} (${idea.name || ""}), la mejor idea de compra ahora (confianza ${idea.confidence} %)${(idea.kind === "crypto") !== crypto ? `: antes tendrá que pasar el dinero de ${where} a ${idea.kind === "crypto" ? "Revolut X" : "Revolut Invest"}` : ""}.`;
+  else if (add) dest = `Reforzar ${add.x.symbol}, que la IA ve para ${add.s.action} (confianza ${add.s.confidence} %).`;
+  else dest = `Dejarlo como efectivo en ${where} hasta que aparezca una señal de compra clara; se lo avisaré.`;
+  return { verb: share >= 1 ? "Vender todo" : `Vender el ${Math.round(share * 100)} %`, cls: share >= 1 ? "sell" : "trim", share, units, eur: eurV, gain, why, dest, reward };
+}
+const fmtUnits = (v) => v.toLocaleString("es-ES", { maximumSignificantDigits: 4 });
+function suggestionNode(h, ctx, compact = false) {
+  const g = suggestFor(h, ctx);
+  const n = el("div", { class: "sug sug-" + g.cls },
+    el("div", { class: "sug-hd" }, el("b", { text: "Sugerencia: " + g.verb }),
+      g.share ? el("span", { class: "num", text: `${fmtUnits(g.units)} ${h.symbol.replace(/-EUR$/, "")} ≈ ${eur.format(g.eur)}` }) : null),
+    el("div", { class: "body", text: "Por qué: " + g.why.join("; ") + "." }));
+  if (g.share) {
+    n.append(el("div", { class: "body" }, el("b", { text: "Qué hacer con el dinero: " }), g.dest));
+    if (g.gain > 0.5 && !compact) n.append(el("div", { class: "body flat", text: `Esta venta realizaría unos ${eur.format(g.gain)} de ganancia: tenga en cuenta los impuestos sobre plusvalías y las comisiones.` }));
+  }
+  if (g.reward) n.append(el("div", { class: "body flat", text: "Es un regalo de Revolut: venderlo o no apenas cambia nada en su cartera." }));
+  return n;
+}
+// En las tarjetas de señales e ideas de lo que usted ya tiene (junto a «Por qué invertir», «Valoración»…)
+const _thesisBlock2 = thesisBlock;
+thesisBlock = (sym) => {
+  const b = _thesisBlock2(sym);
+  const H = allHoldings(), h = H.find((x) => x.quote === sym);
+  if (!h) return b;
+  const ctx = { H, total: H.reduce((a, x) => a + (x.value || 0), 0) };
+  const box = b || el("div", { class: "thesis" });
+  box.prepend(suggestionNode(h, ctx));
+  return box;
+};
+// Panel en Inicio: la sugerencia de cada posición de un vistazo
+function renderSuggestions() {
+  let p = $("#sug-panel");
+  const H = allHoldings().filter((h) => h.value > 0);
+  if (!H.length || !S.loaded) { p?.remove(); return; }
+  if (!p) { p = el("div", { class: "panel", id: "sug-panel" }); $("#positions")?.after(p); }
+  const ctx = { H, total: H.reduce((a, x) => a + (x.value || 0), 0) };
+  const sells = H.filter((h) => suggestFor(h, ctx).share > 0).length;
+  p.replaceChildren(el("h2", {}, "Sugerencias", el("small", { text: sells ? `${sells} posición${sells > 1 ? "es" : ""} con propuesta de venta` : "ahora mismo no hay nada que vender" })),
+    ...H.map((h) => el("div", { class: "sug-row" }, avatar(h.quote, "av sm"), el("div", {}, el("div", { class: "sug-sym" }, el("b", { text: h.symbol }), el("span", { class: "flat", text: (h.q?.name || "").replace(/ (USD|EUR)$/, "") })), suggestionNode(h, ctx, true)))),
+    el("p", { class: "note", text: "Reglas: vender si la IA lo recomienda con confianza alta, reducir si pierde más de un 20 % en tendencia bajista, recoger parte del beneficio si gana más de un 40 % y está sobrecomprada, y no dejar que un solo activo pase del 50 % de la cartera. Propuesta orientativa, no asesoramiento financiero: usted decide y opera en Revolut." }));
+}
+const _renderPortfolio3 = renderPortfolio;
+renderPortfolio = () => { _renderPortfolio3(); renderSuggestions(); };
+
 // ---- Robo-Advisor de Revolut: ventana propia y suma en el resumen ----
 // Revolut no tiene API: los movimientos salen del extracto del robot y el motor actualiza el precio de
 // sus fondos cada 15 minutos. Solo se observa; Centinela nunca opera.
