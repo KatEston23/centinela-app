@@ -801,7 +801,7 @@ async function pwaLoad(k) {
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
     S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
-    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null;
+    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null; S.spec = d.spec || null;
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
@@ -1190,3 +1190,90 @@ function pwaStart() {
   setInterval(() => { if (document.visibilityState === "visible") refresh(); }, 10 * 60 * 1000);
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 }
+
+// ---- Alto riesgo: castigadas que empiezan a girar y grandes subidas del día ----
+// El motor revisa cada hora las listas de lo que más sube, baja y se negocia en EE. UU. más los valores
+// muy castigados. Son apuestas: pueden multiplicarse o hundirse. Nunca se avisa ni se opera solo.
+const SPEC_TYPE = {
+  despegue: ["Gran subida hoy", "sp-up"],
+  rebote: ["Castigada que gira", "sp-reb"],
+  sobreventa: ["Muy castigada", "sp-low"],
+};
+const SPEC_SHARE = 0.05; // como mucho el 5 % de la cartera en cada apuesta
+function specNode(it, ctx, compact = false) {
+  const [label, cl] = SPEC_TYPE[it.type] || ["Alto riesgo", "sp-low"];
+  const watched = (S.watch || []).some((w) => w.symbol === it.symbol);
+  const cap = it.cap ? (it.cap >= 1e9 ? (it.cap / 1e9).toLocaleString("es-ES", { maximumFractionDigits: 1 }) + " mil M" : Math.round(it.cap / 1e6) + " M") : null;
+  const max = ctx.total ? Math.max(5, Math.floor(ctx.total * SPEC_SHARE)) : null;
+  const ai = it.verdict ? ({ comprar: "la IA lo ve para entrar", vigilar: "la IA prefiere esperar", evitar: "la IA lo desaconseja" })[it.verdict] : null;
+  const nw = compact ? [] : newsFor(it.symbol, 2);
+  const n = el("div", { class: "spec " + cl },
+    el("div", { class: "spec-hd" },
+      avatar(it.symbol, "av sm"),
+      el("div", { class: "spec-id" }, el("b", { text: it.symbol }), el("span", { class: "flat", text: it.name || "" })),
+      el("span", { class: "spec-tag", text: label })),
+    el("div", { class: "spec-px num" },
+      el("span", { text: fmtMoney(it.price, it.currency || "USD") }),
+      el("span", { class: cls(it.change1d), text: "hoy " + fmtPct(it.change1d) }),
+      el("span", { class: cls(it.change7d), text: "7 d " + fmtPct(it.change7d) }),
+      (it.drawdown ?? 0) <= -0.05 ? el("span", { class: "down", text: "desde máx. " + fmtPct(it.drawdown) }) : null,
+      cap ? el("span", { class: "flat", text: "tamaño " + cap + " $" }) : null),
+    el("div", { class: "body", text: it.why }),
+    ai ? el("div", { class: "body" }, el("b", { text: "IA: " }), ai + " (confianza " + it.confidence + " %)" + (it.aiReason && !compact ? ". " + it.aiReason : "")) : null,
+    !compact && it.news ? el("div", { class: "body flat", text: "Noticias: " + it.news }) : null,
+    nw.length ? newsList(nw) : null,
+    el("div", { class: "body flat", text: "Riesgo: " + (it.aiRisk || it.risk) + (it.notes && it.notes.length ? " Además: " + it.notes.join("; ") + "." : "") }));
+  if (!compact) {
+    n.append(el("div", { class: "body" }, el("b", { text: "Si se anima: " }),
+      "como mucho " + (max ? eur.format(max) + " (el 5 % de su cartera)" : "un 5 % de su cartera") + ", y solo dinero que pueda perder entero. Compruebe antes en Revolut Invest que esté disponible: muchas empresas pequeñas no lo están."),
+      el("div", { class: "spec-act" },
+        it.spark ? spark(it.spark, 120, 34) : el("span"),
+        el("button", { class: "btn small" + (watched ? "" : " primary"), type: "button", onclick: () => watched ? unwatch({ symbol: it.symbol }) : watch(it), text: watched ? "Vigilando" : "Vigilar" })));
+  }
+  return n;
+}
+function specCtx() {
+  const H = allHoldings();
+  let total = H.reduce((a, x) => a + (x.value || 0), 0);
+  try { if (typeof robotTotals === "function") total += robotTotals()?.value || 0; } catch {}
+  return { H, total };
+}
+const SPEC_NOTE = "Rebotes y despegues: apuestas de alto riesgo. Una acción muy castigada puede multiplicarse (como SELLAS, SLS) o seguir hundiéndose, y las grandes subidas del día suelen llegar por una noticia que nadie podía saber antes. Las listas se revisan cada hora. Orientativo, no asesoramiento financiero.";
+// En Inicio, dentro de «Sugerencias»: las tres más destacadas
+function renderSpecHome() {
+  const p = $("#sug-panel"); if (!p) return;
+  p.querySelector(".spec-home")?.remove();
+  const items = (S.spec?.items || []).slice(0, 3);
+  if (!items.length) return;
+  const ctx = specCtx();
+  const box = el("div", { class: "spec-home" },
+    el("h3", {}, "Alto riesgo", el("small", { text: " · rebotes y despegues, revisado " + ago(S.spec.at) })),
+    ...items.map((it) => specNode(it, ctx, true)),
+    el("a", { class: "spec-more", href: "#oportunidades", text: "Ver las " + S.spec.items.length + " candidatas con su análisis ›" }));
+  const note = [...p.children].find((c) => c.matches("p.note"));
+  if (note) note.before(box); else p.append(box);
+}
+// En Ideas: panel propio antes del escáner, con el detalle completo
+function renderSpec() {
+  if (!$("#v-oportunidades")) return;
+  let p = $("#spec-panel");
+  const items = S.spec?.items || [];
+  if (!p) { p = el("div", { class: "panel", id: "spec-panel" }); $("#scan")?.before(p); }
+  const ctx = specCtx();
+  const kids = [el("h2", {}, "Alto riesgo", el("small", { text: S.spec?.at ? "rebotes y despegues · revisado " + ago(S.spec.at) + ", " + (S.spec.analyzed || 0) + " valores" : "rebotes y despegues" }))];
+  if (!items.length) kids.push(el("div", { class: "empty", text: S.spec?.at ? "Ahora mismo ninguna acción cumple las reglas de rebote o despegue. Se revisa cada hora." : "En la próxima hora aparecerán aquí las acciones muy castigadas que empiezan a girar y las grandes subidas del día." }));
+  else for (const t of ["despegue", "rebote", "sobreventa"]) {
+    const g = items.filter((x) => x.type === t);
+    if (!g.length) continue;
+    kids.push(el("h3", { class: "spec-group", text: ({ despegue: "Grandes subidas de hoy", rebote: "Castigadas que empiezan a girar", sobreventa: "Muy castigadas, sin giro todavía" })[t] }));
+    g.forEach((it) => kids.push(specNode(it, ctx)));
+  }
+  kids.push(el("p", { class: "note", text: SPEC_NOTE }));
+  p.replaceChildren(...kids);
+}
+const _renderSuggestions2 = renderSuggestions;
+renderSuggestions = () => { _renderSuggestions2(); renderSpecHome(); };
+const _renderPortfolio4 = renderPortfolio;
+renderPortfolio = () => { _renderPortfolio4(); renderSpecHome(); };
+const _renderAll5 = renderAll;
+renderAll = () => { _renderAll5(); renderSpec(); };

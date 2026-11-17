@@ -60,6 +60,7 @@ export async function addLogos(s) {
     ...Object.values(s.quotes || {}).map((q) => q.symbol),
     ...(s.scan?.items || []).map((i) => i.symbol),
     ...(s.watch || []).map((w) => w.symbol),
+    ...(s.spec?.items || []).map((i) => i.symbol),
     ...(s.signals || []).map((x) => x.symbol),
   ].filter(Boolean));
   s.logoMiss = s.logoMiss || {};

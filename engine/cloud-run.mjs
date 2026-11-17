@@ -9,6 +9,7 @@ import { join } from "node:path";
 import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 // notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
+import { refreshMovers, addToPool } from "./movers.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { sendPush, vapidPublic } from "./webpush.mjs";
 import { updateRobot } from "./robot.mjs";
@@ -261,6 +262,8 @@ if (mode === "scan" || scanDue) {
   const enriched = rankItems(items.filter((i) => i.verdict));
   s.scan = { at, analyzed: scored.length, enrichedAt: s.scan?.enrichedAt, items: [...enriched, ...items.filter((i) => !i.verdict)].slice(0, 15) };
   s.status.scanAt = at;
+  // Los muy castigados del universo pasan a la reserva de «alto riesgo» (rebotes)
+  addToPool(s, rows.filter((q) => q && !q.error && q.kind === "stock" && (q.drawdown ?? 0) <= -0.35).map((q) => q.symbol), "universo", now);
   log.push(`Escáner: ${scored.length} valores, ${enriched.length} con análisis de IA vigente`);
 }
 
@@ -273,9 +276,16 @@ if (existsSync(regimeFile)) {
   } catch (e) { log.push("Régimen cripto no válido (" + e.message + ")"); }
 }
 
+// ---------- 6b2. Alto riesgo: castigadas que giran y grandes subidas del día (cada hora) ----------
+try {
+  const r = await refreshMovers(s, { analyze, mapLimit, exclude: tier1, now });
+  if (!r.skipped) log.push(`Alto riesgo: ${r.items} candidatas de ${r.analyzed} analizadas (reserva ${r.pool})${r.errors ? `, ${r.errors} listas fallidas` : ""}`);
+} catch (e) { log.push("Alto riesgo: " + e.message); }
+const specTop = (s.spec?.items || []).slice(0, 6).map((i) => i.symbol);
+
 // ---------- 6c. Noticias reales (cada hora) y métricas de valoración (una vez al día) ----------
-const newsSyms = [...new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol)])];
-const nameOf = (sym) => s.quotes[docId(sym)]?.name || (s.scan?.items || []).find((i) => i.symbol === sym)?.name || s.watch.find((w) => w.symbol === sym)?.name || sym;
+const newsSyms = [...new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol), ...specTop])];
+const nameOf = (sym) => s.quotes[docId(sym)]?.name || (s.scan?.items || []).find((i) => i.symbol === sym)?.name || (s.spec?.items || []).find((i) => i.symbol === sym)?.name || s.watch.find((w) => w.symbol === sym)?.name || sym;
 try {
   const r = await refreshNews(s, newsSyms.map((sym) => ({ sym, name: nameOf(sym) })), mapLimit, now);
   log.push(`Noticias: ${r.total} titulares (${r.fresh} nuevos${r.errors ? `, ${r.errors} búsquedas fallidas` : ""})`);
@@ -340,6 +350,8 @@ if (existsSync(notesFile)) {
         // Tesis (por qué invertir), qué la rompería, valoración y próximas fechas clave
         s.analysis[sym] = { at: nn.at, thesis: tx(n.thesis, 400), breaks: tx(n.breaks, 250), valuation: tx(n.valuation, 250), catalysts: cats(n.catalysts) };
         const it = (s.scan?.items || []).find((i) => i.symbol === sym);
+        const sp = (s.spec?.items || []).find((i) => i.symbol === sym);
+        if (sp) Object.assign(sp, { verdict: entry, confidence: entryConf, news: tx(n.news, 300), aiReason: tx(n.reason, 400), aiRisk: tx(n.risk, 250), aiAt: nn.at });
         if (it) Object.assign(it, { verdict: entry, confidence: entryConf, news: n.news, risk: n.risk, watchFor: n.watchFor, aiReason: n.reason, reason: n.reason || it.reason, aiAt: nn.at });
         // Cartera y vigilancia: señal con noticias
         if (tier1.has(sym) || tier2.has(sym)) {
@@ -376,9 +388,9 @@ if (existsSync(notesFile)) {
 
 // Petición para la capa 2: solo datos públicos de mercado, sin cantidades ni marcar qué es del usuario
 {
-  const pick = new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol)]);
+  const pick = new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol), ...specTop]);
   const list = [...pick].sort().map((sym) => {
-    const q = s.quotes[docId(sym)] || (s.scan?.items || []).find((i) => i.symbol === sym) || {};
+    const q = s.quotes[docId(sym)] || (s.scan?.items || []).find((i) => i.symbol === sym) || (s.spec?.items || []).find((i) => i.symbol === sym) || {};
     return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma50: q.sma50, sma200: q.sma200, phase: q.phaseLabel, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null };
   });
   mkdirSync(join(ROOT, "docs"), { recursive: true });
