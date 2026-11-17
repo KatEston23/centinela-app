@@ -5,17 +5,17 @@
 import { checkRevolut } from "./revolut.mjs";
 
 const UA = { "User-Agent": "Mozilla/5.0 (compatible; Centinela/1.0)" };
-const SCREENS = ["day_gainers", "small_cap_gainers", "most_actives", "day_losers", "undervalued_growth_stocks"];
+export const SCREENS = ["day_gainers", "small_cap_gainers", "most_actives", "day_losers", "undervalued_growth_stocks"];
 const POOL_DAYS = 14, POOL_MAX = 45, MIN_CAP = 300e6, MIN_PRICE = 1;
 
-async function screener(id) {
+export async function screener(id) {
   const r = await fetch(`https://query1.finance.yahoo.com/v1/finance/screener/predefined/saved?scrIds=${id}&count=25`, { headers: UA });
   if (!r.ok) throw new Error(`${id} ${r.status}`);
   return (await r.json())?.finance?.result?.[0]?.quotes || [];
 }
 
 // Solo acciones de bolsas de EE. UU. (Nasdaq/NYSE), con algo de tamaño: así es más probable que estén en Revolut
-const usable = (x) => x.quoteType === "EQUITY" && /^(Nasdaq|NYSE)/i.test(x.fullExchangeName || "") && /^[A-Z]{1,5}$/.test(x.symbol)
+export const usable = (x) => x.quoteType === "EQUITY" && /^(Nasdaq|NYSE)/i.test(x.fullExchangeName || "") && /^[A-Z]{1,5}$/.test(x.symbol)
   && (x.regularMarketPrice ?? 0) >= MIN_PRICE && (x.marketCap ?? 0) >= MIN_CAP;
 
 /** Añade símbolos a la reserva de candidatas (se olvidan a los 14 días sin aparecer). */

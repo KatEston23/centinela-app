@@ -3,6 +3,9 @@
 // Unido como referencia (el de Irlanda/UE no tiene fichas públicas); casi siempre coinciden.
 // Resultado en s.revolut[símbolo] = { ok: true | false, at }. Se recuerda 14 días (los «no», 5).
 import { execFile } from "node:child_process";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { ROOT } from "./lib.mjs";
 
 // Con curl: la web de Revolut rechaza el fetch de Node (403) pero no a curl
 const curlStatus = (url) => new Promise((res) => execFile("curl", ["-s", "-o", process.platform === "win32" ? "NUL" : "/dev/null", "-w", "%{http_code}", "--max-time", "15",
@@ -37,3 +40,21 @@ export async function checkRevolut(s, syms, now = new Date(), max = 40) {
 }
 /** true = se puede comprar, false = no está en Revolut, undefined = sin comprobar */
 export const onRevolut = (s, sym) => s.revolut?.[sym]?.ok;
+
+// La web de Revolut bloquea a los servidores de GitHub: la comprobación la hace una tarea del PC
+// (engine/revolut-local.mjs) y deja el resultado en data/revolut.json, que el motor suma aquí.
+export const REV_FILE = join(ROOT, "data", "revolut.json");
+export function mergeRevolutFile(s) {
+  if (!existsSync(REV_FILE)) return 0;
+  s.revolut = s.revolut || {};
+  let n = 0;
+  try {
+    const f = JSON.parse(readFileSync(REV_FILE, "utf8"));
+    for (const [sym, v] of Object.entries(f.map || {})) {
+      if (typeof v?.ok !== "boolean") continue;
+      const c = s.revolut[sym];
+      if (!c || c.ok == null || new Date(v.at) > new Date(c.at)) { s.revolut[sym] = { ok: v.ok, at: v.at }; n++; }
+    }
+  } catch { /* fichero dañado: se ignora */ }
+  return n;
+}

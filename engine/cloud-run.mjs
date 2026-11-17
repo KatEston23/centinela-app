@@ -10,7 +10,7 @@ import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 // notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
 import { refreshMovers, addToPool } from "./movers.mjs";
-import { checkRevolut } from "./revolut.mjs";
+import { checkRevolut, mergeRevolutFile } from "./revolut.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { sendPush, vapidPublic } from "./webpush.mjs";
 import { updateRobot } from "./robot.mjs";
@@ -224,6 +224,9 @@ function rankItems(items) {
   return [...(items || [])].sort((a, b) =>
     (ENTRY_RANK[a.verdict] ?? 3) - (ENTRY_RANK[b.verdict] ?? 3) || (b.confidence ?? 0) - (a.confidence ?? 0) || (b.score ?? 0) - (a.score ?? 0));
 }
+
+// Disponibilidad en Revolut comprobada desde el PC (data/revolut.json)
+{ const n = mergeRevolutFile(s); if (n) log.push(`Revolut: ${n} fichas nuevas desde el PC`); }
 
 // ---------- 6. Escáner técnico (solo en modo scan) ----------
 // El escáner diario también se hace si toca y nadie lo hizo (por si GitHub se salta la hora programada)
