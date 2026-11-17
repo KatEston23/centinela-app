@@ -225,7 +225,7 @@ function rankItems(items) {
     (ENTRY_RANK[a.verdict] ?? 3) - (ENTRY_RANK[b.verdict] ?? 3) || (b.confidence ?? 0) - (a.confidence ?? 0) || (b.score ?? 0) - (a.score ?? 0));
 }
 
-// Disponibilidad en Revolut comprobada desde el PC (data/revolut.json)
+// Disponibilidad en Revolut comprobada desde el PC (ai/revolut.json)
 { const n = mergeRevolutFile(s); if (n) log.push(`Revolut: ${n} fichas nuevas desde el PC`); }
 
 // ---------- 6. Escáner técnico (solo en modo scan) ----------

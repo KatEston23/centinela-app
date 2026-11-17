@@ -1,4 +1,4 @@
-// Tarea del PC: comprueba qué acciones se pueden comprar en Revolut y lo sube a data/revolut.json.
+// Tarea del PC: comprueba qué acciones se pueden comprar en Revolut y lo sube a ai/revolut.json.
 // (Desde GitHub Actions la web de Revolut responde 403; desde casa, no.)
 //   node engine/revolut-local.mjs
 // Revisa: el universo del escáner, las listas de Yahoo de «Alto riesgo» y los símbolos que el motor
@@ -25,7 +25,7 @@ try {
   for (const x of req.symbols || []) if (!/-(EUR|USD)$/.test(x.symbol)) syms.add(x.symbol);
 } catch { /* sin petición publicada: basta con lo demás */ }
 
-const r = await checkRevolut(s, [...syms], now, 400);
+const r = await checkRevolut(s, [...syms], now, 400, 900);
 const map = Object.fromEntries(Object.entries(s.revolut).filter(([k, v]) => typeof v?.ok === "boolean" && !/-(EUR|USD)$/.test(k)).sort());
 const changed = JSON.stringify(map) !== JSON.stringify(prev.map || {});
 console.log(`Revolut: ${r.checked} fichas comprobadas, ${r.blocked} bloqueadas; ${Object.values(map).filter((v) => v.ok).length} disponibles de ${Object.keys(map).length}`);
@@ -33,7 +33,7 @@ if (!changed) process.exit(0);
 mkdirSync(dirname(REV_FILE), { recursive: true });
 writeFileSync(REV_FILE, JSON.stringify({ at: now.toISOString(), source: "revolut.com/en-GB/stocks", map }, null, 0) + "\n");
 try {
-  git("add data/revolut.json");
+  git("add ai/revolut.json");
   git('-c user.name=Centinela -c user.email=centinela@users.noreply.github.com commit -q -m "Revolut: disponibilidad de acciones"');
   for (let i = 0; i < 3; i++) { try { git("pull -q --rebase --autostash origin main"); git("push -q origin main"); console.log("subido"); break; } catch (e) { if (i === 2) throw e; } }
 } catch (e) { console.error("No se pudo subir: " + e.message); process.exit(1); }
