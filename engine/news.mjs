@@ -54,6 +54,7 @@ export async function refreshNews(s, symbols, mapLimit, now = new Date()) {
   const add = (x, cat, sym) => {
     const id = idOf(x.t);
     const it = out.get(id) || { id, t: x.t.slice(0, 220), src: x.src.slice(0, 60), u: x.u, at: x.at, cats: [], syms: [], seen: now.toISOString() };
+    if (it.tone == null) it.tone = toneOf(it.t);
     if (cat && !it.cats.includes(cat)) it.cats.push(cat);
     if (sym && !it.syms.includes(sym)) it.syms.push(sym);
     if (IPO_RE.test(it.t) && !it.cats.includes("ipo")) it.cats.push("ipo");
@@ -72,6 +73,7 @@ export async function refreshNews(s, symbols, mapLimit, now = new Date()) {
   const cutoff = now.getTime() - 72 * 3600e3;
   const items = [...out.values()].filter((x) => new Date(x.at).getTime() > cutoff && new Date(x.at).getTime() <= now.getTime() + 600e3)
     .sort((a, b) => b.at.localeCompare(a.at)).slice(0, 220);
+  for (const x of items) if (x.tone == null) x.tone = toneOf(x.t);
   const fresh = items.filter((x) => !prev.has(x.id)).length;
   s.news = { at: now.toISOString(), items };
   return { total: items.length, fresh, errors };
@@ -103,4 +105,23 @@ export async function refreshFundamentals(s, syms, key, now = new Date()) {
     } catch { /* sin datos: se reintenta otro día */ }
   }
   return { done };
+}
+
+// ---------- Tono de un titular (sin IA, por palabras clave en español e inglés) ----------
+// +2/−2 = muy bueno/muy malo, +1/−1 = bueno/malo, 0 = neutro. Es una lectura rápida para la «última hora»;
+// el análisis de fondo lo hace la IA tres veces al día.
+const TONE_RULES = [
+  [2, /\b(se dispara|dispara|disparan|se disparan|vuela|vuelan|récord|record high|máximos? histór|aprobaci[oó]n de la FDA|FDA (aprueba|approves)|aprueba la FDA|soars?|skyrockets?|surges?|rockets?|blowout|beats? (estimates|expectations)|supera (las )?(previsiones|expectativas|estimaciones)|bate (las )?(previsiones|expectativas))\b/i],
+  [1, /\b(sube|suben|subida|repunta|repunte|rebota|rebote|gana|ganancias|mejora|mejoran|eleva|elevan|al alza|alcista|compra de acciones|recompra|aumenta el dividendo|contrato|alianza|acuerdo con|adquiere|lanza|upgrade|mejora la recomendación|precio objetivo.{0,20}(eleva|sube)|jumps?|rall(y|ies)|gains?|rises?|climbs?|upgraded?|raises? (guidance|outlook|forecast)|partnership|approval|wins?)\b/i],
+  [-2, /\b(se hunde|hunde|se hunden|desploma|desplome|se desploma|quiebra|bancarrota|concurso de acreedores|fraude|escándalo|imputad|deten(ido|ción)|ciberataque|hackeo|plunges?|crash(es|ed)?|tanks?|collapses?|bankrupt(cy)?|fraud|scandal|indicted|delist)/i],
+  [-1, /\b(cae|caen|caída|baja|bajan|retrocede|recorta|recorte|pérdidas|pierde|demanda|investigación|investiga|multa|sanción|despide|despidos|rebaja|decepciona|por debajo de (las )?(previsiones|expectativas)|advierte|alerta|dimite|dimisión|retrasa|retira|a la baja|bajista|falls?|drops?|slides?|sinks?|slumps?|lawsuit|probe|downgraded?|misses?|cuts? (guidance|outlook|forecast)|layoffs?|recall|warns?|delay)/i],
+];
+export function toneOf(title) {
+  const t = String(title || "");
+  let best = 0;
+  for (const [w, re] of TONE_RULES) if (re.test(t) && Math.abs(w) > Math.abs(best)) best = w;
+  // Si hay palabras de los dos signos con la misma fuerza, se queda en neutro
+  const pos = TONE_RULES.some(([w, re]) => w > 0 && re.test(t)), neg = TONE_RULES.some(([w, re]) => w < 0 && re.test(t));
+  if (pos && neg) { const p = Math.max(...TONE_RULES.filter(([w, re]) => w > 0 && re.test(t)).map(([w]) => w)), n = Math.max(...TONE_RULES.filter(([w, re]) => w < 0 && re.test(t)).map(([w]) => -w)); return p === n ? 0 : p > n ? 1 : -1; }
+  return best;
 }

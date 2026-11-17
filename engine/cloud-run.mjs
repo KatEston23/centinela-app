@@ -290,6 +290,24 @@ try {
   const r = await refreshNews(s, newsSyms.map((sym) => ({ sym, name: nameOf(sym) })), mapLimit, now);
   log.push(`Noticias: ${r.total} titulares (${r.fresh} nuevos${r.errors ? `, ${r.errors} búsquedas fallidas` : ""})`);
 } catch (e) { log.push("Noticias: " + e.message); }
+// Última hora sobre lo que tiene: titular muy bueno o muy malo de las últimas 3 h (máx. 2 por pasada,
+// uno por valor cada 6 h). Solo el titular: nunca importes.
+{
+  s.status.newsAlerts = s.status.newsAlerts || {};
+  let sentN = 0;
+  const fresh = (s.news?.items || []).filter((x) => x.seen === now.toISOString() && Math.abs(x.tone || 0) >= 2 && now - new Date(x.at) < 3 * 3600e3);
+  for (const x of fresh) {
+    const sym = (x.syms || []).find((y) => tier1.has(y));
+    if (!sym || sentN >= 2) continue;
+    const last = s.status.newsAlerts[sym];
+    if (last && now - new Date(last) < 6 * 3600e3) continue;
+    const name = sym.replace(/-EUR$/, "");
+    if (await notify(`Última hora · ${name} ${x.tone > 0 ? "▲" : "▼"}`, `${x.t} (${x.src})`.slice(0, 180), 4, x.tone > 0 ? "chart_with_upwards_trend" : "chart_with_downwards_trend")) {
+      s.status.newsAlerts[sym] = at; x.alerted = true; sentN++;
+    }
+  }
+  if (sentN) log.push(`Última hora: ${sentN} aviso(s)`);
+}
 try {
   const r = await refreshFundamentals(s, newsSyms, s.finnhubKey || process.env.FINNHUB_KEY, now);
   if (r.done) log.push(`Valoración: ${r.done} valores actualizados`);

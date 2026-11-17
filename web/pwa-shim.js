@@ -1187,7 +1187,7 @@ function pwaStart() {
   else pwaLoad(k).then((ok) => { if (!ok && !S.loaded) { lsSet(KEY_LS, null); lockScreen("La clave guardada ya no sirve. Escríbala de nuevo."); } });
   $("#fresh").addEventListener("click", () => refresh(true));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") refresh(); });
-  setInterval(() => { if (document.visibilityState === "visible") refresh(); }, 10 * 60 * 1000);
+  setInterval(() => { if (document.visibilityState === "visible") refresh(); }, 5 * 60 * 1000);
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
 }
 
@@ -1224,8 +1224,7 @@ function specNode(it, ctx, compact = false) {
     nw.length ? newsList(nw) : null,
     el("div", { class: "body flat", text: "Riesgo: " + (it.aiRisk || it.risk) + (it.notes && it.notes.length ? " Además: " + it.notes.join("; ") + "." : "") }));
   if (!compact) {
-    n.append(el("div", { class: "body" }, el("b", { text: "Si se anima: " }),
-      "como mucho " + (max ? eur.format(max) + " (el 5 % de su cartera)" : "un 5 % de su cartera") + ", y solo dinero que pueda perder entero. Compruebe antes en Revolut Invest que esté disponible: muchas empresas pequeñas no lo están."),
+    n.append(adviceNode(adviceFor(it, "spec", ctx)),
       el("div", { class: "spec-act" },
         it.spark ? spark(it.spark, 120, 34) : el("span"),
         el("button", { class: "btn small" + (watched ? "" : " primary"), type: "button", onclick: () => watched ? unwatch({ symbol: it.symbol }) : watch(it), text: watched ? "Vigilando" : "Vigilar" })));
@@ -1277,3 +1276,122 @@ const _renderPortfolio4 = renderPortfolio;
 renderPortfolio = () => { _renderPortfolio4(); renderSpecHome(); };
 const _renderAll5 = renderAll;
 renderAll = () => { _renderAll5(); renderSpec(); };
+
+// ---- ¿Invertir ahora y cuánto? Con las noticias de última hora ----
+// Se recalcula cada vez que llegan datos (el motor lee titulares cada 15 min). Junta el veredicto de la IA
+// (3 veces al día), el gráfico y el tono de los titulares recientes. Importes: solo en este móvil.
+const TONE_TXT = { 2: "muy buena", 1: "buena", 0: "neutra", "-1": "mala", "-2": "muy mala" };
+function newsPulse(sym) {
+  const now = Date.now();
+  const items = (S.news?.items || []).filter((x) => (x.syms || []).includes(sym) && now - new Date(x.at).getTime() < 24 * 3600e3);
+  let score = 0;
+  for (const x of items) score += (x.tone || 0) * (now - new Date(x.at).getTime() < 6 * 3600e3 ? 1 : 0.5);
+  const strong = items.find((x) => Math.abs(x.tone || 0) >= 1);
+  return { score, n: items.length, last: items[0] || null, strong };
+}
+function moneyAvail() {
+  const ap = Number(lsGet(AP_LS)) || 0;
+  let cash = 0;
+  try { cash = Math.max(0, investCash() || 0); } catch {}
+  cash += Math.max(0, (S.crypto?.assets || []).find((a) => a.asset === "EUR")?.qty || 0);
+  if (ap > 0) return { amt: ap, src: `su aportación del mes (${eur.format(ap)})` };
+  if (cash >= 10) return { amt: cash, src: `su efectivo sin invertir (${eur.format(cash)})` };
+  return null;
+}
+const ADV_SHARE = { 3: [0.4, 0.10], 2: [0.25, 0.06], 1: [0.1, 0.03] }; // [parte del dinero disponible, parte de la cartera]
+function adviceFor(it, src, ctx) {
+  const fresh = (x) => x && Date.now() - new Date(x).getTime() < 36 * 3600e3;
+  const aiAt = it.aiAt || (src === "scan" ? S.scan?.enrichedAt : null);
+  const why = [];
+  let lv;
+  if (it.verdict && fresh(aiAt)) {
+    const c = it.confidence ?? 0;
+    lv = it.verdict === "comprar" ? (c >= 70 ? 3 : 2) : it.verdict === "vigilar" ? 0 : -1;
+    why.push(`IA: ${({ comprar: "buen momento para entrar", vigilar: "mejor esperar", evitar: "no atractiva" })[it.verdict]} (${c} %)`);
+  } else if (src === "spec") {
+    lv = it.type === "rebote" ? 1 : 0;
+    why.push(it.type === "rebote" ? "gráfico: empieza a girar tras una caída fuerte" : it.type === "despegue" ? "ya ha subido mucho hoy: llegar tarde es caro" : "sin señal de giro todavía");
+  } else {
+    lv = (it.score ?? 0) >= 70 ? 1 : 0;
+    why.push(`gráfico ${it.score ?? "—"}/100`);
+  }
+  if (src === "spec") lv = Math.min(lv, it.type === "despegue" ? 1 : it.verdict === "comprar" && (it.confidence ?? 0) >= 70 ? 2 : 1);
+  if ((it.rsi14 ?? 50) > 80 && lv > 0) { lv = 0; why.push(`sobrecomprada (RSI ${Math.round(it.rsi14)})`); }
+  const p = newsPulse(it.symbol);
+  const recentBad = p.strong && p.strong.tone < 0 && Date.now() - new Date(p.strong.at).getTime() < 6 * 3600e3;
+  // Muy mala noticia en las últimas 6 h: no entrar. Tono negativo general: un escalón menos (como mucho, esperar)
+  if (recentBad && p.strong.tone <= -2) { if (lv >= 0) { lv = -1; why.push("noticia muy negativa en las últimas horas"); } }
+  else if (p.score <= -2 || recentBad) { if (lv > 0) { lv = Math.max(0, lv - 1); why.push("noticias recientes en contra"); } }
+  else if (p.score >= 2) {
+    if (lv === 0 && (src === "spec" ? it.type !== "despegue" : (it.score ?? 0) >= 60)) { lv = 1; why.push("las noticias de hoy le dan impulso"); }
+    else if (lv > 0) why.push("noticias a favor");
+  }
+  const verb = lv >= 2 ? "Invertir" : lv === 1 ? "Invertir poco" : lv === 0 ? "Esperar" : "No invertir";
+  let amount = null, basis = null;
+  if (lv >= 1) {
+    const [ofAvail, ofPort] = ADV_SHARE[lv];
+    const m = moneyAvail();
+    amount = m ? m.amt * ofAvail : (ctx.total || 0) * ofPort;
+    if (src === "spec") amount = Math.min(amount, Math.max(5, ((ctx.total || 0) + (m?.amt || 0)) * 0.05));
+    amount = Math.max(5, Math.round(amount / 5) * 5);
+    basis = m ? `el ${Math.round(ofAvail * 100)} % de ${m.src}` : `el ${Math.round(ofPort * 100)} % de su cartera; ponga su aportación del mes en «Invertir este mes» para afinarlo`;
+  }
+  return { sym: it.symbol, name: it.name, lv, verb, amount, basis, why, pulse: p, risky: src === "spec" };
+}
+const toneBadge = (x) => el("span", { class: "tone t" + Math.sign(x.tone || 0), title: "Tono del titular: " + TONE_TXT[x.tone || 0], text: (x.tone || 0) > 0 ? "▲" : (x.tone || 0) < 0 ? "▼" : "•" });
+function headlineLine(x) {
+  return el("div", { class: "adv-news" }, toneBadge(x), el("a", { href: x.u, target: "_blank", rel: "noopener", text: x.t }), el("span", { class: "flat", text: ` · ${x.src}, ${ago(x.at)}` }));
+}
+function adviceNode(a) {
+  const cl = a.lv >= 2 ? "go" : a.lv === 1 ? "small" : a.lv === 0 ? "wait" : "no";
+  const n = el("div", { class: "adv adv-" + cl },
+    el("div", { class: "adv-hd" }, el("b", { text: "¿Invertir ahora? " + a.verb }), a.amount ? el("span", { class: "num", text: "≈ " + eur.format(a.amount) }) : null),
+    el("div", { class: "body", text: a.why.join("; ") + "." }),
+    a.amount ? el("div", { class: "body flat", text: `Cuánto: ${a.basis}.${a.risky ? " Alto riesgo: solo dinero que pueda perder entero y compruebe que esté en Revolut." : ""}` }) : null);
+  const x = a.pulse.strong || a.pulse.last;
+  if (x) n.append(headlineLine(x));
+  return n;
+}
+// Panel «¿Dónde invertir ahora?» y «Última hora», dentro de Sugerencias
+function adviceCandidates(ctx) {
+  const held = new Set(ctx.H.map((h) => h.quote));
+  const list = [
+    ...(S.scan?.items || []).filter((i) => !held.has(i.symbol)).slice(0, 8).map((i) => adviceFor(i, "scan", ctx)),
+    ...(S.spec?.items || []).map((i) => adviceFor(i, "spec", ctx)),
+  ];
+  const seen = new Set();
+  return list.filter((a) => !seen.has(a.sym) && seen.add(a.sym)).sort((a, b) => b.lv - a.lv || (b.amount || 0) - (a.amount || 0) || b.pulse.score - a.pulse.score);
+}
+function renderAdviceHome() {
+  const p = $("#sug-panel"); if (!p) return;
+  p.querySelector(".adv-home")?.remove();
+  const ctx = specCtx();
+  const all = adviceCandidates(ctx);
+  const go = all.filter((a) => a.lv >= 1).slice(0, 3);
+  const show = go.length ? go : all.slice(0, 2);
+  const mine = new Set([...ctx.H.map((h) => h.quote), ...all.map((a) => a.sym)]);
+  const now = Date.now();
+  const latest = (S.news?.items || []).filter((x) => (x.syms || []).some((y) => mine.has(y)) && now - new Date(x.at).getTime() < 12 * 3600e3).slice(0, 6);
+  const m = moneyAvail();
+  const box = el("div", { class: "adv-home" },
+    el("h3", {}, "¿Dónde invertir ahora?", el("small", { text: S.news?.at ? ` · noticias de ${ago(S.news.at)}, se recalcula cada 15 min` : "" })),
+    el("p", { class: "note", text: go.length ? `Con ${m ? m.src : "un porcentaje de su cartera"}, esto es lo que encaja hoy:` : "Ahora mismo nada cumple para invertir: lo prudente es esperar. Lo más cercano:" }),
+    ...show.map((a) => el("div", { class: "adv-row" }, avatar(a.sym, "av sm"), el("div", {}, el("div", { class: "sug-sym" }, el("b", { text: a.sym }), el("span", { class: "flat", text: a.name || "" })), adviceNode(a)))));
+  if (latest.length) box.append(el("h3", { class: "adv-h3" }, "Última hora", el("small", { text: " · de su cartera y sus ideas" })), ...latest.map((x) => el("div", { class: "adv-latest" }, el("span", { class: "nw-sym", text: (x.syms || []).find((y) => mine.has(y))?.replace(/-EUR$/, "") || "" }), headlineLine(x))));
+  const anchor = p.querySelector(".spec-home") || [...p.children].find((c) => c.matches("p.note"));
+  if (anchor) anchor.before(box); else p.append(box);
+}
+const _renderSpecHome2 = renderSpecHome;
+renderSpecHome = () => { _renderSpecHome2(); renderAdviceHome(); };
+// En las ideas del escáner: la misma línea, encima de todo
+const _renderOpp6 = renderOpportunities;
+renderOpportunities = () => {
+  _renderOpp6();
+  const ctx = specCtx();
+  document.querySelectorAll("#scan-list .opp").forEach((o) => {
+    if (o.querySelector(".adv")) return;
+    const sym = o.querySelector(".hd b")?.textContent;
+    const it = (S.scan?.items || []).find((i) => i.symbol === sym);
+    if (it) o.firstElementChild?.append(adviceNode(adviceFor(it, "scan", ctx)));
+  });
+};
