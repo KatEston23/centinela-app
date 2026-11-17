@@ -226,7 +226,11 @@ function rankItems(items) {
 }
 
 // Disponibilidad en Revolut comprobada desde el PC (ai/revolut.json)
-{ const n = mergeRevolutFile(s); if (n) log.push(`Revolut: ${n} fichas nuevas desde el PC`); }
+{
+  const n = mergeRevolutFile(s); if (n) log.push(`Revolut: ${n} fichas nuevas desde el PC`);
+  // Lo que resulte no estar en Revolut sale ya de «Alto riesgo», sin esperar a su repaso horario
+  if (s.spec?.items) { s.spec.items = s.spec.items.filter((i) => s.revolut?.[i.symbol]?.ok !== false); for (const i of s.spec.items) i.revolut = s.revolut?.[i.symbol]?.ok ?? null; }
+}
 
 // ---------- 6. Escáner técnico (solo en modo scan) ----------
 // El escáner diario también se hace si toca y nadie lo hizo (por si GitHub se salta la hora programada)
