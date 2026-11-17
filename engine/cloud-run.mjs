@@ -10,6 +10,7 @@ import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 // notify() y los helpers de duplicados se usan también en la capa 2 (más abajo)
 import { UNIVERSE } from "./universe.mjs";
 import { refreshMovers, addToPool } from "./movers.mjs";
+import { checkRevolut } from "./revolut.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { sendPush, vapidPublic } from "./webpush.mjs";
 import { updateRobot } from "./robot.mjs";
@@ -252,6 +253,12 @@ if (mode === "scan" || scanDue) {
     scored.push({ ...rest, country: country[q.symbol] || "", score: Math.round(clamp(sc, 0, 100)), reason: reasons.join("; "), spark: history.slice(-90).map((h) => h[1]) });
   }
   scored.sort((a, b) => b.score - a.score);
+  // Solo ideas que se puedan comprar en Revolut (se comprueban las 45 mejores; lo ya comprobado se recuerda)
+  const rv = await checkRevolut(s, scored.slice(0, 45).map((q) => q.symbol), now, 45);
+  const dropped = scored.filter((q) => s.revolut?.[q.symbol]?.ok === false).length;
+  for (let i = scored.length - 1; i >= 0; i--) if (s.revolut?.[scored[i].symbol]?.ok === false) scored.splice(i, 1);
+  for (const q of scored) q.revolut = s.revolut?.[q.symbol]?.ok ?? null;
+  log.push(`Revolut: ${rv.checked} fichas comprobadas${rv.blocked ? `, ${rv.blocked} bloqueadas` : ""}; ${dropped} ideas fuera por no estar en Revolut`);
   // Conserva el análisis con IA de la capa 2 si tiene menos de 36 h
   const aiTime = (i) => i.aiAt || s.scan?.enrichedAt;
   const prev = new Map((s.scan?.items || []).filter((i) => i.verdict && aiTime(i) && now - new Date(aiTime(i)) < 36 * 3600e3).map((i) => [i.symbol, { ...i, aiAt: aiTime(i) }]));
@@ -279,7 +286,7 @@ if (existsSync(regimeFile)) {
 // ---------- 6b2. Alto riesgo: castigadas que giran y grandes subidas del día (cada hora) ----------
 try {
   const r = await refreshMovers(s, { analyze, mapLimit, exclude: tier1, now });
-  if (!r.skipped) log.push(`Alto riesgo: ${r.items} candidatas de ${r.analyzed} analizadas (reserva ${r.pool})${r.errors ? `, ${r.errors} listas fallidas` : ""}`);
+  if (!r.skipped) log.push(`Alto riesgo: ${r.items} candidatas de ${r.analyzed} analizadas (reserva ${r.pool}; ${r.notInRevolut} fuera por no estar en Revolut, fichas ${r.rvChecked}${r.rvBlocked ? `/${r.rvBlocked} bloqueadas` : ""})${r.errors ? `, ${r.errors} listas fallidas` : ""}`);
 } catch (e) { log.push("Alto riesgo: " + e.message); }
 const specTop = (s.spec?.items || []).slice(0, 6).map((i) => i.symbol);
 

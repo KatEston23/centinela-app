@@ -2,6 +2,8 @@
 // Fuente: listas públicas de Yahoo Finance (más suben, más bajan, más negociadas, pequeñas empresas)
 // más los castigados del universo del escáner. Se analiza cada hora; nunca opera.
 
+import { checkRevolut } from "./revolut.mjs";
+
 const UA = { "User-Agent": "Mozilla/5.0 (compatible; Centinela/1.0)" };
 const SCREENS = ["day_gainers", "small_cap_gainers", "most_actives", "day_losers", "undervalued_growth_stocks"];
 const POOL_DAYS = 14, POOL_MAX = 45, MIN_CAP = 300e6, MIN_PRICE = 1;
@@ -91,10 +93,14 @@ export async function refreshMovers(s, { analyze, mapLimit, exclude = new Set(),
       spark: (q.history || []).slice(-90).map((h) => h[1]), ...ai,
     });
   }
+  // Solo lo que se puede comprar en Revolut (lo que no se ha podido comprobar se queda, marcado)
+  const rv = await checkRevolut(s, picked.sort((a, b) => b.rank - a.rank).map((x) => x.symbol), now, 25);
+  const buyable = picked.filter((x) => s.revolut?.[x.symbol]?.ok !== false);
+  for (const x of buyable) x.revolut = s.revolut?.[x.symbol]?.ok ?? null;
   // Como mucho 4 de cada tipo y 10 en total, lo más destacado primero
-  const by = (t) => picked.filter((x) => x.type === t).sort((a, b) => b.rank - a.rank).slice(0, 4);
+  const by = (t) => buyable.filter((x) => x.type === t).sort((a, b) => b.rank - a.rank).slice(0, 4);
   s.spec.items = [...by("despegue"), ...by("rebote"), ...by("sobreventa")].slice(0, 10);
   s.spec.at = now.toISOString();
   s.spec.analyzed = rows.filter((r) => r && !r.error).length;
-  return { pool: Object.keys(pool).length, analyzed: s.spec.analyzed, items: s.spec.items.length, seen, errors };
+  return { pool: Object.keys(pool).length, analyzed: s.spec.analyzed, items: s.spec.items.length, seen, errors, notInRevolut: picked.length - buyable.length, rvChecked: rv.checked, rvBlocked: rv.blocked };
 }

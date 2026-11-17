@@ -299,6 +299,9 @@ renderOpportunities = () => {
 // ---- aportación del mes: cómo repartir lo que va a invertir ----
 // Todo se calcula en este móvil con los datos ya descifrados: la cantidad no sale de aquí.
 const AP_LS = "centinela.aporte";
+// ¿Se puede comprar en Revolut? (lo comprueba el motor con la ficha pública de cada acción)
+var inRevolut = (sym) => S.revolut?.[sym]?.ok;
+var buyable = (sym) => inRevolut(sym) !== false;
 const VERD = { comprar: "comprar", reforzar: "comprar", mantener: "mantener", vigilar: "vigilar", reducir: "evitar", vender: "evitar", evitar: "evitar" };
 const V_BASE = { comprar: 1, mantener: 0.6, vigilar: 0.35, evitar: 0 };
 const PH_MULT = { correccion: 1.15, alcista: 1, acumulacion: 1, lateral: 0.8, sin_datos: 0.75, rebote: 0.6, debil: 0.5, distribucion: 0.4, bajista: 0.25 };
@@ -324,7 +327,7 @@ function planCandidates() {
   // Si algo de su cartera flojea, se buscan más (y con algo menos de exigencia) para sustituirlo.
   const held = new Set(H.map((h) => h.quote));
   const minConf = weak.length ? 50 : 60, nIdeas = Math.min(3, 2 + weak.length);
-  (S.scan?.items || []).filter((it) => it.verdict === "comprar" && !held.has(it.symbol) && (it.confidence ?? 0) >= minConf).slice(0, nIdeas).forEach((it) =>
+  (S.scan?.items || []).filter((it) => it.verdict === "comprar" && buyable(it.symbol) && !held.has(it.symbol) && (it.confidence ?? 0) >= minConf).slice(0, nIdeas).forEach((it) =>
     out.push({ sym: it.symbol, quote: it.symbol, name: it.name || it.symbol, held: false, kind: it.kind || "stock", value: 0, share: 0, verdict: "comprar", action: "comprar",
       conf: it.confidence, phase: it.phase, phaseLabel: it.phaseLabel, rsi: it.rsi14, why: it.reason || "", country: it.country }));
   return { list: out, total, weak };
@@ -632,7 +635,7 @@ var OPP_BY_TECH = true;
 const _renderOpp5 = renderOpportunities;
 renderOpportunities = () => {
   const orig = S.scan?.items;
-  if (orig) S.scan.items = [...orig].sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
+  if (orig) S.scan.items = orig.filter((i) => buyable(i.symbol)).sort((a, b) => (b.score ?? -1) - (a.score ?? -1));
   try { _renderOpp5(); } finally { if (orig) S.scan.items = orig; }
   const sc = $("#scan-list");
   if (sc && sc.querySelector(".opp") && !sc.querySelector(".opp-order")) sc.prepend(el("p", { class: "note opp-order", text: "Ordenadas por puntuación técnica, de mayor a menor." }));
@@ -801,7 +804,7 @@ async function pwaLoad(k) {
     S.scan = d.scan; S.status = d.status; S.quotes = d.quotes || {};
     S.signals = d.signals || []; S.watch = d.watch || [];
     S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
-    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null; S.spec = d.spec || null;
+    S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null; S.spec = d.spec || null; S.revolut = d.revolut || {};
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
     pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
@@ -976,7 +979,7 @@ function suggestFor(h, ctx) {
   const gain = pnlPct != null && pnlPct > 0 ? (h.pnl || 0) * share : 0;
   // Destino del dinero: la mejor idea de compra, una posición que la IA quiere reforzar o, si no, reserva
   const held = new Set(ctx.H.map((x) => x.quote));
-  const idea = (S.scan?.items || []).filter((i) => i.verdict === "comprar" && (i.confidence ?? 0) >= 60 && !held.has(i.symbol)).sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))[0];
+  const idea = (S.scan?.items || []).filter((i) => i.verdict === "comprar" && (i.confidence ?? 0) >= 60 && buyable(i.symbol) && !held.has(i.symbol)).sort((a, b) => (b.confidence ?? 0) - (a.confidence ?? 0))[0];
   const add = ctx.H.filter((x) => x.quote !== h.quote).map((x) => ({ x, s: latestSignalFor(x.quote) })).find((y) => ["reforzar", "comprar"].includes(y.s?.action) && (y.s.confidence ?? 0) >= 60);
   const crypto = q.kind === "crypto", where = crypto ? "Revolut X" : "Revolut Invest";
   let dest;
@@ -1347,7 +1350,8 @@ function adviceNode(a) {
   const n = el("div", { class: "adv adv-" + cl },
     el("div", { class: "adv-hd" }, el("b", { text: "¿Invertir ahora? " + a.verb }), a.amount ? el("span", { class: "num", text: "≈ " + eur.format(a.amount) }) : null),
     el("div", { class: "body", text: a.why.join("; ") + "." }),
-    a.amount ? el("div", { class: "body flat", text: `Cuánto: ${a.basis}.${a.risky ? " Alto riesgo: solo dinero que pueda perder entero y compruebe que esté en Revolut." : ""}` }) : null);
+    el("div", { class: "rv " + (inRevolut(a.sym) ? "rv-ok" : "rv-unk"), text: inRevolut(a.sym) ? "✓ Disponible en Revolut" : "Sin confirmar en Revolut: búsquelo en la app antes" }),
+    a.amount ? el("div", { class: "body flat", text: `Cuánto: ${a.basis}.${a.risky ? " Alto riesgo: solo dinero que pueda perder entero." : ""}` }) : null);
   const x = a.pulse.strong || a.pulse.last;
   if (x) n.append(headlineLine(x));
   return n;
@@ -1360,7 +1364,7 @@ function adviceCandidates(ctx) {
     ...(S.spec?.items || []).map((i) => adviceFor(i, "spec", ctx)),
   ];
   const seen = new Set();
-  return list.filter((a) => !seen.has(a.sym) && seen.add(a.sym)).sort((a, b) => b.lv - a.lv || (b.amount || 0) - (a.amount || 0) || b.pulse.score - a.pulse.score);
+  return list.filter((a) => buyable(a.sym) && !seen.has(a.sym) && seen.add(a.sym)).sort((a, b) => b.lv - a.lv || (b.amount || 0) - (a.amount || 0) || b.pulse.score - a.pulse.score);
 }
 function renderAdviceHome() {
   const p = $("#sug-panel"); if (!p) return;

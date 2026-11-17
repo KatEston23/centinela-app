@@ -360,3 +360,5 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .adv-row:first-of-type{border-top:0}
 .adv-latest{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:baseline;padding:6px 0;border-top:1px solid var(--line)}
 .adv-latest .adv-news{flex-wrap:wrap}
+
+.rv{font-size:12.5px;font-weight:600}.rv-ok{color:var(--gain)}.rv-unk{color:var(--muted)}
