@@ -77,7 +77,7 @@ export async function addLogos(s) {
 }
 
 const git = (a, cwd = ROOT, soft = false) => {
-  try { return execSync("git " + a, { cwd, stdio: ["ignore", "pipe", "pipe"] }).toString().trim(); }
+  try { return execSync("git " + a, { cwd, stdio: ["ignore", "pipe", "pipe"], maxBuffer: 256 * 1024 * 1024 }).toString().trim(); }
   catch (e) { if (soft) return ""; throw e; }
 };
 
