@@ -1343,7 +1343,7 @@ function adviceFor(it, src, ctx) {
 }
 const toneBadge = (x) => el("span", { class: "tone t" + Math.sign(x.tone || 0), title: "Tono del titular: " + TONE_TXT[x.tone || 0], text: (x.tone || 0) > 0 ? "▲" : (x.tone || 0) < 0 ? "▼" : "•" });
 function headlineLine(x) {
-  return el("div", { class: "adv-news" }, toneBadge(x), el("a", { href: x.u, target: "_blank", rel: "noopener", text: x.t }), el("span", { class: "flat", text: ` · ${x.src}, ${ago(x.at)}` }));
+  return el("div", { class: "adv-news" }, toneBadge(x), el("div", { class: "adv-nt" }, el("a", { href: x.u, target: "_blank", rel: "noopener", text: x.t }), el("span", { class: "flat", text: ` · ${x.src}, ${ago(x.at)}` })));
 }
 function adviceNode(a) {
   const cl = a.lv >= 2 ? "go" : a.lv === 1 ? "small" : a.lv === 0 ? "wait" : "no";
