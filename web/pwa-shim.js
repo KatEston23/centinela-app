@@ -1195,17 +1195,32 @@ async function runEngineNow() {
     if (r.status !== 204) { toast("No se pudo lanzar la actualización completa (" + r.status + "); datos recargados", true); return true; }
   } catch { toast("Sin conexión con GitHub: solo se han recargado los datos", true); return true; }
   lsSet(RUN_LS, String(Date.now()));
-  const before = pwaLastAt, t0 = Date.now();
+  const t0 = Date.now();
   toast("Actualizando todas las conexiones… tarda 2-4 min");
   $("#fresh")?.classList.add("running");
+  // Se sigue la ejecución concreta que se ha lanzado: primero hasta que GitHub la termina y después
+  // hasta que la web publica sus datos (no vale cualquier publicación anterior).
+  let runId = null, runAt = null, finished = false;
+  const finish = (ok, msg) => { clearInterval(runWatch); runWatch = null; $("#fresh")?.classList.remove("running"); toast(msg, !ok); };
   runWatch = setInterval(async () => {
-    await pwaLoad(lsGet(KEY_LS));
-    const done = pwaLastAt && pwaLastAt !== before && new Date(pwaLastAt).getTime() > t0 - 30e3;
-    if (done || Date.now() - t0 > 8 * 60e3) {
-      clearInterval(runWatch); runWatch = null; $("#fresh")?.classList.remove("running");
-      toast(done ? "Todo actualizado: cartera, precios, noticias y conexiones" : "Tarda más de lo normal; los datos llegarán solos", !done);
+    if (Date.now() - t0 > 10 * 60e3) return finish(false, "Tarda más de lo normal; los datos llegarán solos");
+    if (!finished) {
+      try {
+        const r = await fetch("https://api.github.com/repos/KatEston23/centinela-app/actions/workflows/centinela.yml/runs?event=workflow_dispatch&per_page=5",
+          { headers: { Authorization: "Bearer " + tok, Accept: "application/vnd.github+json" }, cache: "no-store" });
+        const runs = (await r.json()).workflow_runs || [];
+        // La nuestra: la más reciente creada después de pulsar (si se pulsó dos veces, GitHub cancela la de en medio)
+        const mine = runs.filter((x) => new Date(x.created_at).getTime() >= t0 - 15e3 && x.conclusion !== "cancelled")[0];
+        if (!mine) return;
+        runId = mine.id; runAt = new Date(mine.created_at).getTime();
+        if (mine.status !== "completed") return;
+        if (mine.conclusion !== "success") return finish(false, "La actualización ha fallado en GitHub (" + mine.conclusion + "); se reintentará en la próxima pasada");
+        finished = true;
+      } catch { return; }
     }
-  }, 20000);
+    await pwaLoad(lsGet(KEY_LS));
+    if (pwaLastAt && new Date(pwaLastAt).getTime() >= runAt) finish(true, "Todo actualizado: cartera, precios, noticias y conexiones");
+  }, 15000);
   return true;
 }
 
