@@ -806,7 +806,7 @@ async function pwaLoad(k) {
     S.market = d.market || null; S.analysis = d.analysis || {}; S.cryptoRegime = d.cryptoRegime || null;
     S.news = d.news || null; S.fund = d.fund || {}; S.push = d.push || null; S.robot = d.robot || null; S.spec = d.spec || null; S.revolut = d.revolut || {};
     if (d.ntfyTopic && !S.settings.ntfyTopic) S.settings.ntfyTopic = d.ntfyTopic;
-    pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null;
+    pwaDash = d.dashboardUrl || null; pwaLastAt = d.at; pwaLogos = d.logos || {}; pwaFinnhub = d.finnhubKey || null; S.dispatchToken = d.dispatchToken || null;
     pwaTopic = d.ntfyTopic || S.settings.ntfyTopic || null; applyPending();
     db = stubDb; S.loaded = true;
     renderAll(); appPanel(); startLive();
@@ -1178,7 +1178,35 @@ async function refresh(manual = false) {
   const k = lsGet(KEY_LS);
   if (!k) return;
   const ok = await pwaLoad(k);
-  if (manual && ok) toast("Datos al día");
+  if (manual && ok && !(await runEngineNow())) toast("Datos al día");
+}
+// Pulsar «Actualizar» lanza también el motor completo (Revolut X, precios, noticias, disponibilidad en
+// Revolut, robot…) y espera a que publique. Como mucho una vez cada 3 minutos.
+const RUN_LS = "centinela.lastRun";
+let runWatch = null;
+async function runEngineNow() {
+  const tok = S.dispatchToken;
+  if (!tok) return false;
+  const last = Number(lsGet(RUN_LS)) || 0;
+  if (runWatch || Date.now() - last < 3 * 60e3) { toast(runWatch ? "Ya se está actualizando todo…" : "Todo se actualizó hace menos de 3 min: datos al día"); return true; }
+  try {
+    const r = await fetch("https://api.github.com/repos/KatEston23/centinela-app/actions/workflows/centinela.yml/dispatches", {
+      method: "POST", headers: { Authorization: "Bearer " + tok, Accept: "application/vnd.github+json", "Content-Type": "application/json" }, body: JSON.stringify({ ref: "main" }) });
+    if (r.status !== 204) { toast("No se pudo lanzar la actualización completa (" + r.status + "); datos recargados", true); return true; }
+  } catch { toast("Sin conexión con GitHub: solo se han recargado los datos", true); return true; }
+  lsSet(RUN_LS, String(Date.now()));
+  const before = pwaLastAt, t0 = Date.now();
+  toast("Actualizando todas las conexiones… tarda 2-4 min");
+  $("#fresh")?.classList.add("running");
+  runWatch = setInterval(async () => {
+    await pwaLoad(lsGet(KEY_LS));
+    const done = pwaLastAt && pwaLastAt !== before && new Date(pwaLastAt).getTime() > t0 - 30e3;
+    if (done || Date.now() - t0 > 8 * 60e3) {
+      clearInterval(runWatch); runWatch = null; $("#fresh")?.classList.remove("running");
+      toast(done ? "Todo actualizado: cartera, precios, noticias y conexiones" : "Tarda más de lo normal; los datos llegarán solos", !done);
+    }
+  }, 20000);
+  return true;
 }
 
 function pwaStart() {

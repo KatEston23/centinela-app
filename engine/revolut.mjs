@@ -15,10 +15,27 @@ const HEADERS = {
   Accept: "text/html,application/xhtml+xml",
   "Accept-Language": "en-GB,en;q=0.9",
 };
+// Desde servidores (GitHub Actions) la web de Revolut responde 403: se lee la ficha a través de r.jina.ai,
+// un lector público de páginas (gratis, unas 20 lecturas por minuto). Desde casa basta con curl.
+const ON_SERVER = !!process.env.GITHUB_ACTIONS;
+async function jinaStatus(url) {
+  try {
+    const res = await fetch("https://r.jina.ai/" + url, { headers: { "X-Timeout": "25" }, signal: AbortSignal.timeout(40000) });
+    if (!res.ok) return 0;
+    const t = (await res.text()).slice(0, 1500);
+    if (/returned error 404|can.t find that one/i.test(t)) return 404;
+    if (/^Title: .*| Revolut/m.test(t)) return 200;
+    return 0;
+  } catch { return 0; }
+}
+const statusOf = async (url) => {
+  if (!ON_SERVER) { const st = await curlStatus(url); if (st === 200 || st === 404) return st; }
+  return jinaStatus(url);
+};
 // Criptos que se negocian en Revolut X (las del universo del escáner y las de su cartera)
 const REVX = new Set(["BTC", "ETH", "SOL", "XRP", "ADA", "DOGE", "DOT", "LINK", "AVAX", "LTC", "MON", "POL", "UNI", "ATOM", "XLM", "SHIB", "PEPE"]);
 
-export async function checkRevolut(s, syms, now = new Date(), max = 40, delay = 350) {
+export async function checkRevolut(s, syms, now = new Date(), max = 40, delay = ON_SERVER ? 3200 : 350) {
   s.revolut = s.revolut || {};
   let checked = 0, blocked = 0;
   for (const sym of [...new Set(syms)]) {
@@ -28,9 +45,9 @@ export async function checkRevolut(s, syms, now = new Date(), max = 40, delay = 
     if (checked >= max || blocked >= 4) continue;
     try {
       const url = `https://www.revolut.com/en-GB/stocks/${encodeURIComponent(sym.toLowerCase())}/`;
-      let status = await curlStatus(url);
+      let status = await statusOf(url);
       // Respuesta rara (límite de peticiones, corte): se espera y se reintenta una vez
-      if (status !== 200 && status !== 404) { await new Promise((res) => setTimeout(res, 6000)); status = await curlStatus(url); }
+      if (status !== 200 && status !== 404) { await new Promise((res) => setTimeout(res, 6000)); status = await statusOf(url); }
       const r = { status };
       checked++;
       if (r.status === 200) s.revolut[sym] = { ok: true, at: now.toISOString() };
@@ -44,8 +61,7 @@ export async function checkRevolut(s, syms, now = new Date(), max = 40, delay = 
 /** true = se puede comprar, false = no está en Revolut, undefined = sin comprobar */
 export const onRevolut = (s, sym) => s.revolut?.[sym]?.ok;
 
-// La web de Revolut bloquea a los servidores de GitHub: la comprobación la hace una tarea del PC
-// (engine/revolut-local.mjs) y deja el resultado en ai/revolut.json, que el motor suma aquí.
+// Lista de partida comprobada desde el PC (ai/revolut.json): el motor la suma y la va ampliando él solo.
 export const REV_FILE = join(ROOT, "ai", "revolut.json");
 export function mergeRevolutFile(s) {
   if (!existsSync(REV_FILE)) return 0;

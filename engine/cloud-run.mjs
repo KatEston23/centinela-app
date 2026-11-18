@@ -486,6 +486,8 @@ if (existsSync(notesFile)) {
 // ---------- 8. Estado ----------
 // Clave pública de los avisos de la app (la privada solo vive en los secretos de GitHub)
 if (cfg.vapidJwk) { s.push = s.push || { subs: [] }; s.push.key = vapidPublic(cfg.vapidJwk); }
+// Botón «Actualizar» del móvil: token que solo puede lanzar este motor (viaja cifrado con el resto)
+if (process.env.DISPATCH_TOKEN) s.dispatchToken = process.env.DISPATCH_TOKEN; else delete s.dispatchToken;
 s.status.portfolioAt = at;
 s.status.engine = "github";
 const aiFresh = s.status.aiAt && now - new Date(s.status.aiAt) < 30 * 3600e3;

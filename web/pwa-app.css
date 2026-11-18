@@ -362,3 +362,6 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 .adv-latest{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;align-items:baseline;padding:6px 0;border-top:1px solid var(--line)}
 
 .rv{font-size:12.5px;font-weight:600}.rv-ok{color:var(--gain)}.rv-unk{color:var(--muted)}
+
+#fresh.running{animation:pulse-run 1.2s ease-in-out infinite}
+@keyframes pulse-run{50%{opacity:.45}}
