@@ -14,7 +14,7 @@ import { checkRevolut, mergeRevolutFile } from "./revolut.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { sendPush, vapidPublic } from "./webpush.mjs";
 import { updateRobot } from "./robot.mjs";
-import { holdingsFromLedger } from "./parser.mjs";
+import { holdingsFromLedger, resolveTickers, tickerMap } from "./parser.mjs";
 import { readState, writeState, decrypt } from "./state.mjs";
 
 const mode = process.argv[2] || "portfolio";
@@ -114,6 +114,9 @@ for (const sub of [...(s.push?.subs || [])].filter((x) => x.welcome)) {
 }
 
 // ---------- 2. Símbolos: cartera (prioridad 1) y vigilancia (prioridad 2) ----------
+// Tickers europeos de Revolut (p. ej. TPG0) → símbolo de Yahoo
+Object.assign(tickerMap, s.settings?.map || {});
+{ const f = await resolveTickers(s, s.ledger?.rows); if (f.length) log.push("Tickers resueltos: " + f.join(", ")); }
 const tier1 = new Set();
 for (const h of holdingsFromLedger(s.ledger?.rows || [])) tier1.add(h.quote);
 for (const a of s.crypto?.assets || []) if (!["EUR", "USD", "GBP"].includes(a.asset)) tier1.add(`${a.asset}-EUR`);
