@@ -11,6 +11,7 @@ import { ROOT, analyze, fxEurPer, mapLimit, loadConfig } from "./lib.mjs";
 import { UNIVERSE } from "./universe.mjs";
 import { refreshMovers, addToPool } from "./movers.mjs";
 import { checkRevolut, mergeRevolutFile } from "./revolut.mjs";
+import { syncDrive, uploadExcel, driveOn } from "./drive.mjs";
 import { refreshNews, refreshFundamentals } from "./news.mjs";
 import { sendPush, vapidPublic } from "./webpush.mjs";
 import { updateRobot } from "./robot.mjs";
@@ -114,6 +115,11 @@ for (const sub of [...(s.push?.subs || [])].filter((x) => x.welcome)) {
 }
 
 // ---------- 2. Símbolos: cartera (prioridad 1) y vigilancia (prioridad 2) ----------
+// Extractos nuevos subidos a Google Drive (Invest o Robo-Advisor), sin pasar por el PC
+try {
+  const d = await syncDrive(s, now);
+  if (!d.off && (d.invest || d.robot)) log.push(`Drive: ${d.invest ? "Invest " + d.invest : ""}${d.invest && d.robot ? " · " : ""}${d.robot ? "Robo-Advisor " + d.robot : ""}`);
+} catch (e) { log.push("Drive: " + e.message); }
 // Tickers europeos de Revolut (p. ej. TPG0) → símbolo de Yahoo
 Object.assign(tickerMap, s.settings?.map || {});
 { const f = await resolveTickers(s, s.ledger?.rows); if (f.length) log.push("Tickers resueltos: " + f.join(", ")); }
@@ -483,6 +489,15 @@ if (existsSync(notesFile)) {
     if (okSent) { s.status.summaryDate = today; log.push("Resumen matinal enviado"); }
     else log.push("Resumen matinal: no se pudo enviar");
     if (process.env.FORCE_SUMMARY === "1") console.log("RESUMEN:\n" + body);
+  }
+}
+
+// ---------- 7c. Excel en Drive (una vez al día, desde las 07:00 de Dublín) ----------
+if (driveOn()) {
+  const dk = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Dublin", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hour12: false }).formatToParts(now);
+  const P = Object.fromEntries(dk.map((x) => [x.type, x.value])); const day = `${P.year}-${P.month}-${P.day}`;
+  if ((process.env.FORCE_EXCEL === "1" || Number(P.hour) % 24 >= 7) && s.status.excelDate !== day) {
+    try { const r = await uploadExcel(s, docId); s.status.excelDate = day; log.push("Drive: Excel actualizado"); } catch (e) { log.push("Drive: Excel no subido (" + e.message.slice(0, 120) + ")"); }
   }
 }
 
