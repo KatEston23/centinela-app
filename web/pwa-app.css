@@ -365,3 +365,106 @@ a.btn{display:inline-block;font:500 13px var(--f-body);text-decoration:none;colo
 
 #fresh.running{animation:pulse-run 1.2s ease-in-out infinite}
 @keyframes pulse-run{50%{opacity:.45}}
+
+/* =====================================================================
+   Vidrio v2 — paneles esmerilados sobre un fondo vivo
+   (skill «glassmorphism»: escarcha + translucidez + borde de luz + profundidad;
+    skill «microinteractions»: respuesta inmediata a cada toque)
+   ===================================================================== */
+:root{--g-fill:rgba(255,255,255,.58);--g-fill-2:rgba(255,255,255,.42);--g-edge:rgba(255,255,255,.75);--g-edge-dim:rgba(255,255,255,.18);
+  --g-hi:rgba(255,255,255,.65);--g-shade:rgba(0,0,0,.05);--g-drop:0 10px 34px rgba(60,40,10,.12);
+  --au-1:rgba(240,165,60,.55);--au-2:rgba(60,190,150,.38);--au-3:rgba(120,110,240,.30);--ease-out:cubic-bezier(.16,1,.3,1)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --g-fill:rgba(18,26,34,.46);--g-fill-2:rgba(22,32,42,.26);--g-edge:rgba(255,255,255,.26);--g-edge-dim:rgba(255,255,255,.06);
+  --g-hi:rgba(255,255,255,.10);--g-shade:rgba(0,0,0,.25);--g-drop:0 14px 40px rgba(0,0,0,.38);
+  --au-1:rgba(240,170,70,.50);--au-2:rgba(40,205,150,.34);--au-3:rgba(115,95,255,.42)}}
+
+/* Fondo vivo: tres auroras que derivan muy despacio (solo transform: barato) + grano anti-bandas */
+html{background:var(--bg)}
+.aurora{position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;overflow:hidden}
+.aurora i{position:absolute;width:70vmax;height:70vmax;border-radius:50%;will-change:transform}
+.aurora i:nth-child(1){left:35%;top:-5%;background:radial-gradient(closest-side,var(--au-1),transparent);animation:drift1 34s ease-in-out infinite alternate}
+.aurora i:nth-child(2){left:-10%;top:30%;background:radial-gradient(closest-side,var(--au-2),transparent);animation:drift2 41s ease-in-out infinite alternate}
+.aurora i:nth-child(3){left:30%;top:60%;background:radial-gradient(closest-side,var(--au-3),transparent);animation:drift3 47s ease-in-out infinite alternate}
+.aurora::after{content:"";position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@keyframes drift1{to{transform:translate(-18vmax,14vmax) scale(1.15)}}
+@keyframes drift2{to{transform:translate(20vmax,-10vmax) scale(.9)}}
+@keyframes drift3{to{transform:translate(-12vmax,-22vmax) scale(1.1)}}
+body{background:transparent!important}
+header.top{background:transparent}
+
+/* Cristal: paneles, cabecera y barra inferior */
+.panel,.topbar,nav.tabs{
+  background:linear-gradient(155deg,var(--g-fill),var(--g-fill-2));
+  -webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid var(--g-edge-dim);
+  box-shadow:var(--g-drop),inset 0 1px 0 var(--g-hi),inset 0 -1px 0 var(--g-shade);
+  isolation:isolate}
+.panel,.topbar{position:relative}
+/* Borde de luz: anillo de 1 px más brillante arriba a la izquierda */
+.panel::before,.topbar::before,nav.tabs::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:linear-gradient(145deg,var(--g-edge),transparent 38%,transparent 70%,var(--g-edge-dim));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+nav.tabs{-webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%)}
+/* Dentro del cristal, tarjetas tintadas sin desenfoque (no se apila blur sobre blur) */
+.sug,.spec,.adv,#summary .kpi:not(.big),.opp-group,.phase,.ap-skip,#proj-kpis .kpi,.field input,.field select{
+  background:color-mix(in srgb,var(--sunk) 55%,transparent)!important;border-color:var(--g-edge-dim)}
+
+/* Entrada: cada panel aparece escalonado al cambiar de pestaña */
+section.view:not([hidden]){animation:none}
+section.view:not([hidden])>*{animation:glassIn .55s var(--ease-out) both}
+section.view:not([hidden])>*:nth-child(2){animation-delay:.05s}
+section.view:not([hidden])>*:nth-child(3){animation-delay:.1s}
+section.view:not([hidden])>*:nth-child(4){animation-delay:.15s}
+section.view:not([hidden])>*:nth-child(n+5){animation-delay:.2s}
+@keyframes glassIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+
+/* Pestañas: una píldora de cristal que se desliza a la pestaña activa */
+nav.tabs{--i:0}
+nav.tabs::before{content:"";position:absolute;z-index:0;top:7px;bottom:7px;left:7px;width:calc((100% - 22px) / 5);border-radius:19px;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--accent) 88%,#fff),var(--accent));
+  box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 40%,transparent),inset 0 1px 0 rgba(255,255,255,.45);
+  transform:translateX(calc(var(--i) * (100% + 2px)));transition:transform .45s var(--ease-out)}
+nav.tabs a{position:relative;z-index:1;background:transparent!important;transition:color .25s,transform .18s var(--ease-out)}
+nav.tabs a[aria-current="page"]{color:#1B1206}
+nav.tabs a[aria-current="page"] svg{animation:tabPop .45s var(--ease-out)}
+@keyframes tabPop{40%{transform:translateY(-3px) scale(1.12)}}
+
+/* Respuesta al tocar: todo lo pulsable se hunde un poco */
+button,.btn,.chip,.panel h2 .more,a.wide,.ap-link,.spec-more{transition:transform .16s var(--ease-out),box-shadow .2s,background .2s}
+button:active,.btn:active,.chip:active,nav.tabs a:active,.panel h2 .more:active,a.wide:active,.ap-link:active,.spec-more:active{transform:scale(.95)}
+@media (hover:hover){.panel{transition:transform .35s var(--ease-out),box-shadow .35s}
+  .panel:hover{transform:translateY(-2px);box-shadow:0 18px 50px rgba(0,0,0,.28),inset 0 1px 0 var(--g-hi)}}
+
+/* Cifra principal: destello verde o rojo cuando cambia */
+.flash-up{animation:flashUp 1.1s ease-out}.flash-down{animation:flashDown 1.1s ease-out}
+@keyframes flashUp{0%{color:var(--gain);text-shadow:0 0 18px var(--gain-soft)}}
+@keyframes flashDown{0%{color:var(--loss);text-shadow:0 0 18px var(--loss-soft)}}
+
+/* Tirar hacia abajo para actualizar todo */
+.ptr{position:fixed;z-index:40;left:50%;top:calc(env(safe-area-inset-top,0px) + 74px);transform:translate(-50%,-70px) scale(.85);opacity:0;
+  display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;color:var(--fg);pointer-events:none;
+  background:var(--g-fill);-webkit-backdrop-filter:blur(18px) saturate(170%);backdrop-filter:blur(18px) saturate(170%);
+  border:1px solid var(--g-edge-dim);box-shadow:var(--g-drop),inset 0 1px 0 var(--g-hi)}
+.ptr svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.ptr.ready svg{transform:rotate(180deg)}
+.ptr.spin svg{animation:spin .8s linear infinite}
+.ptr.settle{transition:transform .35s var(--ease-out),opacity .35s}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Accesibilidad: sin transparencia o sin movimiento si el sistema lo pide */
+@media (prefers-reduced-transparency: reduce){
+  .panel,.topbar,nav.tabs,.ptr{background:var(--surface)!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .aurora{display:none}}
+@media (prefers-reduced-motion: reduce){
+  .aurora i,section.view:not([hidden])>*,nav.tabs a[aria-current="page"] svg{animation:none!important}
+  nav.tabs::before{transition:none}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .panel,.topbar,nav.tabs{background:var(--surface)}}
+/* El resumen principal también es de cristal, con su brillo dorado */
+#summary{background:radial-gradient(90% 90% at 100% 0%,color-mix(in srgb,var(--accent) 24%,transparent),transparent 65%),linear-gradient(155deg,var(--g-fill),var(--g-fill-2))}
+@media (prefers-reduced-transparency: reduce){#summary{background:var(--surface)}}
+/* Tarjetas de mercados: cristal ligero (tinte y borde de luz, sin desenfoque propio) */
+.mkt{background:linear-gradient(155deg,var(--g-fill),var(--g-fill-2));border-color:var(--g-edge-dim);box-shadow:inset 0 1px 0 var(--g-hi),0 6px 20px rgba(0,0,0,.18)}
+@media (prefers-reduced-transparency: reduce){.mkt{background:var(--surface)}}

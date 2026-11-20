@@ -1442,3 +1442,64 @@ renderOpportunities = () => {
     if (it) o.firstElementChild?.append(adviceNode(adviceFor(it, "scan", ctx)));
   });
 };
+
+// ---- Vidrio v2: fondo vivo, pestaña deslizante, tirar para actualizar y destellos ----
+(function glassUI() {
+  // Fondo vivo detrás de todo (lo que el cristal esmerila)
+  if (!document.querySelector(".aurora")) document.body.prepend(el("div", { class: "aurora", "aria-hidden": "true" }, el("i"), el("i"), el("i")));
+  // Píldora de la pestaña activa: se desliza hasta la elegida
+  const nav = document.querySelector("nav.tabs");
+  const syncTab = () => {
+    if (!nav) return;
+    const links = [...nav.querySelectorAll("a")];
+    const i = links.findIndex((a) => a.getAttribute("aria-current") === "page");
+    nav.style.setProperty("--i", String(Math.max(0, i)));
+  };
+  addEventListener("hashchange", () => requestAnimationFrame(syncTab));
+  if (nav) new MutationObserver(syncTab).observe(nav, { subtree: true, attributes: true, attributeFilter: ["aria-current"] });
+  syncTab();
+  // Destello en la cifra principal cuando sube o baja
+  const num = (t) => { const m = String(t || "").replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", "."); const v = parseFloat(m); return isFinite(v) ? v : null; };
+  const kv = document.getElementById("k-value");
+  if (kv) {
+    let last = num(kv.textContent);
+    new MutationObserver(() => {
+      const v = num(kv.textContent);
+      if (v != null && last != null && v !== last) {
+        kv.classList.remove("flash-up", "flash-down"); void kv.offsetWidth;
+        kv.classList.add(v > last ? "flash-up" : "flash-down");
+      }
+      if (v != null) last = v;
+    }).observe(kv, { childList: true, characterData: true, subtree: true });
+  }
+  // Tirar hacia abajo desde arriba del todo: actualiza todas las conexiones (como el botón)
+  const ICON = '<svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg>';
+  const ptr = el("div", { class: "ptr", role: "status" });
+  ptr.innerHTML = ICON + "<span>Tire para actualizar</span>";
+  document.body.append(ptr);
+  const label = ptr.querySelector("span");
+  let y0 = null, pull = 0, busy = false;
+  const LIMIT = 90;
+  const show = (d) => {
+    const k = Math.min(1, d / LIMIT);
+    ptr.style.opacity = String(k);
+    ptr.style.transform = `translate(-50%,${-70 + k * 70}px) scale(${0.85 + k * 0.15})`;
+    ptr.classList.toggle("ready", d >= LIMIT);
+    label.textContent = d >= LIMIT ? "Suelte para actualizar todo" : "Tire para actualizar";
+  };
+  const reset = () => { ptr.classList.add("settle"); ptr.style.opacity = "0"; ptr.style.transform = "translate(-50%,-70px) scale(.85)"; setTimeout(() => ptr.classList.remove("settle", "spin", "ready"), 360); };
+  addEventListener("touchstart", (e) => { if (busy || scrollY > 2 || e.touches.length !== 1) { y0 = null; return; } y0 = e.touches[0].clientY; pull = 0; ptr.classList.remove("settle"); }, { passive: true });
+  addEventListener("touchmove", (e) => {
+    if (y0 == null) return;
+    const d = e.touches[0].clientY - y0;
+    if (d <= 0 || scrollY > 2) { pull = 0; show(0); return; }
+    pull = d * 0.55; show(pull);
+  }, { passive: true });
+  addEventListener("touchend", async () => {
+    if (y0 == null) return;
+    y0 = null;
+    if (pull < LIMIT) { reset(); return; }
+    busy = true; ptr.classList.add("spin"); ptr.classList.remove("ready"); label.textContent = "Actualizando…";
+    try { await refresh(true); } finally { busy = false; setTimeout(reset, 600); }
+  });
+})();
