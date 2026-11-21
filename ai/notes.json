@@ -1,9 +1,15 @@
 {
- "at": "2026-11-21T07:36:26.098Z",
+ "at": "2026-11-21T13:40:49.133Z",
  "market": {
   "regime": "risk-off",
-  "summary": "El viernes el Nasdaq se desplomó un 5,28 % y el S&P 500 entró en corrección, con la peor semana desde la pandemia; Nvidia cayó un 14 % (−32,6 % en dos semanas) por la dimisión de Jensen Huang y la investigación de la SEC, y la salida a bolsa récord de Anthropic (81.340 M$ a 83 $) no devolvió el entusiasmo por la IA. Bitcoin perdió los 60.000 $ y marcó mínimos de dos años en una jornada de crisis de liquidez cripto. Con el régimen cripto en 29,3/100 y casi todo en sobreventa (RSI de NVDA 15,9, de BTC 18,4), domina la prudencia: los rebotes técnicos son posibles, pero no hay confirmación de suelo.",
+  "summary": "El Dow Jones acumula una caída del 8 % (unos 4.200 puntos) en cinco días y el S&P 500 cae un 3,7 % en la jornada por el desplome de las tecnológicas de IA (Negocios.com, El Ecosistema Startup), con el Nasdaq rozando el mercado bajista (FXEmpire). Nvidia sigue en mínimos tras la dimisión de Jensen Huang y la investigación de la SEC, y la OPV récord de Anthropic (81.340 M$ a 83 $) no devolvió el apetito por la IA. A ello se suma la presión política sobre la Fed: Trump dice que «los tipos son demasiado altos» (Cryptonews). Con casi todo en sobreventa (RSI de NVDA 15,9) los rebotes son posibles, pero sin confirmación de suelo manda la prudencia.",
   "events": [
+   {
+    "t": "El bitcoin cae a casi 55.000 €: liquidaciones de más de 2.500 M$ e índice de miedo en mínimo histórico (Incrypted)",
+    "impact": "alto",
+    "affects": "Criptomonedas, Coinbase, mineras",
+    "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNM3pILVNJcS02Xy1oLWtadzBsV29pLTlZR0RQTnVMSWtuU09HU2RVNlBialB0ajdoVVM5VnhaTXlIbS12empIWlpBenh6cDZoanFleUxVbmlXODE4T2NnX3REanNpZXVxS0RqYXdRaUxEY19iUXh3TUdkSk9mSndqWE93OGlVZTVqWUNCTHZlS0dMQnZjdUdxb0oyeW03MDMzaU5SejRnd3ZFZGVGR0VMTWVhamJKTjRsZHNTYjZTb3llQ1hGcWxhMklFNFlMcVkzcUEyLTRnaXpTb3p5VUxTWWxB?oc=5"
+   },
    {
     "t": "El Nasdaq se desploma un 5,28 % y el S&P 500 entra en corrección (RTVE)",
     "impact": "alto",
@@ -29,16 +35,16 @@
     "u": "https://decrypt.co/383669/nvidia-amd-micron-ai-stocks-sink-anthropic-ipo-price"
    },
    {
-    "t": "El bitcoin se hunde, pierde los 60.000 $ y marca mínimos de dos años (Negocios.com)",
-    "impact": "alto",
-    "affects": "Criptomonedas, Coinbase, mineras",
-    "u": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaG9zeWhySzEyY0d2V09TNmdTWU1nalBnLVdSN2lRNEkwaE16eENPTmZHOXQ5aE83ZFRURm0zY1B6ejhLMzYyelI5RFlLZkRCMjlhOGRCYUpreHE1MTFTd2k0M1R0Q0p1MElod3pCUTZHYXZJNlpzaFk1VjRYUnZvSVZrTzRDUWtIOXJpNnI0Z2k1SFhIdXFLTGxZOGxoNlpwY2Jwb3VhNXd2anh3X2dPQW5LM1RTamJTUkhnNdIBwgFBVV95cUxPS2ROU1JPZlF1Y1h1dlVjUFhOUEpKZHk2X2Nsckk5dG55QU5wazJXc1Y2LWRSSF9OV25WM3pRUmdXUHZJYnJzSVZFQTdTdV9sUjJabE5GQlFYRmFLYVBGejZuNm9kWEg2YTdjUHFQanJJOTJnNTlPTFVYWEF6bXlIR0VMeVI0MktIV1dUR2xzLTctYlA5OUsyU3dITzNkbFdnSWJoRUo0WXlva2cwSWUyOWlhRlQxTUxaaUNQbURTX0ZhQQ?oc=5"
-   },
-   {
     "t": "CrowdStrike negocia comprar Zscaler: Zscaler sube un 18 % y CrowdStrike cae un 8 % (MarketScreener)",
     "impact": "medio",
     "affects": "Ciberseguridad (CRWD, PANW, NET)",
     "u": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPbF85OXU5TU1wUUIzWm1fTzVmWUhGM3ZEU1FaNUtEeUxOUmdyQV9pLU9RdUkwUTJydXpDRXBaUXlmUzBPRm9EUjZnc3FLbjFYbXpCaVU0dGZRWFIxdEtLOS1FcGlnUUVhNkhDOHlXUEI5ZVFNZi1KVGFUWnV2d3FUOGFhemo1WlZocHRvaW5xSVp0UlBvbEp1dmxibVA?oc=5"
+   },
+   {
+    "t": "El Dow Jones cae un 8 % y pierde 4.200 puntos en cinco días (Negocios.com)",
+    "impact": "alto",
+    "affects": "Índices de EE. UU., tecnología, financieras",
+    "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNS2hHekxpY0dWMmdiTTVRcXNoZllDbGh2cWNSUWdtRi1ISzVmNXhnSFRYaVF5RGxHRWdkVHAwc2NkRjRDSDE0cHhLLUNDY09UaG9iLXVpWE9ZazhRdnQ5ZTc0NGlaVzk0b21BaFBiRlRYaDhxR2hwd25NZ1BKNzU2OEdPSWZvSXdSZ2NkOHVTNkgxSk1ULUxiLUxrbEJpN2FnZklFUkdtOHlaNHFrdFBtaU1STGhxUQ?oc=5"
    }
   ],
   "scenarios": [
@@ -83,7 +89,7 @@
   ]
  },
  "crypto": {
-  "summary": "El régimen cripto marca 29,3/100 (RISK_OFF): pesan la amplitud de altcoins (0 % de 19 por encima de su SMA200, puntuación 10) y el drawdown del 42,5 % desde máximos anuales. El bitcoin perdió los 60.000 $ (≈51.000-53.000 €) en una jornada de crisis de liquidez y mínimos de dos años, con XRP −10 % y activos de su ETF bajo 1.000 M$ (CoinDesk); el momentum en «washout» (solo 5 % de monedas positivas a 30 días) es señal contraria, pero sin giro confirmado manda la prudencia."
+  "summary": "El régimen cripto marca 29,3/100 (RISK_OFF): pesan la amplitud de altcoins (0 % de 19 por encima de su SMA200) y el drawdown del 42,5 % desde máximos anuales. El bitcoin tocó casi 55.000 € con liquidaciones superiores a 2.500 M$ y el índice de miedo en mínimo histórico (Incrypted), aunque hoy rebota un 2,8 % (DiarioBitcoin); Ethereum cae más de un 7 % tras salidas de 131 M$ de sus ETF spot (Traders Union). El momentum en «washout» (5 % de monedas positivas a 30 días) es señal contraria, pero sin giro confirmado manda la prudencia."
  },
  "notes": {
   "NVDA": {
@@ -155,8 +161,8 @@
    "entryConfidence": 60,
    "watchFor": "Que el régimen cripto suba de 40/100 y el BTC recupere los 55.000 € con cierre semanal por encima.",
    "title": "Bitcoin en mínimos de dos años",
-   "reason": "Fase débil bajo su SMA200 (63.332 €) y a 53.154 € cae un 5,4 % hoy y un 23 % en 30 días, con RSI 18,4. El régimen cripto está en 29,3 (risk-off) y la guía es de prudencia aunque el RSI esté en sobreventa extrema.",
-   "news": "El bitcoin perdió los 60.000 $ y tocó mínimos de dos años en una crisis de liquidez (Investing.com España), con retrocesos hasta ~51.000 € (Las Provincias) y XRP −10 % con los activos de su ETF bajo 1.000 M$ (CoinDesk).",
+   "reason": "Fase débil bajo su SMA200 (63.341 €): a 55.083 € cae un 1,3 % hoy (tras tocar casi 55.000 € con más de 2.500 M$ en liquidaciones) y un 20,3 % en 30 días, con RSI 25,4. El régimen cripto en 29,3 (risk-off) obliga a la prudencia aunque la sobreventa sea extrema; sin ETF ni flujos que respalden el rebote no hay entrada clara.",
+   "news": "El bitcoin llegó a casi 55.000 € con liquidaciones superiores a 2.500 M$ y el índice de miedo en mínimo histórico (Incrypted); Goldman Sachs avisa de más dolor en los mercados (BeInCrypto) y Benjamin Cowen no descarta un suelo en 40.000 $ (Benzinga).",
    "risk": "Más liquidaciones forzadas: ya está por debajo de los 55.000 € que rompían su tesis.",
    "thesis": "Adopción institucional vía ETF y escasez de oferta; hoy eclipsadas por ventas y falta de liquidez, aunque el 5 % de monedas con momentum positivo es una señal contraria de capitulación.",
    "breaks": "Ya se cumple el cierre bajo 55.000 €; se consolidaría con un régimen cripto por debajo de 25 (hoy 29,3).",
@@ -170,16 +176,20 @@
    ],
    "sources": [
     {
+     "t": "Bitcoin cayó a casi 55.000 $: liquidaciones de más de 2.500 M$ (Incrypted)",
+     "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNM3pILVNJcS02Xy1oLWtadzBsV29pLTlZR0RQTnVMSWtuU09HU2RVNlBialB0ajdoVVM5VnhaTXlIbS12empIWlpBenh6cDZoanFleUxVbmlXODE4T2NnX3REanNpZXVxS0RqYXdRaUxEY19iUXh3TUdkSk9mSndqWE93OGlVZTVqWUNCTHZlS0dMQnZjdUdxb0oyeW03MDMzaU5SejRnd3ZFZGVGR0VMTWVhamJKTjRsZHNTYjZTb3llQ1hGcWxhMklFNFlMcVkzcUEyLTRnaXpTb3p5VUxTWWxB?oc=5"
+    },
+    {
+     "t": "Goldman Sachs advierte más dolor para los mercados: ¿y Bitcoin? (BeInCrypto)",
+     "u": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNb09PV0JqbjlBX3AyZ3BPSnRscm1ZZnkwdVNzeWRtTUZRc1oxbkNWaF9KWUxIVkFSQTl0aVlVLTg1ZzZaRThUR2J3UllkeEdYTk94U3E1ZExaSVdlSF9xMUJJZ2V0YUNFbk5MRTA3aXRMdkRMVzJmX3J5ZEV0OGx1VHNFajZFcXhvOC1hbVUwTQ?oc=5"
+    },
+    {
+     "t": "40.000 dólares: el suelo que Benjamin Cowen no descarta para Bitcoin (Benzinga España)",
+     "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQODBKZ2ZGSXVRVlU5SE1sQW5JanptZ3M4NlBsc3padllBajIwQ1JIWDdiUHRJSXllTFcxaHZWckZSX0owU3J6bUowNjRaQnhuOW9PMzZuekwzdExiWWZyYzhwdVozSkFVNzBUUUJ1Z2E0MmdULTJHQnFaRncwcFNycVc5RTJKZlFLeWhMVGlQVlN5YlU?oc=5"
+    },
+    {
      "t": "El bitcoin se hunde y pierde los 60.000 $ (Negocios.com)",
      "u": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaG9zeWhySzEyY0d2V09TNmdTWU1nalBnLVdSN2lRNEkwaE16eENPTmZHOXQ5aE83ZFRURm0zY1B6ejhLMzYyelI5RFlLZkRCMjlhOGRCYUpreHE1MTFTd2k0M1R0Q0p1MElod3pCUTZHYXZJNlpzaFk1VjRYUnZvSVZrTzRDUWtIOXJpNnI0Z2k1SFhIdXFLTGxZOGxoNlpwY2Jwb3VhNXd2anh3X2dPQW5LM1RTamJTUkhnNdIBwgFBVV95cUxPS2ROU1JPZlF1Y1h1dlVjUFhOUEpKZHk2X2Nsckk5dG55QU5wazJXc1Y2LWRSSF9OV25WM3pRUmdXUHZJYnJzSVZFQTdTdV9sUjJabE5GQlFYRmFLYVBGejZuNm9kWEg2YTdjUHFQanJJOTJnNTlPTFVYWEF6bXlIR0VMeVI0MktIV1dUR2xzLTctYlA5OUsyU3dITzNkbFdnSWJoRUo0WXlva2cwSWUyOWlhRlQxTUxaaUNQbURTX0ZhQQ?oc=5"
-    },
-    {
-     "t": "El Bitcoin retrocede a los 51.000 euros (Las Provincias)",
-     "u": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNQnRaOUpyTkJkQ0ZHVV9rTnFjQW5RdG9hRHBtTk1uaGg1YWdJZmZKSG02QWY4ME9VdnFEVVJUQTZGX1puNkVhUHc1TmRKTzNoZkh0ampZdld1M1dOOWQzVzNEQzVJUUk3T3h6NC1mQzNTYjZTQkFxaTlScWpKVjYxQUJDNW5UZ1VGZi1UbW5oYllNRmRHYmRnUtIBngFBVV95cUxOTlBGV2dTemJEN0xPenVPQmpROFMybm9iTzBOanJDc2oybDNNa01FMDBQTDB6c1U5TWlYZ3BfZ2Nlc29VUGFxQklfZ1pQeGI0VkxGZW5fZTFOOVlmdHgzZTdqaW40eXd2b1ZlaTNxTy1Na1ZkeFRHVEc1NExYdlgxUzVBVjQyc01kVWNOeGNaNHY0VjRNWUNxOUhSQUhnQQ?oc=5"
-    },
-    {
-     "t": "XRP cae un 10 % y los activos del ETF bajan de 1.000 M$ (CoinDesk)",
-     "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPZGZndHlBZGQxMVFjTlFQeXYwZWlGcktYMVc0dHE0RzBPNm9rZFJLbzUwUmlKQlFzTXJsRjlmX01WeUhYcjdaYWhNWE1BSWhzN04yUDZ2X05OME00YVRpT3pPRFQzXzU0ZjRZMDhtV2Jsa1FRWDFZc3hhTlJyaU12WVVHTW9Ja1U1ZHRwQUJOenNiMDVYMUNteWZPOVIyRnItdTJDZGlIdkloaDFPYktLMlZubU1ZM1hyYWc?oc=5"
     }
    ]
   },
