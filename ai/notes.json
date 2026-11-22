@@ -1,8 +1,8 @@
 {
- "at": "2026-11-22T13:43:07Z",
+ "at": "2026-11-22T21:41:07.057Z",
  "market": {
   "regime": "risk-off",
-  "summary": "El Nasdaq cayó un 5,28 % el viernes 20-nov (−10 % en la semana, el peor tramo desde 2020) y el S&P 500 entró en corrección con −3,7 %, arrastrados por Nvidia (−14 %) y Anthropic. Pesan las dudas sobre la rentabilidad de la IA tras resultados de Nvidia que superaron previsiones, la dimisión de su CEO y el debut de Anthropic, que ya devuelve su prima de apertura. Los mercados asiáticos responden con medidas y el foco pasa a la Fed del 9-dic. Régimen cripto en 29,3/100 (RISK_OFF).",
+  "summary": "El Nasdaq cayó un 5,28 % el viernes 20-nov (−10 % en la semana, el peor tramo desde 2020) y el S&P 500 entró en corrección con −3,7 %, arrastrados por Nvidia (−14 %) y Anthropic. Pesan las dudas sobre la rentabilidad de la IA tras resultados de Nvidia que superaron previsiones, la dimisión de su CEO y el debut de Anthropic, que ya devuelve su prima de apertura. Los mercados asiáticos responden con medidas y el foco pasa a la Fed del 9-dic. Régimen cripto en 29,3/100 (RISK_OFF). Novedades del domingo 22-nov: el bitcoin rebota un 3,4 % sobre los 60.000 $ y Bessent pide explicaciones sobre las ventas de chips de Nvidia a China; la semana de Acción de Gracias llega con Wall Street cerrado el jueves 26-nov.",
   "events": [
    {
     "t": "El Nasdaq cae un 5,28 % y Nvidia un 14 % en el «viernes negro» de la IA (Informador)",
@@ -66,6 +66,16 @@
   ],
   "catalysts": [
    {
+    "d": "2026-11-23",
+    "e": "Themes ETFs lanza ETF inversos (x1 y x2) sobre Anthropic",
+    "imp": "bajo"
+   },
+   {
+    "d": "2026-11-26",
+    "e": "Acción de Gracias: Wall Street cerrado",
+    "imp": "bajo"
+   },
+   {
     "d": "2026-12-09",
     "e": "Decisión de la Fed y proyecciones",
     "imp": "alto"
@@ -73,6 +83,11 @@
    {
     "d": "2026-12-10",
     "e": "IPC de EE. UU. de noviembre (fecha provisional)",
+    "imp": "medio"
+   },
+   {
+    "d": "2026-12-21",
+    "e": "Anthropic prevista para entrar en el Nasdaq 100",
     "imp": "medio"
    }
   ],
@@ -89,7 +104,7 @@
   ]
  },
  "crypto": {
-  "summary": "Régimen RISK_OFF con score 29,3/100: la amplitud de alts pesa más (solo el 11 % de 19 sobre su media de 200 sesiones, score 10), seguido de drawdown/volatilidad (25) con Bitcoin un 39 % bajo su máximo anual, y el momentum es de capitulación (5 % de monedas positivas a 30 días). Bitcoin cae bajo los 56.000 $ con salidas de ETF de 1.245 M$ según TradingView y las alts no aguantan; prudencia aunque haya señales contrarias de suelo."
+  "summary": "Régimen RISK_OFF con score 29,3/100: la amplitud de alts pesa más (solo el 11 % de 19 sobre su media de 200 sesiones, score 10), seguido de drawdown/volatilidad (25) con Bitcoin un 39 % bajo su máximo anual, y el momentum es de capitulación (5 % de monedas positivas a 30 días). Bitcoin cae bajo los 56.000 $ con salidas de ETF de 1.245 M$ según TradingView y las alts no aguantan; prudencia aunque haya señales contrarias de suelo. Actualización 22-nov: el bitcoin rebota un 3,4 % y recupera los 60.000 $ según BeInCrypto/DiarioBitcoin, pero la tendencia sigue bajista; un rebote sin mejora de la amplitud de alts no cambia el régimen."
  },
  "notes": {
   "NVDA": {
@@ -100,7 +115,7 @@
    "watchFor": "Esperar a que se aclare la investigación de la SEC y la sucesión antes de entrar; mirar si aguanta el mínimo de 52 semanas (124,5 $).",
    "title": "Nvidia: sacudida de gobierno corporativo, fundamentales intactos",
    "reason": "Fase débil, bajo su SMA200 (203 $) y RSI de 15,9 tras caer un 10,9 % en el día y un 38,7 % en 30 días: la venta del viernes 20 (-14 %, siete semanas seguidas de caídas) pesa más que unos resultados que superaron previsiones. Con PER de 13,4, ventas +93 % y margen neto del 62,5 % la valoración es baja, pero la dimisión de Jensen Huang el 12-nov y la investigación de la SEC (según el WSJ) añaden incertidumbre que el gráfico no ha digerido.",
-   "news": "Resultados del T3 fiscal con ingresos +103 % (≈116.000 M$ frente a ≈109.000 M$ esperados); guía del T4 de 130.000 M$ con margen bruto del 71-72 % (frente a ≈75 %). Colette Kress dirige la compañía tras la salida de Huang y el consejo descartó su regreso.",
+   "news": "Resultados del T3 fiscal con ingresos +103 % (≈116.000 M$ frente a ≈109.000 M$ esperados); guía del T4 de 130.000 M$ con margen bruto del 71-72 % (frente a ≈75 %). Colette Kress dirige la compañía tras la salida de Huang y el consejo descartó su regreso. El 22-nov, EE. UU. (Bessent) pide respuestas sobre las ventas de chips a China y el jefe de inteligencia investiga a una presunta espía china vinculada al ex CEO (Bloomberg Línea).",
    "risk": "Que la SEC confirme una reformulación de cuentas o sanciones, y que el margen bruto siga cayendo.",
    "thesis": "Centros de datos con ventas +93 %, margen neto 62,5 % y BPA +130 %, con foso de software CUDA; PER 13,4 frente a máximos de 243 $.",
    "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, o que las ventas del T4 queden por debajo de la guía de 130.000 M$.",
@@ -118,6 +133,10 @@
     {
      "t": "La caída de Nvidia supera el PIB español (La Región)",
      "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPUWRtbVdieFprNV8yTjloMlNLSmctNEU4cU9mbzBaTzlBRU0zR0xmUUt2VEVMTUpDUkprZ1ZLak1CV0w2MVo0UGRXTndBQ3o1NGR6M0JwOFZnRGtqdjVwWHhaMkQyZTNSLWt5S0E2Vm04UzY5UmxYTjZNN2MwUzY1R0oyTGpPbzVCTWNvWnpwNWw?oc=5"
+    },
+    {
+     "t": "EE. UU. busca respuestas sobre la venta de chips de Nvidia a China, dice Bessent (Yahoo Finanzas)",
+     "u": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOS2FmaXRLU0ZydUNyWFowTU5pcmt0X2poQ05Jam52ZkFlQTRnUXVfRWcyenZDa0NON3EzNXhxQWhfdzZqVG9oQWFrd1l6TFZIVVowMTFYTFJvQU1TdUdYUzdpODFJdDQwN1FQdUtfeWNZY0dUeEtEdWdudGFIaWNnNEN5X25TZHVKNXU3YjdFYmg4NFUx?oc=5"
     }
    ]
   },
@@ -187,12 +206,18 @@
    "watchFor": "Que estabilice por encima de los 83 $ del precio de OPV varios cierres seguidos.",
    "title": "Anthropic: OPV récord que ya devuelve la prima",
    "reason": "Sin historia técnica suficiente: salió a 83 $, abrió a 111,5 $ el 19-nov, cerró el primer día a 97,17 $ y hoy cotiza a 87,8 $ tras caer un 9,7 %, arrastrada por el viernes negro de la IA. La OPV recaudó ≈81.300 M$ y la valoración (precio/ventas 33) exige crecimiento enorme, con pérdidas récord reveladas en el folleto.",
-   "news": "El folleto revela ingresos y gastos récord; la OPV irritó a parte de la banca de inversión por su formato atípico; Cathie Wood compró 154 M$ en sus dos primeros días.",
+   "news": "El folleto revela ingresos y gastos récord; la OPV irritó a parte de la banca de inversión por su formato atípico; Cathie Wood compró 154 M$ en sus dos primeros días. Themes ETFs lanzará el 23-nov ETF inversos x1 y x2 sobre Anthropic (TradingView); entrada prevista en el Nasdaq 100 el 21-dic.",
    "risk": "Cierre bajo los 83 $ de la OPV y nueva presión vendedora de quienes entraron con prima.",
    "thesis": "Líder de IA generativa con demanda institucional récord y un compromiso de gasto de 47.200 M$ en Azure.",
    "breaks": "Cierre diario por debajo de los 83 $ del precio de OPV (hoy 87,8 $).",
    "valuation": "Precio/ventas 33 y margen neto −343 %: valoración basada solo en crecimiento futuro, sin referencia histórica.",
-   "catalysts": [],
+   "catalysts": [
+    {
+     "d": "2026-12-21",
+     "e": "Entrada prevista en el Nasdaq 100",
+     "imp": "medio"
+    }
+   ],
    "sources": [
     {
      "t": "Anthropic empieza a cotizar en la mayor OPV de la historia (ITV)",
@@ -205,6 +230,10 @@
     {
      "t": "Salida a bolsa de Anthropic revela ingresos y gastos récord (Bitfinanzas)",
      "u": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQTzIyMWFBMGV2RDk0ekFoUXZjemlvUGJOLU43OFYtS2lvSGFfRno0V1l0Z083TjQ5MmZ6WmVnOGlxcU5MNnlXLVE5Y0NfU0tXS1pBaFdkajMwMjFIYU9Vd3JqM0FFSkc2a0NGLS1uNGZKeHFXN2JYbjdncmVHSVJMRzEzanlDSTBvLUpzUg?oc=5"
+    },
+    {
+     "t": "Themes ETFs prevé lanzar el 23 de noviembre ETF inversos sobre Anthropic (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFA1Y2hlNHQtVUp3V0FFSWFBTzFPVHZTQWpuX09WUENCR2M2eWVCSzNfdkZvMzVRSXRmMFZXbDN0ZE52MEYweHVrMGlJc09fb0xlRmpNN1BvbmNmNS1CcFhVblBjQzRrQ1hIUG9TRQ?oc=5"
     }
    ]
   },
@@ -308,7 +337,7 @@
    "watchFor": "Que el régimen cripto supere 40 y cierre semanal por encima de 60.000 €.",
    "title": "Bitcoin: capitulación con régimen en riesgo-off",
    "reason": "55.532 € (−20,8 % en 30 días, RSI 27,4, bajo su SMA200 de 63.271 €). El régimen cripto marca 29,3/100 (RISK_OFF): solo el 11 % de 19 alts sobre su media de 200 sesiones y el 5 % de monedas con momentum positivo, lo que es una señal de capitulación contraria pero obliga a la prudencia (<40).",
-   "news": "Bitcoin cae bajo los 56.000 $ en la semana; salidas de ETF de 1.245 M$ según TradingView; los inversores cripto venden bitcoin para comprar acciones de IA, que también caen.",
+   "news": "Bitcoin cae bajo los 56.000 $ en la semana; salidas de ETF de 1.245 M$ según TradingView; los inversores cripto venden bitcoin para comprar acciones de IA, que también caen. El 22-nov rebota un 3,4 % sobre los 60.000 $ y una ballena compra 1.000 M$ en la caída (Bitcoin News), aunque DiarioBitcoin mantiene la tendencia bajista.",
    "risk": "Cierre semanal bajo 55.000 € con más salidas de ETF.",
    "thesis": "Adopción institucional vía ETF y escasez de oferta, hoy eclipsadas por salidas del IBIT; el 5 % de monedas con momentum positivo es una señal contraria de capitulación.",
    "breaks": "Cierre semanal por debajo de 55.000 € o régimen cripto por debajo de 25 (hoy 29,3).",
@@ -326,6 +355,10 @@
     {
      "t": "Análisis de Bitcoin: más volumen, menos daño a la baja (investingLive)",
      "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOQnFuWG1Ccl9nbEItWl9mSGZvUzJON1BKdC1IV3g3V2lpR2RESXIyWXFOb1EzMnNheEVJY19pMGdxeDlXVENKVGo5X1M0SGY3YmVnQ2d1YlUyMlkwNG5GZjVBbEhPeG5oWGZYNVZHRlZUa09VUjFhdlZUcE51d2tzbjJ5YlhhTS1TSHJBZ240UXFRYWdSMlRaQTl3eVpZbEo5NkJKVldYRTU3WWcyYkx4Rjg3eW0zZw?oc=5"
+    },
+    {
+     "t": "Bitcoin se recupera por encima de los 60.000 $: ¿podrá sostenerse? (BeInCrypto)",
+     "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBUVzhlME1OYmRPLU9ibG84Y3Y3MXpUVFZpSERTNzBGV0RDMzdmRkVRcW9VOHUzWEZEc1ZMZjNGUXhvakc3enVRajFLN0hFblA1a1NKM0h1NGNBeE5odnhNSkdhelM2eDhmcGswV0NRZw?oc=5"
     }
    ]
   },
