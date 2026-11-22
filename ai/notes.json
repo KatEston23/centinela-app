@@ -1,9 +1,15 @@
 {
- "at": "2026-11-21T21:42:40.060Z",
+ "at": "2026-11-22T07:40:52.000Z",
  "market": {
   "regime": "risk-off",
-  "summary": "El mercado vive su peor día en 19 meses: la caída del Nasdaq 100 tras el debut de Anthropic (OPV de ~81.000 M$ a 83 $ por acción) y el desplome de Nvidia por la salida de Jensen Huang arrastran a todo el sector de IA. A ello se suma la apuesta del 91 % (CME FedWatch) por una subida de 25 pb de la Fed el 9-dic, con Waller pidiendo 50 pb. El DAX pierde un 7,3 % en la semana y el bitcoin tocó un mínimo de dos años cerca de 55.000 € antes de rebotar sobre 60.000 $.",
+  "summary": "El mercado vive su peor día en 19 meses: la caída del Nasdaq 100 tras el debut de Anthropic (OPV de ~81.000 M$ a 83 $ por acción) y el desplome de Nvidia por la salida de Jensen Huang arrastran a todo el sector de IA. A ello se suma la apuesta del 91 % (CME FedWatch) por una subida de 25 pb de la Fed el 9-dic, con Waller pidiendo 50 pb. El DAX pierde un 7,3 % en la semana y el bitcoin tocó un mínimo de dos años cerca de 55.000 € antes de rebotar sobre 60.000 $. Actualización del domingo: el consejo de Nvidia confirmó que no readmitirá a Huang y busca CEO con Heidrick & Struggles, mientras el WSJ cifra la investigación de la SEC en si sus divulgaciones engañaron a inversores; el bono a 10 años sigue sobre el 5 % y las actas de la Fed (28-oct, 10-2) mostraron debate sobre una subida mayor de 25 pb.",
   "events": [
+   {
+    "t": "Nvidia no readmitirá a Huang y el WSJ informa de una investigación de la SEC sobre sus divulgaciones (Khaleej Times)",
+    "impact": "alto",
+    "affects": "Semiconductores, IA, Nasdaq 100",
+    "u": "https://www.khaleejtimes.com/business/nvidia-wont-rehire-jensen-huang-sec-probing-chipmaker"
+   },
    {
     "t": "Nvidia se hunde por la salida de su CEO Jensen Huang y una posible investigación de la SEC (Diario Bitcoin)",
     "impact": "alto",
@@ -29,16 +35,16 @@
     "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBUc1RvOHlLaDEtQTlBN1RnZjVMYy1tRkZ3QTVKNng4dHppdmd4aEVaZllIbEU3RG93eDRlSkVsM2lnak8yQWZBOC1HVEM4MThGRDQxVzhUTXcxMjNJaFZ6WlVNNWJueW9CbVJDT3ZUMlgxdGlza3lkTmlvWWJWT3c?oc=5"
    },
    {
+    "t": "Las actas de la Fed muestran debate sobre una subida mayor de 25 pb; Cook y Hammack votaron por subir (Mitrade)",
+    "impact": "alto",
+    "affects": "Renta variable de crecimiento, bonos, oro, cripto",
+    "u": "https://www.mitrade.com/insights/news/live-news/article-3-2263318-20261119"
+   },
+   {
     "t": "El mercado descuenta con un 91 % de probabilidad una subida de 25 pb de la Fed en diciembre (swissinfo)",
     "impact": "alto",
     "affects": "Renta variable de crecimiento, bonos, cripto",
     "u": "https://www.swissinfo.ch/eng/stocks-fall-on-nvidia-selloff-before-anthropic-ipo%3a-markets-wrap/92397458"
-   },
-   {
-    "t": "Bitcoin rebota hasta 60.000 $ desde un mínimo de dos años con el IBIT en su mayor retirada (Observatorio Blockchain)",
-    "impact": "medio",
-    "affects": "Criptomonedas, ETF de bitcoin",
-    "u": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPem82a05SRUx0c1dBakxzMDE2c3NMa2F0Z0lWZ1VGWWVMZnJ0dVh0c2RhUkV6TzE3eWZmM3pIbVBuSjlHMklVY3hHeXdHRzNDd1I5UUVXRVEzQ0hqMWxlZTdUMGpHa3JoUFEtWmZUU0VEU0VoOWpISDZFUmEwQnR5Z1h1a1g2bGJSWGJ3?oc=5"
    }
   ],
   "scenarios": [
@@ -92,7 +98,7 @@
   ]
  },
  "crypto": {
-  "summary": "Régimen cripto 29,3 (risk-off): pesan la amplitud de altcoins (0 % de 19 sobre su media de 200) y la caída del 42,5 % desde máximos; el momentum es de capitulación (solo el 5 % de 20 monedas en positivo a 30 días). El bitcoin tocó un mínimo de dos años cerca de 55.000 € con ventas de ETF y rebotó a ~60.000 $; prudencia hasta que el score supere 40."
+  "summary": "Régimen cripto 29,3 (risk-off): pesan la amplitud de altcoins (0 % de 19 sobre su media de 200) y la caída del 42,5 % desde máximos; el momentum es de capitulación (solo el 5 % de 20 monedas en positivo a 30 días). El bitcoin tocó un mínimo de dos años cerca de 55.000 € con ventas de ETF y rebotó a ~60.000 $; prudencia hasta que el score supere 40. Las actas de la Fed y el bono a 10 años sobre el 5 % siguen presionando a los activos de riesgo."
  },
  "notes": {
   "NVDA": {
@@ -103,10 +109,10 @@
    "watchFor": "Que la SEC o Nvidia aclaren el alcance de la investigación y que el precio recupere los 148,8 $ (mínimo de 52 semanas) con volumen.",
    "title": "Valoración de 13 años bajo, pero sin CEO y con la SEC",
    "reason": "Fase débil (bajo su media de 200, RSI 15,9) tras caer un 10,9 % hoy a 130 $: Jensen Huang dimitió el 12-nov como presidente y CEO, Colette Kress es CEO interina y se informa de una investigación civil de la SEC sobre sus divulgaciones. Con PER 15,6, ventas +93 % y margen neto del 62,5 % está barata, pero la incertidumbre de gobierno y la posible subida de tipos de la Fed el 9-dic impiden entrar con convicción.",
-   "news": "Yahoo Finanzas habla de mínimos de valoración en 13 años; la junta contrató a Wachtell para investigar a Huang (TIKR) y la SEC abriría una investigación civil, no confirmada oficialmente.",
+   "news": "Tras resultados del T3 (ventas 115.840 M$ frente a 109.110 M$ esperados y guía de 130.000 M$ para el T4), el presidente Harvey Jones dijo que no readmitirán a Huang; Kress es CEO interina y se contrata a Heidrick & Struggles (Khaleej Times). El WSJ apunta a una investigación de la SEC no confirmada.",
    "risk": "La SEC no ha confirmado la investigación ni hay reformulación de cuentas, pero una sanción o nuevas salidas directivas hundirían aún más la acción (beta 2,4).",
    "thesis": "Centros de datos con ventas +93 % interanual, margen neto del 62,5 % y BPA +130 %, con foso de software CUDA; PER de 15,6 frente a máximos de 243 $ hace meses.",
-   "breaks": "Que la SEC confirme sanciones o una reformulación de cuentas, o que las ventas del T4 queden por debajo de 126.000 M$.",
+   "breaks": "Que la SEC confirme sanciones o una reformulación de cuentas, o que las ventas del T4 queden por debajo de la guía de 130.000 M$.",
    "valuation": "PER 15,55, precio/ventas 9,7 y BPA +130 %: el PER más bajo en 13 años según Yahoo Finanzas, con la acción un 46 % por debajo del máximo de 52 semanas (243,37 $).",
    "catalysts": [
     {
@@ -116,6 +122,10 @@
     }
    ],
    "sources": [
+    {
+     "t": "Nvidia no readmitirá a Huang y el WSJ informa de una investigación de la SEC (Khaleej Times)",
+     "u": "https://www.khaleejtimes.com/business/nvidia-wont-rehire-jensen-huang-sec-probing-chipmaker"
+    },
     {
      "t": "Nvidia toca mínimos de valoración en 13 años: ¿por qué Wall Street castiga al gigante de la IA? (Yahoo Finanzas)",
      "u": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOMXZMVUtwQzNwanlFdmY4VXE0Q0dKd21mVTlBVk16WTY5ekpFVjk5QndkSElvckp1RnVTUDdLUGxtQm5wejlvZzJ4OC1FRnN1cXA0el93aFIyckNaWjB5dHVnaGY0UFJ3TmliTWs1VmxyY21IZXl1NlBkZE1ZZjZsRnBmZVVBXzFQTmltZ2FQbw?oc=5"
