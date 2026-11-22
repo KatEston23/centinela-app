@@ -1,5 +1,5 @@
 {
- "at": "2026-11-21T06:11:22.213926+00:00",
+ "at": "2026-11-22T06:10:26.143678+00:00",
  "score": 29.3,
  "zone": "RISK_OFF",
  "guidance": "Defensive market conditions observed; review existing risk controls",
@@ -11,7 +11,7 @@
   },
   "alt_breadth": {
    "score": 10,
-   "signal": "0% of 19 tracked alts above 200DMA (0% above 50DMA)",
+   "signal": "11% of 19 tracked alts above 200DMA (0% above 50DMA)",
    "ok": true
   },
   "dominance": {
@@ -26,7 +26,7 @@
   },
   "drawdown_vol": {
    "score": 25,
-   "signal": "Drawdown 42.5% from 1y high; volatility elevated (top third of 1y range)",
+   "signal": "Drawdown 39.2% from 1y high; volatility elevated (top third of 1y range)",
    "ok": true
   },
   "momentum_thrust": {
