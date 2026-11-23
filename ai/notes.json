@@ -1,9 +1,27 @@
 {
- "at": "2026-11-22T21:41:07.057Z",
+ "at": "2026-11-23T07:40:37.987Z",
  "market": {
   "regime": "risk-off",
-  "summary": "El Nasdaq cayó un 5,28 % el viernes 20-nov (−10 % en la semana, el peor tramo desde 2020) y el S&P 500 entró en corrección con −3,7 %, arrastrados por Nvidia (−14 %) y Anthropic. Pesan las dudas sobre la rentabilidad de la IA tras resultados de Nvidia que superaron previsiones, la dimisión de su CEO y el debut de Anthropic, que ya devuelve su prima de apertura. Los mercados asiáticos responden con medidas y el foco pasa a la Fed del 9-dic. Régimen cripto en 29,3/100 (RISK_OFF). Novedades del domingo 22-nov: el bitcoin rebota un 3,4 % sobre los 60.000 $ y Bessent pide explicaciones sobre las ventas de chips de Nvidia a China; la semana de Acción de Gracias llega con Wall Street cerrado el jueves 26-nov.",
+  "summary": "Tras el «viernes negro» (Nasdaq −5,28 % el 20-nov, S&P 500 en corrección y Asia −5,8 % hoy), los futuros del Nasdaq rebotan cerca de un 3 % y Europa abre en verde según Cinco Días y El Confidencial. El motor ve a Nvidia con RSI de 15,9 y −38,7 % en 30 días: rebote técnico, no cambio de tendencia. Trump pide al consejo de Nvidia que recupere a Jensen Huang (Diario Financiero) mientras sigue la investigación sobre su relación con una presunta espía china; la caída de Anthropic (−9,7 % desde el debut, 87,8 $ frente a 83 $ de la OPV) mantiene la presión sobre la IA. Bitcoin rebota sobre 61.000 $ (Investing.com) tras las liquidaciones, con régimen cripto en 29,3/100 (RISK_OFF) y la apuesta por una subida de 50 pb de la Fed en diciembre ya descartada (CoinDesk). Semana corta: Wall Street cerrado el jueves 26-nov.",
   "events": [
+   {
+    "t": "Bitcoin rebota sobre los 61.000 $ tras la ola de liquidaciones (Investing.com España)",
+    "impact": "medio",
+    "affects": "Bitcoin, cripto",
+    "u": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQUXJRYnhxanBnbXlpaTR1NjhYWGcxQmRwSmRFSHNmalVSaXE4Z1JIY3o2b08xMzlkemZlckEtVUVOSmJKemNMZkZ5VkVEOEFkYnNwVnVzUDEtM0Q0R0gwNTg1aFg2LXl1M3hNMmppQXhvc1R4Q0dYUzF0M2NVWmlUVTZLVHNwcHpTNXhSYzVQYU02RExadWZHRmxqNi1DWDBKSURTVk85cG5uMVMyN2Y1emdnTE95UkYtbnhuRjBiTUpVOVNrckZEM0wwVHhpZw?oc=5"
+   },
+   {
+    "t": "Asia cae un 5,8 % y el S&P 500 entra en corrección por la IA (El Ecosistema Startup)",
+    "impact": "alto",
+    "affects": "Bolsas asiáticas, semiconductores, IA",
+    "u": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQeE5qbG9ISWh4eWVPbmtoNG9odUs3QkNKeXotYjRObmlZUVdkelVSdHAwUTVfSEh5LTJVVlFoeUM4b3pBYjVPZjRLM3Y4YjQ2MHpHLTJBYUZBUXRTbG9OV3R6MnRBbGVNOVBnVnN4N3BSMXlhZnh4MzI0ZE9BWEl1bk9oM3pmUzlW?oc=5"
+   },
+   {
+    "t": "Los futuros del Nasdaq rebotan un 3 % y Europa se suma al alza tras el desplome (Capital Radio)",
+    "impact": "alto",
+    "affects": "Tecnología, Ibex 35, bolsas europeas",
+    "u": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOZVhBT0M4WF9jY0ZXVVpDTlN5ZkVtQkZPVmJoUmpDLWlMWDVnS19fYTRoZS1GY3E1YjNhV3lVS1ptLW1CbnBxZjQ5QnU0VFhBbURpRFRHb19nWXAxX1dCQkhoS0pNT3AzOF9ScS1ra3RzaVJvdU5ORnpWS29NZ2paMVUzalFob3hnZFBoYmFkV0dZTDNHRkdwcWhyQWRuQ1VWWi1QSjgtM2hoYnJwVlNKbWFWY9IBuAFBVV95cUxQVl9KTmdsaER6MWFOOHllY2dsd1hFdkM3OW9HUW00b2ZFVGs2N0xWTUl5MlNCeUR4VTJNSGpaTnpxdGZXZ3RJMkRjT3NfbjJWNmRxellmTVZLdGs3S0VkQzdGVnhkeURNZ3c4RHhCOG5jRkFBV3FsYnVfWHl6UnNpaGhSTTJnUkMwOHlOOHFpNy13QTBFSm9HeHpCUzVXRmF1bkZrNnJSZ0lJYjJ5RVFteVVIMVViSGZt?oc=5"
+   },
    {
     "t": "El Nasdaq cae un 5,28 % y Nvidia un 14 % en el «viernes negro» de la IA (Informador)",
     "impact": "alto",
@@ -33,18 +51,6 @@
     "impact": "medio",
     "affects": "Semiconductores, PC",
     "u": "https://www.fool.com/investing/2026/11/17/why-intel-stock-just-dropped/?.tsrc=rss"
-   },
-   {
-    "t": "Salidas de ETF de bitcoin de 1.245 M$ y bitcoin bajo 56.000 $ (TradingView)",
-    "impact": "medio",
-    "affects": "Bitcoin, cripto, mineros",
-    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBhMWt0cjZNRklYOENXNjI1YkFfNGREVWlfVE44bmpGcU11RmVFNW5EQ3hoOGhjZDVTWHdSTEFFMjUtcnp1aFFsZ1lNS1U3ZVlZczkzZkNRcThMMm9IN2pmSFJZR3lHTUc3cFhOdg?oc=5"
-   },
-   {
-    "t": "China y Corea reaccionan al desplome de Wall Street con nuevas medidas (Negocios.com)",
-    "impact": "medio",
-    "affects": "Bolsas asiáticas, tecnología",
-    "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOejZWTTVaa1N5ZFBBSENHZDR3dEZSLTJsOEcwck9zcndSWnVTQ1FKLWhEMndXekhYVnpsOW9Cb3VqWC1CZXNsVjM1aTV0cFE1RmtfMFc2cWZ6amxVRUtveG02a19RWEJhdnRrcFdkMEFyZkg3U0xzdDNhcWNkTDZVUW5JbUN1X1dGZEhvMnJXUkg0bGFsVE1pWG9YRDk2emRnUTFsRllRZmR1dy1ieXNGSVRNRHJpQ3Y4cnfSAb8BQVVfeXFMT2NpdThiWThjSXBxZHlxVFRWTTZzX1hyRTZtSWs1aHJoRkRlT3lWanZUODVRMkFGckJUR2ZHeVZJZmZYbUs4ZmxQNHNQdlhSQVlzeDJqaWNCTzNzbHphV1AzSTdnanN4Qk92UHpvZXlDQ2oxTkR0eDZ3NE1BajR2WXU4b0pXNGdCajhHcmJZcm02a0lNMXBwT3RxT202dEp2UnloVzk4RWlheVBIQTFvaXlTMmVKallTc2xKZm53UXc?oc=5"
    }
   ],
   "scenarios": [
@@ -104,7 +110,7 @@
   ]
  },
  "crypto": {
-  "summary": "Régimen RISK_OFF con score 29,3/100: la amplitud de alts pesa más (solo el 11 % de 19 sobre su media de 200 sesiones, score 10), seguido de drawdown/volatilidad (25) con Bitcoin un 39 % bajo su máximo anual, y el momentum es de capitulación (5 % de monedas positivas a 30 días). Bitcoin cae bajo los 56.000 $ con salidas de ETF de 1.245 M$ según TradingView y las alts no aguantan; prudencia aunque haya señales contrarias de suelo. Actualización 22-nov: el bitcoin rebota un 3,4 % y recupera los 60.000 $ según BeInCrypto/DiarioBitcoin, pero la tendencia sigue bajista; un rebote sin mejora de la amplitud de alts no cambia el régimen."
+  "summary": "Régimen RISK_OFF con score 29,3/100: pesan la amplitud de alts (solo el 11 % de 19 sobre su media de 200 sesiones, score 10) y drawdown/volatilidad (25, Bitcoin −36,5 % desde su máximo anual); el momentum es de capitulación (5 % de monedas positivas a 30 días). Hoy 23-nov el bitcoin rebota sobre 61.000 $ tras las liquidaciones (Investing.com) y TradingKey habla de un +10 % desde sobreventa, pero CoinDesk recoge que el mercado ya no descuenta una subida de 50 pb de la Fed en diciembre; sin mejora de la amplitud de alts el régimen no cambia: prudencia."
  },
  "notes": {
   "NVDA": {
@@ -115,7 +121,7 @@
    "watchFor": "Esperar a que se aclare la investigación de la SEC y la sucesión antes de entrar; mirar si aguanta el mínimo de 52 semanas (124,5 $).",
    "title": "Nvidia: sacudida de gobierno corporativo, fundamentales intactos",
    "reason": "Fase débil, bajo su SMA200 (203 $) y RSI de 15,9 tras caer un 10,9 % en el día y un 38,7 % en 30 días: la venta del viernes 20 (-14 %, siete semanas seguidas de caídas) pesa más que unos resultados que superaron previsiones. Con PER de 13,4, ventas +93 % y margen neto del 62,5 % la valoración es baja, pero la dimisión de Jensen Huang el 12-nov y la investigación de la SEC (según el WSJ) añaden incertidumbre que el gráfico no ha digerido.",
-   "news": "Resultados del T3 fiscal con ingresos +103 % (≈116.000 M$ frente a ≈109.000 M$ esperados); guía del T4 de 130.000 M$ con margen bruto del 71-72 % (frente a ≈75 %). Colette Kress dirige la compañía tras la salida de Huang y el consejo descartó su regreso. El 22-nov, EE. UU. (Bessent) pide respuestas sobre las ventas de chips a China y el jefe de inteligencia investiga a una presunta espía china vinculada al ex CEO (Bloomberg Línea).",
+   "news": "Hoy 23-nov Trump pide al consejo que vuelva a contratar a Jensen Huang (Diario Financiero) y sigue la investigación interna sobre su relación con una presunta espía china (La Vanguardia, Bitfinanzas); los futuros del Nasdaq suben cerca de un 3 % (Business Insider). Resultados del T3 con ingresos +103 % y guía del T4 de 130.000 M$; Bessent pide explicaciones por las ventas de chips a China.",
    "risk": "Que la SEC confirme una reformulación de cuentas o sanciones, y que el margen bruto siga cayendo.",
    "thesis": "Centros de datos con ventas +93 %, margen neto 62,5 % y BPA +130 %, con foso de software CUDA; PER 13,4 frente a máximos de 243 $.",
    "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, o que las ventas del T4 queden por debajo de la guía de 130.000 M$.",
@@ -137,6 +143,10 @@
     {
      "t": "EE. UU. busca respuestas sobre la venta de chips de Nvidia a China, dice Bessent (Yahoo Finanzas)",
      "u": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOS2FmaXRLU0ZydUNyWFowTU5pcmt0X2poQ05Jam52ZkFlQTRnUXVfRWcyenZDa0NON3EzNXhxQWhfdzZqVG9oQWFrd1l6TFZIVVowMTFYTFJvQU1TdUdYUzdpODFJdDQwN1FQdUtfeWNZY0dUeEtEdWdudGFIaWNnNEN5X25TZHVKNXU3YjdFYmg4NFUx?oc=5"
+    },
+    {
+     "t": "Trump pide a Nvidia que vuelva a contratar a Jensen Huang (Diario Financiero)",
+     "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPSzBtejFLUC1RLVY2Y0ExX1hmdXltb3JPV1dFZlFBQWtFcG5wNWl1My1wR1c2X01RalNQdnJNV2lCWGRsYjhLQUt6Y2hVMUttcXNjaWVONHpDTTlscVRpY3VWT3NuZWEwUWtwU1RQMy1ja0Fac0dJXzdfbTByM3JWWnZOcWNJaDRZNDE4a2FibWc?oc=5"
     }
    ]
   },
@@ -206,7 +216,7 @@
    "watchFor": "Que estabilice por encima de los 83 $ del precio de OPV varios cierres seguidos.",
    "title": "Anthropic: OPV récord que ya devuelve la prima",
    "reason": "Sin historia técnica suficiente: salió a 83 $, abrió a 111,5 $ el 19-nov, cerró el primer día a 97,17 $ y hoy cotiza a 87,8 $ tras caer un 9,7 %, arrastrada por el viernes negro de la IA. La OPV recaudó ≈81.300 M$ y la valoración (precio/ventas 33) exige crecimiento enorme, con pérdidas récord reveladas en el folleto.",
-   "news": "El folleto revela ingresos y gastos récord; la OPV irritó a parte de la banca de inversión por su formato atípico; Cathie Wood compró 154 M$ en sus dos primeros días. Themes ETFs lanzará el 23-nov ETF inversos x1 y x2 sobre Anthropic (TradingView); entrada prevista en el Nasdaq 100 el 21-dic.",
+   "news": "Hoy 23-nov cae un 8,5 % según El Ecosistema Startup («la IA ya exige resultados, no promesas») y TradingKey advierte de que se acerca al precio de OPV de 83 $ con el greenshoe ejercido antes de tiempo; Themes ETFs lanza hoy ETF inversos x1 y x2 sobre Anthropic (TradingView).",
    "risk": "Cierre bajo los 83 $ de la OPV y nueva presión vendedora de quienes entraron con prima.",
    "thesis": "Líder de IA generativa con demanda institucional récord y un compromiso de gasto de 47.200 M$ en Azure.",
    "breaks": "Cierre diario por debajo de los 83 $ del precio de OPV (hoy 87,8 $).",
@@ -336,8 +346,8 @@
    "entryConfidence": 40,
    "watchFor": "Que el régimen cripto supere 40 y cierre semanal por encima de 60.000 €.",
    "title": "Bitcoin: capitulación con régimen en riesgo-off",
-   "reason": "55.532 € (−20,8 % en 30 días, RSI 27,4, bajo su SMA200 de 63.271 €). El régimen cripto marca 29,3/100 (RISK_OFF): solo el 11 % de 19 alts sobre su media de 200 sesiones y el 5 % de monedas con momentum positivo, lo que es una señal de capitulación contraria pero obliga a la prudencia (<40).",
-   "news": "Bitcoin cae bajo los 56.000 $ en la semana; salidas de ETF de 1.245 M$ según TradingView; los inversores cripto venden bitcoin para comprar acciones de IA, que también caen. El 22-nov rebota un 3,4 % sobre los 60.000 $ y una ballena compra 1.000 M$ en la caída (Bitcoin News), aunque DiarioBitcoin mantiene la tendencia bajista.",
+   "reason": "55.899 € (−18,4 % en 30 días, RSI 28,9, bajo su SMA200 de 63.211 €). El régimen cripto marca 29,3/100 (RISK_OFF): solo el 11 % de 19 alts sobre su media de 200 sesiones y el 5 % de monedas con momentum positivo, señal de capitulación contraria que obliga igualmente a la prudencia (<40).",
+   "news": "Hoy 23-nov rebota un 3,9 % (55.899 €): Investing.com lo sitúa sobre 61.000 $ tras las liquidaciones y TradingKey ve un +10 % desde sobreventa; CoinDesk indica que ya no se descuenta una subida de 50 pb de la Fed en diciembre. Persisten las salidas de ETF de 1.245 M$ y el precio sigue bajo sus medias de 50 y 200 sesiones.",
    "risk": "Cierre semanal bajo 55.000 € con más salidas de ETF.",
    "thesis": "Adopción institucional vía ETF y escasez de oferta, hoy eclipsadas por salidas del IBIT; el 5 % de monedas con momentum positivo es una señal contraria de capitulación.",
    "breaks": "Cierre semanal por debajo de 55.000 € o régimen cripto por debajo de 25 (hoy 29,3).",
