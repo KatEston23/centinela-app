@@ -1,61 +1,55 @@
 {
- "at": "2026-11-23T21:42:09.125Z",
+ "at": "2026-11-24T07:41:39.814Z",
  "market": {
   "regime": "neutral",
-  "summary": "El Nasdaq 100 se dispara un 7 % (El Economista), su mayor subida desde abril de 2025 (XTB), porque Nvidia sube un 31 % tras restituir a Jensen Huang como CEO por la presión de Trump. Europa rebota (El Boletín) y el bitcóin supera los 61.000 $ (MarketScreener). Es un rebote de alivio tras el «viernes negro» de la IA, no un cambio de tendencia: El Economista avisa de que el potencial del Nasdaq ya no compensa la caída, y los ETF de bitcoin pierden 4.140 M$ en noviembre.",
+  "summary": "Wall Street rebota con fuerza: el Nasdaq sube sobre un 6,5-7 % tras el regreso de Jensen Huang a Nvidia, que gana 952.000 M$ de valor en un día (El País; MarketScreener). Hoy Europa y los futuros se estabilizan (Cinco Días, Expansión) y los mercados asiáticos suben. Es un rebote de alivio tras el desplome de la IA, con la SEC investigando a Nvidia y el Congreso pendiente. El bitcoin no acompaña y ronda los 60.000 $ (Bloomberg Línea).",
   "events": [
    {
-    "t": "Nvidia restituye a Huang como CEO y el Nasdaq 100 sube un 7 % (El Economista)",
+    "t": "Nvidia restituye a Huang y el Nasdaq vuela (MarketScreener)",
     "impact": "alto",
-    "affects": "Nvidia, semiconductores, IA, Nasdaq 100 y cripto",
-    "u": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOY2Z5ZjZPV1Q0bjVWdlNuUUlYdVI4eWhiVF9SVGExUWQ0X1lTeEhGazZDcUJtaEFkdnEtWVhFbnJPVGxpQmxaUHBjNHlyNW5ydndZT3dHWGlVNVF1VUdPS0hJREIyc25NS0xhbjNhMDFyOHpGbHdQT25lcF9kTUJsNjNweXYxZUw5bnptcTVxNkRqLWR5Z2NKZ1Q2Nk9EdEJ3X0FhZklUWUZ4REltT3dYU1JyV2FhcnhqVXBkeGJ2Ym1kM0lnb19HNGM2VXBLVkhYWXNYRDFrd21xUjJBT0ViTnp3VmN5YUJ4YVIxbXR4dVdiSFJvVDJkZ3U3d2ZURGEzc29uRS1VREt1dEdNQ2JqckZETjXSAf8BQVVfeXFMTjl2R21WV1RoZkVCR2pKRWY1ZmgyYkpFaS1qZVNUSDJkM3hVRUlPTUZvYjNrckxyZEFpRjZ2MWlUX3N1Uk5JcG9BXzNFTm5Tc3dMTURNcXlYb1JqOXRWa0ctUEstcDR1NC1wczUwX001NFRuelZ5SmllS3Y0UF9hX21idWt6aDUwSjhBSHpGb19HZjYxQlhkR0RDeHNqNmRNc2ItYkR1ME83WDJ6N0V6Znc0ODU2UzJFc3Vkbi12aHVzNG44bFk2VWRMbDZVbGp0NjVXTmk2THZMVTVRdmFDNk0xRzZoNlJub0dhOGdQMG0yQ0xIRHNoTk9MQi0xcV9B?oc=5"
+    "affects": "Nvidia, semiconductores, IA y Nasdaq 100",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxObndYdXFFQURGUlZxN1pGa2N3eXF0S2ZrOS1IUnFIZXFqUkl5cG5hYndTMnVEWHF4NTJYQkwyZHFiZ1BxeG1BVGhFcEtLb1pPa3VwQ2JZVk91RThCOGozSzJndkt6ZVgzS3BQLUxOdE00ZkVhWHdfZzM2S1ROYnM3OVFickIzZ0t5emxjNWVrbF8xNmUwOExiWldvQWZKV0Vyd21RR1NvTzhzeEpyRGxJWmZCcUcxRG42QThIX0hiQ2htSk85MGRQR0t5TjZjelhYMGU1eVdiVQ?oc=5"
    },
    {
-    "t": "CrowdStrike compra Zscaler por 43.900 M$ en acciones (El Economista)",
+    "t": "EE. UU. incluye a Megaspeed y una filial de Alibaba en su lista negra (RTVE)",
     "impact": "alto",
-    "affects": "Ciberseguridad: CrowdStrike, Zscaler, Palo Alto, Cloudflare",
-    "u": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNdXhkeWh3dmdjQVlVNkNkdHkteU83U2Zwd0ZPYkI0MFk0NXkwLUdxQjByZUlhbzZHa1VPSTZCMUNUUDM2bVh5elIyc2RMUURHM1h5Vm5Fa3ZWUkd6Tk96ZHNLU1VQU285STQ5THpJWlNOVk1jVENTUGVGTHY0R0MzZnpwanlfbk1rWS1fcVNwN3dBZ0Vsa2toYzJnRE9QSWdKbzJrMjRtT1ExMzU2TE5qMkpMcTBHc2RLZC1ia2d0bmdvQWZyQ1o5ZW5RbGo2bXNwbGNFR1RPaks4OURFMk5GdUNSTl9UOGhwcXZud1JHZ0VXVGFzM2FKZklzNlYwQlpaRG5RTmpXYm11Ymc4Z0hvMGZQaw?oc=5"
+    "affects": "Nvidia y cadena de chips con China",
+    "u": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObmh5aHU5RnBNQ3QtRjZ6d084ZlJqNi05XzRkUENybVIxWFp2UUlpTTlmTC1PREpRV3ItT0hQZDE2VWF3aXI2WFN5Q3NCcV9HcmdsOEFvSkw2YTdRYWlhWU9JM21NRnhXSTRSRkN6MzZpdmZLUGxDaGVPWncwaEFzVVg3YWYwaldQaFZRTkl6YlBUUjBHbkJSeFoxTXhBUjhfajNoakY1MA?oc=5"
    },
    {
-    "t": "Bitcoin supera los 61.000 $, pero apunta a su peor noviembre desde 2018 (DiarioBitcoin)",
+    "t": "CrowdStrike compra Zscaler por 44.000 M$ (Bitfinanzas)",
     "impact": "medio",
-    "affects": "Bitcoin, ETF cripto y altcoins",
-    "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcEw4YXRLRUx1aExOX2ltQ3YzRUdWMjMwbVl5Q3haUW9YNEZFeGN3Q3M1X0JLWXpiNVZRX1hHTjk4cG0wc3hLdUQwTUxfSU8zbnlMbG9acEVKTUVIY1NDNTN4ZHZ6ZDNpY21YcEQxQ0d5RDdIclVCVUI1UjlXa21aYXFORmsyUHdJdmgzQ1BCUEFtYzF1XzNyUWY0Mks4YTFZUHQ4R1RZcXFjVkRKa0JqN2ZFTG9ubTlSZmhPWUppTUFWd2F4d19JWHJaRGtzRER4?oc=5"
+    "affects": "Ciberseguridad: CrowdStrike, Palo Alto, Cloudflare",
+    "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPVDA5cU5qWnBkcVd4amhsMzlTRmtRWERvQTE3bk9hYkNYaEVDT2RTVll6N3Z1OWFfMEpXc0VKQ2dKZWgtdXpvNnljRU1DMUcyU0Q0cDZMaDBhc0ZOTUNYVEd3VGVvN1lvdFN6YVFRX2xLTGo0bTNUUmhTYmUwNWkwLVNCc3NzYW5jeTlvZkpvcGhZdEhNUlNXWU5Ebk1vSVJmQ25xSEZURDVyNmJoajRGLTl2c0dIdlJ3LUIyQ2EzcmFUZnNM?oc=5"
    },
    {
-    "t": "Anthropic cae mientras Nvidia lidera el repunte de la IA (Bloomberg Línea)",
+    "t": "Ventas de pánico de 11.300 M$ en bitcoin (Cryptonews)",
     "impact": "medio",
-    "affects": "Anthropic (ANT), Microsoft y salidas a bolsa de IA",
-    "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYlpVWk1pcGkwdldwLWx1VkZ2WjNoUlo0M1FZVnkxeFNvWXR5WFVKWmZnTnplcW0wQXIxQnN4R0ZQbDZtZ0NkcjZjZkdkdl9VMVpTZjdfcHQ5Nm9QOXF2aFdBUTUzdTQ3cVpjUmNVTUlvN1daMVJIUFd6M19pQlBPSW5ETWJMaUpGQW5zVl9FckljLWxxV1Zxc1FNd3FGWVFyZkU3b0ZsOWtJR1g0N2J1UVpXUjNLTFdYV0RncXBlUUc1N3FQR3NNZnhRTUw2cVZx0gHkAUFVX3lxTE0wNzU2T19KVUcteElyQkV1b09aS05laHdQMUl0eG56LXlBMEEyMnV5Tlp2bmdSWUZINlpEVGV0M0tQQ2hWOVJKdTI3aWtGb29CR1l0dmw5UENLNFhvS1lua3ZnSWdjSUQwYk9EeUpnNmEtUTRrUkExWmpEWlBCSFZTZnFCRnFMTzhYY1F2WHBmYVRJa3EzaUJlTG5XRXI3VE9jOVhKUmctQ0lJcWZUZUVSV2xiN2VTdElyc3ZoN1Y4SHB2bjZiVlFXXzRaQ1ZNRWdMTWZpRUx1dGtWQ1A5VWZINnZKXw?oc=5"
+    "affects": "Bitcoin y criptomonedas",
+    "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB1RU5KQVRubUExU2ZpeTVIZXpfWDFiWUtEdzV5Sk5kWXlRSmNnWUNvQ2w1RWIxa2ljS3dvY1RkOXRaUmVuUWdRSFZuMGZ3ZnFYZE5PVjc3RGR4NGly?oc=5"
    },
    {
-    "t": "Las bolsas europeas rebotan por el regreso de Huang (El Boletín)",
-    "impact": "medio",
-    "affects": "Índices europeos y semiconductores europeos",
-    "u": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQLUtQVFFLNmw5V0stY1M1VXRncDFQcTlBNFlQSHlzemd6RVk4SjdFUTVoTF92Q3A1MDB1ZnpHcnl3X1VSWmtKX3l4UXdyWDlTRFk5d0lMeGE1VmNRUkMxMzFmMnhEalR3c3BQaU1FbnplU3BnUlBmb1RWb1FOd2VWTmhuSVpKU3lxNkRhY1M0SHpHR3M5N3pISzV1RERhRzVFSFhUbkhmeS3SAa4BQVVfeXFMTUdrYk1uZDcwbG9PaVpQRkloTk9qYWx1R1k4UGhEVXRTVUJHc0hiTzB6c0h1WHFXbVByMlAyNjBNTnVmQTdwV3QydGk0aUZWQjBfWGxQSS1RWFN5cEsxZFlNaG1OVWlEd3hTc0NidU5IMHFQcmJHN0lQWlk3cTAwZ3FuQUdubXdfdFhWN2x6Y1ZKV1l3VUtqdHRaVmlhT3VMVHpINE5VclJEZGxBM0JB?oc=5"
-   },
-   {
-    "t": "EE. UU. busca recuperar 1.100 M$ robados en un hackeo de Binance ligado a Corea del Norte (TradingView)",
+    "t": "Zoom gana un 49 % menos y Wall Street castiga sus resultados (Negocios.com)",
     "impact": "bajo",
-    "affects": "Binance y cripto",
-    "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA3dUlxRWdFZWtMQWJLdnBSV1BsSDlBVElGZVBEa3lEYTlEOWZrYVZkV2V6VlRnM3BQR3BVY0VZV2hVVTNlY1RXUnVkR3hPdnhiWEhtLWNXN2RrUXhCdDhVaWdwT2VkTXhtODJPOU5iVQ?oc=5"
+    "affects": "Software y videoconferencia",
+    "u": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQSURmYk9aQ21iNmI2bTdsLVVUVGtfZmxBYTNmSVR1OE9QZ0tsemFxczM0RFhLVHRRS2d6amhaWHRGVnFOeWpWX0VHYUZCU2pCX3NFelZvMm5kZEc1a0VqOXBJYmJnem9IeDVmNGpLaUFWXzBsTnNlY0NNYWd4TUliWmMzWGNidk5FRmhSNElQUmM1T0t2b1VpSzcybWdwNXJmZjdCVFkyMEp4ZG9XTWfSAbMBQVVfeXFMT2wtUmw0X2NubTNRcXdnMDhKanhxUE13eVJsM043d1JreWlCZGxUSHJaVV9VaWFqV1hEc2gwbGg4MlphZmpZZEo4UzNNR2xRM1NiYW8tTzAtZm1kb2ZSWkhGZEI4RmpzY0VnZjN3VndkSWdNRWlSOTgyWDNnRWltRmkybWJQU3JFTFl1T01PcDFIUVdhcG9YN0phVVdaNm81b0N1MlZhVjl4eU1LdFRvd1U0U2s?oc=5"
    }
   ],
   "scenarios": [
    {
-    "name": "Rebote sostenido en IA y Nasdaq",
+    "name": "Rebote sostenido en IA",
     "prob": 35,
-    "effect": "Nvidia consolida sobre su SMA200 (≈203 $) y arrastra semiconductores y software."
+    "effect": "Nvidia consolida y arrastra semiconductores y software."
    },
    {
     "name": "Rebote técnico y recaída",
     "prob": 40,
-    "effect": "Tras la mayor subida desde abril de 2025 se devuelve parte y se retestan mínimos."
+    "effect": "Tras la mayor subida desde abril de 2025 se devuelve parte del avance."
    },
    {
-    "name": "Nuevo golpe por gobernanza o SEC",
+    "name": "Golpe por SEC o Congreso",
     "prob": 25,
-    "effect": "Una sanción de la SEC a Nvidia reabre las ventas en IA y cripto."
+    "effect": "Una sanción o testimonios adversos reabren las ventas en IA y cripto."
    }
   ],
   "catalysts": [
@@ -68,11 +62,6 @@
     "d": "2026-12-09",
     "e": "Decisión de la Fed y proyecciones",
     "imp": "alto"
-   },
-   {
-    "d": "2026-12-10",
-    "e": "IPC de EE. UU. de noviembre (fecha provisional)",
-    "imp": "medio"
    }
   ],
   "ipos": [
@@ -82,41 +71,47 @@
     "d": "2026-11-19",
     "market": "Nasdaq",
     "revolut": "desconocido",
-    "note": "Salida a bolsa a 83 $ por encima del rango (investingLive); abrió a 111,5 $ y cerró su primer día en 97,2 $ (Diario Estrategia). Hoy cotiza a 87,7 $. Sin fuente que confirme que se pueda comprar desde Revolut.",
-    "u": "https://investinglive.com/es/acciones/anthropic-fija-el-precio-de-su-opi-en-83-por-encima-del-rango-para-su-debut-del-jueves-en-el-nasdaq-como-ant/"
+    "note": "Salió a 83 $, por encima del rango, y debutó con 81.300 M$ recaudados (El Ecosistema Startup). Hoy cotiza a 87,2 $. Ninguna fuente confirma que se pueda comprar desde Revolut.",
+    "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNcGhIczlLalowTFo5bHBldV93c0Q0bUpJMHRDTUJMSlJJOVpkVU5hWEhkdFZJWWRpM3J1aWJ3aXYtLTFBaE9VYkJZLWNYTzJEQmtITTVnTjZteUwwNW4tZ1NzbUg4YTVGNWd6VktiU1Z1ckJic0VCbjJRQ1VpdzR3akhDY3MyUzRwNzRObmxOcl9aM28?oc=5"
    }
   ]
  },
  "crypto": {
-  "summary": "Régimen RISK_OFF con score 29,3/100: pesa la amplitud de alts (solo el 11 % de 19 sobre su SMA200, score 10) y drawdown/volatilidad (25, −36,5 %); el momentum de capitulación (5 % de monedas positivas a 30 días) es señal contraria. Bitcoin rebota sobre los 61.000 $ con Nvidia, pero se encamina a su peor noviembre desde 2018 con ETF perdiendo 4.140 M$ (DiarioBitcoin): prudencia."
+  "summary": "Régimen RISK_OFF con score 29,3/100: pesa la amplitud de alts (solo el 11 % de 19 sobre su SMA200) y el drawdown (−37,7 %); el momentum en capitulación (5 % de monedas positivas a 30 días) es señal contraria. El bitcoin no sigue a Nvidia y ronda los 60.000 $ con ventas de pánico de 11.300 M$ (Cryptonews, Bloomberg Línea): prudencia."
  },
  "notes": {
   "NVDA": {
    "verdict": "mantener",
-   "confidence": 62,
+   "confidence": 58,
    "entry": "vigilar",
-   "entryConfidence": 50,
-   "watchFor": "Cierre sostenido sobre la SMA200 (≈203 $) y aclaración de la investigación de la SEC; tras +31 % en un día conviene esperar un retroceso.",
-   "title": "Sube un 31 % al volver Huang; falta confirmar el suelo",
-   "reason": "Fase «débil, bajo su media de 200»: hoy cotiza a 165,1 $ tras subir un 31,5 % por la restitución de Jensen Huang como CEO (El Confidencial habla de su mayor subida en 23 años), pero sigue un 31 % bajo el máximo de 243,4 $ y bajo sus SMA50 (206 $) y SMA200 (203 $). El PER de 13,4 con ventas +93 % es barato, aunque un salto así sin catalizador de resultados suele devolver parte.",
-   "news": "Nvidia vuelve a nombrar a Huang CEO bajo presión de Trump y el Nasdaq 100 sube un 7 % arrastrado por la acción, que recupera cerca de un billón de dólares de capitalización (El Economista).",
-   "risk": "Que la investigación de la SEC por gobernanza derive en sanciones o reformulación de cuentas y devuelva el rebote.",
+   "entryConfidence": 45,
+   "watchFor": "Cierre sostenido sobre la SMA200 y que Huang declare ante el Congreso antes del 26-nov sin nuevas sanciones; tras +33 % en un día conviene esperar un retroceso.",
+   "title": "+33 % por el regreso de Huang, con riesgo judicial",
+   "reason": "Fase débil (bajo su SMA200): el rebote del 32,9 % en un día recupera cerca de un billón de capitalización (El País), pero la SEC investiga si Nvidia engañó a inversores y EE. UU. investiga a Megaspeed. Con PER 13,4 y ventas +93 % está barata, pero el riesgo de gobernanza impide reforzar.",
+   "news": "Nvidia gana 952.000 M$ de valor en un día, récord histórico (El País); EE. UU. incluye a Megaspeed y una filial de Alibaba en su lista negra y Singapur sigue investigando (RTVE, Investing.com).",
+   "risk": "Una sanción de la SEC o testimonios de Huang en el Congreso podrían revertir el rebote.",
    "thesis": "Centros de datos con ventas +93 %, margen neto del 62,5 % y BPA +130 %, con el foso de software CUDA; PER 13,4 frente a máximos de 243 $.",
    "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, o un cierre mensual bajo el mínimo de 52 semanas (124,5 $).",
-   "valuation": "PER 13,4 y precio/ventas 8,4 con ventas +93 % y BPA +130 %: barata frente a su historia (máximo 243,4 $), aunque con beta de 2,5.",
-   "catalysts": [],
+   "valuation": "PER 13,4, precio/ventas 8,4 y BPA +130 %: barata frente a AMD (PER 96) y a su propia historia, con la acción un 31 % bajo su máximo de 243 $.",
+   "catalysts": [
+    {
+     "d": "2026-11-26",
+     "e": "Acción de Gracias: Wall Street cerrado",
+     "imp": "bajo"
+    }
+   ],
    "sources": [
     {
-     "t": "Nvidia vuela un 32 % en su mayor subida en bolsa en 23 años tras restituir a Huang (El Confidencial)",
-     "u": "https://news.google.com/rss/articles/CBMingFBVV95cUxQd2RLRHZoWTBna0lUMWU0NmdnMUpPMU9WWVRVTUFtUTg5ZXRFSDlCNUh4OHZ3cHFEbjBjQ0pvLTN5YmxLUkNQZkx6WU50V29vY0xnSjdaTXlLdFh1dVAtMFV1YjlCai1OSFdHbUdMbXdlTjV4VEtkcGhLS3ZRNVBBekl4OUpURTBqdnF6LUVVQ0l4aWlHWFRzWGdOTkhnUQ?oc=5"
+     "t": "Nvidia gana 952.000 millones de dólares en valor en Bolsa, récord en un día (El País)",
+     "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOQ2dPbThkS2k3UlNPVDBwNXMyUk5adVlEOVpwd1lJOEw4dVNTZDUtc2FkaW1KVnd6dDFzdk9YRTAxSy1ORkZQYVhlV3JNUjVnREFuUWdNS0tlX3FCem92aGpBOTZnTjd1N09kbFVzNW50QmZhQUN6UktUVzRxSUw1NkZmOGtlUEJNWFhxdmhZUFJ0X3Y0YVE3aExmR2NHNTJZWDloYVI1eDdySk5MbkpRRC1mZkVjaFhuam5iWjY5NTNSSllwV0VDS1BZZ2U4XzBDXzc1MTIzUTZESExCMVVIS0ZR0gHiAUFVX3lxTE5DZ09tOGRLaTdSU09UMHA1czJSTlp1WUQ5WnB3WUk4TDh1U1NkNS1zYWRpbUpWd3p0MXN2T1hFMDFLLU5GRlBhWGVXck1SNWdEQW5RZ01LS2VfcUJ6b3ZoakE5NmdON3U3T2RsVXM1bnRCZmFBQ3pSS1RXNHFJTDU2RmY4a2VQQk1YWHF2aFlQUnRfdjRhUTdoTGZHY0c1MllYOWhhUjV4N3JKTkxuSlFELWZmRWNoWG5qbmJaNjk1M1JKWXBXRUNLUFlnZThfMENfNzUxMjNRNkRITEIxVUhLRlE?oc=5"
     },
     {
-     "t": "Nvidia readmite a Jensen Huang como CEO tras su desplome en bolsa y las presiones de Trump (ABC)",
-     "u": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPbndNQWxJYk10ckRKWE1GLW5Gb05MZlJBWVFjSWJza1owWnJGeDAtTFZpNnlhWVBVenpMeFhwZk1oLVRBSXlONnlraXpBZFFuQXhrel8ydXNCMzlnRmtYZ05udkpXbm13V2dTd1Q0WEZOcURHVzhCU05RUnhUZEJiVGxGclY3RnFZOXo4TGZUWEF3WlNJWUZpUHd2eFHSAaIBQVVfeXFMTko1NWlQWUR3SWNaYVRyQ2ZzYzl6R3hSTUJkTk9kWTdYSFoyT3BBakU2Q0hhdkxxZ3ZSUEFoT3g3Sms2dHpIM2VWMXlyZWJPTjdhT2kwYVd3TVVIelE1cW9aT085SU1hVGI5cDBETjRlc0dndmFnM2hpNmozOS1pYkhJbWhPNER2VVE0Z0tXQ3FuSG9OVXBEdXZ5M0hQZWJQWUh3?oc=5"
+     "t": "EE. UU. incluye en su lista negra a Megaspeed por el escándalo de Nvidia (RTVE)",
+     "u": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObmh5aHU5RnBNQ3QtRjZ6d084ZlJqNi05XzRkUENybVIxWFp2UUlpTTlmTC1PREpRV3ItT0hQZDE2VWF3aXI2WFN5Q3NCcV9HcmdsOEFvSkw2YTdRYWlhWU9JM21NRnhXSTRSRkN6MzZpdmZLUGxDaGVPWncwaEFzVVg3YWYwaldQaFZRTkl6YlBUUjBHbkJSeFoxTXhBUjhfajNoakY1MA?oc=5"
     },
     {
-     "t": "El Nasdaq 100 se dispara un 7 % y Nvidia gana un billón de dólares en capitalización (El Economista)",
-     "u": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOY2Z5ZjZPV1Q0bjVWdlNuUUlYdVI4eWhiVF9SVGExUWQ0X1lTeEhGazZDcUJtaEFkdnEtWVhFbnJPVGxpQmxaUHBjNHlyNW5ydndZT3dHWGlVNVF1VUdPS0hJREIyc25NS0xhbjNhMDFyOHpGbHdQT25lcF9kTUJsNjNweXYxZUw5bnptcTVxNkRqLWR5Z2NKZ1Q2Nk9EdEJ3X0FhZklUWUZ4REltT3dYU1JyV2FhcnhqVXBkeGJ2Ym1kM0lnb19HNGM2VXBLVkhYWXNYRDFrd21xUjJBT0ViTnp3VmN5YUJ4YVIxbXR4dVdiSFJvVDJkZ3U3d2ZURGEzc29uRS1VREt1dEdNQ2JqckZETjXSAf8BQVVfeXFMTjl2R21WV1RoZkVCR2pKRWY1ZmgyYkpFaS1qZVNUSDJkM3hVRUlPTUZvYjNrckxyZEFpRjZ2MWlUX3N1Uk5JcG9BXzNFTm5Tc3dMTURNcXlYb1JqOXRWa0ctUEstcDR1NC1wczUwX001NFRuelZ5SmllS3Y0UF9hX21idWt6aDUwSjhBSHpGb19HZjYxQlhkR0RDeHNqNmRNc2ItYkR1ME83WDJ6N0V6Znc0ODU2UzJFc3Vkbi12aHVzNG44bFk2VWRMbDZVbGp0NjVXTmk2THZMVTVRdmFDNk0xRzZoNlJub0dhOGdQMG0yQ0xIRHNoTk9MQi0xcV9B?oc=5"
+     "t": "El regreso de Huang dispara las acciones de IA, pero se avecinan investigaciones del Congreso (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTnBEQUJOVUdOaXBLeW5qMW1lYk9NbzVxdGxWdzlQMk9kLTZCbnB5RHU3aUJhZ3ZiMnFXV0oxWkxacFdyQ2h1TVR1N2QtNWtZN0dZX3MxclNua2MxNmhadlo2UHNsUEFBWVZscFZyQnF6LWFqNDlUZ1I1VExZZWJPQmRIMXFmSm9tTTRRaGJwYWxRWG02LVMyVG9seHFtekJnZW9XbnBieUo1V3gtWTlhVTMzTW1sMXg1d0JlWE9oMXRycVYtZkJjbWV2bHpFcXUwdEF4STZPR1NiQzlaYlN5eFdJSk12dFJDZkRVTFp6WGN2dDB4aTZyNHJqM19vUWNHS3ZyOV9RWQ?oc=5"
     }
    ]
   },
@@ -124,28 +119,24 @@
    "verdict": "mantener",
    "confidence": 55,
    "entry": "vigilar",
-   "entryConfidence": 48,
+   "entryConfidence": 45,
    "watchFor": "Retroceso hacia la SMA200 (≈431 $) con soporte, o resultados que confirmen ventas por encima del +40 %.",
-   "title": "Rebota un 6 % con Bernstein en compra, pero cara",
-   "reason": "Fase de corrección en tendencia alcista: 450,6 $, un 31 % bajo el máximo de 658,5 $ y justo sobre la SMA200 (431 $). Bernstein recomienda comprar (MarketScreener), pero el PER de 91 con ventas +42 % es exigente y TIKR señala que cotiza a unas 30 veces beneficios futuros frente a 10 de Nvidia, con más exposición a China.",
-   "news": "Bernstein inicia recomendación de compra sobre AMD (MarketScreener) y TIKR cuestiona por qué cotiza a 30x frente a 10x de Nvidia por su mayor exposición a China.",
-   "risk": "Pérdida de la SMA200 (≈431 $) si el rebote de Nvidia se agota, con beta de 2,6.",
+   "title": "Sube un 6 % con el efecto Nvidia, pero a PER 96",
+   "reason": "Corrección en tendencia alcista: sube un 6,3 % arrastrada por Nvidia (ABC: Nasdaq +6,5 %). Ventas +42 % y BPA +127 % sostienen la tesis, pero PER 96 y precio/ventas 16 dejan poco margen, y TIKR advierte de su mayor exposición a China.",
+   "news": "AMD cotiza a 30x beneficios futuros frente a 10x de Nvidia por su mayor exposición a China (TIKR); sube con todo el sector tras el regreso de Huang (ABC).",
+   "risk": "Si Nvidia pierde el rebote, AMD (beta 2,7) caería más.",
    "thesis": "Ventas +42 % y BPA +127 % con CPU de servidor y aceleradores de IA.",
    "breaks": "Cierre bajo la SMA200 (≈431 $) o ventas creciendo menos del +30 %.",
-   "valuation": "PER 91 y precio/ventas 15,3 con ventas +42 % y BPA +127 %: mucho más cara que Nvidia (PER 13) pese a crecer menos.",
+   "valuation": "PER 96, precio/ventas 16 y margen neto 16,8 %: muy cara frente a Nvidia (PER 13) y a un 31 % de su máximo de 658 $.",
    "catalysts": [],
    "sources": [
     {
-     "t": "AMD obtiene una recomendación de compra de Bernstein (MarketScreener España)",
-     "u": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNQ1V1a3oxZXdZeU5Ea2dTV1BIc2wtaHp6Q2tCemRJbDZ3d2pWWDgxM1ZPZUFhUHNDWlJHWWZrNmtPOVRWaFc3VFc2aEEyanAzMVFvWkpoOFJGNC1VWDFpdXBUM1NHMjZ1emh3ZGdINDNPSnZVT2hFVzA3Ymh0eWdQZXp6b2pYWFRMX3lQOF9nd1V4T19VTF93N20tRXQzQ0lGa3RDbXNhUk9oTUNzdno1cUtBUXZtQzlkOGRidWotNFUtQTNyS21LMVFpRQ?oc=5"
-    },
-    {
-     "t": "¿Por qué AMD cotiza a 30x cuando Nvidia está a 10x? La exposición a China pesa más (TIKR)",
+     "t": "¿Por qué AMD cotiza a 30x cuando Nvidia está a 10x? Pesa su exposición a China (TIKR)",
      "u": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPMC13c3F1ejhXeDlpR0otSEJuNlhHQkd2S0JqSWxwUFlZeFBNSjF5cnJoMUN1eXMyMmVrakVSZmo1eTFhVUFPT01SYUI5ZENPc0tGMGFaRmc5VV9YNjBtZmp4Wk9BeXM4SWhJaExCaTducV9VZlN0YWl4ajRDNENXRWpFbzdZb3BWNzZpMG1iUnJ3Y3l0Uk1mLTdJM0dSeUhzQ0VFOG5lc0ZGb2ZTd2JDSVMwRW95YWQ4aTF2RmlPUzV3dw?oc=5"
     },
     {
-     "t": "¿Por qué suben hoy las acciones de Advanced Micro Devices? (Investing.com)",
-     "u": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOSGRuMmNtZXR6TWd1TUhjZTRGMHE4VmFvVWI1TzdwY0UtMDE5LU1zN19ybWVKZkpBRGc2eVRTMlRCOFJZaVptb0VtNTJ1anlqNkxsWGsyM0x4eU8xRWRJbFBGNE9iQk44NFJ2WHhuQ19UeUpURHE0b0gyUmxpMlprbXpnQ3pISWFybkxZMFhfUGlXUmdaMjdrVW5XMEp1VTdldGJOMUx4ajdpcE9fVVNid0cwT1NZbWY1?oc=5"
+     "t": "El Nasdaq sube un 6,5 % en su mejor jornada desde 2025 tras el regreso de Huang (ABC)",
+     "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPcjhtR2R2VDNpa1dUMlRqaXlxak5CWGFSdVlqTHNIejJaQmxsMEtpLVdfZWVXbHk4MHB5eGx3QTJZSmhjWndPa3kxUldWSFY2SDJiZzZSWE5iX2R3VGZfMGRnTGw3eDNuaEI2dVlaWkhJUzE2ZWNIVm1WYVhTQ2RyRklFd1dod0s3Q2tDNE1SWk1hdy12b1RmLWhn0gGfAUFVX3lxTE5heGhnVDhDcmFMMlB4blpLLWZkQ3c0UW9SNzM5TGFBVW1WYWJEN2QxM3NkUS0xckduNnpxc2VqempaMkVMV21kYmh5aFlENkZhd0I0ZVVjckFIM2U1Nm5rRUVkVHF4WkNDQUktaXEzSFRtR3UtYm14UzFiOEpYSkdfQjNoc3pGVVlTTWhkaDhRdjA2c0szUC1leC1aMTJUUQ?oc=5"
     }
    ]
   },
@@ -153,86 +144,167 @@
    "verdict": "mantener",
    "confidence": 60,
    "entry": "comprar",
-   "entryConfidence": 62,
-   "watchFor": "Cierre bajo la SMA200 (≈444 $) anularía la entrada; sobre la SMA50 (≈520 $) confirmaría el giro.",
-   "title": "Corrige un 11 % con PER 25: entrada razonable",
-   "reason": "Fase de corrección en tendencia alcista: 493,2 $, un 11 % bajo el máximo de 559 $ y sobre la SMA200 (444 $). Valoración razonable (PER 25,2) para ventas +17,9 %, BPA +36 % y margen neto del 41 %; Ignite 2026 refuerza Copilot y agentes, aunque la caída global de servicios que Microsoft detalló esta semana es un ruido operativo.",
-   "news": "Microsoft presenta en Ignite 2026 nuevas capacidades de Copilot y agentes autónomos (Portal Innova) y explica paso a paso su caída global de servicios (El Cronista).",
-   "risk": "El contrato de 47.200 M$ de Anthropic en Azure depende de una acción (ANT) que cotiza solo un 5,6 % sobre su OPV.",
+   "entryConfidence": 60,
+   "watchFor": "Cierre bajo la SMA200 (≈444 $) anularía la entrada; sobre la SMA50 confirmaría el giro.",
+   "title": "PER 25 tras caer un 11 %: entrada razonable",
+   "reason": "Corrección en tendencia alcista, un 11 % bajo máximos, con PER 25, ventas +17,9 % y margen neto del 41 %: de las valoraciones más sanas del sector. Pesa el debate sobre si necesita un modelo propio de frontera (TIKR) y un posible acuerdo de ByteDance en Azure.",
+   "news": "Nadella apuesta a que Microsoft no necesita un modelo propio de frontera, mientras ByteDance negocia un acuerdo en Azure (TIKR).",
+   "risk": "Una caída de la IA empresarial o un cierre bajo la SMA200 (≈444 $).",
    "thesis": "Azure e IA empresarial con ventas +17,9 %, BPA +36 % y margen neto del 41 %; contrato de Anthropic de 47.200 M$ en Azure.",
    "breaks": "Ventas por debajo del +12 % en el próximo resultado o cierre bajo la SMA200 (≈444 $).",
-   "valuation": "PER 25,2 y precio/ventas 10,4 con BPA +36 %: razonable para su crecimiento y por debajo de múltiplos de otras megacaps de IA.",
+   "valuation": "PER 25 y precio/ventas 10,4 con BPA +36 %: razonable frente a Nvidia/AMD y por debajo de su máximo de 559 $.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Microsoft Ignite 2026: nuevas capacidades de Copilot, agentes autónomos y modelos de IA (Portal Innova)",
-     "u": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPXzhpSU94eXhHTmVwU1B2QjF4ZzA3M0xQMEw1Wkk0SEMzU1lSVGQ0NjMxR2dENGVuX1h4SHRwWXNYSmp4ZDJFcGZaUXk5aFJ2amZSRF9taWd4cXpVVjdxRklDR3NVMjlWMVpXaXhDSEpuYkRqY0drUjdLQUVsd1ZFWlNhSWxKb2kwUVVwUFlYa3BiUlpTY1hlWEpndUZuV0kteXE5bUlvNnUwSVl2RkxxRFJpY21MVjNoNkljTkg4cDVCQTNaaUhXYmI3TEs3SmVseVhJTg?oc=5"
+     "t": "Chamath: Microsoft «necesitará un modelo de frontera»; Nadella apuesta lo contrario (TIKR)",
+     "u": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNYmdGREtwazBCbVFSZG1UZHpoNWxHMXhTcWxPOS00akRPajBqMlZZRHdvVWo1RWZ2UjZIVzQwQnJZdUVqQk1rOFhCV0NOS2I3NUR1Sk5vZkRieVVvSFpZUTlNRlJEWVAtd2RrUjJaV29MMk9HckdiYnFoRzhDY1l6cUNuQ3V0bWR3SHpGdDRTUENWaVhDU3dFTllJUnlDQVlwbkkzMjdQRVBicTZQLUJ0SEE1ZG5EMDNraXlHZHZnR3JFSnc2Rk9QVzRGT2NLUVRkaU1sOWJ6RVQ?oc=5"
     },
     {
-     "t": "Microsoft reveló paso a paso cómo se produjo su gran caída global (El Cronista)",
-     "u": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNUmtMWVF0ejVWankwNW81eFJYU0c3cnUtZmh6MktEWHprZHhVMWlOdEN0MWh0OUpNMmlFOFN3RFRyV2VVZXN2eUU0aGlDQS1CMjRlM3NXTDUwWmFtRlV6ZUNYVjNmaG1CWFMxMGZBb1lPRERIRF9JRFZGd0RpZTZuaUNEQnNtY1pDWUFmemRyZVFyNkhOUGxfMmQxcFhhTnFYRzhmTFdDSVk4X1hqYWF5QXFlR3BQbWRQZmwwcjFna0tVYlJuUmJkRjVfV0JFN2N4ajFmNnVhTXM2UFFvdHk2UEh3c3ZRU21wSVc0WNIBhwJBVV95cUxQd0V0NmhjV3h0WjBzdGpBczZlcjAxQnZ4RFVoRG9zbnlpeFotenVZQVVGRm1tYlIwUE9aZXE3WFYzN1pHMnN0MG5VdGV6UFpYd3ZKaV82alE3WG5RckNqVTI5YVJOWVdJQnpjX1d5VUowQVhGWWYxUnlKU3I5Rmt6MWk0VDlFcHRNTm1aS18wSkNtanQ5NGpGTTlJVTR5M0Z6amloUzRNc0REa3JCVjdtME15Rm44cXRJZ0NmMWQxUEtUYWdKS3M5dHRKUDZDQWtOWG5UdWJqMnJnUlhuLXhtU2YyYnpkb1RaUW81WHNUaVJ2aUdZcTZCcFFtaHpiTFlwLUFlQS10bw?oc=5"
-    },
-    {
-     "t": "Análisis técnico de las acciones de Microsoft: persiste la caída bajo presión vendedora (Traders Union)",
-     "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQd2ppMElLY1gwYm9NTUxrZlpDeW9COFdqNzJ3Q3huQm42V1NDai0zQ3ItMjEwd3lXa1lkSGlZclY2cmVJSTUzSER0TkpVT0JqbHBTLUpSZ2Q5bHU0aWpTYmg5LWpSeEhNR1g2a2hOZlNxVVJtaHlBNVYwRFFXN1pJMGFVTmZPUkVrQ1JzcF9raXpiQkVJd2hGZEVn?oc=5"
+     "t": "China va «solo 12 horas» por detrás; el acuerdo de ByteDance en Azure pone a Microsoft en medio (TIKR)",
+     "u": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPd2dLTFZXMWZyY1pWVWMxTklsdXN4ZGpXYktkTWxSTFNzLWdYZ2FwTzByRkR4TThkaTc4aVZYdENSTlNsdHBWbHJOZjVCTHdzZGdYeC1XRFBpQWJmOENaY0lRYTVOVF9xaklHR0p5dW91N3haXzh0M3VKMzNWbEpRNWZwcEttdVU3X25UcW5CSV9iZExVX1A4Y3J4WGZsTTlBMWVFSldyUnRzaHUzaThqd283UU5TNENIbG5hZHFhRFFMQ1hOeExTb3VR?oc=5"
     }
    ]
   },
   "ANT": {
    "verdict": "mantener",
-   "confidence": 50,
+   "confidence": 48,
    "entry": "vigilar",
-   "entryConfidence": 42,
-   "watchFor": "Cierre sobre los 97 $ del primer cierre en bolsa, o que defienda los 83 $ del precio de OPV tras la subida del resto de la IA.",
-   "title": "Cae un 1,4 % mientras toda la IA rebota",
-   "reason": "Sin historia técnica suficiente: cotiza a 87,7 $, un 5,6 % sobre su OPV de 83 $ y un 9,8 % bajo el máximo desde su debut. Hoy se queda rezagada mientras Nvidia arrastra a la IA (Bloomberg Línea) y las opciones arrancan con mucho volumen. Precio/ventas de 33 con margen neto de −343 %: valoración muy exigente.",
-   "news": "Las acciones de Anthropic caen mientras Nvidia lidera el repunte de la IA tras el regreso de Huang (Bloomberg Línea); sus opciones comienzan a cotizar con volumen elevado (MarketScreener).",
-   "risk": "Perder los 83 $ del precio de OPV, nivel en el que se apoya la tesis a corto plazo.",
+   "entryConfidence": 40,
+   "watchFor": "Cierre diario sobre los 97 $ del primer cierre en bolsa; un cierre bajo los 83 $ del precio de OPV lo descartaría.",
+   "title": "Cotiza a 87 $, cerca del precio de OPV de 83 $",
+   "reason": "Sin historia suficiente: cae un 1,9 % mientras toda la IA rebota y está un 10 % bajo su máximo. Con precio/ventas 33 y pérdidas (margen −343 %), no hay anclaje de valoración; la compra de más de 5 M$ por un consejero (TradingView) es una señal positiva menor.",
+   "news": "Anthropic debuta con 81.300 M$ y crea millonarios (El Ecosistema Startup); un consejero compró acciones por más de 5 M$ y TradingKey enumera 5 riesgos antes de suscribir (TradingView, TradingKey).",
+   "risk": "Cierre bajo los 83 $ del precio de OPV y expiración de bloqueos de venta.",
    "thesis": "Líder de IA generativa con demanda institucional récord (OPV de 83 $ por encima del rango) y compromiso de gasto de 47.200 M$ en Azure.",
    "breaks": "Cierre diario por debajo de los 83 $ del precio de OPV.",
-   "valuation": "Precio/ventas 33,3 y margen neto de −343 %: se paga por crecimiento futuro, sin beneficios ni histórico de resultados.",
+   "valuation": "Precio/ventas 33 y margen neto −343 %: valoración basada en crecimiento futuro, sin PER; mínimo de 52 semanas en 83 $.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Acciones de Anthropic caen mientras Nvidia lidera el repunte de la IA (Bloomberg Línea)",
-     "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQYlpVWk1pcGkwdldwLWx1VkZ2WjNoUlo0M1FZVnkxeFNvWXR5WFVKWmZnTnplcW0wQXIxQnN4R0ZQbDZtZ0NkcjZjZkdkdl9VMVpTZjdfcHQ5Nm9QOXF2aFdBUTUzdTQ3cVpjUmNVTUlvN1daMVJIUFd6M19pQlBPSW5ETWJMaUpGQW5zVl9FckljLWxxV1Zxc1FNd3FGWVFyZkU3b0ZsOWtJR1g0N2J1UVpXUjNLTFdYV0RncXBlUUc1N3FQR3NNZnhRTUw2cVZx0gHkAUFVX3lxTE0wNzU2T19KVUcteElyQkV1b09aS05laHdQMUl0eG56LXlBMEEyMnV5Tlp2bmdSWUZINlpEVGV0M0tQQ2hWOVJKdTI3aWtGb29CR1l0dmw5UENLNFhvS1lua3ZnSWdjSUQwYk9EeUpnNmEtUTRrUkExWmpEWlBCSFZTZnFCRnFMTzhYY1F2WHBmYVRJa3EzaUJlTG5XRXI3VE9jOVhKUmctQ0lJcWZUZUVSV2xiN2VTdElyc3ZoN1Y4SHB2bjZiVlFXXzRaQ1ZNRWdMTWZpRUx1dGtWQ1A5VWZINnZKXw?oc=5"
+     "t": "Un consejero de Anthropic compró acciones por más de 5 millones de dólares (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9PYldXTWhzdmxqaTZQXzNsb0FzRmxxZlI3TFJPNlhkWHFvQ1Rya25Hb3BJN2RLNUlONmV2WU8tRTFGdFBNZzhhNm9RLXNVRl93Yk1jR3FqenhQRUphR282YUxRZ0NqcjlGR3M5SQ?oc=5"
     },
     {
-     "t": "Las opciones sobre las acciones de Anthropic arrancan con elevado volumen (MarketScreener España)",
-     "u": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQMWY0MGVCYlZaSnI2bThiY0JELUoxWnJVeHFGX3lTYWwwZThLSFNVYzNuVE9PdXg2Y1RGUWRSRUNnbkMtNll6bndZenphb2RVeUoyMEV3UmNPNTJURHAyc3hlUEJONklsQVM2SHl6ZXRvT1pscVBkMk9FTHNpeEszTEZPOXZFal9NRTZjS0RlUjJKTDJhVEVaN0p6LUY2LW1rQ1pvR29qUnBmZEJkSlVZeXFiY05uSDU3Q29UZTR4T2xjdENtY0FNb0o3dXYyMXgydnRjc0E3WHFIYUFIR0t4OA?oc=5"
+     "t": "¿Vale la pena suscribirse a la OPI de Anthropic? 5 riesgos clave (TradingKey)",
+     "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNVU9aTUprZ1NmdlhaU1dCSGtJM3dhLVlWdkdtUVJvUmJtY1RiQ0NaYUpwVTlYMHFsZVlabndnNlA5LXJPOFJlZ3ktRnc5V3UzNjg0VHR6T2FWSXF1VnMtdHNuS3Z2UW1vOVRUcjRMVUNIRDV5MjE4aEN2SUc3Z25rMG11Z3BLdy1HazRUd1RORWVZNk9jN1FNTFd0UlV2WW1JdlF4R1hYa3k4WTI3bTBtQl8xeUVNaVJFVktzWjdPTFMxZFc4QXJXOWZoNkNwTmt1NVZITXN2OA?oc=5"
     },
     {
-     "t": "¿Por qué las acciones de Anthropic se quedan rezagadas frente al mercado hoy? (TradingView)",
-     "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1mQUNWcEExRFdQNGJGaGkyUG1yUFNHbjlqMkp1NzhORUM0MXZlSjJGTWNrV1dCa05EZjZNdTF5VzJEdFhNUzZ6blppOWRoUmgycVNTeTA0eVAzNUZfQVNCbHloNHJwUQ?oc=5"
+     "t": "Anthropic debuta en bolsa con 81.300 M$ y crea millonarios (El Ecosistema Startup)",
+     "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNcGhIczlLalowTFo5bHBldV93c0Q0bUpJMHRDTUJMSlJJOVpkVU5hWEhkdFZJWWRpM3J1aWJ3aXYtLTFBaE9VYkJZLWNYTzJEQmtITTVnTjZteUwwNW4tZ1NzbUg4YTVGNWd6VktiU1Z1ckJic0VCbjJRQ1VpdzR3akhDY3MyUzRwNzRObmxOcl9aM28?oc=5"
     }
    ]
   },
   "BTC-EUR": {
    "verdict": "mantener",
-   "confidence": 50,
+   "confidence": 48,
    "entry": "vigilar",
-   "entryConfidence": 40,
+   "entryConfidence": 38,
    "watchFor": "Cierre semanal sobre ≈63.000 € (SMA200) y régimen cripto por encima de 40.",
-   "title": "Rebota desde 55.000 $, con régimen aún defensivo",
-   "reason": "Fase débil, bajo su media de 200 (63.212 €), con RSI 30,5 y −17,9 % en 30 días: el rebote del 17 % desde los 55.000 $ llegó con 500 M$ de liquidaciones (advfn) y Observatorio Blockchain avisa de que «tiene trampa». El régimen cripto marca 29,3/100: prudencia aunque el gráfico rebote.",
-   "news": "Bitcoin supera los 61.000 $ en la recuperación ligada a Nvidia (MarketScreener) pero se encamina a su peor noviembre desde 2018 con ETF perdiendo 4.140 M$ (DiarioBitcoin).",
-   "risk": "Nuevos flujos de salida de los ETF y cierre semanal bajo 55.000 €.",
+   "title": "Bitcoin no sigue a Nvidia: ventas de pánico de 11.300 M$",
+   "reason": "Fase débil bajo su SMA200 y régimen RISK_OFF (29,3): no acompañó el rebote de Nvidia (Bloomberg Línea) y ronda los 60.000 $ con incertidumbre regulatoria. El 5 % de monedas con momentum positivo es una señal contraria de capitulación, pero aún sin giro.",
+   "news": "Ventas de pánico por 11.300 M$ en bitcoin, según Mike McGlone (Cryptonews); 42 Macro espera para comprar la caída (TradingView).",
+   "risk": "Cierre semanal bajo 55.000 € abriría nuevos mínimos.",
    "thesis": "Adopción institucional vía ETF y escasez de oferta; el 5 % de monedas con momentum positivo es una señal contraria de capitulación.",
    "breaks": "Cierre semanal por debajo de 55.000 € o régimen cripto por debajo de 25.",
-   "valuation": "Régimen RISK_OFF 29,3/100: solo el 11 % de las alts supera su SMA200 y los ETF acumulan salidas de 4.140 M$ este mes.",
+   "valuation": "Cae un 33 % desde máximos y un 20 % en 30 días; los ETF perdieron 4.140 M$ en noviembre y el régimen es 29,3/100.",
+   "catalysts": [
+    {
+     "d": "2026-12-09",
+     "e": "Decisión de la Fed y proyecciones",
+     "imp": "alto"
+    }
+   ],
+   "sources": [
+    {
+     "t": "Ventas de pánico en Bitcoin por 11.300 millones de dólares, análisis de Mike McGlone (Cryptonews)",
+     "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB1RU5KQVRubUExU2ZpeTVIZXpfWDFiWUtEdzV5Sk5kWXlRSmNnWUNvQ2w1RWIxa2ljS3dvY1RkOXRaUmVuUWdRSFZuMGZ3ZnFYZE5PVjc3RGR4NGly?oc=5"
+    },
+    {
+     "t": "El bitcoin no logra sostener el impulso de Nvidia (Bloomberg Línea)",
+     "u": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQbEh4enhPS1NONUUzTHpESm9RZ3l6MWl0SENrXzluZnZvZjVGcjRfTVlWQTFYTEwzaDFPUE4zcUFCYUh2VzNBd0I5Uks0Q1RMa0ZnUGJkaDN1cW1VLUdNZEFNcDZEMS15ell6c2dDdGQ0STVZNWs0X0xfLTFQOVl5NThHSjQteW5ONkhzcDNzbXlPUDI3MEFXRWdHNmVGQ1N0UHBoR1FCc25LTWpVbnc2SGZHTGJKakc0aDBjWnVya1o4UzZqR2fSAdoBQVVfeXFMTTBHVHVHLVhYUmU5VndUcGZnNldlU3lka3RtR3VCR2pweEsteXhGdWE3Y0ZvSEVZUDZqdFNSbktlcElfMEZNdVNDQTJ5SnhfaHpUalN0M25QMFByMzVrTk5aV201bks2OXVhc3ZWTjhWcUk4TFFjb0ZyT3pudDZ0c2J1OXVFRGlSeUVoZ0dETV9kQlVLWGF1VC1HYm1idTlLNE5EcWZSdVVOU1NjOGo5WVlvS2tjRm5GWWdhLTh3a1hXcmNSejZXVnhCOEkyaFVEenVDRnFIU2dkclE?oc=5"
+    },
+    {
+     "t": "Por qué 42 Macro espera para comprar la caída de Bitcoin (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1mVFFNVGFqM19Wb2N2SUVwRFF3R3ByQVEwVW10WEZkbkMweXRGMHVxcnJuTE1qT0s3aDgwQ2ZSTHlfMGE2YUp0ZS1HTXBBbVVuS1ByOUFQVzUtbWpEQktULVRUWVVSdXdSX3I2eWNTRQ?oc=5"
+    }
+   ]
+  },
+  "TSLA": {
+   "verdict": "mantener",
+   "confidence": 50,
+   "entry": "evitar",
+   "entryConfidence": 30,
+   "watchFor": "Resultados que lleven el margen neto por encima del 5 % o un retroceso hacia los 340 $ (SMA50).",
+   "title": "+11,5 % con FSD V15, pero PER 480",
+   "reason": "Recuperación tras sumar un 11,5 % por el despliegue de FSD V15, que Musk llama «banger release» (TIKR). Pero ventas +8,3 %, BPA −39 % y PER 480 hacen que el precio descuente mucho más que el negocio actual.",
+   "news": "Tesla sube un 13 % con FSD V15 (TIKR) y TradingView atribuye el 12 % al lanzamiento.",
+   "risk": "Términos de fusión desfavorables y margen neto del 3,1 %.",
+   "thesis": "Robotaxi Cybercab y energía como motores, aunque el negocio actual crece solo un 8,3 %.",
+   "breaks": "Términos de fusión desfavorables o margen neto por debajo del 3 % (hoy 3,1 %).",
+   "valuation": "PER 480, precio/ventas 15 y BPA −39 %: la más cara de la lista frente a su crecimiento de ventas del 8 %.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Las principales criptomonedas avanzan; el bitcóin supera los 61.000 USD (MarketScreener España)",
-     "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQd0xQcnItb3NLYTNsWnljOXVPRFZGT1dBdU5TN2JsYUNFbmZNRGdBamo0WWVWa25YeE9WandLeVNybVdreU5EV3V1UE9WQkc3M1JvMzBjNUJ2aWNaOWlPUm5oaDRzekpCS3B4VEF0RzZxUXRTTDduWDFIbGZkWGoxWHAta2Nqc2h5Z2hTM3RwSW9WU2QyWXZYN1laVTdQZTMza0JNSHFZblVtLXhVbnFyY0VkbTNfNnJMZ1UxM0NYVnJxUk95?oc=5"
+     "t": "Tesla se dispara un 13 % con el despliegue de FSD V15 (TIKR)",
+     "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNV3dUN25SSXVGY0Z1akI5WTRrWWVTalRlSTdyRGhuZW9ZQmxBb1Z0Nk9McXFrV1BLZG1qb0Nscm8xRjRjQXBmRU5Qbmw0QWNXY0hHSVVZTUc1UEhMOTRNbDd3U21SUnNpUkU3eGJES1paOTZpUnJBbk1Vc0x3SkN3bXNlMXJ3U2FOYUVwM1EyZzRZRWptQkRYbmJRQQ?oc=5"
     },
     {
-     "t": "Bitcoin apunta a su peor noviembre desde 2018 mientras los ETF pierden 4.140 millones (DiarioBitcoin)",
-     "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOcEw4YXRLRUx1aExOX2ltQ3YzRUdWMjMwbVl5Q3haUW9YNEZFeGN3Q3M1X0JLWXpiNVZRX1hHTjk4cG0wc3hLdUQwTUxfSU8zbnlMbG9acEVKTUVIY1NDNTN4ZHZ6ZDNpY21YcEQxQ0d5RDdIclVCVUI1UjlXa21aYXFORmsyUHdJdmgzQ1BCUEFtYzF1XzNyUWY0Mks4YTFZUHQ4R1RZcXFjVkRKa0JqN2ZFTG9ubTlSZmhPWUppTUFWd2F4d19JWHJaRGtzRER4?oc=5"
+     "t": "¿Por qué sube un 12 % la acción de Tesla hoy? (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBYX21GRTlBLWVHLV9BRFQzNDlmaEZIbjc2UHdTdHhERTgzWW5GaEh2R0xZMVNDVGZlTnVJTG1PZFpVYW1zeGJrWGZTUmlZRTg1cmJzdk5rSGtBN1hNWFRDeUphVHJNZw?oc=5"
+    }
+   ]
+  },
+  "CRWD": {
+   "verdict": "mantener",
+   "confidence": 50,
+   "entry": "vigilar",
+   "entryConfidence": 45,
+   "watchFor": "Soporte en la SMA200 (≈177 $) o detalle de la financiación de la compra de Zscaler.",
+   "title": "Cae un 7,6 % por comprar Zscaler a 44.000 M$",
+   "reason": "Corrección en tendencia alcista: la compra de Zscaler por unos 44.000 M$ (Bitfinanzas) la castiga un 7,6 % hoy y el CEO vendió 4,79 M$ en acciones (Investing.com). PER 4.019 y margen del 1,1 % sin ancla de beneficios.",
+   "news": "CrowdStrike compra Zscaler por 40.000-44.000 M$ y TradingKey avisa de otro posible −14 % tras caer un 9 %.",
+   "risk": "Integración, dilución y una caída bajo la SMA200 (≈177 $).",
+   "thesis": "Plataforma de seguridad en la nube con ventas +24 %, ahora consolidando con Zscaler.",
+   "breaks": "Cierre bajo la SMA200 (≈177 $) o ventas por debajo del +20 % en el próximo trimestre.",
+   "valuation": "Precio/ventas 43,5 y margen neto 1,1 %: valoración exigente incluso con ventas +24 %.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "CrowdStrike comprará Zscaler por 44.000 millones de dólares (Bitfinanzas)",
+     "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPVDA5cU5qWnBkcVd4amhsMzlTRmtRWERvQTE3bk9hYkNYaEVDT2RTVll6N3Z1OWFfMEpXc0VKQ2dKZWgtdXpvNnljRU1DMUcyU0Q0cDZMaDBhc0ZOTUNYVEd3VGVvN1lvdFN6YVFRX2xLTGo0bTNUUmhTYmUwNWkwLVNCc3NzYW5jeTlvZkpvcGhZdEhNUlNXWU5Ebk1vSVJmQ25xSEZURDVyNmJoajRGLTl2c0dIdlJ3LUIyQ2EzcmFUZnNM?oc=5"
     },
     {
-     "t": "Bitcoin recupera 60.000 dólares y el rebote tiene trampa (Observatorio Blockchain)",
-     "u": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPMHRhWk5aTFZoMFJWU2xQa3ZCVVpSeVNPYkhBM3VDenhOdEVFVjlyUUJOTzUxWGhBdWVackIwZmUwTzgyLU1BSld3YW9oZDQ5ZnFrcjc1V1MydFJaeXhiRFVVR3BLVGRWdi1FUzR3WGhoNnhubVpzUUVzUGhwdXVjYzZ0THUzSE0?oc=5"
+     "t": "El director ejecutivo de CrowdStrike vende 4,79 millones de dólares en acciones (Investing.com)",
+     "u": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPRG54OVBoVVlqU2RaSUdPUzI0LU10RWJFZ1M4QWNjanFKMEpUbGxHeHJqWVI0SGNQY3owUUFpa2tTSHNWUnBDSWRLaEhsSU85aTZEbWhkWFVRUVhSX0RNNk5YQXFNUFg5MGFXcXFURWpxNEtpay0tQ21SX1NTSVlsTHpRTVBNWmJJcTJDNVNXeDBXY2tCLUJFdzB4MlVrekU4Y2xlNVQ0TlhJRVVHQWNIR2VaenEtQjJtWFkyV0tfQkdIZS1NRFRkQXlZTWpLYWZ0Rms5bFZwNHFna2R2UFpFag?oc=5"
+    },
+    {
+     "t": "CrowdStrike se desploma un 9 % tras la compra de Zscaler (TradingKey)",
+     "u": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOWV9laUxaOF8wY1NKV3NiLURhaENNMUxFVHpFZEhWWjdSRVRHZWdWS1VBZVROZzRqNzZ2bVhrMlpNV2M4UENWWm40WTQzbTZxOGdtUnU3NDJkS1hVcDBvb0x5dzJYUHU4eDZtQXZkMUpaN2k4TmR0RUdzR1U5ekoyNDdUU0tQdXBCUnZBZUNTM3FJYWhRNzNkNVJlUlhuZzI0NjJISnpOQlJCSHFXOFRGQ3VYSW5fM1lMaWZVWTR0cFNPSnVDckItTE4tYw?oc=5"
+    }
+   ]
+  },
+  "DELL": {
+   "verdict": "mantener",
+   "confidence": 55,
+   "entry": "vigilar",
+   "entryConfidence": 55,
+   "watchFor": "Resultados trimestrales con ventas por encima del +40 % (fecha no confirmada) y cierre sobre la SMA200 (≈349 $).",
+   "title": "Se dispara un 20 % antes de sus resultados de IA",
+   "reason": "Fase lateral: +20,5 % en el día con el rebote de IA y la subida del 17 % de HPE por alzas de precios de servidores (TradingView). Con PER 15,5, ventas +49 % y BPA +145 % la valoración es de las más baratas del sector de IA, pero ya perdió un 43 % desde máximos.",
+   "news": "HPE sube un 17 % por alzas de precios de servidores antes de resultados (TradingView), señal positiva para Dell.",
+   "risk": "Márgenes de servidores de IA (neto 7,5 %) y la fecha de resultados.",
+   "thesis": "Servidores de IA con ventas +49 % y BPA +145 %, PER 15,5.",
+   "breaks": "Ventas creciendo menos del +30 % en el próximo resultado o cierre bajo el mínimo de la SMA200 (≈349 $) tras recuperarla.",
+   "valuation": "PER 15,5, precio/ventas 1,2, ventas +49 %: barata frente a AMD (96) y Nvidia (13) en crecimiento ajustado.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "HPE sube un 17 % tras alzas de precios de servidores antes de resultados (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5rVGVDZjZqSG9KVzAtY3NSUVpoTTJrNjVzNGZ3N2E2VUhHRkpyMXdnTHZCa0FYUUJrUHE0eFZDaUtEdWRLOXM3NlRmemRieHBvN0x5T1hJeEhHVFVaY214VU1Tb3d1UQ?oc=5"
+    },
+    {
+     "t": "Dell Technologies explica cómo escalar la IA en las empresas colombianas (Technocio)",
+     "u": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPODQ2RW5YbmZ4enRTbG5TLTB3bjlobVNsUC1ROWlFX2YzSGhDS1ZBbGI1VFVreXRMWExUUWhaWDBzMkF3TDFPR1NYdGRHQVcwMlNDajB3eFNoUHdsTkxZdmJLZnE5Y0JDY2tORDFMT3B0WWhXa20wQzVNU2pPNmYtNUxsUEZMVk11cW8yZVI0OUhhSmpkekhLVjB5QlBQcldzdE1pSjZqY1FXUkh3bkVDQjlyekpaSVJ5ZFlEMGpGQUJ1Z9IBxwFBVV95cUxNQjdHSHdiUURCZ3psMFZiQU5FMDd3TVVxWDc4bkxuSVFWd3ZFVm9JcjRWZFV2cW5PeGJvZEpfM1p3REpUOWU2aXJQcVpudVhHRXUwRXE1YktsVVRGaWZ6R2pTZUpEdVZZTVd5cnlEd1ZVQURPRHlwS2twbWlxVW9zSjNNYXNON1RXTEx0R3Z0YU9nelREbGM3OHg3TGVSWk9udkpDZ0dYUEtQbzZqTnBDMlQ4QmExOXphZWtyNG1kQ0k0cmdSdXFR?oc=5"
     }
    ]
   },
@@ -242,72 +314,18 @@
    "entry": "vigilar",
    "entryConfidence": 38,
    "watchFor": "Que Intel nombre al cliente externo de 18A-P y el margen neto salga del −20 %.",
-   "title": "Salta un 16 % con su primer cliente de 18A-P",
-   "reason": "Fase lateral: 59,7 $, un 58 % bajo su máximo de 142,4 $ y −31 % en 30 días, con el rebote de hoy de +16 %. Intel anuncia su primer cliente externo para el proceso 18A-P sin revelar su nombre (Fanáticos del Hardware) y Bernstein sigue neutral (MarketScreener); con margen neto de −20 % la valoración no se sostiene en beneficios.",
-   "news": "Intel anuncia su primer cliente externo para 18A-P sin identificarlo (Fanáticos del Hardware); Bernstein mantiene neutral (MarketScreener).",
-   "risk": "Cliente de fundición sin nombre y pérdidas (margen neto −20 %); el rebote puede deshacerse.",
+   "title": "Salta un 16 % con optimismo del CEO sobre 18A-P",
+   "reason": "Fase lateral, un 58 % bajo máximos. Sube un 16 % con el rebote de chips y el mensaje optimista del CEO (Estrategias de Inversión), pero el margen neto es −20 % y no hay PER.",
+   "news": "El CEO de Intel retoma el liderazgo tras evaluar el consejo su continuidad (Facebook) y trata de calmar a los inversores (Estrategias de Inversión).",
+   "risk": "Pérdidas continuadas y dependencia de un cliente aún sin identificar.",
    "thesis": "Giro hacia fundición con el proceso 18A-P: ventas +12 % y primer cliente externo anunciado.",
    "breaks": "Que el cliente de 18A-P no se confirme o pérdida del mínimo de 52 semanas (32,9 $).",
-   "valuation": "Sin PER por pérdidas; precio/ventas 4,6 con ventas +12 % y margen neto −20 %: no hay base de beneficios.",
+   "valuation": "Precio/ventas 4,6 y margen neto −20 %: sin beneficios, valorada por su opción de fundición.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Intel anuncia su primer cliente externo para 18A-P sin revelar su identidad (Fanáticos del Hardware)",
-     "u": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPN191NlhzZGlteG9CeTA5V0dBU0llTEx2TUJMcEFPbGszTEQ1ZUhnc21VZUNSQkExTnBPOXFvcklWV1NsX0tnR1REckNDWEQzdGFjY1VoSDd5VVR0MWdqbHByZU5IWm03bng2eWQwOWwyNFA3OURkQmhxZUxGTEhZYTk5cGowNHRrMmlxNXRXSmQ5U1ZobWl2Q0d0V1Q3eU00ZjQzd3dveHA5MUFuWGc?oc=5"
-    },
-    {
-     "t": "Intel Corporation: Bernstein permanece neutral (MarketScreener España)",
-     "u": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNSmtvWGhDdHZxcFFnRGhvZHhRWXRzWWVTR3QybWFFeXk5NmJtUkdHMDVWckoxbHBZUHIzNmlvWVFGbWlPSHUtWkltbF9MeEc1dFNuQ0hwU183NUJCY0Rxa09lNnQ2QnJCUTNJSVUycTVoZ3J4Rzcxd3V6VWczOWhtUW1OcWlqNFlGYWVPdnFTbDhHbWhjOHN4czFXTWptWjhWX05j?oc=5"
-    }
-   ]
-  },
-  "DELL": {
-   "verdict": "mantener",
-   "confidence": 55,
-   "entry": "vigilar",
-   "entryConfidence": 52,
-   "watchFor": "Resultados trimestrales (fecha aún sin confirmar) con ventas por encima del +40 %.",
-   "title": "Se dispara un 20 % antes de sus resultados de IA",
-   "reason": "Fase lateral: 334,9 $, un 44 % bajo el máximo de 595,5 $ tras caer un 27 % en 30 días, y hoy rebota un 20,5 % con la IA. Ventas +49 %, BPA +145 % y PER de 15,5 son baratos, pero MarketScreener avisa de que sus resultados y los de HPE pondrán a prueba la demanda de IA.",
-   "news": "Los resultados de Dell y HPE pondrán a prueba la demanda de IA tras el desplome tecnológico (MarketScreener); la acción se dispara hoy (Investing.com).",
-   "risk": "Resultados que decepcionen en servidores de IA tras un rebote del 20 % en un día.",
-   "thesis": "Servidores de IA con ventas +49 % y BPA +145 %, PER 15,5.",
-   "breaks": "Ventas creciendo menos del +30 % en el próximo resultado o cierre bajo el mínimo de la SMA200 (≈349 $) tras recuperarla.",
-   "valuation": "PER 15,5 y precio/ventas 1,2 con ventas +49 %: barata, con margen neto de solo 7,5 %.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "Los resultados de Dell y HPE pondrán a prueba la demanda de IA (MarketScreener España)",
-     "u": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQMjY5LXR1dWo4N05PSENRSHIwX2VyN1NZOGNUVEFteEo2Znh0RjJhZ1d5c3Z1LUhhWmswczZyN3FDSmxnUGtXc3dzSFJtR1d4RlRUN0tOdjRSQzh2ZDVOWWtfdkhCZnU1cXlMSk9ybVVpS2o3d3ZTVUNmYVlfdEhtQ3RPbVQ0ei1YQ1pLbGp6cXJFYzJkd2dRTlVUWkhRcldEY280U0dUN25HV3Zma3h4Qzg0X3NnRGhIQTZpd3FBTjdQSXVMNC13Ymt0dE92dEg2MUI3Ums0bzBvQ2V6c2d2Mw?oc=5"
-    },
-    {
-     "t": "¿Por qué se dispara hoy la acción de Dell Technologies? (Investing.com España)",
-     "u": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQVjJtQmwyS1ZGaTlpV2hXU2Q0RTFlTl9laG5MY2w5RFN2UzRpTFRFYW9qaGRvbzVSVFRQcUpTVVBMSThNeEZ4XzZuYzBRaG9oaUZwYTRVSGpxem1kMXRUd1RnR2hHR0ludnBlb2FRQk5Ebm9kYmtZMTMwbFFYT2gtaXlzQV9mLVpVMVZLT0pTN0Eyd0ZjUVhrU1VZVjdmYl94Y2JVU3VXblIyTUdJcGpjc0pqNU4?oc=5"
-    }
-   ]
-  },
-  "WDC": {
-   "verdict": "mantener",
-   "confidence": 50,
-   "entry": "vigilar",
-   "entryConfidence": 50,
-   "watchFor": "Cierre sobre la SMA50 (≈371 $) que confirme que el rebote no es solo técnico.",
-   "title": "Rebota un 14 % con la memoria, aún un 63 % bajo máximos",
-   "reason": "Fase lateral: 297,3 $, bajo la SMA200 (422 $) y un 63 % bajo el máximo de 799,9 $. El rebote de hoy (+13,8 %) acompaña a las memorias: SK Hynix +8 % y Sandisk +6 % (TIKR). PER 9,8 con ventas +43 % y margen neto del 69 % es muy barato, pero el mercado descuenta un pico del ciclo.",
-   "news": "Memorias rebotan tras la caída de la IA: SK Hynix +8 % y Sandisk +6 % (TIKR); Western Digital se dispara hoy (Investing.com).",
-   "risk": "Ciclo de almacenamiento en máximos: si la demanda de IA se enfría, el múltiplo bajo refleja beneficios que no se repiten.",
-   "thesis": "Almacenamiento para centros de datos con ventas +43 %, BPA +269 % y margen neto del 69 %.",
-   "breaks": "Ventas creciendo menos del +25 % o pérdida del mínimo de 52 semanas (132,4 $).",
-   "valuation": "PER 9,8 y precio/ventas 6,8 con ventas +43 %: barata en beneficios, típica de pico de ciclo.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "SK Hynix sube un 8 % y Sandisk un 6 % mientras las memorias rebotan (TIKR)",
-     "u": "https://news.google.com/rss/articles/CBMingFBVV95cUxNb3p4WmNzbF9PUXN2a1FtWEJPRV9RY3BpLTktMnF6c25LWWFDVS1GXzlvYV9JR2ZQeFJvS2R0OTNUQkNITWZhalFYdmpUVm1YN19LOUd6cGoyeEhBRWdRTG50cDY5RUdaLU9POVlLMjZ2RWgzeGxZamhBZ25tdUFlamNQYlk1WDJSdDF2djRON2RMa0VoaXJwNXoxeEF2Zw?oc=5"
-    },
-    {
-     "t": "¿Por qué se dispara hoy la acción de Western Digital? (Investing.com España)",
-     "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOdlRUdm1kcUZJLXFyRkg3dmlWYkdzLXRYc29wbU1sS2tDeUQxM1lNNGRJUmpOM3FoWlMtSWNIVDA3d2dnYmhvVFQ0WkY4akN4WnF5X0tTdFRsOWRfOGM2elQ5NFRzTjRnZnVQS01lX2FaWjVBalExXzVDbG5Vdi1HZWFvMkh3dDZYRS04QzVpU2NzZ292M0tmUXhhV1cwcGFFLTVNdFYwbWgzM04xUFNkaFd3?oc=5"
+     "t": "¿Qué ha dicho el CEO de Intel para traer optimismo a los inversores? (Estrategias de Inversión)",
+     "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPcVJWTE4tX2NyNXJKYmxtNEdiV0s0ZXZjZGhkd0N2VjZER1YwSHp6Q0lOOU1qcmpsMGRZcEJudklNakxjeXBhbmh6RFBvN0ZheXVqenZSNlF3ZXg3NHN0Y292aTZ4TmZNWUJtSGJsQUJiaHJfLUZnNE9zZTJMUS1IdGVkUDVZTTdZSFlsTENmVC1NX0FrWlJsZDhJTmVLY3NWM21oWlBuV1hsdU9tNkhzQjZobnA1SDRNak9XUnVibklkY01u0gGgAUFVX3lxTE81Nzc0R1M2dUxyc0dpdC1HYWUtcmdZYnRGYkdic1pCaW9ncEREeE1rc3lrMEpQN2w2SkI4MEo4OTdwRDhVR1NsS01WTWc5NFVLdW1yMTRjTHZvbUVhS0dBRGhLR1BMem42NEcxSENaQzNuajMzOXZJQk54dEd3amU1dXdHY1FyejRDOXY0VXJEU2hsdlI2MnNaUjJwOG9KbVk?oc=5"
     }
    ]
   },
@@ -315,49 +333,20 @@
    "verdict": "mantener",
    "confidence": 48,
    "entry": "vigilar",
-   "entryConfidence": 48,
+   "entryConfidence": 45,
    "watchFor": "Cierre sobre la SMA200 (≈259 $) tras el rebote del 23 %.",
-   "title": "Sube un 23 % con la IA, aún un 55 % bajo máximos",
-   "reason": "Fase lateral: 222,1 $, bajo la SMA50 (284,5 $) y un 54 % bajo el máximo de 499,5 $. Hoy sube un 23 % arrastrada por Nvidia (investingLive). Ventas +115 % y margen neto del 30 % justifican atención, pero el PER de 68 y la beta de 3,9 hacen la entrada arriesgada.",
-   "news": "Nvidia sube un 32,6 % y eleva a todo el sector de IA y chips tras la debacle de la semana pasada (investingLive).",
-   "risk": "Beta de 3,9: caídas del 10-20 % si la IA vuelve a corregir.",
+   "title": "Sube un 23 % con la IA, un 55 % bajo máximos",
+   "reason": "Fase lateral: +23,2 % en el día arrastrada por Nvidia (TradingKey). Ventas +115 % y BPA +124 % son excelentes, pero PER 68, precio/ventas 20 y beta 3,9 la hacen muy volátil.",
+   "news": "El rebote de Nvidia (+31 %) eleva a los chips de IA tras la debacle de la semana pasada (TradingKey).",
+   "risk": "Beta 3,9: amplifica cualquier recaída del sector.",
    "thesis": "Conectividad para centros de datos de IA con ventas +115 % y BPA +124 %.",
    "breaks": "Ventas creciendo menos del +60 % en el próximo trimestre o pérdida del mínimo de 52 semanas (97,9 $).",
-   "valuation": "PER 68 y precio/ventas 20 con ventas +115 %: exigente, justificada solo si el crecimiento se mantiene.",
+   "valuation": "PER 68 y precio/ventas 20 con ventas +115 %: cara, pero justificada en parte por el crecimiento.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Nvidia eleva a todo el sector: sube un 32,6 % y arrastra a las acciones de IA y chips (investingLive)",
-     "u": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQYnV6c0w2a05vWUlvMS1zNVVYNjMxaTRhZVBjV2JDRVg0eGhkeHlCNXRUMGdHVGtnQmo4MGx0YUJQNXVVSFZzTmMwb2hJSUhlSktCMUE2cDNRLWs4ZHg4RGZjMkdhcTA3NjR4QWZpYldOd0dvbFdtSk01Q0Zka2s4NjVzcmRyaU1ocmJDSTFFV2V0b3RfY2ZsNkhTUFVvT0ZVUm9lbndDUTVFaEdqYVZTVk5QMVp4X2x1TWxxU1d5V1pSb1hlamRrMmJtS0VmZmI1VWU5TlJEeldpUzRpblNHblctbEhtSEdiMTlUNlR0bzQ3bnVWb2Fn?oc=5"
-    }
-   ]
-  },
-  "CRWD": {
-   "verdict": "mantener",
-   "confidence": 50,
-   "entry": "vigilar",
-   "entryConfidence": 55,
-   "watchFor": "Soporte en la SMA200 (≈177 $) o detalle de la financiación en acciones de la compra de Zscaler.",
-   "title": "Cae un 10,6 % al comprar Zscaler por 43.900 M$",
-   "reason": "Fase de corrección en tendencia alcista: 205,2 $, −26 % desde máximos y −20 % en 30 días. Hoy cae ~11 % por la compra de Zscaler por 43.900 M$ en acciones, mayor operación de ciberseguridad (El Economista); TradingView recuerda que tras Palo Alto-CyberArk la caída fue temporal. Con PER no significativo (4.019) y precio/ventas de 43,5, la valoración deja poco margen.",
-   "news": "CrowdStrike compra Zscaler por 43.900 M$ en acciones; Zscaler sube un 23 % y CrowdStrike cae un 12 % (TIKR).",
-   "risk": "Dilución y riesgo de integración de una operación de 43.900 M$ con margen neto de solo 1,1 %.",
-   "thesis": "Plataforma de seguridad en la nube con ventas +24 %, ahora consolidando con Zscaler.",
-   "breaks": "Cierre bajo la SMA200 (≈177 $) o ventas por debajo del +20 % en el próximo trimestre.",
-   "valuation": "Precio/ventas 43,5 con ventas +24 % y margen neto 1,1 %: muy cara; el PER de 4.019 no es útil.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "CrowdStrike adquiere Zscaler por 43.900 millones, mayor compra de la historia en ciberseguridad (El Economista)",
-     "u": "https://news.google.com/rss/articles/CBMikwJBVV95cUxNdXhkeWh3dmdjQVlVNkNkdHkteU83U2Zwd0ZPYkI0MFk0NXkwLUdxQjByZUlhbzZHa1VPSTZCMUNUUDM2bVh5elIyc2RMUURHM1h5Vm5Fa3ZWUkd6Tk96ZHNLU1VQU285STQ5THpJWlNOVk1jVENTUGVGTHY0R0MzZnpwanlfbk1rWS1fcVNwN3dBZ0Vsa2toYzJnRE9QSWdKbzJrMjRtT1ExMzU2TE5qMkpMcTBHc2RLZC1ia2d0bmdvQWZyQ1o5ZW5RbGo2bXNwbGNFR1RPaks4OURFMk5GdUNSTl9UOGhwcXZud1JHZ0VXVGFzM2FKZklzNlYwQlpaRG5RTmpXYm11Ymc4Z0hvMGZQaw?oc=5"
-    },
-    {
-     "t": "El precedente Palo Alto-CyberArk sugiere que la caída de CrowdStrike es temporal (TradingView)",
-     "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9ua2ptb194Q1luOHFBbXQ4eXRBRW5XT0pGRWpIN0R4NjlyeVoxa0ZtT01ITm1nWlN2N2NCSDlYeG1UVmNfLXphY1pxaVFHQnVna0RpYzhVTjFWOXE1V2FKb3BsR0xaZw?oc=5"
-    },
-    {
-     "t": "CrowdStrike cae un 12 % por la compra de Zscaler de 43.900 millones (TIKR)",
-     "u": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQbi1YZ0pPZFpQbVFvUVZnZkFsS0hfeGI2UlptYTdHUGFsRTJKYVhSemUtUFVWaVpYQ1ZKaEJIUUhoX0JFTU40MVhtM0FQY0NvamMtZXdmTkswaVRnQ2U3X0F2a2FMWldhZ2UxTnVRRWItNXNHQWxhcFpNMi04RmR1dW9TOFVIVk5UeXZoYmd1ZXNqQy04c0VNckF4QTJndzlPdlR0NG5MS2V6RzBVLW0wYkxjcmlTbWctLUJWbg?oc=5"
+     "t": "Resumen del mercado: Huang regresa a Nvidia y el Nasdaq salta un 6,5 % (TradingKey)",
+     "u": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNR0ExVjE1YTRwUk1WN285Y3diNWZ4ajg1YVNsYVVqZjZITnV2LTQ1YS1fZHh6cU5YSjNJamI2UVlDMmNUM0pnaW5uV2FyY1QtSERTQTdoX0tuR1ZoV0F3UXZvTVZITWFyTXViMVVucTNvZEk2TFd2TXJGWnRIMjZkWXF3R3otLWYzZWk4YmRPWTg2WnhVZ3NMcDZsVGFPakJwSk1jaVN6NDNCVXdQRHFuVzVHWDBORHRyakJqRTRlYVNhVUZUTjJnWTVKZnRfWEJRdkJhRWtEdE1qREI1Smd6S3pHb0ZBVlYyVjFMWEJ3?oc=5"
     }
    ]
   },
@@ -368,21 +357,17 @@
    "entryConfidence": 50,
    "watchFor": "Mantener la SMA200 (≈256 $) o recuperar la SMA50 (≈319 $).",
    "title": "Cae un 8 % en una jornada de ciberseguridad convulsa",
-   "reason": "Fase de corrección en tendencia alcista: 278,5 $, −23 % desde máximos. Cae un 8,3 % el día en que CrowdStrike compra Zscaler por 43.900 M$ (TIKR); los titulares no dan un motivo propio, así que probablemente es contagio sectorial. Ventas +33,5 %, pero pérdidas (margen −8 %) y precio/ventas de 39.",
-   "news": "Zscaler sube un 23 % por la compra de CrowdStrike (TIKR); Cloudflare prueba DNS en producción con Flamingo (El Ecosistema Startup), sin motivo propio de la caída.",
-   "risk": "Múltiplo de 39 veces ventas ante cualquier giro del apetito por software.",
+   "reason": "Corrección en tendencia alcista: −8,3 % hoy en una jornada dominada por la compra de Zscaler por CrowdStrike, sin motivo propio claro. Ventas +33,5 % pero pérdidas (margen −8 %) y precio/ventas 39.",
+   "news": "CrowdStrike compra Zscaler y consolida el sector, lo que presiona a las demás cotizadas de seguridad (Expansión).",
+   "risk": "Pérdida de la SMA200 (≈256 $).",
    "thesis": "Red y seguridad en el borde con ventas +33,5 %.",
    "breaks": "Ventas por debajo del +28 % o cierre bajo la SMA200 (≈256 $).",
-   "valuation": "Precio/ventas 39 con ventas +33,5 % y margen neto −8 %: muy exigente.",
+   "valuation": "Precio/ventas 39 y margen neto −8,2 % con ventas +33,5 %: cara, a un 23 % de su máximo.",
    "catalysts": [],
    "sources": [
     {
-     "t": "Zscaler sube un 23 % por la compra de 43.900 millones de CrowdStrike (TIKR)",
-     "u": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPNlhXZktzSFB5bWVZTlR3ZHN5SVRqWGVaNmxwMlFkbERWbTBSYm5BOXFCZk12azlHM2huUl85djFhLUFNR0tSM3lmWC0wV3Y1RG1Cb01QX3BmZjE0MnZLWjloTUd4SDhVWkFiZlRId1NVWXFRcmx4djU0UGFYSlQ2TktrS1hQNDNQOE4xWXBfNTJzYWktRXhGRWpmWGZDYkV6TkhEZGM0Q0xFSy0tOUIwazloTQ?oc=5"
-    },
-    {
-     "t": "Cloudflare prueba DNS en producción con Flamingo (El Ecosistema Startup)",
-     "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPZXcxYVVXTDZVVHB2Z2VhREs5WVJ3Si1WdHhrdFJhRzNMUUlvd0dtSU1rUlRFS1Y0SGNpYW5aQS1QbmdYYzZ3X1FDcFQzVmNUdEZqcHl3U0hOQ0xJRGp2WjJKaE9BYUx1dGhBMDlUOEUyMzVudmNCSDBNS19Nc3o4elNPZXB0UQ?oc=5"
+     "t": "CrowdStrike compra Zscaler por 40.000 millones (Expansión)",
+     "u": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQOWs1UDNKSWlhaDhuT3Z2d2o4MWNJSC1HczItYjZ1a0ZGNGhleXhNRGpoMTlpdjBBcXdpT3k0Y09sQUczcGs0VW9qTGNDZlItZkJ3MmlBaWo0cUtwOEc2UENpSFFxVFdqQnUxaTFsOV8weEtJYlp5Smd0bFpreEJPSE9KLVNLdUNpOFc0VkxvYW95SndQUjU0R2xUUVFlN2xwbEpqYjgzcVFtSUNTTmfSAZsBQVVfeXFMT3V3cDNENG1SbFN4LU5tYkJkOXdTc1ltRjcteHhIRFNwaWNNYVY3ZUszdWsxRWJPUGptNmJjd3FJT3c5Tl81RzVucEwzQkNJd2dnZDJtNm9jeV9EeDY0c3Fjck9FU3BndjdJWXRaeHF5aGJSOUdSN0kxeUVPSkhmbUsycDZwdXllMUE1bDEydk1sNlZQa2VxVURRUUU?oc=5"
     }
    ]
   },
@@ -390,15 +375,15 @@
    "verdict": "mantener",
    "confidence": 58,
    "entry": "vigilar",
-   "entryConfidence": 55,
+   "entryConfidence": 52,
    "watchFor": "Cierre sobre la SMA50 (≈367 $) o retroceso hacia la SMA200 (≈282 $).",
-   "title": "Phillip Securities mejora a 418 $ de objetivo",
-   "reason": "Fase de corrección en tendencia alcista: 351,5 $, −16 % desde máximos. Phillip Securities la mejora con objetivo de 418 $ (TIKR) y Freedom Broker sube el suyo tras sólidos resultados (Investing.com). Pero el BPA cae un 61 % y el PER es de 619 con ventas +30 %, valoración muy tensa.",
-   "news": "Phillip Securities mejora Palo Alto Networks con objetivo de 418 $ (TIKR) y Freedom Broker eleva su precio objetivo tras los resultados (Investing.com España).",
-   "risk": "BPA −61 % y PER de 619: poco margen de error.",
+   "title": "Phillip Securities eleva su objetivo a 418 $",
+   "reason": "Corrección en tendencia alcista con ventas +30 %. Phillip Securities mejora el valor con objetivo de 418 $ (TIKR) y Freedom Broker sube objetivo tras resultados, pero PER 619 y BPA −61 % piden prudencia.",
+   "news": "Phillip Securities mejora Palo Alto con objetivo de 418 $ (TIKR); la consolidación del sector (CrowdStrike-Zscaler) refuerza la competencia.",
+   "risk": "BPA −61 % y valoración elevada (precio/ventas 22,6).",
    "thesis": "Plataforma de seguridad con ventas +30 % y demanda ligada a la IA.",
    "breaks": "Ventas por debajo del +28 % en el próximo trimestre o BPA cayendo más del 60 %.",
-   "valuation": "PER 619 y precio/ventas 22,6 con ventas +30 % y margen neto 3,7 %: muy cara.",
+   "valuation": "PER 619 y precio/ventas 22,6: cara frente a CrowdStrike en margen (3,7 % vs 1,1 %), a un 18 % de su máximo.",
    "catalysts": [],
    "sources": [
     {
@@ -406,104 +391,100 @@
      "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQbFowSkVNMXliYU9kdFNmalM3dWh1RVExYnV0ZFk3U2dEZDNyaUxjWkgyQUNWX0x5d0ZtekpvNXhuWndDc2VnczhwdWlHOXhKeFFsSVdQYy1RU1hkX3lfWnBkUFlnbHF0X1NXQzNXRmxURTh0NnVwRk5JV2VrbHZJV2NjdHA0ZGNCcFMwSGFPMDRQNTdscWVXVE5GZFZGbjdiVGgyZXRPZUlHSmY3Uk5nU2NLZWdXdENQeFE?oc=5"
     },
     {
-     "t": "Freedom Broker eleva el precio objetivo de Palo Alto Networks tras sólidos resultados (Investing.com España)",
-     "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQbGpLM2lHTHNWZ0draU1MUzFfNUw1U0Y4TnZ2MGFlSFZVbUZUYk1RRGlwLVVma3RDTmpVVVhwRDNDRlVsaEFoTmdIYnRGSGRxaW9Da29ScXpnMHo1UXl1Z2JNWXBVb0J0bG1tRmRvUXhrSUM5VkNoRC1MMUZiRzlWZTJCNV9NTzMydVlXSDh6WkYxT0VWYU53aUJ0TTlVRy1NWFRJX2htRExBakJRSUdBWXhDbDlhYVN4MDZnM0JpZm5VaDhxcUIwOGxQX0xxT1dqbjFpZXp6VXpJUXhiSDc5OU5R?oc=5"
+     "t": "Freedom Broker eleva el objetivo de Palo Alto por sólidos resultados (Investing.com)",
+     "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPQW5iMGxiZkdLQ2U4MWg5VnJlbGF4US1BVERJdnZzeDRzbWFYSWVqWjlFeE01MWlfTTZxcmN5UDEydFd2QWtYRzBnNUNGTGxpV0p3NWZqRmRWQ2ZaQUx5SnAtTFZ4MWpTUXJCZnpHZXktbk8wS3Jwa2hKM0Q3VERnRkpmY2FSVDlsaVM4Z3dTX3dqalZVaE9CN1pqYkhZQlBvT0l3VUZKUXNhOXJ0a3FLZ244NFQwNkhIUHBfcHU5UHJ3WlNiY2s4RzE0cG5XYmtGUXpBeWY3MA?oc=5"
+    }
+   ]
+  },
+  "TXN": {
+   "verdict": "mantener",
+   "confidence": 60,
+   "entry": "vigilar",
+   "entryConfidence": 52,
+   "watchFor": "Que mantenga la SMA50 (≈287 $) tras el salto del 10 %.",
+   "title": "Salta un 10 % con el rally de chips",
+   "reason": "Tendencia alcista: +10,2 % en el día con el sector. Ventas +20 %, margen neto 34 % y dividendo 3,4 %, pero PER 33,9 tras la subida ya no es barato.",
+   "news": "Sin noticia propia hoy: sube con el rally de chips tras el regreso de Huang (Investing.com).",
+   "risk": "Ciclo analógico y que el salto del 10 % se devuelva.",
+   "thesis": "Analógicos con ventas +20,3 %, margen neto del 34 % y dividendo del 3,4 %.",
+   "breaks": "Ventas bajo el +10 % o cierre bajo la SMA200 (≈266 $).",
+   "valuation": "PER 33,9 y precio/ventas 11,6: exigente frente a su historia, con dividendo del 3,4 %.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "El efecto Nvidia impulsa a los chips: estas son las acciones que vuelan (Investing.com)",
+     "u": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQVF83X1RHX0d2T3FmMjQzdGZhNko3ZWlxcjBMUlliU0oyNTNJaG5VbVlGSGU5bHNEVlF1c2pLa21pb0J1cDVGSmdMcy1kcWdvY0RHcEl4cUgwdHNFOGpKTUxoMGY5cHR2bE5wNzFCU2xtWFNLMnNaZUxxWDNJaFltQzBrYkJZOC1ZdUdBRVlJU2dFYnRXMk1sbkgta0htUUZla0lDeWttVkNnX0xBNVRBTm1KVnhwczJFVHFicmNzamNBQ3JGRFE?oc=5"
+    }
+   ]
+  },
+  "XOM": {
+   "verdict": "mantener",
+   "confidence": 55,
+   "entry": "vigilar",
+   "entryConfidence": 50,
+   "watchFor": "Que aguante la SMA200 (≈156,9 $); un cierre bajo ella cambiaría a evitar.",
+   "title": "Cae un 1,9 % con el petróleo en retroceso",
+   "reason": "Corrección en tendencia alcista: baja un 1,9 % hasta 156,9 $ (The Officer) con el petróleo cayendo (TradingKey). PER 16, ventas +19,5 %, BPA +41 % y dividendo 2,5 % la hacen razonable.",
+   "news": "ExxonMobil baja un 1,93 % hasta 156,9 $ (The Officer) mientras el petróleo se desploma en la jornada (TradingKey).",
+   "risk": "Petróleo débil y cierre bajo la SMA200.",
+   "thesis": "Caja sólida, ventas +19,5 %, BPA +41 % y dividendo del 2,5 %.",
+   "breaks": "Cierre bajo la SMA200 (≈156,9 $) o recorte del dividendo.",
+   "valuation": "PER 16,1 y precio/ventas 1,7, un 17 % bajo máximos; dividendo 2,5 %.",
+   "catalysts": [],
+   "sources": [
+    {
+     "t": "Acciones de ExxonMobil hoy: bajan un 1,93 % hasta 156,90 $ (The Officer)",
+     "u": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNT0c4TTdpVUQzY1ZiTGJlSkJjODZ3ckVkZVhEeU9nUFhxZDUwZFkxUGVZZTZBQTdBbGlvTUxmc3pjWmxQdVJTeVQ5Q3dzZm5FNWxsc3plTGZPRDBFeGtSLVFrdjNTRDBJZ3ZZWVR0UFl0MFloV2NVOHBQTWJxcVp2NzNrMWd5aHhzOVowQ2hRVFVtZmlVd0E?oc=5"
     }
    ]
   },
   "SAP": {
    "verdict": "mantener",
    "confidence": 58,
-   "entry": "comprar",
-   "entryConfidence": 60,
-   "watchFor": "Cierre bajo la SMA200 (≈192 $) anularía la entrada.",
-   "title": "AlphaValue pasa de vender a comprar",
-   "reason": "Fase de corrección en tendencia alcista: 203,9 $, −18 % desde máximos y −14 % en 30 días, con RSI 32,6. AlphaValue/Baader pasa de «vender» a «comprar» (MarketScreener). PER 28 con BPA +15 % y margen neto del 20 % es razonable, aunque las ventas solo crecen un 7,9 %.",
-   "news": "SAP: AlphaValue/Baader Europe pasa de venta a compra (MarketScreener España); SAP presenta cinco tendencias para llevar la IA a la operación en 2027 (Portal ERP).",
-   "risk": "Ventas de solo +7,9 % ante un múltiplo de 28 veces beneficios.",
+   "entry": "vigilar",
+   "entryConfidence": 55,
+   "watchFor": "Cierre bajo la SMA200 (≈192 $) anularía la entrada; sobre ≈215 $ confirmaría el giro.",
+   "title": "AlphaValue pasó a comprar; PER 28",
+   "reason": "Corrección en tendencia alcista con RSI 32 (sobrevendida). BPA +15 %, margen neto 20 % y PER 28; AlphaValue/Baader pasó de venta a compra. Sube un 2,3 % hoy.",
+   "news": "SAP presenta cinco tendencias para llevar la IA a la operación en 2027 y avanza la migración a S/4HANA (Portal ERP).",
+   "risk": "Ventas +7,9 % lentas frente a su PER.",
    "thesis": "Suite empresarial en la nube con BPA +15 % y margen neto 20 %.",
    "breaks": "Cierre bajo la SMA200 (≈192 $) o BPA creciendo menos del +10 %.",
-   "valuation": "PER 28 y precio/ventas 5,7 con BPA +15 %: moderada frente a su máximo de 219,7 $.",
+   "valuation": "PER 28 y precio/ventas 5,7, con ventas +7,9 %: ni barata ni cara, un 7 % bajo su máximo de 219,7 $.",
    "catalysts": [],
    "sources": [
     {
-     "t": "SAP SE: de venta a compra por parte de AlphaValue/Baader Europe (MarketScreener España)",
-     "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORGEydEVxTGpCMEhac1ZvLVlIbEo4bkdIaGtrYWQ1dWlWaTJVMFFxUkFzS3JRazh0WEFrZm1fM2lNNllNb1NjR2g0d2N0OGRneFJ4bFJpTnUwU0pncGJuMFdlRk9aOWFWcEJIRS15cGRwNE43akNfUF9MMFowaEE0d01QeGo3akRCUEdyek8wVUlKaUFROE1NemNCQ0dtcm9YSDB0THBWVElTTFZZcGVNVnR1VDc4LVFBdmc?oc=5"
+     "t": "SAP comparte cinco tendencias que llevarán la IA a la operación en 2027 (Portal ERP)",
+     "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQdlBzZW1XbWdESGVZa3ZFbnRnUy1rRC1rVUQ4V0JscFhBTE9wSmcxSFphT3Z5dEdVUmZwZFdsaUJiWTRLeWRHYUFjODhNWVRNWjhnU1RPR0JaTjR5bElOblZzVlV0dFhsM3gwbGNmNTNkaHdJVzZEa2xOeUdTSlpYY2c0OHVMQ0luRHF0NnhyZlJWVjkwTDJWM01VZVhBR19fMU95VktRWldXak5iOW84ak9GZDJPaWQ1T3c?oc=5"
     },
     {
-     "t": "SAP comparte cinco tendencias para llevar la IA del piloto a la operación en 2027 (Portal ERP)",
-     "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQdlBzZW1XbWdESGVZa3ZFbnRnUy1rRC1rVUQ4V0JscFhBTE9wSmcxSFphT3Z5dEdVUmZwZFdsaUJiWTRLeWRHYUFjODhNWVRNWjhnU1RPR0JaTjR5bElOblZzVlV0dFhsM3gwbGNmNTNkaHdJVzZEa2xOeUdTSlpYY2c0OHVMQ0luRHF0NnhyZlJWVjkwTDJWM01VZVhBR19fMU95VktRWldXak5iOW84ak9GZDJPaWQ1T3c?oc=5"
+     "t": "La cuenta atrás hacia 2027: migrar a SAP S/4HANA (Portal ERP)",
+     "u": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMG53NzV2WGpZb0hKSUZZcEY2VGVmTnl5TTNCLWQ0ejUzNFBraGVZMXJYSGxqNW5rM1o5R18zRUVJdTRpaVJKYVpMMXJ0UTg2LTFmMUNVS0lsU2UzNDJLY2h1eEFJdlRFZXAyYzZkNTN1dTUtbUY3OXlRcVlmV21MOERBN1RfSk5tZDdld2hRcWtjdHZ0cjMycm5OY1hBbDNWMXVzbF9mc05SakhJVUI2MF9DNG9XSmRsUHZTVE8xaEliU0pidnF6NU9XUU55ckxJeVdXY1d1TlVsUQ?oc=5"
     }
    ]
   },
-  "PFE": {
+  "WMT": {
    "verdict": "mantener",
    "confidence": 55,
    "entry": "vigilar",
-   "entryConfidence": 48,
-   "watchFor": "Mantener la SMA200 (≈27,0 $) y que el BPA deje de caer.",
-   "title": "Dividendo del 5,4 % pero BPA −59 %",
-   "reason": "Fase de corrección en tendencia alcista: 27,6 $, justo sobre su SMA200 (27,0 $), RSI 34,9 y −8 % en 30 días. Dividendo del 5,4 % atractivo, pero ventas +1,3 % y BPA −59 % con PER de 38,7; su CEO apuesta por IA para «reducir a la mitad» el tiempo hasta el primer estudio en humanos (TIKR).",
-   "news": "El CEO de Pfizer quiere que la IA reduzca a la mitad el tiempo hasta el primer estudio en humanos (TIKR).",
-   "risk": "Ventas casi planas (+1,3 %) y BPA −59 %.",
-   "thesis": "Dividendo del 5,4 % y cartera en renovación con ventas +1,3 %.",
-   "breaks": "Cierre bajo la SMA200 (≈27,0 $) o recorte del dividendo.",
-   "valuation": "PER 38,7 sobre BPA deprimido (−59 %); precio/ventas 2,5 y dividendo 5,4 son lo que sostiene.",
+   "entryConfidence": 42,
+   "watchFor": "Retroceso hacia la SMA200 (≈119 $); a PER 48 no ofrece margen de seguridad.",
+   "title": "Cerca de máximos con PER 48 y venta de un directivo",
+   "reason": "Recuperación a un 3 % de máximos con PER 48 y BPA −7,6 %: valoración exigente. Un vicepresidente vendió más de 2,4 M$ (TradingView) y TIKR señala que Target supera a Walmart en ventas comparables.",
+   "news": "Walmart entregó 7 de cada 10 pedidos el mismo día o al siguiente en El Fin Irresistible (El Economista); un VP vendió 2,4 M$ en acciones.",
+   "risk": "Valoración a 48x beneficios con ventas +6 %.",
+   "thesis": "Comercio electrónico y publicidad con ventas +6 %.",
+   "breaks": "Cierre bajo su SMA200 (≈119 $) o ventas bajo el +4 %.",
+   "valuation": "PER 48 y precio/ventas 1,4 con ventas +6 %: cara frente a su historia.",
    "catalysts": [],
    "sources": [
     {
-     "t": "El CEO de Pfizer quiere que la IA reduzca a la mitad el tiempo hasta el primer estudio en humanos (TIKR)",
-     "u": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQMFE4dVA3TzNoVFBjRklTcmFDQ2lnSS1xM2hBUVJ0TVVTZDUtR1RvejdjLTZkZHgwNUd3Mmt1REtRMEdiMUotNkp1djE3V0hoYUJ3Q09lVjlsc3U3VkJsSEJERmZEMzU4VzNuV05Ua2J2cHIydEVuSEY1SVYxenpFazdDV2JWd1RpbDl1eFZVcXczbWd2LXd1czkzNENnWm9uUllkamx6dFV4RWxIMThNMXVwNjREYkxvYmNTbVBNOEI5NGwzbjdB?oc=5"
-    }
-   ]
-  },
-  "TXN": {
-   "verdict": "mantener",
-   "confidence": 62,
-   "entry": "vigilar",
-   "entryConfidence": 55,
-   "watchFor": "Que mantenga la SMA50 (≈287 $) tras el salto del 10 %.",
-   "title": "Salta un 10 % tras la mejora de Cantor Fitzgerald",
-   "reason": "Tendencia alcista: 291,1 $, sobre sus SMA50 (287 $) y SMA200 (267 $), y hoy sube un 10,4 % tras la mejora de Cantor Fitzgerald y el rally de chips (Investing.com). Ventas +20,3 %, margen neto del 34 % y dividendo del 3,4 %, pero PER de 33,9 y subida de un día piden prudencia.",
-   "news": "Texas Instruments sube un 10 % tras la mejora de Cantor Fitzgerald y el rally de chips (Investing.com España).",
-   "risk": "Giro de ciclo analógico: ventas por debajo del +10 % o devolución del salto.",
-   "thesis": "Analógicos con ventas +20,3 %, margen neto del 34 % y dividendo del 3,4 %.",
-   "breaks": "Ventas bajo el +10 % o cierre bajo la SMA200 (≈266 $).",
-   "valuation": "PER 33,9 y precio/ventas 11,6 con BPA +40,7 %: alta frente a su media pero con crecimiento acelerando.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "Texas Instruments sube un 10 % tras la mejora de Cantor Fitzgerald (Investing.com España)",
-     "u": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNNmRzT1gzajBxWC1FWTR4YVBpd1BWcVNwRmd4UzFNYUZRQ25LbVpST3lfeFpReVduMVF2cEYxTzBNZ3BsWjlPUmdkd0FxN3NYa0tPSnhjcFprekhTMG5JVkFTSTlib0l5M0hxTWZiekNOQ1NHNmpQS2JyMEtQRUg4ZnpxUmJsUnR2Mmd2MnNoU2RsVmJPLTZ0bTUzZVdldmFiT0FJYVRReFY0NDM4NGk3Y2w1bzFjSjZKRUxJZg?oc=5"
+     "t": "Un vicepresidente ejecutivo de Walmart vendió acciones por más de 2,4 millones de dólares (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1tbkJVeGItOVFHaXhTLW1QQWZjWWJIRDNjQ2h4cUQ0dHJubTZ4VHZ2RndVcms5dnV0YjJMSWE5QlFCSEV3M0ZMRWlRSmtZZ0dMa2U3M3RoV2xfUW5HeVMzT2g0LU1YRHJvcGx1eA?oc=5"
     },
     {
-     "t": "Acciones de chips lideran el rebote de IA; CrowdStrike cae (Investing.com México)",
-     "u": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOcmtaczlaeDN6NktZaFBUbWVUSHFRS1NBQ2xIb2s4UFZkT05NcUh0VUdUNGtsLXAzN09iQUtQMVRoMy13VVNwUWs4NUxmTldQM21sR3VsSHBCOGNMNl9KOG8tUXVreXhPMVFoYUJLdlhRNFF4VkRKLVE0WG43QmhvZzR4V0FOWUdKZkp3UUZhV0tNb3VFSHZkUjJoTk5LRVFHY0xONVZQQTAwbk41NmVN?oc=5"
-    }
-   ]
-  },
-  "XOM": {
-   "verdict": "mantener",
-   "confidence": 58,
-   "entry": "vigilar",
-   "entryConfidence": 55,
-   "watchFor": "Que aguante la SMA200 (≈156,9 $); un cierre bajo ella cambiaría a evitar.",
-   "title": "Cae un 14 % en un mes y cotiza sobre su SMA200",
-   "reason": "Fase de corrección en tendencia alcista: 157,7 $, justo sobre su SMA200 (156,9 $), RSI 33,8 y −13,9 % en 30 días. Completa una oferta de recompra de deuda de 1.760 M$ (Investing.com). PER 16 con ventas +19,5 %, BPA +41 % y dividendo del 2,5 % es razonable.",
-   "news": "ExxonMobil completa una oferta de recompra de deuda por 1.760 millones de dólares (Investing.com España).",
-   "risk": "Pérdida de la SMA200 (≈156,9 $) si el petróleo sigue cediendo.",
-   "thesis": "Caja sólida, ventas +19,5 %, BPA +41 % y dividendo del 2,5 %.",
-   "breaks": "Cierre bajo la SMA200 (≈156,9 $) o recorte del dividendo.",
-   "valuation": "PER 16 y precio/ventas 1,7 con BPA +41 %: razonable, a −16 % del máximo de 188,5 $.",
-   "catalysts": [],
-   "sources": [
-    {
-     "t": "ExxonMobil completa una oferta de recompra de deuda por 1.760 millones (Investing.com España)",
-     "u": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNUW9aOXNCdThsN0VsZjdqSjNmWW5TQ1pQOHNyaHNuaElHREFfT09uUnNhd3hkV0loQlF2NUdCMlVNXzdGRThXRzFadXhaV0owUmgtZzBXbFpSVEt6SHgwSjZoem5HLTkxN2ZhUlNIdjkwMVlldEJ4YktWQVVWbUJhbEo3WUtmdkRHMnpnbHlydkViOUlFN3dfQjBqT0JScUp1dWdnOEN5ZEdxQlFTelNJaklWbDh5NGR2TW8zT0lINHVzUmpQZ21iTDZReEZPY0pMWGc?oc=5"
-    },
-    {
-     "t": "ExxonMobil completa oferta de deuda por 1.760 millones de dólares (Investing.com México)",
-     "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxORk1kYnNsNG1oQ2kxNDQxVnhUbVFyQ0c1akRZYTVwQzMyLXVDa251NXlsZUduS2hodHFJRzdSUm1HTUpxYWxOcDlncmRyZXpCZGw2dHhweGJVS3pMWloyZlNDbEQ5bFRyZnc5Q1h2SE1JblVSOFo0VU5rWkNMSmthT1VRMmwxTmZGYkhzX3BxczJrVnVTMW1lZThGM2p1bGxMZU5McUF5M3lzRVAwelg0bDRn?oc=5"
+     "t": "Target supera a Walmart tres trimestres seguidos en ventas comparables (TIKR)",
+     "u": "https://news.google.com/rss/articles/CBMizgFBVV95cUxORGR6cmJDYUZQUHRUZ0R1bFhuMElOY1BwdnV5ZkdmTmVjVHNZRFlhYVh3eGJ3VFFBWXA2VXVfSlNfcDhDVVhsS051amowQUVxbHNUclZwY25wMjN1ZWtJNkN2em5HdkZsNFJacm5aYmpsSGd3ZkJIbG5tQ3lQRFB0NFY4NGhHRlJKbnQ3NERqZzNqSGdKemhCaDlybXFxRWM4LU8wLVVZZHFJb2wzMVZnMG40dHJiMTc5Q0l3cXk1cWZUSVR6eG1RVER0bk11UQ?oc=5"
     }
    ]
   }
