@@ -29,6 +29,7 @@ jobs:
     timeout-minutes: 20
     env:
       PWA_KEY: ${{ secrets.PWA_KEY }}
+      PWA_KEY_NEW: ${{ secrets.PWA_KEY_NEW }}
       NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
       VAPID_JWK: ${{ secrets.VAPID_JWK }}
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}

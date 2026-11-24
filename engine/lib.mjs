@@ -13,6 +13,8 @@ export function loadConfig() {
   return {
     ...file,
     ...(env.PWA_KEY ? { pwaKey: env.PWA_KEY } : {}),
+    // Cambio de clave: mientras exista PWA_KEY_NEW, se cifra con ella y se descifra con cualquiera de las dos
+    ...(env.PWA_KEY_NEW ? { pwaKeyNew: env.PWA_KEY_NEW } : {}),
     ...(env.NTFY_TOPIC ? { ntfyTopic: env.NTFY_TOPIC } : {}),
     ...(env.NTFY_SERVER ? { ntfyServer: env.NTFY_SERVER } : {}),
     ...(env.VAPID_JWK ? { vapidJwk: JSON.parse(env.VAPID_JWK) } : {}),

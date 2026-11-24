@@ -14,7 +14,11 @@ const cfg = loadConfig();
 const DOCS = join(ROOT, "docs");
 const STATE = join(ROOT, "out", "state.json");
 const ITER = 210000;
-const keyFrom = (salt) => pbkdf2Sync(String(cfg.pwaKey || "").replace(/[^A-Z0-9]/gi, "").toUpperCase(), salt, ITER, 32, "sha256");
+const norm = (k) => String(k || "").replace(/[^A-Z0-9]/gi, "").toUpperCase();
+// Clave con la que se cifra (la nueva si hay un cambio en curso) y claves que se aceptan al descifrar.
+// Así el estado cifrado con la clave anterior se puede leer una última vez y volver a cifrar con la nueva.
+const KEYS = [...new Set([cfg.pwaKeyNew, cfg.pwaKey].map(norm).filter(Boolean))];
+const keyFrom = (salt, k = KEYS[0]) => pbkdf2Sync(k || "", salt, ITER, 32, "sha256");
 
 export function encrypt(obj) {
   const salt = randomBytes(16), iv = randomBytes(12);
@@ -23,10 +27,17 @@ export function encrypt(obj) {
   return { v: 1, kdf: "PBKDF2-SHA256", iter: ITER, salt: salt.toString("base64"), iv: iv.toString("base64"), ct: ct.toString("base64") };
 }
 export function decrypt(env) {
-  const ct = Buffer.from(env.ct, "base64");
-  const d = createDecipheriv("aes-256-gcm", keyFrom(Buffer.from(env.salt, "base64")), Buffer.from(env.iv, "base64"));
-  d.setAuthTag(ct.subarray(-16));
-  return JSON.parse(d.update(ct.subarray(0, -16), undefined, "utf8") + d.final("utf8"));
+  const ct = Buffer.from(env.ct, "base64"), salt = Buffer.from(env.salt, "base64"), iv = Buffer.from(env.iv, "base64");
+  const iter = Number(env.iter) || ITER;
+  let lastErr;
+  for (const k of KEYS) {
+    try {
+      const d = createDecipheriv("aes-256-gcm", pbkdf2Sync(k, salt, iter, 32, "sha256"), iv);
+      d.setAuthTag(ct.subarray(-16));
+      return JSON.parse(d.update(ct.subarray(0, -16), undefined, "utf8") + d.final("utf8"));
+    } catch (e) { lastErr = e; } // clave incorrecta: se prueba la siguiente
+  }
+  throw lastErr || new Error("sin clave");
 }
 export function readState() { return JSON.parse(readFileSync(STATE, "utf8")); }
 export function writeState(s) { mkdirSync(join(ROOT, "out"), { recursive: true }); writeFileSync(STATE, JSON.stringify(s)); }
@@ -121,7 +132,7 @@ function fetchPublished() {
 
 async function main() {
   const [cmd, msg] = process.argv.slice(2);
-  if (!cfg.pwaKey) throw new Error("Falta la clave (pwaKey / PWA_KEY)");
+  if (!KEYS.length) throw new Error("Falta la clave (pwaKey / PWA_KEY)");
   if (cmd === "decrypt") {
     const raw = fetchPublished();
     const s = raw ? decrypt(JSON.parse(raw)) : {};
