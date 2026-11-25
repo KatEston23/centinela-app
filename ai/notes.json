@@ -1,9 +1,27 @@
 {
- "at": "2026-11-25T07:42:15.098Z",
+ "at": "2026-11-25T13:42:06.657Z",
  "market": {
   "regime": "risk-off",
-  "summary": "El Nasdaq cae un 1,5 % el 24-nov tras el rebote del lunes por el regreso de Jensen Huang a Nvidia (+31,5 %): Nvidia cierra −5,9 % (Motley Fool) y los chips sufren (Yahoo Finance). Las bolsas asiáticas caen hasta un 8,6 % y borran el repunte (Bloomberg Línea), Anthropic pierde su precio de OPV de 83 $ y los defensivos (Lilly, Walmart) suben. Hoy se publica el PCE de octubre (8:30 ET), el último dato de inflación antes de la Fed del 9-dic, con temor a subidas de tipos según una fuente secundaria. En cripto, bitcoin cae bajo 59.000 $ por salidas de ETF.",
+  "summary": "Los futuros de Wall Street apuntan a otro día de caídas: el Nasdaq llegó a perder cerca de un 3 % en la previa por las dudas sobre la IA con Nvidia y Anthropic en rojo y la nueva amenaza arancelaria (Business Insider España, Cinco Días). Nvidia cae un 5,9 % hasta 146 $ y AMD un 6,4 %, mientras Sandisk se hunde un 19,7 %. Hoy se publican el PCE de octubre y el PIB del 3.er trimestre, último dato de inflación antes de la Fed del 9-dic (FXEmpire). En Europa, los resultados y una tregua del petróleo sostienen las bolsas a media sesión (MarketScreener) y el BCE aplaza la decisión sobre reservas mínimas (Europa Press); bitcoin sigue bajo 60.000 $ por las salidas de ETF (Expansión).",
   "events": [
+   {
+    "t": "El BCE aplaza la decisión sobre el aumento de las reservas mínimas para los bancos (Europa Press)",
+    "impact": "bajo",
+    "affects": "Banca europea",
+    "u": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQQnlBU1dMcHJoVjNPbV9ibUhpNFBjZlVVV195UGVaTWtSNVJZTzBfcGJyNWpjN0pDOERUcXhOYXZ1VW8yRDhxMnZXYWtoUFoyMDZjODluRTBmNHdLdVZnY25QdGJ1WDNHbUxmdUxIbkJXU1NXY2xleGU4RExUYTVfX1pmNk5fLXpWRzQ1bE00U0V4WDkydUZOT1lUYUQ3VkhZRGVfbUJnZkFLNHhRX0lYbWowM0l5N2I1MFlBMGgwUjJzUmNEczRRbzJB?oc=5"
+   },
+   {
+    "t": "Los resultados y la tregua del petróleo impulsan a las bolsas europeas a media sesión (MarketScreener España)",
+    "impact": "medio",
+    "affects": "Bolsa europea y petroleras",
+    "u": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNd1Y1N1JLNEtLanl2N1RKX3U5TDZZRElyZ2lwYUZJZV9yWnZmOGVLdTZKMzZUUFczcFlMTEJIdWxnZU9NNHhxQlJPUExUaVlXMVlWWmRmc2s4dDVLMExZRVhTTFNsMngteHk0ZGt4Q1pqUk9Fb2wyd1hsQ1k1blp3UkVoU2tnc1YzTzRhcm9TNkpkNl9HTWdfS3pKaF9IT2NIYVlnZzBMWl8zUHV1TkEtSlN5MUkwTVo5bXRqMW0zTEktVHpPYTkwTENuWU1PTTJ2VlZVWmxfTVk?oc=5"
+   },
+   {
+    "t": "Los futuros de Wall Street anticipan otro desplome del Nasdaq por las dudas sobre la IA con Anthropic y Nvidia en rojo (Business Insider España)",
+    "impact": "alto",
+    "affects": "Nasdaq, semiconductores e IA",
+    "u": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPckVYWG9zTGxkdE1MelgzMzlnMGpreGsxTDU0SWJRbnNtRHZYYmFFT2Q5QjIteWN6WTFiVEgtekNYMkQ1ZjlUSHl6OC1kQUxUVEVyUTJ0cmQyNVhRVFRtZVJ3dFM0ZUZrV1JwYkE2Z3JXdXVpRkR4VXlkcU5BQWN2MVZRdUlYcXhoUVJ5RGVYV3BWVTdmUGQzcmlESV80cGRYY0RoTEUtRVllOTI5bVRNV0pGc2FuSTZxOUJ3Q1pLbnlreTl2V2VjbVhuNTlnVjFLUmlMSEd0RGdXUjMtQ2lfc2pvTkVEN1lQNndWcks1Yw?oc=5"
+   },
    {
     "t": "Nvidia devuelve 240.000 M$ de capitalización un día después de su rally por Huang (Motley Fool)",
     "impact": "alto",
@@ -33,12 +51,6 @@
     "impact": "medio",
     "affects": "Criptomonedas y mineras",
     "u": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPYlIzbXlMTVRtRGtwdkVkdjNtTnF4cmFaVFI2SHZWdmZVdDVYZDZEV1FsZl9lVzh3M09MemdIalpadWNJRXlVa0hiMTJfblRyTF9hTEgtdzFSaHlnUG5JWE9SZVBFbzJEdG11Wkp1T1hvLThfemFBM0g5aHgtTXA4NmMteHE5ZFptc0RJekl6X1NBdWt4VGF0UWR2OWxrOU9ZUjRfRGhPTXF0Y01RUWg2WTktdTlfUHJCc2Itd2dyTmVIS29pLTNr?oc=5"
-   },
-   {
-    "t": "El Ibex 35 abre con dudas ante el Nasdaq (−1,5 %) y el temor a más aranceles (El Confidencial)",
-    "impact": "medio",
-    "affects": "Bolsa europea y Nasdaq",
-    "u": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNMVU1OXI3RVlnY0xSNW1HbktMX3l6U0xDWGRRQzBwd3N4UHpJYXRKT3R1TDJsZHpkcE1kM0lhNll5aWs0cEtEeUszcWJrVVdDSVVoVHRhOXR5clN6SmdReklyVkp2TDRPRnJaT19TRmJ3Y3Vhenk0RUpsVWtPOVhucjQzdkY2aldGellkMm1TOXkzeWFt?oc=5"
    }
   ],
   "scenarios": [
@@ -118,8 +130,8 @@
    "entryConfidence": 50,
    "watchFor": "Que cierre dos sesiones seguidas sobre los 175 $ tras un PCE contenido el 25-nov, o que la Fed no endurezca el tono el 9-dic.",
    "title": "Nvidia devuelve el rally del regreso de Huang",
-   "reason": "Fase débil bajo su SMA200 (≈203 $): cae un 7,9 % hoy y un 29,7 % en 30 días tras devolver parte del +31,5 % del lunes. Con PER 17,6, ventas +93 % y margen neto 62,5 % la valoración es baja, pero las investigaciones abiertas y una beta de 2,5 piden esperar a que el precio se estabilice.",
-   "news": "Cerró el martes con −5,9 % (155,38 $) y perdió unos 240.000 M$ de capitalización pese a una mejora de analistas con 29 % de potencial (Motley Fool); EL PAÍS enumera múltiples investigaciones, rebelión interna y financiación circular como riesgos del regreso de Huang, y Trump negó necesitar indultarlo (TradingView).",
+   "reason": "Fase débil bajo su SMA200: cae un 5,9 % hoy hasta 146 $ y un 32,9 % en 30 días tras devolver parte del rally por el regreso de Huang. Con PER 17,6, ventas +93 % y margen neto 62,5 % la valoración es baja, pero las investigaciones abiertas, el Nasdaq con otra jornada de caídas y una beta de 2,5 piden esperar a que el precio se estabilice.",
+   "news": "Amplía pérdidas al desvanecerse el rally del regreso de Jensen Huang: −5 % en la preapertura (Investing.com España, Yahoo Finanzas); perdió unos 240.000 M$ de capitalización pese a una mejora de analistas (Motley Fool) y COPE recoge que Trump tenía 370.000 acciones de Nvidia.",
    "risk": "Una beta de 2,47 y las investigaciones sobre Huang pueden provocar otro −10 % en una sola sesión.",
    "thesis": "Centros de datos con ventas +93 % y BPA +130 %, margen neto 62,5 % y foso de software CUDA; PER 17,6 frente a un máximo de 243,4 $ y un múltiplo de unas 12 veces beneficios futuros, el más bajo desde 2012 (Reuters, citado por Wealth Professional).",
    "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, o un cierre mensual bajo el mínimo de 52 semanas (124,5 $).",
@@ -158,7 +170,7 @@
    "entryConfidence": 60,
    "watchFor": "Que recupere los 432 $ (SMA200) con volumen y AMD desmienta de forma verificable el informe corto de Hunterbrook.",
    "title": "AMD cae un 10 % con informe corto abierto",
-   "reason": "Fase lateral, a −37 % de máximos y muy por debajo de la SMA50 (≈550 $): cae un 10 % hoy y un 23 % en 30 días. Con PER 90, precio/ventas 15 y beta 2,7, el informe corto de Hunterbrook deja poco margen de error.",
+   "reason": "Fase lateral, a −37 % de máximos y muy por debajo de la SMA50 (≈550 $): cae un 6,4 % hoy y un 30,9 % en 30 días. Con PER 90, precio/ventas 15 y beta 2,7, el informe corto de Hunterbrook deja poco margen de error.",
    "news": "Hunterbrook comunicó el 19-nov una posición corta y acusó a AMD de facturar más del 20 % a clientes de China y Hong Kong; hoy los chips se hunden con Nvidia y Micron (Yahoo Finance). AMD afirma cumplir los controles de exportación.",
    "risk": "Una investigación de exportaciones confirmada o un nuevo recorte de objetivos de precio.",
    "thesis": "Ventas +42 % y BPA +127 % con CPU de servidor y aceleradores de IA; pilar adicional: diversificación frente a Nvidia en centros de datos.",
@@ -195,7 +207,7 @@
    "watchFor": "Que recupere los 83 $ del precio de OPV con volumen o que su primer informe trimestral como cotizada confirme el crecimiento de ventas.",
    "title": "Anthropic pierde el precio de su salida a bolsa",
    "reason": "Sin historia suficiente para fase técnica; cotiza a 80,04 $, un 3,6 % bajo los 83 $ de la OPV y un 8,7 % abajo hoy. Precio/ventas 33 y margen neto de −343 % hacen que el rebote dependa del ánimo hacia la IA.",
-   "news": "Cerró el martes con −6,54 % bajo su precio de salida (EFE, Heraldo); Business Insider España señala el reto de convertir un crecimiento récord en beneficios para justificar la valoración.",
+   "news": "Anthropic cae por debajo de su precio de salida de 83 $ en menos de una semana (Bolsamania); Business Insider España señala el reto de convertir un crecimiento récord en beneficios, y los futuros del Nasdaq caen con Anthropic y Nvidia en rojo.",
    "risk": "Cierre semanal bajo 75 $ o recorte de previsiones antes de su primer informe como cotizada.",
    "thesis": "Líder de IA generativa con demanda institucional alta en la OPV y compromiso de gasto de 47.200 M$ en Azure.",
    "breaks": "Cierre semanal bajo 75 $ o un recorte de las previsiones de ventas en su primer informe trimestral como cotizada.",
@@ -229,7 +241,7 @@
    "entryConfidence": 55,
    "watchFor": "Que cierre dos semanas seguidas sobre la SMA50 (≈170 $) o que se estabilicen los precios NAND en el próximo informe de memoria.",
    "title": "Sandisk se desploma un 20 % en una sesión",
-   "reason": "Fase lateral tras caer un 54,8 % en 30 días y un 19,7 % hoy (RSI 25, a −73 % de máximos). PER 5,1, ventas +272 % y margen neto 67 % abaratan mucho la acción, pero la memoria sigue en desplome sectorial y beta 3,8.",
+   "reason": "Fase lateral tras caer un 54,8 % en 30 días y un 19,7 % hoy (RSI 25, a −73 % de máximos). PER 5,1, ventas +272 % y margen neto 67 % abaratan mucho la acción, pero la memoria sigue en desplome sectorial, hay ventas de directivos y la beta es 3,8: es un cuchillo cayendo.",
    "news": "Directivos vendieron acciones por 2,37 M$ y 0,19 M$ (Investing.com España) y Simply Wall St habla de volatilidad tras la división de acciones y del debate sobre la memoria para IA; otras fuentes citan el temor a precios de memoria y la salida del CEO de Nvidia.",
    "risk": "Beta 3,8 y ciclo de memoria: un nuevo recorte de precios NAND puede añadir otro −20 %.",
    "thesis": "Memoria NAND para IA con ventas +272 % y margen neto 67 %; pilar: escasez de oferta y demanda de almacenamiento en centros de datos.",
@@ -260,7 +272,7 @@
    "entryConfidence": 55,
    "watchFor": "Que recupere los 267 $ (SMA200) o que Analog Devices confirme demanda industrial estable en su próximo resultado.",
    "title": "Texas Instruments cae un 12 % con los analógicos",
-   "reason": "Fase lateral bajo la SMA200 (≈267 $): cae un 11,8 % hoy y un 13,8 % en 30 días. El titular no da un motivo propio y coincide con el castigo a los analógicos que lideró Analog Devices; PER 37,5 es alto para ventas +20 %.",
+   "reason": "Fase lateral bajo la SMA200 (≈267 $): cae un 2,7 % hoy tras el −11 % reciente que cita Rankia y un 18,6 % en 30 días. El titular no da un motivo propio y coincide con el castigo a los analógicos que lideró Analog Devices; PER 37,5 es alto para ventas +20 %.",
    "news": "TradingView la lista entre las acciones de memoria y semiconductores que caen el 24-nov y Yahoo habla de rotación a defensivos con la IA debilitada; no hay titular propio de la compañía.",
    "risk": "Que el castigo sectorial se alargue y pierda el mínimo de 52 semanas del trimestre.",
    "thesis": "Analógicos con ventas +20 %, margen neto 34 % y dividendo 3,4 %.",
@@ -322,7 +334,7 @@
    "entryConfidence": 55,
    "watchFor": "Que mantenga los 169 $ (SMA200) y cierre por encima de los 191 $ (SMA50).",
    "title": "Arista cae un 6 % con ventas de directivos",
-   "reason": "Corrección en tendencia alcista: −5,8 % hoy, −22,5 % de máximos y justo en la SMA200 (≈169 $). Ventas +40,7 % y margen neto 40 % sostienen el negocio, pero los directivos están vendiendo acciones.",
+   "reason": "Corrección en tendencia alcista: −4,8 % hoy, −22,5 % de máximos y justo en la SMA200 (≈169 $). Ventas +40,7 % y margen neto 40 % sostienen el negocio, pero los directivos están vendiendo acciones.",
    "news": "Investing.com informa de ventas de acciones del presidente y del CTO (1,74 M$ y 5,64 M$), y TradingView la incluye entre las que caen el 24-nov.",
    "risk": "Las ventas de directivos y la rebaja del sector pueden romper la SMA200.",
    "thesis": "Redes de centros de datos con ventas +41 % y margen neto del 40 %.",
@@ -394,7 +406,7 @@
    "watchFor": "Que cierre sobre la SMA200 (≈381 $) con la fusión con SpaceX confirmada o desmentida antes del 8-dic.",
    "title": "Tesla, atada a la fusión con SpaceX",
    "reason": "Fase de recuperación pegada a la SMA200 (≈381 $) con RSI 52: sin tendencia clara. PER 481 y BPA −39 % hacen que el precio dependa de titulares como la fusión de 3,5 billones.",
-   "news": "Tesla y SpaceX negocian una fusión de 3,5 billones de dólares bajo presión para cerrar este año (DiarioBitcoin) y el FT nombra a los cinco consejeros que la negocian; RBC recomienda comprar (MarketScreener).",
+   "news": "Bolsamania y TradingView recogen conversaciones de fusión entre Tesla y SpaceX, aún lejos de concretarse y con riesgos de votación y regulatorios; la acción apenas se mueve (−0,2 %) mientras el Nasdaq cae.",
    "risk": "Si se rompe la negociación, pierde el soporte de la SMA200.",
    "thesis": "Vehículo eléctrico, energía y robotaxi con un posible vehículo conjunto con SpaceX.",
    "breaks": "Que se rompa la negociación con SpaceX o cierre bajo la SMA200 (≈381 $) con ventas en caída.",
@@ -504,7 +516,7 @@
    "entryConfidence": 75,
    "watchFor": "Que absorba el desbloqueo de 16.600 M de tokens y el régimen cripto supere 40.",
    "title": "Monad se hunde un 23 % tras su desbloqueo",
-   "reason": "Tendencia bajista: −22,7 % hoy, −43 % en 30 días y −78 % desde máximos con RSI 26. El desbloqueo de 16.600 M de tokens del 24-nov (WEEX) añade oferta con el régimen cripto en 29,3/100.",
+   "reason": "Tendencia bajista: −19,8 % hoy, −46 % en 30 días y −78 % desde máximos con RSI 26. El desbloqueo de 16.600 M de tokens del 24-nov (WEEX) añade oferta con el régimen cripto en 29,3/100.",
    "news": "WEEX plantea si MON puede absorber los 16.600 M de tokens liberados el 24-nov; el mercado cripto sigue bajo presión por las salidas de ETF de bitcoin.",
    "risk": "Nuevos desbloqueos y régimen RISK_OFF pueden llevarla a nuevos mínimos históricos.",
    "thesis": "Cadena de alto rendimiento con adopción de desarrolladores, hoy sin flujos que la respalden.",
@@ -564,7 +576,7 @@
    "watchFor": "Que el Brent se mantenga sobre 80 $ y Shell recupere la SMA50 (≈99,5 $).",
    "title": "Shell firma 400 M$ de órdenes con Pdvsa",
    "reason": "Corrección en tendencia alcista: −12,6 % en 30 días, RSI 32 y sobre la SMA200 (≈90,3 $). PER 8,1, dividendo 3,9 % y beta 0,14 ofrecen defensa, pero el crudo sigue débil.",
-   "news": "Shell y Pdvsa firmaron nuevas órdenes de servicio por unos 400 M$ para elevar producción de crudo y gas en Monagas (AlbertoNews, La Patilla).",
+   "news": "Shell y Venezuela firman órdenes de servicio por 400 M$ para elevar la producción de crudo y gas en Monagas (BNamericas, Globovisión) y las bolsas europeas suben con la tregua del petróleo (MarketScreener). Cae un 0,4 % hoy.",
    "risk": "Brent bajo 80 $ sostenido y riesgo político en Venezuela.",
    "thesis": "Caja, dividendo 3,9 %, recompras y gas natural licuado.",
    "breaks": "Recorte del dividendo o de recompras, o Brent bajo 80 $ sostenido.",
