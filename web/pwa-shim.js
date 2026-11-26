@@ -89,7 +89,7 @@ renderPortfolio = () => {
     tds[1].replaceChildren(`${qty} uds · medio ${avg} · hoy `, el("span", { class: tds[4].className.replace(/num|c-today/g, "").trim(), text: today }));
     // Fuera de horario el precio es el de preapertura/cierre ampliado (como Revolut); se indica el cierre oficial
     const hq = allHoldings().find((h) => h.symbol === sym || h.quote === sym)?.q;
-    if (hq?.regularPrice != null && hq.extSession) tds[1].append(` · ${hq.extSession === "pre" ? "precio de preapertura" : "precio de cierre ampliado"}, cierre ${fmtMoney(hq.regularPrice, hq.currency)}`);
+    if (hq?.regularPrice != null && hq.extSession) tds[1].append(` · ${hq.extSession === "pre" ? "precio de preapertura" : `fuera de horario ${fmtPct(hq.extChange)}`}, cierre ${fmtMoney(hq.regularPrice, hq.currency)}`);
     tds[2].classList.add("c-hide"); tds[4].classList.add("c-hide");
     tds[7].querySelector("svg")?.setAttribute("preserveAspectRatio", "none");
     tr.prepend(el("td", { class: "c-av" }, avatar(sym)));
@@ -117,6 +117,8 @@ async function liveTick() {
     const q = h.q; if (!q) return;
     try {
       if (q.kind === "crypto") {
+        // Las criptos de Revolut X llevan el precio del propio Revolut X (motor, cada 15 min): Binance no lo pisa
+        if (q.priceSrc === "Revolut X" || q.src === "Revolut X") return;
         const r = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbol=${encodeURIComponent(h.quote.replace(/-/g, ""))}`);
         if (!r.ok) return;
         const j = await r.json(), p = Number(j.lastPrice);

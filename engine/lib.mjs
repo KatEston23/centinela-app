@@ -150,8 +150,13 @@ export async function analyze(symbol, opts = {}) {
   // Preapertura: es un día nuevo (se añade un punto). Cierre ampliado: prolonga el día de hoy.
   let ext = null;
   if (opts.ext) { try { ext = await extendedQuote(symbol); } catch {} }
+  // «Hoy» = sesión oficial frente al cierre oficial anterior (como Revolut). Antes, en el cierre ampliado
+  // se comparaba el precio fuera de horario con el cierre de AYER y salía un % que no era ni uno ni otro.
+  const regPrev = closes.length > 1 ? closes[closes.length - 2] : null;
+  let extChange = null;
   if (ext) {
     price = ext.price;
+    extChange = regular ? ext.price / regular - 1 : null;
     if (ext.session === "pre") { closes.push(price); rows.push([ext.at, price, null]); }
     else closes[closes.length - 1] = price;
   }
@@ -169,7 +174,8 @@ export async function analyze(symbol, opts = {}) {
   const s50 = sma(closes, 50), s200 = sma(closes, 200);
   const r14 = rsi(closes);
   const prevClose = closes.length > 1 ? closes[closes.length - 2] : null;
-  let ch1 = prevClose ? price / prevClose - 1 : null;
+  // Preapertura: lo que se mueve hoy antes de abrir (frente al último cierre). Cierre ampliado: la sesión oficial.
+  let ch1 = ext?.session === "post" ? (regPrev ? regular / regPrev - 1 : null) : prevClose ? price / prevClose - 1 : null;
   if (m.instrumentType === "CRYPTOCURRENCY") { try { const p24 = await price24hAgo(symbol); if (p24) ch1 = price / p24 - 1; } catch {} }
   const v = vols.filter((x) => x != null);
   const vAvg = v.length > 21 ? v.slice(-21, -1).reduce((a, b) => a + b, 0) / 20 : null;
@@ -202,7 +208,7 @@ export async function analyze(symbol, opts = {}) {
     exchange: m.fullExchangeName || m.exchangeName || "",
     currency: m.currency,
     price: round(price, 4),
-    ...(ext ? { regularPrice: round(regular, 4), extSession: ext.session, extAt: new Date(ext.at * 1000).toISOString() } : {}),
+    ...(ext ? { regularPrice: round(regular, 4), extSession: ext.session, extAt: new Date(ext.at * 1000).toISOString(), extChange: round(extChange) } : {}),
     change1d: round(ch1),
     change7d: round(pct(closes, 5)),
     change30d: round(pct(closes, 21)),

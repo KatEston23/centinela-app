@@ -108,7 +108,7 @@ export function liveTickers() {
       const sym = String(t.symbol || "").toUpperCase().replace(/[/_]/, "-");
       const mid = num(t.mid) || (num(t.bid) && num(t.ask) ? (num(t.bid) + num(t.ask)) / 2 : num(t.last_price));
       if (!sym.includes("-") || !mid) continue;
-      out[sym] = { price: mid, bid: num(t.bid) || null, ask: num(t.ask) || null, last: num(t.last_price) || null };
+      out[sym] = { price: mid, bid: num(t.bid) || null, ask: num(t.ask) || null, last: num(t.last_price) || null, chg24raw: t.price_change_24h ?? null, raw: sym === "BTC-EUR" ? t : undefined };
     }
     return { tickers: out };
   } catch (e) { return { tickers: out, error: String(e.stderr || e.message).replace(/s+/g, " ").slice(0, 160) }; }
@@ -175,5 +175,6 @@ export async function syncRevx(prev, now = new Date()) {
     }
   }
   diag.live = Object.keys(live).length;
+  if (live["BTC-EUR"]?.raw) diag.sample = live["BTC-EUR"].raw;
   return { configured: true, at, assets, diag };
 }

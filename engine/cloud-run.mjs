@@ -43,6 +43,7 @@ if (process.env.REVX_ENABLED !== "0") {
     log.push(`Revolut X: ${C.assets.map((x) => `${x.asset} ${x.qty}${x.staked ? ` (staking ${x.staked})` : ""}${x.qtyGap ? ` ⚠ historial no cuadra ${(x.qtyGap * 100).toFixed(1)} %` : ""}`).join(", ") || "sin saldo"}` +
       ` · precio en vivo ${C.diag?.live || 0} pares${C.diag?.liveError ? " (error: " + C.diag.liveError + ")" : ""}` +
       ` · movimientos ${JSON.stringify(C.diag?.tx || {})}${C.diag?.errors?.length ? " · errores: " + C.diag.errors.join("; ") : ""}`);
+    if (C.diag?.sample) log.push("Revolut X ticker BTC-EUR: " + JSON.stringify(C.diag.sample));
   } else log.push("Revolut X sin configurar: " + (C.error || ""));
 }
 
@@ -98,7 +99,16 @@ try {
 } catch (e) { log.push("Drive: " + e.message); }
 // Tickers europeos de Revolut (p. ej. TPG0) → símbolo de Yahoo
 Object.assign(tickerMap, s.settings?.map || {});
-{ const f = await resolveTickers(s, s.ledger?.rows); if (f.length) log.push("Tickers resueltos: " + f.join(", ")); }
+{
+  const f = await resolveTickers(s, s.ledger?.rows); if (f.length) log.push("Tickers resueltos: " + f.join(", "));
+  // Cotizaciones y señales de una empresa equivocada (p. ej. SND = Smart Sand en vez de Schneider): fuera
+  for (const old of s._staleQuotes || []) {
+    delete s.quotes[docId(old)];
+    s.signals = s.signals.filter((x) => x.symbol !== old);
+    if (s.analysis) delete s.analysis[old];
+  }
+  delete s._staleQuotes;
+}
 const tier1 = new Set();
 for (const h of holdingsFromLedger(s.ledger?.rows || [])) tier1.add(h.quote);
 for (const a of s.crypto?.assets || []) if (!FIAT.has(a.asset)) tier1.add(`${a.asset}-EUR`);
