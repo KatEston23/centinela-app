@@ -1,9 +1,21 @@
 {
- "at": "2026-11-26T07:43:48.748Z",
+ "at": "2026-11-26T13:41:11Z",
  "market": {
   "regime": "risk-off",
-  "summary": "Wall Street está cerrada hoy por Acción de Gracias tras una sesión mixta: el Nasdaq llegó a caer cerca de un 4 % por la IA y los aranceles pero recortó pérdidas cuando Michael Burry cerró sus puts, y el Dow subió 357 puntos (Negocios.com, El Economista). El PCE de octubre salió por encima de lo previsto y la Fed detecta que suben los precios y el consumo se estanca (Negocios.com); la reunión es el 8-9 de diciembre. Los futuros europeos apuntan a subidas de más del 2 % (Cinco Días) y el Ibex a 19.000 puntos. Bitcoin rebota a 60.500 $ pero sigue en régimen RISK_OFF.",
+  "summary": "Wall Street está cerrada hoy por Acción de Gracias tras una sesión de ventas en IA: Nvidia pidió a Dell y Super Micro detener los envíos de servidores a Malasia, Singapur, Tailandia e Indonesia por las nuevas normas de exportación de EE. UU. y S&P puso su calificación AA en CreditWatch negativo (Expansión, Europa Press). Las actas del BCE de octubre muestran que muchos miembros habrían apoyado subir tipos (hoy 2,5 %) y se espera un alza el 17-dic (Infobae); los líderes del euro acordaron que Pablo Hernández de Cos presida el BCE desde febrero (El País). El Ibex sube cerca de un 1,8 % hacia los 19.000 puntos con la banca (EFE, Europa Press); Bitcoin se mueve sobre 60.000 $ con liquidez reducida y sigue en régimen RISK_OFF.",
   "events": [
+   {
+    "t": "Nvidia detiene envíos de servidores al sudeste asiático y S&P pone su calificación en revisión negativa (Expansión)",
+    "impact": "alto",
+    "affects": "Semiconductores, servidores de IA (Dell, Super Micro) y Nasdaq",
+    "u": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZjg4dFhtRGlGUzBzeGZmUmpKUkt4RXY3NE91cjllVDY4ZzZMSEpqLUxXcFV1aFR0UWpjMlF0Ny1uYXltVTVRNU94NlBnSk5VdVZDYkJDVmM0X0V3QTE0YVduelhrVzNNclJFeksydF9xNzZDSXI2ZjhlVDRXTndGYnY2aWRLdjVGMm9JMnViYUZTSFBsQXZBcDFhd3c2MnFnVTdITVdhZzBtcU5wMTdqbtIBsAFBVV95cUxQYWpXbjBVa2F4QzNEeFZfMjlyb1R0VEhoc0NyYVhwek11ejdJSUtXMHNtX3NmWnh5YjdQNnI5V05fN2ljZERuYWVBdE96cVJtVTdWLWktU2RMYUJRS1I4LWtvUlNXV1NmWlFVempSa0Y1OVZhSDZXM1ZPd3Q4TkJGdHJSdkdOaEhQTTNVei1QZmFyZ2NJb0lPZkdtajZ4OWk1U0tsTWVST2M5S1NDendkZg?oc=5"
+   },
+   {
+    "t": "Actas del BCE: muchos miembros habrían apoyado subir tipos en octubre (FXStreet)",
+    "impact": "alto",
+    "affects": "Euro, bonos, banca europea e Ibex",
+    "u": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPLXJKb1c4SFpQV1FsRWRzdEkzT0lnRmw1TzBObmxOS3FoV2xWaWNib1lYaXdlM18ydXpZLTNtX3ZQMUtscFA1V1NWbFBXelVvX2FZcjhsYWpZOGZHYlVhZU5sS0ZVUE9RMmRIWkhKWERKQTBsbElLeW5tenVwclJIZXFRRndnMnViQUVDSW0tZ0FDM1F3NjhzTVpfUFpVUkhoVVZUcl9naXdBZ2w0bW4xdTA4eGxiX1F2aE1XVGkyUldPeUxnN1piTmJWeWcwM19WNnNRVDl0dUxPRmcxcXdScHliTkxNbFhER3FYQlFrOA?oc=5"
+   },
    {
     "t": "Wall Street cierra mixto antes de Acción de Gracias; el Dow sube 357 puntos mientras la IA pierde fuelle (Negocios.com)",
     "impact": "alto",
@@ -35,12 +47,6 @@
     "u": "https://news.google.com/rss/articles/CBMilAJBVV95cUxOVl93TGJ5emJSVmNKQUVfSXV3czAtVnQtOW81VHR6dXVmRHdmdURkQjVjZW5mNHR5MnM1di02RldUdk1vblNRSFJ1ZGRjRHlHbHJwbzJfc1Z3aDZVQ3hzTjFFRUJ2SnRxX3lBRTJmNThJWmUySlZER3JDM1l2NHdXZW1sa29mYkZ3OHlFUXl0M25wQ2hTS0JpSVFsLTMzTlZuQnQzbTVJRkFxWnJodlh2Ukl1MHN2c19JQzRQTy0wbjItOElneGFObXZUYUdHcnpKdmRIWE42Z2Nhc296YnM2VTdRSXYxZXV5WS04VmF2TVM3RmRkcjk4cG9LbzJzTW5lZlRfSVlEc0RrbnllSVAyUFBBNFLSAf8BQVVfeXFMUDV1eGZ2SUhwaDNGOTVYcDlKdVJEV3R1ZXFYdW41dHhXd2FVYzJiYU9QOW9IZFVMMkFPdF9UT2lCUFhhRlFSTTVDYzE4R0g2TlZkWUttczl6OGZZSExYN0NLWVlKTllwZGJBODRkVEg2VHZnSlBMVlZLa2x5MlhUTzdocU5sTHlheTNMMU50MzJMYUdxUjBGNEpjS1c3cWxRRzBNR2p1VlRiTXpLQTFOMFQ1aWw0TnFlTVNGR1hGTjRCWHNmXzJMblU4MmIzN1dYTVZ1VVlDb1pyWXJXSzF3YjBHdnY0QVhIMjNuSnVJZzAwRElvTHhsaGpXQWpTQkg0?oc=5"
    },
    {
-    "t": "Los líderes de la UE cierran hoy el relevo en el BCE, con Hernández de Cos favorito (el boletín)",
-    "impact": "bajo",
-    "affects": "Banca y deuda europeas",
-    "u": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPOFQtT1JiSlVqRGdDZ2o2R0dmXzVpZDhJUFVJS2dMa0I0TXlHRzFyTXhBYlRxWllreFp4emlEOHNpQXdzczRBRm9ERW5TT0h0cWpRMjhOV0ZFNkItTUliZFpqdWZ0VGlmYTE3SWQwbC1PMVlwVkhZSFE4STZxVWpKUXJ6QldBNmdGbXBJU3RhXzV3R3I2R3plLWNmOUluR1JmWDVN0gGoAUFVX3lxTFBLMWU0N0V5WGxBNExZejM0WVg1Rzl4Q0YySEVLaEV0RlZiaU5Xd05RSnh4TzdmS05VYlBWYkNQSnphRVEzTWo0dWhtZkptSGpUUWNOTEtVOS15ZDFoUWlZUWpDZ2loM3lDTmJqMGliVXJLeXZJaVUzM1dGMXRyMHdrNS1nbTNUbllkZmRLMFkwMTJfM3doRERocjI3bEg2emxoODU4REVFQQ?oc=5"
-   },
-   {
     "t": "Bitcoin se recupera hasta 60.500 $ pero persisten los temores regulatorios (Investing.com España)",
     "impact": "medio",
     "affects": "Criptomonedas",
@@ -65,11 +71,6 @@
    }
   ],
   "catalysts": [
-   {
-    "d": "2026-11-26",
-    "e": "Cumbre de la UE sobre la dirección del BCE; Wall Street cerrada por Acción de Gracias",
-    "imp": "bajo"
-   },
    {
     "d": "2026-12-04",
     "e": "Informe de empleo de EE. UU. de noviembre",
@@ -138,7 +139,7 @@
   ]
  },
  "crypto": {
-  "summary": "Régimen RISK_OFF con score 29,3/100: pesa la amplitud de alts (solo el 11 % de 19 sobre su SMA200, 10/100), el drawdown del 37,5 % desde máximos y la volatilidad alta; el momentum en capitulación (0 % de 20 monedas positivas a 30 días) es señal contraria. Bitcoin rebota a 60.500 $ pero Galaxy avisa de una posible caída a 48.500 $ (FXStreet) y hay un proyecto de ley para inmovilizar su reserva 20 años (DiarioBitcoin): prudencia."
+  "summary": "Régimen RISK_OFF con score 29,3/100: pesa la amplitud de alts (solo el 11 % de 19 sobre su SMA200, 10/100) y el momentum en capitulación, señal contraria; funding y dominancia sin datos. Bitcoin rebota (+4 % en 24 h) cerca de 61.000 $ pero con liquidez reducida por Acción de Gracias (Talos, TradingView), los ETF de Ethereum registran salidas de 1.230 M$ (TradingView) y Galaxy avisa de una posible caída a 48.500 $ (FXStreet): prudencia."
  },
  "notes": {
   "NVDA": {
@@ -147,9 +148,9 @@
    "entry": "vigilar",
    "entryConfidence": 35,
    "watchFor": "Retroceso hacia 144–140 $ (38 % de Fibonacci y mitad del salto de 125,5 a 155,4 $) con el Nasdaq estabilizado; por encima de 155 $ no perseguir.",
-   "title": "Nvidia: salto del 24 % en 2 sesiones y ya cae un 3,9 %",
-   "reason": "Fase débil bajo su SMA200 y alerta de euforia: subió un 23,8 % en dos sesiones (24-nov, 4,8 desviaciones) y solo ha devuelto el 14 %; en 12 episodios parecidos en 5 años, 6 devolvieron la mitad en 20 sesiones (kHalf 6/12) y la devolución media a 20 sesiones fue del 52 % (giveBack20). Las noticias (S&P amenaza con rebajar la calificación por gobernanza, Moody's baja la perspectiva, Bernstein recorta el objetivo a 200 $) no elevan beneficios de forma demostrable, así que para quien la tiene conviene vender una parte, no todo.",
-   "news": "Bolsamania: S&P avisa de que rebajará la calificación de Nvidia si persisten las «deficiencias» de gestión y gobernanza; Moody's pasó la perspectiva de positiva a estable tras la salida de Huang y Bernstein recortó el objetivo de 400 a 200 $ (Bloomberg Línea, Investing Live).",
+   "title": "Nvidia: freno a envíos y aviso de S&P tras el rebote",
+   "reason": "Fase débil bajo su SMA200 y alerta de euforia: subió un 23,8 % en dos sesiones (24-nov, 4,8 desviaciones) y solo ha devuelto el 14 %; en 12 episodios parecidos en 5 años, 6 devolvieron la mitad en 20 sesiones (kHalf 6/12) y la devolución media a 20 sesiones fue del 52 % (giveBack20). Hoy suma dos malas noticias: detiene envíos de servidores a cuatro países del sudeste asiático y S&P pone su calificación AA en CreditWatch negativo; ninguna eleva beneficios de forma demostrable, así que para quien la tiene conviene vender una parte, no todo.",
+   "news": "Expansión y el FT: Nvidia pide a Dell y Super Micro parar los envíos a Malasia, Singapur, Tailandia e Indonesia por las normas de exportación del 19-nov; Europa Press: S&P amenaza con rebajar la calificación por dudas de gobernanza tras el caso Huang.",
    "risk": "Si pierde los 140 $ (mitad del salto), el siguiente soporte es el mínimo de 52 semanas en 124,5 $, un 18 % más abajo.",
    "thesis": "Centros de datos con ventas +93 % y BPA +130 %, margen neto del 62,5 % y foso de software CUDA; PER 17,6 frente a un máximo de 243,4 $.",
    "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, que S&P ejecute la rebaja de calificación, o un cierre mensual bajo 124,5 $.",
@@ -168,20 +169,20 @@
    ],
    "sources": [
     {
+     "t": "Nvidia detiene los envíos de chips al sudeste asiático (Expansión)",
+     "u": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZjg4dFhtRGlGUzBzeGZmUmpKUkt4RXY3NE91cjllVDY4ZzZMSEpqLUxXcFV1aFR0UWpjMlF0Ny1uYXltVTVRNU94NlBnSk5VdVZDYkJDVmM0X0V3QTE0YVduelhrVzNNclJFeksydF9xNzZDSXI2ZjhlVDRXTndGYnY2aWRLdjVGMm9JMnViYUZTSFBsQXZBcDFhd3c2MnFnVTdITVdhZzBtcU5wMTdqbtIBsAFBVV95cUxQYWpXbjBVa2F4QzNEeFZfMjlyb1R0VEhoc0NyYVhwek11ejdJSUtXMHNtX3NmWnh5YjdQNnI5V05fN2ljZERuYWVBdE96cVJtVTdWLWktU2RMYUJRS1I4LWtvUlNXV1NmWlFVempSa0Y1OVZhSDZXM1ZPd3Q4TkJGdHJSdkdOaEhQTTNVei1QZmFyZ2NJb0lPZkdtajZ4OWk1U0tsTWVST2M5S1NDendkZg?oc=5"
+    },
+    {
+     "t": "S&P Global amenaza con bajar el rating de Nvidia por las dudas sobre su gobernanza (Europa Press)",
+     "u": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQZ1g1NE1oZkpIVmJ3anl3WS1jbkV6WFIwR2xYV0JxQ19XQ3pJRXU1aC1xVTBqVkYxZTFDdmRGTUNpckxqVW1zd192YmtXU19DR1VudkZlamxKUDlxazJxQ1VYbW5fX3pHUTM3TlFvUWRGZFpDeW5qWWY2ZVRDSDladGtjLWI2UkdEaFFDVmVPNFBoRVNCR0FVTElOWHlwWGliemxDMmZneC1mZkF6MkRKNnZ3MXpFak1ZWWVQcVZkUFJfRk1malI3MXhJZGNSTUFBY3c?oc=5"
+    },
+    {
      "t": "S&P avisa a Nvidia: bajará su calificación si siguen las deficiencias de gestión (Bolsamania)",
      "u": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQWDI2SVhRWlBiY1BfdzVDVzNMTTl1aC1rZl9uUDJneEJObUY5WWdOSGhWX3g5N0pKRFBHd1A3RmwwWWtobDNfclpYY3BjTTNPV3FfQ0hfLVNvaFEyMm0zTXFTSlpvc0pGWTl5V1hlNEFsc0hOMllpckFDbnBnZ3RrSy1oOGw1aWtLSjhhSmRDZ3Bwbjd5ZW1ONVZpN3RJVVljTmp4b1ZQUjRoSnJVSVZ3SmI4Wm01STBVQ3FhWFktNUxMeHJjUjZ1YdIBzgFBVV95cUxQWTBYUlNqNlVkNzVabVJPaGM4VG9iM05XQ0Q3Y1hKUnhJMEt0eUtfYWdyREdsdlJLUUVZbUtiTlFLZk9pUDZkcDJxM0lRc3hPdHpaaTNDeHc4R2MweHNiUUVOQTVrU19SMS16djNKUDVZRmExT0cwbDgxalFLSXFzeHc3VXVnMDdsTVBIZExRZDNlYVNhenQybm1Ja0VneURJTk9HTmJhWE12LTlWU1E1VnIyYThyTEVEa2tjTlAxeG5naTBrNUhndU1la0YwUQ?oc=5"
     },
     {
      "t": "Nvidia: ¿puede una empresa valer un 30 % más o menos según quien la dirija? (Líder Actual)",
      "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNOUNvWEs0OGVQZU9SSmphWGs5NnZ0M3NudVBXYmFmdnltZjZpQlNzaVZZMk5Sa1ZRQ25CT0lxeGtaNVVJRzMwQmJEcHA0SUhnelV2dzNFWE9mNnRLempGSzAwVExfMWJSaFRnalVielFUMEN5T3V3RnNHVXRrZm9Xa2YwWllOTHhzLVJpWGl2Q2xvREFucWd3Z1R5a1g2cWdtbXJPa2phbEVsVUVocUUwWGVB?oc=5"
-    },
-    {
-     "t": "Moody's rebaja de positiva a estable la perspectiva de Nvidia tras la salida de Huang (Bloomberg Línea)",
-     "u": "https://www.bloomberglinea.com/negocios/moodys-rebaja-de-positiva-a-estable-su-perspectiva-crediticia-para-nvidia-tras-la-salida-de-huang/"
-    },
-    {
-     "t": "Bernstein recorta a la mitad el objetivo de Nvidia a 200 $ (Investing Live)",
-     "u": "https://investinglive.com/es/acciones/bernstein-recorta-a-la-mitad-el-precio-objetivo-de-nvidia-a-200-el-tercer-broker-en-2-dias-en-dar-un-paso-atras-por-huang/"
     }
    ]
   },
@@ -531,8 +532,8 @@
    "entryConfidence": 40,
    "watchFor": "Que mantenga la SMA200 (≈178 $) y se estabilice el Nasdaq; vigilar un cierre sobre 220 $.",
    "title": "CrowdStrike cae un 23 % en un mes",
-   "reason": "Corrección en tendencia alcista: 209 $, −0,7 % hoy, −22 % en 30 días y −25 % desde máximos, aún un 17 % sobre la SMA200 (≈178 $), con RSI 38. Su CEO vendió acciones por 4,19 M$ (Investing.com) y clientes de Fortune 50 pausan despliegues de IA (TIKR). PER 3.684 y precio/ventas 40 no admiten más decepciones.",
-   "news": "Investing.com: el CEO de CrowdStrike vende acciones por 4,19 M$; TIKR: Bridgewater ve un 33 % de probabilidad de un ciberataque desestabilizador y la carga de trabajo de CrowdStrike ya está «un 50 % arriba».",
+   "reason": "Corrección en tendencia alcista: 209 $, −0,7 % hoy, −22 % en 30 días y −25 % desde máximos, aún un 17 % sobre la SMA200 (≈178 $), con RSI 38. La compra de Zscaler por 43.900 M$ explica la caída semanal del 12 % (TIKR) y sube el riesgo de integración. PER 3.684 y precio/ventas 40 no admiten más decepciones.",
+   "news": "TIKR: CrowdStrike se queda con Zscaler por 43.900 M$ y cae un 12 % en una semana; Kurtz dice que solo coinciden en 2.000 cuentas. Investing.com: su CEO vendió acciones por 4,19 M$.",
    "risk": "Precio/ventas 40 y margen neto 1 %: sensible a cualquier recorte de la guía.",
    "thesis": "Plataforma de seguridad en la nube con ventas +24 %, ahora consolidando con Zscaler.",
    "breaks": "Cierre bajo la SMA200 (≈178 $) o ventas por debajo de +20 % en el próximo trimestre.",
@@ -546,16 +547,16 @@
    ],
    "sources": [
     {
+     "t": "CrowdStrike cae un 12 % en una semana por su compra de Zscaler de 43.900 M$ (TIKR.com)",
+     "u": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQQ2NybTdtZHNyd1hjbzFwTDBVZkVYWnJVVXlfYjBrbC1vZWdBbHdVMklHVE9tM19yNktObWVSX1ZjTHhUdWxSaUxOOXZld0ctWHcwT0ZlaFlza0pDYktERU5oNGowOFNJSTg0eVNIRXlIZWN1SjNHTXdBWDFPQmJnMEJSWUFEMV9oZXI2eklPZGF2N3ZJUllNWkdhcDRUUUxGdE9mNjNPR2dKaGh5aFI4S25IVmxfZlJlUmtTbkpVYThsUC13SHhTR3UwbWdrZldzWHhFeDVNdmFJR0xKN1dfZVZuWndzZw?oc=5"
+    },
+    {
      "t": "El director ejecutivo de CrowdStrike vende acciones por valor de 4,19 millones de dólares (Investing.com España)",
      "u": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOWmN2R2ZpU25kdHhZeHhWZnk1QzR5Qk93WXpWRWJLLVVJcjNsVzNMeTdvX3JWWHo4RF8xZjg2NXB6bExZRWg0YXduWUFQb01TUzR0a1BmdDByb3EwMkhxS2s2dEZwTlRlNlhHa3BpQ2tULUhYckVKTk5LOFkwRmpFZnV6SDA3Q3ZiZWVqT25XeFR4TENSWDdoWmJwbnl5eGxSTDB3VE85b29LNEFjclNvc1R2ZUM3QW1ha0p1d1FNRGlVcXo2UXYxaVdBWHpzMHJfN2lIeTlaR19JV3BpOE5nSFZSZ29ZS3M?oc=5"
     },
     {
      "t": "El CEO de CrowdStrike: la seguridad pasa «de los frenos al acelerador» mientras clientes de Fortune 50 pausan despliegues de IA (TIKR.com)",
      "u": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPeklheFJ1bWxuY1FHLU13RTNySlBCVmZlZU9YTXdSdXdFWUlkSzdjSnJfOEo0VlplNjZmLWpvTXA3ejUtLUNNbnVQMWcyZEdhVTdEVEpCaWtYSXBaSi1KTGpsREpHdDRuc254SUlJVGdFUDE0aUlTbGdPSlZaa1Q0NGl5RWFhLVZPblFEYVd6RmJpNjYyRzdDWEdlMUdzLUJYdG82MG1KakRxSlRWRU14ZGxnaEZvSGk3c3BYOGk0aXBCaml2OGUzZFc4TWMtQl9zTE1aM0F3N3Qxc2ZvX211bQ?oc=5"
-    },
-    {
-     "t": "Jefferies rebaja a Zscaler pero sube su objetivo a 260 $; así llega CrowdStrike (TIKR.com)",
-     "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNVkd4bjZWZXZJbEpOeGtOV0QwdmRuR2VPRG13bHRhUlVUVEE5WTQ5MGxlUWZoellHTGhzZ1JpRzJtYWxuVDF0cWswUnlXWGd2eTJFZFE5dFlfYlRoUTVtZzBPT3Z0Q1AzX3hPVmVtY3M5Zk9VRDA3T1RnTV9uU3Y1aDRTSjlUdTR4NzB1VWZZcGstVnNqQ1pnUDFTMDQtdVlSV2Z6VXprMjZJUXFicVU0N0wzT3ZkejlsVzQ0RnE3ZVVIcmZYaTB5Tm01c25NQUs2?oc=5"
     }
    ]
   },
@@ -666,7 +667,7 @@
    "watchFor": "Score del régimen cripto sobre 40 y cierre semanal sobre 60.000 €; no entrar mientras siga bajo 55.000 €.",
    "title": "Bitcoin en capitulación: ocho semanas de caídas",
    "reason": "Fase débil bajo su SMA200: 55.174 €, +2,9 % hoy (recupera 60.500 $), pero −18 % en 30 días, RSI 30 y régimen cripto 29,3/100 (RISK_OFF). Galaxy retira su pronóstico de suelo y avisa de una posible caída hasta 48.500 $; la capitulación es señal contraria, pero aún sin giro y con el régimen bajo 40 toca prudencia.",
-   "news": "Investing.com: Bitcoin se recupera hasta 60.500 $ con temores regulatorios; FXStreet: Galaxy retira su pronóstico de suelo y advierte de una caída hasta 48.500 $; DiarioBitcoin: proyecto de ley para inmovilizar el Bitcoin del Gobierno de EE. UU. 20 años.",
+   "news": "TradingView: Bitcoin apunta a 61.000 $ con liquidez reducida por Acción de Gracias; FXStreet: ocho semanas seguidas de pérdidas (>30 %); DiarioBitcoin: Galaxy abandona su tesis de suelo.",
    "risk": "Un cierre semanal bajo 50.000 $ (Negocios.com) abre una nueva pierna a la baja.",
    "thesis": "Adopción institucional vía ETF y escasez de oferta; el 5 % de monedas con momentum positivo es una señal contraria de capitulación.",
    "breaks": "Cierre semanal bajo 50.000 € o régimen cripto bajo 25.",
@@ -685,16 +686,16 @@
    ],
    "sources": [
     {
+     "t": "Bitcoin apunta a 61.000 dólares mientras Talos advierte de liquidez reducida en Acción de Gracias (TradingView)",
+     "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTE0xWWpTazZ2N2Zxbm9GS05WX2p3Ynlyekg1TUMtaFpRWVpOeGszbUdqWWtLNDRhcXhYdFBKUF83NlBJNndKc3JBM0pBSGNVTGdCR0V1N0RXZGphOXpyQnRsdS1HN3Zob2M4Y0I5OXdVRQ?oc=5"
+    },
+    {
      "t": "Bitcoin se recupera hasta los 60.500 dólares, pero persisten los temores regulatorios (Investing.com España)",
      "u": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPRDhxMEJDTExvZWRSM25EQ2JtMnRCZllEdnh4QjhMc0stM1F2NWRZMFhUWG5VZEhvY2p1N2YzRlFrOWdLeDFreFNXYk1XNThzTXVmRWwxcE1NNTd2aXIybmk5Y2J6VVhCVFU5R01NbDRpOFVyUzhoY0dtZVA3eVlPV21hdm5nYkNHelhFaVkwM2JxbUViMFdkY0ZCbmRHQ3kxc1lEWGhfc3RUV2p3Wjk2eGFoOF9PbnZjSk9IelkyX3JWbFVnekZGUWk1UVFYQ3VuMkNRRXRycHA?oc=5"
     },
     {
      "t": "Galaxy retira su pronóstico de que el Bitcoin haya tocado fondo y advierte de una caída hasta 48.500 $ (FXStreet)",
      "u": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxQOFMzWXc2MnVKS1Q5VzZibHlNeFU4aVBsZG1qTHZBMXFtWUtwVkxSRzFvM0lnZVJrX1NlUWRMYzFBa1MxSXVWNkZCanVDR2hkQTlhaHR3dy1aSktGVURiUGZBS2lIUHVZWktyQThIcjNRdDRxNkplUnpvNEJSVnp6SjhZeXNzQzZ3MkE5ZUZxdEFlc3k2eElMM2tqX21Kd3lpMUhKQ29zTWZsOFhkTkFORmZrZzVLamEwb0hUejFRUkloTXJHejNMbnMxd245Qy16dzNkcmc5QkZmdnJzRlFpUU0zTElQRlN3bnA5eXMyOE5PeTlpS2JUbEFsTFNhSWs?oc=5"
-    },
-    {
-     "t": "Proyecto de ley busca inmovilizar el Bitcoin del Gobierno de EE. UU. durante 20 años (DiarioBitcoin)",
-     "u": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQTnREdTBtNVFOTXhXUWdLdzZycmh0b2VhaGR3anhlSmlULW5GWmcyTVhrUGtUbGxpWVNpU0lQVHU4dEhoVVhVZXlfS19SX0x6SXF5Ny0wVFpzX3kxaWV2SWxuWmtqbzVGcVN4M0QxMnlTTXNlUjhYNzNBSVZ6LTc1cElDRTUwUHIxREkwS1E1MHd1LTEtbTZ3aWpJellGZEZkMXBQTDh4VUktVFpMV2lqYTRrN2Ewd0FIZ0FsajhvbTZiUQ?oc=5"
     }
    ]
   },
