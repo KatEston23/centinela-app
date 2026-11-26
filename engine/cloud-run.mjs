@@ -43,7 +43,6 @@ if (process.env.REVX_ENABLED !== "0") {
     log.push(`Revolut X: ${C.assets.map((x) => `${x.asset} ${x.qty}${x.staked ? ` (staking ${x.staked})` : ""}${x.qtyGap ? ` ⚠ historial no cuadra ${(x.qtyGap * 100).toFixed(1)} %` : ""}`).join(", ") || "sin saldo"}` +
       ` · precio en vivo ${C.diag?.live || 0} pares${C.diag?.liveError ? " (error: " + C.diag.liveError + ")" : ""}` +
       ` · movimientos ${JSON.stringify(C.diag?.tx || {})}${C.diag?.errors?.length ? " · errores: " + C.diag.errors.join("; ") : ""}`);
-    if (C.diag?.sample) log.push("Revolut X ticker BTC-EUR: " + JSON.stringify(C.diag.sample));
   } else log.push("Revolut X sin configurar: " + (C.error || ""));
 }
 
@@ -137,7 +136,7 @@ for (let i = 0; i < fresh.length; i++) {
   const prev = s.quotes[docId(symbols[i])];
   const p = a.live.priceEur;
   // Variación aproximada frente a la revisión de hace ~24 h que se guardó
-  const d1 = prev?.dayRef && now - new Date(prev.dayRef.at) < 30 * 3600e3 ? p / prev.dayRef.p - 1 : null;
+  const d1 = a.live.change24h ?? (prev?.dayRef && now - new Date(prev.dayRef.at) < 30 * 3600e3 ? p / prev.dayRef.p - 1 : null);
   fresh[i] = { symbol: symbols[i], name: a.asset, kind: "crypto", currency: "EUR", price: p, change1d: d1, history: prev?.history || [], src: "Revolut X",
     dayRef: prev?.dayRef && now - new Date(prev.dayRef.at) < 24 * 3600e3 ? prev.dayRef : { at, p } };
   // Historia propia: un punto por día con el precio de Revolut X
@@ -157,6 +156,7 @@ for (const a of s.crypto?.stale ? [] : s.crypto?.assets || []) {
   const q = s.quotes[docId(`${a.asset}-EUR`)];
   if (!q || !a.live?.priceEur || q.updatedAt !== at) continue;
   q.priceEurYahoo = q.priceEur; q.priceEur = roundPx(a.live.priceEur); q.priceSrc = "Revolut X";
+  if (a.live.change24h != null) { q.change1dYahoo = q.change1d; q.change1d = Math.round(a.live.change24h * 1e4) / 1e4; } // 24 h, como Revolut X
   if (q.currency === "EUR") q.price = q.priceEur;
 }
 // Análisis cuantitativo (euforia / pánico) con 5 años de historia: cartera y vigilancia

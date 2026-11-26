@@ -108,7 +108,9 @@ export function liveTickers() {
       const sym = String(t.symbol || "").toUpperCase().replace(/[/_]/, "-");
       const mid = num(t.mid) || (num(t.bid) && num(t.ask) ? (num(t.bid) + num(t.ask)) / 2 : num(t.last_price));
       if (!sym.includes("-") || !mid) continue;
-      out[sym] = { price: mid, bid: num(t.bid) || null, ask: num(t.ask) || null, last: num(t.last_price) || null, chg24raw: t.price_change_24h ?? null, raw: sym === "BTC-EUR" ? t : undefined };
+      out[sym] = { price: mid, bid: num(t.bid) || null, ask: num(t.ask) || null, last: num(t.last_price) || null,
+        // price_change_24h es la variación ABSOLUTA en la divisa del par (p. ej. 939,15 € en BTC/EUR)
+        change24h: t.price_change_24h != null && num(t.last_price) - num(t.price_change_24h) > 0 ? num(t.price_change_24h) / (num(t.last_price) - num(t.price_change_24h)) : null };
     }
     return { tickers: out };
   } catch (e) { return { tickers: out, error: String(e.stderr || e.message).replace(/s+/g, " ").slice(0, 160) }; }
@@ -167,14 +169,13 @@ export async function syncRevx(prev, now = new Date()) {
   for (const a of assets) {
     if (FIAT.has(a.asset)) continue;
     const e = live[`${a.asset}-EUR`], u = live[`${a.asset}-USD`];
-    if (e) a.live = { priceEur: e.price, pair: `${a.asset}-EUR`, at };
+    if (e) a.live = { priceEur: e.price, pair: `${a.asset}-EUR`, change24h: e.change24h, at };
     else if (u || live[`${a.asset}-USDC`] || live[`${a.asset}-USDT`]) {
       const uu = u || live[`${a.asset}-USDC`] || live[`${a.asset}-USDT`];
       if (usdEur == null) usdEur = await eurPerOn("USD", dayOf(now.getTime()));
-      if (usdEur) a.live = { priceEur: uu.price * usdEur, pair: `${a.asset}-USD`, at };
+      if (usdEur) a.live = { priceEur: uu.price * usdEur, pair: `${a.asset}-USD`, change24h: uu.change24h, at };
     }
   }
   diag.live = Object.keys(live).length;
-  if (live["BTC-EUR"]?.raw) diag.sample = live["BTC-EUR"].raw;
   return { configured: true, at, assets, diag };
 }
