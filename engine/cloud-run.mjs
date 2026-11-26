@@ -41,7 +41,8 @@ if (process.env.REVX_ENABLED !== "0") {
   if (C.stale) log.push(`Revolut X no respondió (${C.failures} seguidas); uso el saldo de ${C.at}: ${C.lastError}`);
   else if (C.configured) {
     log.push(`Revolut X: ${C.assets.map((x) => `${x.asset} ${x.qty}${x.staked ? ` (staking ${x.staked})` : ""}${x.qtyGap ? ` ⚠ historial no cuadra ${(x.qtyGap * 100).toFixed(1)} %` : ""}`).join(", ") || "sin saldo"}` +
-      ` · precio en vivo ${C.diag?.live || 0}${C.diag?.errors?.length ? " · errores: " + C.diag.errors.join("; ") : ""}`);
+      ` · precio en vivo ${C.diag?.live || 0} pares${C.diag?.liveError ? " (error: " + C.diag.liveError + ")" : ""}` +
+      ` · movimientos ${JSON.stringify(C.diag?.tx || {})}${C.diag?.errors?.length ? " · errores: " + C.diag.errors.join("; ") : ""}`);
   } else log.push("Revolut X sin configurar: " + (C.error || ""));
 }
 
@@ -117,6 +118,22 @@ const fresh = await mapLimit(symbols, 4, async (sym) => {
 });
 const fx = { EUR: 1 };
 for (const c of new Set(fresh.filter((q) => !q.error).map((q) => q.currency))) { try { fx[c] = await fxEurPer(c); } catch { fx[c] = null; } }
+// Criptos de Revolut X que Yahoo no tiene (p. ej. VVV): precio directo de Revolut X, sin historia
+for (let i = 0; i < fresh.length; i++) {
+  const q = fresh[i];
+  if (!(q.error || q.price == null)) continue;
+  const a = (s.crypto?.assets || []).find((x) => `${x.asset}-EUR` === symbols[i]);
+  if (!a?.live?.priceEur) continue;
+  const prev = s.quotes[docId(symbols[i])];
+  const p = a.live.priceEur;
+  // Variación aproximada frente a la revisión de hace ~24 h que se guardó
+  const d1 = prev?.dayRef && now - new Date(prev.dayRef.at) < 30 * 3600e3 ? p / prev.dayRef.p - 1 : null;
+  fresh[i] = { symbol: symbols[i], name: a.asset, kind: "crypto", currency: "EUR", price: p, change1d: d1, history: prev?.history || [], src: "Revolut X",
+    dayRef: prev?.dayRef && now - new Date(prev.dayRef.at) < 24 * 3600e3 ? prev.dayRef : { at, p } };
+  // Historia propia: un punto por día con el precio de Revolut X
+  const day = Math.floor(now.getTime() / 864e5), h = fresh[i].history.filter((x) => x[0] !== day);
+  fresh[i].history = [...h, [day, p]].slice(-400);
+}
 let ok = 0;
 for (const q of fresh) {
   if (q.error || q.price == null) { log.push(`${q.symbol}: sin precio (${q.error || "vacío"})`); continue; }

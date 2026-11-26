@@ -98,20 +98,20 @@ export async function costBasis(asset, txs) {
   return { qty, cost, estimated, rewardQty, rewardEur, buys, lots };
 }
 
-/** Precios en vivo de Revolut X para los pares dados (p. ej. ["BTC-EUR"]): { "BTC-EUR": {...} } */
-export function liveTickers(pairs) {
-  if (!pairs.length) return {};
+/** Precios en vivo de Revolut X: TODOS los pares en una llamada (filtrar por nombre falla si el formato
+ *  del par no coincide o si uno no existe). Devuelve { "BTC-EUR": {...}, ... } y el error si lo hay. */
+export function liveTickers() {
   const out = {};
   try {
-    const raw = JSON.parse(revx(["market", "tickers", "--symbols", pairs.join(","), "--json"]));
-    for (const t of raw?.data || raw || []) {
-      const sym = String(t.symbol || "").toUpperCase().replace("/", "-");
+    const raw = JSON.parse(revx(["market", "tickers", "--json"]));
+    for (const t of raw?.data || (Array.isArray(raw) ? raw : [])) {
+      const sym = String(t.symbol || "").toUpperCase().replace(/[/_]/, "-");
       const mid = num(t.mid) || (num(t.bid) && num(t.ask) ? (num(t.bid) + num(t.ask)) / 2 : num(t.last_price));
-      if (!sym || !mid) continue;
+      if (!sym.includes("-") || !mid) continue;
       out[sym] = { price: mid, bid: num(t.bid) || null, ask: num(t.ask) || null, last: num(t.last_price) || null };
     }
-  } catch { /* sin precio en vivo: se usa Yahoo */ }
-  return out;
+    return { tickers: out };
+  } catch (e) { return { tickers: out, error: String(e.stderr || e.message).replace(/s+/g, " ").slice(0, 160) }; }
 }
 
 /**
@@ -158,16 +158,17 @@ export async function syncRevx(prev, now = new Date()) {
     } catch (e) { diag.errors.push(`${a.asset}: ${String(e.stderr || e.message).replace(/\s+/g, " ").slice(0, 120)}`); }
   }
   // Precio en vivo de Revolut X: par en EUR y, si no existe, en USD
-  const cryptos = assets.filter((a) => !FIAT.has(a.asset)).map((a) => a.asset);
-  const live = liveTickers(cryptos.flatMap((c) => [`${c}-EUR`, `${c}-USD`]));
+  const { tickers: live, error: liveErr } = liveTickers();
+  if (liveErr) diag.liveError = liveErr;
   let usdEur = null;
   for (const a of assets) {
     if (FIAT.has(a.asset)) continue;
     const e = live[`${a.asset}-EUR`], u = live[`${a.asset}-USD`];
     if (e) a.live = { priceEur: e.price, pair: `${a.asset}-EUR`, at };
-    else if (u) {
+    else if (u || live[`${a.asset}-USDC`] || live[`${a.asset}-USDT`]) {
+      const uu = u || live[`${a.asset}-USDC`] || live[`${a.asset}-USDT`];
       if (usdEur == null) usdEur = await eurPerOn("USD", dayOf(now.getTime()));
-      if (usdEur) a.live = { priceEur: u.price * usdEur, pair: `${a.asset}-USD`, at };
+      if (usdEur) a.live = { priceEur: uu.price * usdEur, pair: `${a.asset}-USD`, at };
     }
   }
   diag.live = Object.keys(live).length;
