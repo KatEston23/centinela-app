@@ -1,8 +1,8 @@
 {
- "at": "2026-11-26T13:41:11Z",
+ "at": "2026-11-26T21:41:07Z",
  "market": {
   "regime": "risk-off",
-  "summary": "Wall Street está cerrada hoy por Acción de Gracias tras una sesión de ventas en IA: Nvidia pidió a Dell y Super Micro detener los envíos de servidores a Malasia, Singapur, Tailandia e Indonesia por las nuevas normas de exportación de EE. UU. y S&P puso su calificación AA en CreditWatch negativo (Expansión, Europa Press). Las actas del BCE de octubre muestran que muchos miembros habrían apoyado subir tipos (hoy 2,5 %) y se espera un alza el 17-dic (Infobae); los líderes del euro acordaron que Pablo Hernández de Cos presida el BCE desde febrero (El País). El Ibex sube cerca de un 1,8 % hacia los 19.000 puntos con la banca (EFE, Europa Press); Bitcoin se mueve sobre 60.000 $ con liquidez reducida y sigue en régimen RISK_OFF.",
+  "summary": "Wall Street cierra hoy por Acción de Gracias y las bolsas europeas cierran con subidas de más del 2 % (Euro Stoxx 50 y DAX, Negocios.com; Ibex +2,27 % hasta 19.000 puntos, Europa Press) por alivio con los aranceles, la continuidad del BCE y las compras en banca y tecnología (MarketScreener). Pablo Hernández de Cos sucederá a Lagarde al frente del BCE (France 24) y las actas de octubre mantienen sobre la mesa una subida de tipos el 17-dic. La IA sigue siendo el foco de riesgo: Nvidia cae un 3,9 % a 151,2 $ tras el rebote del 24-nov y el S&P 500 sigue más de un 10 % bajo máximos (TradingKey); Bitcoin, en régimen cripto RISK_OFF (29,3/100), cotiza sobre 55.460 € (−18 % en 30 días).",
   "events": [
    {
     "t": "Nvidia detiene envíos de servidores al sudeste asiático y S&P pone su calificación en revisión negativa (Expansión)",
@@ -148,9 +148,9 @@
    "entry": "vigilar",
    "entryConfidence": 35,
    "watchFor": "Retroceso hacia 144–140 $ (38 % de Fibonacci y mitad del salto de 125,5 a 155,4 $) con el Nasdaq estabilizado; por encima de 155 $ no perseguir.",
-   "title": "Nvidia: freno a envíos y aviso de S&P tras el rebote",
-   "reason": "Fase débil bajo su SMA200 y alerta de euforia: subió un 23,8 % en dos sesiones (24-nov, 4,8 desviaciones) y solo ha devuelto el 14 %; en 12 episodios parecidos en 5 años, 6 devolvieron la mitad en 20 sesiones (kHalf 6/12) y la devolución media a 20 sesiones fue del 52 % (giveBack20). Hoy suma dos malas noticias: detiene envíos de servidores a cuatro países del sudeste asiático y S&P pone su calificación AA en CreditWatch negativo; ninguna eleva beneficios de forma demostrable, así que para quien la tiene conviene vender una parte, no todo.",
-   "news": "Expansión y el FT: Nvidia pide a Dell y Super Micro parar los envíos a Malasia, Singapur, Tailandia e Indonesia por las normas de exportación del 19-nov; Europa Press: S&P amenaza con rebajar la calificación por dudas de gobernanza tras el caso Huang.",
+   "title": "Nvidia cae un 3,9 % y devuelve parte del rebote",
+   "reason": "Fase débil bajo su SMA200 y alerta de euforia: subió un 23,8 % en dos sesiones (24-nov, 4,8 desviaciones) y solo ha devuelto el 14 %; en 12 episodios parecidos en 5 años, 6 devolvieron la mitad en 20 sesiones (kHalf 6/12) y la devolución media a 20 sesiones fue del 52 % (giveBack20). Hoy cotiza a 151,2 $ (−3,9 %) y suma dos malas noticias: detiene envíos de servidores a cuatro países del sudeste asiático y S&P pone su calificación AA en CreditWatch negativo; ninguna eleva beneficios de forma demostrable, así que para quien la tiene conviene vender una parte, no todo.",
+   "news": "Heraldo de Aragón y Revista 5W (26-nov): su consejo mantiene fuera a Huang pese a las investigaciones por seguridad nacional y se discute en EE. UU. la ventaja frente a China; BeInCrypto: S&P evalúa reclasificar a Nvidia. Moody's ya rebajó la perspectiva a estable el 19-nov (247WallSt). Expansión: detiene envíos de servidores al sudeste asiático.",
    "risk": "Si pierde los 140 $ (mitad del salto), el siguiente soporte es el mínimo de 52 semanas en 124,5 $, un 18 % más abajo.",
    "thesis": "Centros de datos con ventas +93 % y BPA +130 %, margen neto del 62,5 % y foso de software CUDA; PER 17,6 frente a un máximo de 243,4 $.",
    "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, que S&P ejecute la rebaja de calificación, o un cierre mensual bajo 124,5 $.",
@@ -706,8 +706,8 @@
    "entryConfidence": 55,
    "watchFor": "Cierre sobre la SMA50 (≈4,30 $) y un trimestre con margen operativo positivo.",
    "title": "Stellantis rebota un 6,4 % sin titular propio",
-   "reason": "Tendencia bajista: 3,66 $, +6,4 % hoy pero −11,6 % en 30 días y un 70 % bajo máximos. Sin titular propio en 48 h; el rebote parece técnico con el Ibex apuntando a +2 % hoy. Precio/valor contable 0,24 y dividendo 7,15 % no compensan margen neto −9,6 %.",
-   "news": "Sin titular propio en 48 h; Ibex-35 cae un 2 % por aranceles (El Nacional.cat), factor negativo para el sector del automóvil.",
+   "reason": "Tendencia bajista: 3,66 $, +6,4 % hoy pero −11,6 % en 30 días y un 70 % bajo máximos. Sin titular propio en 48 h; el rebote parece técnico con el rebote europeo de más del 2 % hoy. Precio/valor contable 0,24 y dividendo 7,15 % no compensan margen neto −9,6 %.",
+   "news": "Sin noticia propia que explique el +6,4 %: MarketScreener recoge que mantener la producción en Italia es un «reto diario» por el aumento de costes; el rebote coincide con el cierre europeo con subidas de más del 2 % (Negocios.com).",
    "risk": "Perder el mínimo de 52 semanas (3,09 $) y un recorte del dividendo.",
    "thesis": "Valor deprimido con dividendo alto (7,15 %) y precio/valor contable de 0,24, pero sin giro operativo visible.",
    "breaks": "Recorte del dividendo o pérdida del mínimo de 52 semanas (3,09 $).",
