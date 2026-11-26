@@ -1,5 +1,5 @@
 {
- "at": "2026-11-25T06:11:24.665389+00:00",
+ "at": "2026-11-26T06:11:24.388259+00:00",
  "score": 29.3,
  "zone": "RISK_OFF",
  "guidance": "Defensive market conditions observed; review existing risk controls",
@@ -26,12 +26,12 @@
   },
   "drawdown_vol": {
    "score": 25,
-   "signal": "Drawdown 39.1% from 1y high; volatility elevated (top third of 1y range)",
+   "signal": "Drawdown 37.5% from 1y high; volatility elevated (top third of 1y range)",
    "ok": true
   },
   "momentum_thrust": {
    "score": 35,
-   "signal": "WASHOUT (contrarian: near-total negative momentum): 5% of 20 coins positive over 30d",
+   "signal": "WASHOUT (contrarian: near-total negative momentum): 0% of 20 coins positive over 30d",
    "ok": true
   }
  }
