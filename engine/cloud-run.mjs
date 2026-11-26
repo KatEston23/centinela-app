@@ -17,6 +17,8 @@ import { sendPush, vapidPublic } from "./webpush.mjs";
 import { updateRobot } from "./robot.mjs";
 import { holdingsFromLedger, resolveTickers, tickerMap } from "./parser.mjs";
 import { readState, writeState, decrypt } from "./state.mjs";
+import { syncRevx, FIAT } from "./revx.mjs";
+import { quant, quantSignal } from "./quant.mjs";
 
 const mode = process.argv[2] || "portfolio";
 const cfg = loadConfig();
@@ -32,42 +34,15 @@ const docId = (x) => x.replace(/[^A-Za-z0-9_-]/g, "_");
 const H20 = 20 * 3600e3;
 const TAG_ICON = { chart_with_downwards_trend: "📉", chart_with_upwards_trend: "📈", bell: "🔔", mag: "🔎", sunrise: "🌅" };
 
-// ---------- 1. Revolut X (solo lectura) ----------
-function revx(args) {
-  const opts = { encoding: "utf8", timeout: 60000, stdio: ["ignore", "pipe", "pipe"] };
-  return process.platform === "win32" ? execSync(["revx", ...args].join(" "), opts) : execFileSync("revx", args, opts);
-}
+// ---------- 1. Revolut X (solo lectura): saldos (staking incluido), coste en EUR y precio en vivo ----------
 if (process.env.REVX_ENABLED !== "0") {
-  try {
-    const raw = JSON.parse(revx(["account", "balances", "--json"]));
-    const list = Array.isArray(raw) ? raw : raw.balances || raw.data || [];
-    const assets = list.map((b) => ({ asset: String(b.currency || b.asset || "").toUpperCase(), qty: Number(b.total ?? (Number(b.available || 0) + Number(b.reserved || 0))) }))
-      .filter((b) => b.asset && b.qty > 0);
-    for (const a of assets) {
-      if (["EUR", "USD", "GBP"].includes(a.asset)) continue;
-      try {
-        const tx = JSON.parse(revx(["transaction", "list", "--currencies", a.asset, "--start-date", "1825d", "--limit", "500", "--json"]));
-        const rows = (tx.data || []).filter((t) => t.status === "completed").sort((x, y) => x.created_date - y.created_date);
-        let qty = 0, cost = 0;
-        const lots = []; // fechas de compra y venta, para que la gráfica de evolución empiece el día real
-        const iso = (v) => new Date(isNaN(Number(v)) ? v : Number(v)).toISOString();
-        for (const t of rows) {
-          if (t.type === "buy" && t.destination?.currency === a.asset && t.source?.currency === "EUR") { qty += Number(t.destination.amount); cost += Number(t.source.amount); lots.push({ d: iso(t.created_date), q: Number(t.destination.amount) }); }
-          else if (t.type === "sell" && t.source?.currency === a.asset && qty > 0) { const q = Math.min(qty, Number(t.source.amount)); cost -= cost * (q / qty); qty -= q; lots.push({ d: iso(t.created_date), q: -q }); }
-        }
-        if (lots.length) a.lots = lots;
-        if (qty > 0 && cost > 0) { a.costEur = Math.round(cost * 100) / 100; a.avgEur = Math.round((cost / qty) * 100) / 100; }
-        // Cripto regalada por Revolut (cursos «Aprende y gana»): sin compras en EUR, solo recompensas
-        if (!(cost > 0) && rows.some((t) => t.type === "reward")) { a.reward = true; a.rewardUsd = Math.round(rows.filter((t) => t.type === "reward").reduce((x, t) => x + Number(t.destination?.amount || 0), 0) * 100) / 100; }
-      } catch { /* sin historial */ }
-    }
-    s.crypto = { configured: true, at, assets };
-    log.push(`Revolut X: ${assets.map((a) => a.asset).join(", ") || "sin saldo"}`);
-  } catch (e) {
-    // Si falla, se conserva el último saldo conocido
-    log.push("Revolut X no respondió; uso el último saldo conocido");
-    if (s.crypto) s.crypto.lastError = String(e.stderr || e.message).slice(0, 200);
-  }
+  s.crypto = await syncRevx(s.crypto, now);
+  const C = s.crypto;
+  if (C.stale) log.push(`Revolut X no respondió (${C.failures} seguidas); uso el saldo de ${C.at}: ${C.lastError}`);
+  else if (C.configured) {
+    log.push(`Revolut X: ${C.assets.map((x) => `${x.asset} ${x.qty}${x.staked ? ` (staking ${x.staked})` : ""}${x.qtyGap ? ` ⚠ historial no cuadra ${(x.qtyGap * 100).toFixed(1)} %` : ""}`).join(", ") || "sin saldo"}` +
+      ` · precio en vivo ${C.diag?.live || 0}${C.diag?.errors?.length ? " · errores: " + C.diag.errors.join("; ") : ""}`);
+  } else log.push("Revolut X sin configurar: " + (C.error || ""));
 }
 
 // ---------- 1b. Órdenes del móvil (vigilar / quitar), cifradas, por el canal ntfy «<topic>-cmd» ----------
@@ -125,7 +100,7 @@ Object.assign(tickerMap, s.settings?.map || {});
 { const f = await resolveTickers(s, s.ledger?.rows); if (f.length) log.push("Tickers resueltos: " + f.join(", ")); }
 const tier1 = new Set();
 for (const h of holdingsFromLedger(s.ledger?.rows || [])) tier1.add(h.quote);
-for (const a of s.crypto?.assets || []) if (!["EUR", "USD", "GBP"].includes(a.asset)) tier1.add(`${a.asset}-EUR`);
+for (const a of s.crypto?.assets || []) if (!FIAT.has(a.asset)) tier1.add(`${a.asset}-EUR`);
 for (const m of s.positions?.manual || []) tier1.add(m.symbol);
 if (!tier1.size) { tier1.add("NVDA"); tier1.add("BTC-EUR"); }
 const tier2 = new Set(s.watch.map((w) => w.symbol).filter((x) => !tier1.has(x)));
@@ -150,6 +125,25 @@ for (const q of fresh) {
   s.quotes[docId(q.symbol)] = { ...q, eurPer: fx[q.currency] ?? null, priceEur: fx[q.currency] ? roundPx(q.price * fx[q.currency]) : null, updatedAt: at };
   ok++;
 }
+// Criptos de Revolut X: el valor en euros sale del precio en vivo de Revolut X (lo mismo que ve en su app)
+for (const a of s.crypto?.stale ? [] : s.crypto?.assets || []) {
+  const q = s.quotes[docId(`${a.asset}-EUR`)];
+  if (!q || !a.live?.priceEur || q.updatedAt !== at) continue;
+  q.priceEurYahoo = q.priceEur; q.priceEur = roundPx(a.live.priceEur); q.priceSrc = "Revolut X";
+  if (q.currency === "EUR") q.price = q.priceEur;
+}
+// Análisis cuantitativo (euforia / pánico) con 5 años de historia: cartera y vigilancia
+await mapLimit(symbols, 3, async (sym) => {
+  const q = s.quotes[docId(sym)];
+  if (!q || q.updatedAt !== at) return;
+  try { q.quant = await quant(YF_ALIAS[sym] || sym, { kind: q.kind, price: q.price }); }
+  catch (e) { q.quant = { ok: false, why: String(e.message).slice(0, 80) }; }
+});
+{
+  const hot = symbols.map((x) => [x, s.quotes[docId(x)]?.quant]).filter(([, Q]) => Q?.state && Q.state !== "normal");
+  if (hot.length) log.push("Cuantitativo: " + hot.map(([x, Q]) => `${x} ${Q.state} ${(Q.event.move * 100).toFixed(1)} % (devuelto ${Math.round(Q.event.givenBack * 100)} %, n=${Q.stats.n})`).join("; "));
+}
+
 // Salidas a bolsa en vigilancia: el primer precio que llega significa que ya cotiza
 const listed = [];
 for (const w of s.watch || []) {
@@ -163,8 +157,19 @@ const recent = (sym, action) => s.signals.some((x) => x.symbol === sym && x.acti
 // Ya se avisó de este valor en las últimas 20 h (por el motor o por la IA)
 const notifiedRecently = (sym) => s.signals.some((x) => x.symbol === sym && x.notified && now - new Date(x.at) < H20);
 const pct = (v) => `${v > 0 ? "+" : ""}${(v * 100).toFixed(1).replace(".", ",")} %`;
-const money = (v, cur) => new Intl.NumberFormat("es-ES", { style: "currency", currency: cur || "USD", maximumFractionDigits: v >= 1000 ? 0 : 2 }).format(v);
+// Precios de menos de 1 (criptos de céntimos, «penny stocks»): con cifras significativas, no «0,01»
+const money = (v, cur) => new Intl.NumberFormat("es-ES", { style: "currency", currency: cur || "USD", ...(v != null && Math.abs(v) < 1 ? { maximumSignificantDigits: 3 } : { maximumFractionDigits: v >= 1000 ? 0 : 2 }) }).format(v);
 const newSignals = [];
+// Ganancia actual de lo que tiene (para el texto de «recoger beneficios»)
+const ledgerHold = holdingsFromLedger(s.ledger?.rows || []);
+function gainOf(sym, q) {
+  const a = (s.crypto?.assets || []).find((x) => `${x.asset}-EUR` === sym);
+  if (a?.avgEur && q.priceEur) return q.priceEur / a.avgEur - 1;
+  const h = ledgerHold.find((x) => x.quote === sym);
+  if (h?.avg && q.price && (h.cur || q.currency) === q.currency) return q.price / h.avg - 1;
+  const m = (s.positions?.manual || []).find((x) => x.symbol === sym);
+  return m?.avg && q.price ? q.price / m.avg - 1 : null;
+}
 for (const sym of symbols) {
   const q = s.quotes[docId(sym)];
   if (!q || q.updatedAt !== at) continue;
@@ -173,10 +178,20 @@ for (const sym of symbols) {
   const side = q.sma200 ? Math.sign(q.price - q.sma200) : null;
   const facts = `${money(q.price, q.currency)}, RSI ${q.rsi14?.toFixed(0)}, ${pct(q.drawdown)} desde máximos, media de 200 en ${money(q.sma200, q.currency)}.`;
   let sig = null;
+  // Euforia o pánico (salto ≥ 3σ, con estadística del propio activo): manda sobre las reglas simples.
+  // Una señal por episodio (el día del salto), aunque el episodio dure varias revisiones.
+  const QS = quantSignal(name, q.quant, { held: tier === 1, gainPct: tier === 1 ? gainOf(sym, q) : null, rsi: q.rsi14, money: (v) => money(v, q.currency) });
+  if (QS) {
+    const episode = `${QS.code}:${q.quant.event.day}`;
+    if (!s.signals.some((x) => x.symbol === sym && x.episode === episode)) {
+      newSignals.push({ ...QS, episode, quant: { stats: q.quant.stats, event: q.quant.event, levels: q.quant.levels }, at, symbol: sym, tier, sources: [], price: q.price, currency: q.currency, by: "motor", marketTime: q.marketTime, notified: false });
+    }
+    continue;
+  }
   if (q.prevSma200Side === 1 && side === -1) sig = { code: "pierde_sma200", action: "vigilar", confidence: 55, title: `${name} pierde su media de 200 sesiones`, reason: `Ha cruzado a la baja su media de 200 sesiones: ${facts} Suele indicar que la tendencia de fondo se debilita.`, risk: "Sin análisis de noticias todavía: puede ser un ruido de un día." };
   else if (q.prevSma200Side === -1 && side === 1) sig = { code: "recupera_sma200", action: "vigilar", confidence: 55, title: `${name} recupera su media de 200 sesiones`, reason: `Vuelve por encima de su media de 200 sesiones: ${facts} Puede marcar el fin de la fase bajista.`, risk: "Los cruces sin volumen a menudo se deshacen." };
   else if ((q.change1d ?? 0) <= -0.05) sig = { code: "caida_dia", action: "vigilar", confidence: 50, title: `${name} cae ${pct(q.change1d)} en el día`, reason: `Caída fuerte en una sesión: ${facts}`, risk: "Sin noticias analizadas aún: conviene esperar a conocer el motivo." };
-  else if ((q.change1d ?? 0) >= 0.06) sig = { code: "sube_dia", action: "mantener", confidence: 50, title: `${name} sube ${pct(q.change1d)} en el día`, reason: `Subida fuerte en una sesión: ${facts}`, risk: "Tras subidas bruscas son habituales las recogidas de beneficios." };
+  else if ((q.change1d ?? 0) >= 0.06) sig = { code: "sube_dia", action: "vigilar", confidence: 50, title: `${name} sube ${pct(q.change1d)} en el día`, reason: `Subida fuerte en una sesión: ${facts}`, risk: "Tras subidas bruscas son habituales las recogidas de beneficios." };
   else if (q.rsi14 != null && q.rsi14 < 30 && (q.drawdown ?? 0) <= -0.15) sig = { code: "sobreventa", action: "vigilar", confidence: 55, title: `${name} en sobreventa fuerte`, reason: `Sobreventa: ${facts} Técnicamente es zona de posible rebote.`, risk: "La sobreventa puede prolongarse si las noticias son malas." };
   else if (q.rsi14 != null && q.rsi14 > 75) sig = { code: "sobrecompra", action: "vigilar", confidence: 50, title: `${name} en sobrecompra`, reason: `Sobrecompra: ${facts}`, risk: "Riesgo de corrección a corto plazo." };
   if (!sig || recent(sym, sig.action) && !["pierde_sma200", "recupera_sma200", "caida_dia"].includes(sig.code)) continue;
@@ -219,9 +234,9 @@ for (const { w, q } of listed) {
 }
 let sent = 0;
 for (const sg of newSignals) {
-  const important = sg.tier === 1 && ["caida_dia", "pierde_sma200", "recupera_sma200", "sube_dia"].includes(sg.code);
+  const important = sg.tier === 1 && ["caida_dia", "pierde_sma200", "recupera_sma200", "sube_dia", "euforia", "panico", "panico_sin_rebote"].includes(sg.code);
   if (!important || sent >= 3) continue;
-  const down = ["caida_dia", "pierde_sma200"].includes(sg.code);
+  const down = ["caida_dia", "pierde_sma200", "panico", "panico_sin_rebote"].includes(sg.code);
   sg.notified = await notify(sg.title, sg.reason.slice(0, 150), Math.abs(s.quotes[docId(sg.symbol)]?.change1d ?? 0) >= 0.08 ? 4 : 3, down ? "chart_with_downwards_trend" : "chart_with_upwards_trend");
   if (sg.notified) sent++;
 }
@@ -381,8 +396,27 @@ if (existsSync(notesFile)) {
       const VERDICTS = ["comprar", "reforzar", "mantener", "reducir", "vender", "vigilar"];
       for (const [sym, n] of Object.entries(nn.notes || {})) {
         if (!VERDICTS.includes(n.verdict)) continue;
-        const conf = Math.max(0, Math.min(100, Number(n.confidence) || 0));
+        let conf = Math.max(0, Math.min(100, Number(n.confidence) || 0));
         const sources = (n.sources || []).filter((x) => /^https:\/\//.test(x?.u || "")).slice(0, 4).map((x) => ({ t: String(x.t || "Fuente").slice(0, 140), u: x.u }));
+        // Contrapeso cuantitativo: en plena euforia (salto ≥ 3σ que aún no ha devuelto el 60 %) no se
+        // dice «mantener / reforzar / comprar» sin más. Al que lo tiene se le propone recoger parte; al que
+        // no, esperar el retroceso. La IA puede discrepar con un motivo concreto en «quantOverride».
+        {
+          const qq = s.quotes[docId(sym)] || {};
+          const QS = quantSignal(sym.replace(/-EUR$/, ""), qq.quant, { held: tier1.has(sym), gainPct: tier1.has(sym) ? gainOf(sym, qq) : null, rsi: qq.rsi14, money: (v) => money(v, qq.currency) });
+          const override = tx(n.quantOverride, 250);
+          if (QS?.code === "euforia" && override) n.reason = `${n.reason || ""} (Pese a la euforia: ${override})`;
+          else if (QS?.code === "euforia") {
+            if (tier1.has(sym) && ["mantener", "reforzar", "comprar"].includes(n.verdict)) {
+              n.title = QS.title; n.verdict = "reducir"; conf = QS.confidence;
+              n.reason = `${QS.reason} Noticias: ${tx(n.reason, 300) || "sin novedades de peso"}`; n.risk = QS.risk;
+            }
+            if (n.entry === "comprar" || (!n.entry && ["comprar", "reforzar"].includes(n.verdict))) {
+              n.entry = "vigilar"; n.entryConfidence = Math.min(Number(n.entryConfidence ?? n.confidence) || 50, 50);
+              n.watchFor = `Retroceso hacia ${money(qq.quant.levels.fib38, qq.currency)}–${money(qq.quant.levels.half, qq.currency)} tras la euforia`;
+            }
+          }
+        }
         // Candidatas del escáner
         // Para quien NO la tiene: comprar | vigilar | evitar (si la IA no lo da, se deduce del veredicto)
         const ENTRY = { comprar: "comprar", reforzar: "comprar", vigilar: "vigilar", mantener: "vigilar", reducir: "evitar", vender: "evitar" };
@@ -432,7 +466,9 @@ if (existsSync(notesFile)) {
   const pick = new Set([...symbols, ...(s.scan?.items || []).slice(0, 10).map((i) => i.symbol), ...specTop]);
   const list = [...pick].sort().map((sym) => {
     const q = s.quotes[docId(sym)] || (s.scan?.items || []).find((i) => i.symbol === sym) || (s.spec?.items || []).find((i) => i.symbol === sym) || {};
-    return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma50: q.sma50, sma200: q.sma200, phase: q.phaseLabel, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null };
+    return { symbol: sym, name: q.name, kind: q.kind, price: q.price, currency: q.currency, change1d: q.change1d, change30d: q.change30d, rsi14: q.rsi14, drawdown: q.drawdown, sma50: q.sma50, sma200: q.sma200, phase: q.phaseLabel, technicalScore: (s.scan?.items || []).find((i) => i.symbol === sym)?.score ?? null,
+      // Euforia / pánico con estadística del propio activo (ver engine/quant.mjs)
+      quant: q.quant?.ok && q.quant.state !== "normal" ? { state: q.quant.state, event: q.quant.event, stats: q.quant.stats, levels: q.quant.levels, z20: q.quant.z20 } : q.quant?.ok ? { state: "normal", z20: q.quant.z20 } : undefined };
   });
   mkdirSync(join(ROOT, "docs"), { recursive: true });
   const cr = s.cryptoRegime ? { at: s.cryptoRegime.at, score: s.cryptoRegime.score, zone: s.cryptoRegime.zone, guidance: s.cryptoRegime.guidance, components: s.cryptoRegime.components } : null;

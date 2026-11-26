@@ -50,7 +50,7 @@ jobs:
           REVX_PRIVATE_KEY: ${{ secrets.REVX_PRIVATE_KEY }}
         run: |
           if [ -z "$REVX_API_KEY" ]; then echo "REVX_ENABLED=0" >> "$GITHUB_ENV"; exit 0; fi
-          npm install -g --silent @revolut/revolut-x-cli
+          npm install -g --silent @revolut/revolut-x-cli@1.0.54   # versión fija: un cambio de formato no rompe la cartera sin avisar
           mkdir -p "$REVOLUTX_CONFIG_DIR" && chmod 700 "$REVOLUTX_CONFIG_DIR"
           printf '%s\n' "$REVX_PRIVATE_KEY" > "$REVOLUTX_CONFIG_DIR/private.pem"
           chmod 600 "$REVOLUTX_CONFIG_DIR/private.pem"

@@ -496,7 +496,12 @@ function renderPortfolio() {
     t.append(tb);
     body.append(el("div", { class: "tablewrap" }, t));
     if (cash) body.append(el("p", { class: "note", text: `Efectivo sin invertir en Revolut Invest: ${eur.format(cash)} (incluido en el valor total, como en Revolut).` }));
-    const rsiNotes = H.filter((h) => h.q?.rsi14 != null).map((h) => `${h.symbol}: RSI ${h.q.rsi14.toFixed(0)}${h.q.rsi14 < 30 ? " (sobreventa)" : h.q.rsi14 > 70 ? " (sobrecompra)" : ""}, ${fmtPct(h.q.drawdown)} desde máximos`);
+    const rsiNotes = H.filter((h) => h.q?.rsi14 != null).map((h) => {
+      const Q = h.q.quant, E = Q?.event;
+      const hot = Q?.state === "euforia" && E.givenBack < 0.6 ? ` · EUFORIA: ${fmtPct(E.move)} en ${E.sessions} ses., devuelto ${Math.round(E.givenBack * 100)} %; en ${Q.stats.n} casos parecidos devolvió la mitad ${Q.stats.kHalf} veces`
+        : Q?.state === "panico" && E.givenBack < 0.6 ? ` · PÁNICO: ${fmtPct(E.move)} en ${E.sessions} ses.; en ${Q.stats.n} casos parecidos rebotó a 10 sesiones ${Q.stats.k} veces` : "";
+      return `${h.symbol}: RSI ${h.q.rsi14.toFixed(0)}${h.q.rsi14 < 30 ? " (sobreventa)" : h.q.rsi14 > 70 ? " (sobrecompra)" : ""}, ${fmtPct(h.q.drawdown)} desde máximos${hot}${h.q.priceSrc ? " · precio de " + h.q.priceSrc : ""}`;
+    });
     if (rsiNotes.length) body.append(el("p", { class: "note", text: rsiNotes.join(" · ") }));
   }
   const ls = $("#last-sig-list"); ls.replaceChildren();
@@ -794,7 +799,9 @@ function renderSettings() {
   row("Escáner de mercado (diario, 08:30)", ago(st.scanAt));
   row("Motor", st.engine === "github" ? "GitHub · funciona sin su PC" : "PC");
   row("Análisis de noticias con IA", st.aiAt ? (Date.now() - new Date(st.aiAt) < 30 * 3600e3 ? `activo · ${ago(st.aiAt)}` : `en pausa · último ${ago(st.aiAt)}`) : "pendiente");
-  row("Revolut X", S.crypto?.configured ? `conectado · ${ago(S.crypto.at)}` : "sin conectar");
+  row("Revolut X", !S.crypto?.configured ? "sin conectar" : S.crypto.stale ? `⚠ sin respuesta · saldo de ${ago(S.crypto.at)}` : `conectado · ${ago(S.crypto.at)}`);
+  if (S.crypto?.stale && S.crypto.lastError) es.append(el("p", { class: "note", text: `Revolut X falla desde ${ago(S.crypto.failedAt)} (${S.crypto.failures || 1} intentos): ${S.crypto.lastError}. Si dice «401», «signature» o «not authenticated», hay que renovar la clave API en los secretos de GitHub.` }));
+  for (const a of (S.crypto?.assets || []).filter((x) => x.qtyGap)) es.append(el("p", { class: "note", text: `${a.asset}: el historial de Revolut X explica un ${Math.round((1 - a.qtyGap) * 100)} % del saldo; el precio medio puede no ser exacto.` }));
   row("Extracto de Invest", S.ledger ? `${S.ledger.rows.length} movimientos` : "sin importar");
   if (S.ledger) {
     row("· Último importado", ago(S.ledger.importedAt));
