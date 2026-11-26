@@ -151,7 +151,10 @@ export async function syncRevx(prev, now = new Date()) {
         if (cb.buys) a.buys = cb.buys;
       }
       const gap = a.qty ? (a.qty - cb.qty) / a.qty : 0;
-      if (Math.abs(gap) > 0.005) a.qtyGap = Math.round(gap * 1000) / 1000; // el historial no explica todo el saldo
+      const onlyRewards = list.length > 0 && list.every((t) => t.type === "reward");
+      // Criptos regaladas (recompensas, airdrops): no tienen coste y su saldo no tiene por qué cuadrar
+      if (onlyRewards) { a.reward = true; a.rewardUsd = a.rewardEur ?? 0; }
+      else if (Math.abs(gap) > 0.005) a.qtyGap = Math.round(gap * 1000) / 1000; // el historial no explica todo el saldo
       if (cb.rewardQty > 0) { a.rewardQty = cb.rewardQty; a.rewardEur = Math.round(cb.rewardEur * 100) / 100; }
       // Solo recompensas (cursos «Aprende y gana»): sin coste
       if (!(cb.cost > 0) && cb.rewardQty > 0) { a.reward = true; a.rewardUsd = a.rewardEur; }
