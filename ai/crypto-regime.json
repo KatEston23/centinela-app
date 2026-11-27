@@ -1,5 +1,5 @@
 {
- "at": "2026-11-26T06:11:24.388259+00:00",
+ "at": "2026-11-27T06:11:22.770936+00:00",
  "score": 29.3,
  "zone": "RISK_OFF",
  "guidance": "Defensive market conditions observed; review existing risk controls",
@@ -26,7 +26,7 @@
   },
   "drawdown_vol": {
    "score": 25,
-   "signal": "Drawdown 37.5% from 1y high; volatility elevated (top third of 1y range)",
+   "signal": "Drawdown 36.3% from 1y high; volatility elevated (top third of 1y range)",
    "ok": true
   },
   "momentum_thrust": {
