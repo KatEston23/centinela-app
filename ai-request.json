@@ -1,0 +1,2098 @@
+{
+ "at": "2026-11-28T18:05:32.173Z",
+ "symbols": [
+  {
+   "symbol": "AAOI",
+   "name": "Applied Optoelectronics, Inc.",
+   "kind": "stock",
+   "price": 40.9,
+   "currency": "USD",
+   "change1d": 0.1048,
+   "change30d": -0.5026,
+   "rsi14": 36.5,
+   "drawdown": -0.8167,
+   "sma50": 76.5066,
+   "sma200": 114.7648,
+   "phase": "Lateral",
+   "technicalScore": null
+  },
+  {
+   "symbol": "ABBV",
+   "name": "AbbVie Inc.",
+   "kind": "stock",
+   "price": 291.88,
+   "currency": "USD",
+   "change1d": -0.0088,
+   "change30d": 0.0206,
+   "rsi14": 53.6,
+   "drawdown": -0.028,
+   "sma50": 281.477,
+   "sma200": 243.8763,
+   "phase": "Tendencia alcista",
+   "technicalScore": 75
+  },
+  {
+   "symbol": "AMD",
+   "name": "Advanced Micro Devices, Inc.",
+   "kind": "stock",
+   "price": 422.9,
+   "currency": "USD",
+   "change1d": 0.0456,
+   "change30d": -0.2689,
+   "rsi14": 40.6,
+   "drawdown": -0.3488,
+   "sma50": 545.9068,
+   "sma200": 434.0064,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-20",
+     "daysAgo": 4,
+     "sessions": 2,
+     "move": -0.2341,
+     "sigma": 3,
+     "givenBack": 0.136
+    },
+    "stats": {
+     "n": 7,
+     "k": 4,
+     "pRevert": 0.562,
+     "kHalf": 3,
+     "pHalf": 0.462,
+     "context": "alcista",
+     "sameContext": false,
+     "median10": 0.0065,
+     "median20": 0.0533,
+     "giveBack20": 0.399
+    },
+    "levels": {
+     "pre": 530.14,
+     "half": 468.085,
+     "fib38": 453.44,
+     "peak": 406.03
+    },
+    "z20": -1.16
+   }
+  },
+  {
+   "symbol": "ANET",
+   "name": "Arista Networks, Inc.",
+   "kind": "stock",
+   "price": 174.73,
+   "currency": "USD",
+   "change1d": 0.0655,
+   "change30d": -0.0642,
+   "rsi14": 46.6,
+   "drawdown": -0.1938,
+   "sma50": 190.1704,
+   "sma200": 169.1885,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-20",
+     "daysAgo": 4,
+     "sessions": 1,
+     "move": -0.135,
+     "sigma": 3.2,
+     "givenBack": 0.42
+    },
+    "stats": {
+     "n": 8,
+     "k": 4,
+     "pRevert": 0.521,
+     "kHalf": 7,
+     "pHalf": 0.714,
+     "context": "alcista",
+     "sameContext": true,
+     "median10": -0.0077,
+     "median20": 0.1434,
+     "giveBack20": 1.393
+    },
+    "levels": {
+     "pre": 189.59,
+     "half": 176.79,
+     "fib38": 173.7692,
+     "peak": 163.99
+    },
+    "z20": -0.37
+   }
+  },
+  {
+   "symbol": "ANT",
+   "name": "Anthropic, PBC",
+   "kind": "stock",
+   "price": 91.4085,
+   "currency": "USD",
+   "change1d": 0.1098,
+   "change30d": null,
+   "rsi14": null,
+   "drawdown": -0.0593,
+   "sma50": null,
+   "sma200": null,
+   "phase": "Sin historia suficiente",
+   "technicalScore": null
+  },
+  {
+   "symbol": "AXTI",
+   "name": "AXT, Inc.",
+   "kind": "stock",
+   "price": 36.37,
+   "currency": "USD",
+   "change1d": 0.1373,
+   "change30d": -0.4351,
+   "rsi14": 42.5,
+   "drawdown": -0.7417,
+   "sma50": 57.2686,
+   "sma200": 66.6485,
+   "phase": "Lateral",
+   "technicalScore": null
+  },
+  {
+   "symbol": "AZN",
+   "name": "AstraZeneca PLC",
+   "kind": "stock",
+   "price": 183.69,
+   "currency": "USD",
+   "change1d": -0.0028,
+   "change30d": 0.0837,
+   "rsi14": 58.1,
+   "drawdown": -0.1231,
+   "sma50": 172.1816,
+   "sma200": 179.7375,
+   "phase": "Recuperación (posible suelo superado)",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": 0.01
+   }
+  },
+  {
+   "symbol": "BBD",
+   "name": "Banco Bradesco S.A.",
+   "kind": "stock",
+   "price": 2.8,
+   "currency": "USD",
+   "change1d": 0.1523,
+   "change30d": 0.0256,
+   "rsi14": 52.6,
+   "drawdown": -0.3792,
+   "sma50": 3.2292,
+   "sma200": 3.5113,
+   "phase": "Tendencia bajista",
+   "technicalScore": null
+  },
+  {
+   "symbol": "BTC-EUR",
+   "name": "Bitcoin EUR",
+   "kind": "crypto",
+   "price": 54294.34,
+   "currency": "EUR",
+   "change1d": -0.0079,
+   "change30d": -0.2007,
+   "rsi14": 28.2,
+   "drawdown": -0.3475,
+   "sma50": 66278.6284,
+   "sma200": 62859.189,
+   "phase": "Débil, bajo su media de 200",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": -0.94
+   }
+  },
+  {
+   "symbol": "COST",
+   "name": "Costco Wholesale Corporation",
+   "kind": "stock",
+   "price": 1097.81,
+   "currency": "USD",
+   "change1d": 0.0101,
+   "change30d": 0.1171,
+   "rsi14": 65.3,
+   "drawdown": -0.0143,
+   "sma50": 1002.0574,
+   "sma200": 981.1264,
+   "phase": "Tendencia alcista",
+   "technicalScore": 76
+  },
+  {
+   "symbol": "CRWD",
+   "name": "CrowdStrike Holdings, Inc.",
+   "kind": "stock",
+   "price": 217.1312,
+   "currency": "USD",
+   "change1d": 0.0377,
+   "change30d": -0.1857,
+   "rsi14": 43,
+   "drawdown": -0.2214,
+   "sma50": 244.6714,
+   "sma200": 178.382,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": -0.84
+   }
+  },
+  {
+   "symbol": "CVX",
+   "name": "Chevron Corporation",
+   "kind": "stock",
+   "price": 214,
+   "currency": "USD",
+   "change1d": 0.0071,
+   "change30d": -0.0663,
+   "rsi14": 49.4,
+   "drawdown": -0.0914,
+   "sma50": 215.1172,
+   "sma200": 197.16,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": -0.11
+   }
+  },
+  {
+   "symbol": "DIS",
+   "name": "The Walt Disney Company",
+   "kind": "stock",
+   "price": 127.24,
+   "currency": "USD",
+   "change1d": 0.0131,
+   "change30d": 0.1669,
+   "rsi14": 70.9,
+   "drawdown": 0,
+   "sma50": 111.952,
+   "sma200": 104.3782,
+   "phase": "Tendencia alcista",
+   "technicalScore": 77
+  },
+  {
+   "symbol": "HL",
+   "name": "Hecla Mining Company",
+   "kind": "stock",
+   "price": 12.12,
+   "currency": "USD",
+   "change1d": 0.0745,
+   "change30d": -0.1877,
+   "rsi14": 42.4,
+   "drawdown": -0.619,
+   "sma50": 14.9712,
+   "sma200": 17.4302,
+   "phase": "Tendencia bajista",
+   "technicalScore": null
+  },
+  {
+   "symbol": "INTR",
+   "name": "Inter & Co, Inc.",
+   "kind": "stock",
+   "price": 4.66,
+   "currency": "USD",
+   "change1d": 0.1621,
+   "change30d": 0.1338,
+   "rsi14": 54.6,
+   "drawdown": -0.5436,
+   "sma50": 5.2179,
+   "sma200": 6.2923,
+   "phase": "Tendencia bajista",
+   "technicalScore": null
+  },
+  {
+   "symbol": "KLAR",
+   "name": "Klarna Group plc",
+   "kind": "stock",
+   "price": 13.75,
+   "currency": "USD",
+   "change1d": 0.0247,
+   "change30d": 0.0448,
+   "rsi14": 53.2,
+   "drawdown": -0.5769,
+   "sma50": 13.2274,
+   "sma200": 15.3184,
+   "phase": "Rebote en tendencia bajista",
+   "technicalScore": null,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-20",
+     "daysAgo": 4,
+     "sessions": 2,
+     "move": -0.1689,
+     "sigma": 5.1,
+     "givenBack": 0.713
+    },
+    "stats": {
+     "n": 2,
+     "k": 0,
+     "pRevert": 0.413,
+     "kHalf": 0,
+     "pHalf": 0.375,
+     "context": "bajista",
+     "sameContext": false,
+     "median10": -0.146,
+     "median20": -0.0883,
+     "giveBack20": 0.204
+    },
+    "levels": {
+     "pre": 14.45,
+     "half": 13.23,
+     "fib38": 12.9421,
+     "peak": 12.01
+    },
+    "z20": 0.64
+   }
+  },
+  {
+   "symbol": "LLY",
+   "name": "Eli Lilly and Company",
+   "kind": "stock",
+   "price": 1392.38,
+   "currency": "USD",
+   "change1d": 0.0001,
+   "change30d": 0.0808,
+   "rsi14": 56.2,
+   "drawdown": -0.0354,
+   "sma50": 1286.7616,
+   "sma200": 1124.9703,
+   "phase": "Tendencia alcista",
+   "technicalScore": 77
+  },
+  {
+   "symbol": "META",
+   "name": "Meta Platforms, Inc.",
+   "kind": "stock",
+   "price": 628.96,
+   "currency": "USD",
+   "change1d": 0.0313,
+   "change30d": 0.0269,
+   "rsi14": 50.3,
+   "drawdown": -0.1911,
+   "sma50": 671.3498,
+   "sma200": 627.3328,
+   "phase": "Acumulación (posible suelo)",
+   "technicalScore": 81
+  },
+  {
+   "symbol": "MON-EUR",
+   "name": "Monad USD",
+   "kind": "crypto",
+   "price": 0.0095,
+   "currency": "USD",
+   "change1d": -0.0686,
+   "change30d": -0.4273,
+   "rsi14": 26.1,
+   "drawdown": -0.7358,
+   "sma50": 0.018,
+   "sma200": 0.0223,
+   "phase": "Tendencia bajista",
+   "technicalScore": null,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-24",
+     "daysAgo": 4,
+     "sessions": 3,
+     "move": -0.2894,
+     "sigma": 3.6,
+     "givenBack": 0.005
+    },
+    "stats": {
+     "n": 0,
+     "k": 0,
+     "pRevert": 0.55,
+     "kHalf": 0,
+     "pHalf": 0.5,
+     "context": "bajista",
+     "sameContext": false,
+     "median10": null,
+     "median20": null,
+     "giveBack20": null
+    },
+    "levels": {
+     "pre": 0.0133,
+     "half": 0.0114,
+     "fib38": 0.011,
+     "peak": 0.0095
+    },
+    "z20": -1.6
+   }
+  },
+  {
+   "symbol": "MSFT",
+   "name": "Microsoft Corporation",
+   "kind": "stock",
+   "price": 495.98,
+   "currency": "USD",
+   "change1d": 0.006,
+   "change30d": -0.066,
+   "rsi14": 42.1,
+   "drawdown": -0.1076,
+   "sma50": 519.5158,
+   "sma200": 445.3432,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": -1.01
+   }
+  },
+  {
+   "symbol": "NET",
+   "name": "Cloudflare, Inc.",
+   "kind": "stock",
+   "price": 278.52,
+   "currency": "USD",
+   "change1d": -0.0829,
+   "change30d": -0.0826,
+   "rsi14": 43.2,
+   "drawdown": -0.2283,
+   "sma50": 319.3646,
+   "sma200": 256.2766,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": 75
+  },
+  {
+   "symbol": "NVDA",
+   "name": "NVIDIA Corporation",
+   "kind": "stock",
+   "price": 149.8,
+   "currency": "USD",
+   "change1d": 0.008,
+   "change30d": -0.3045,
+   "rsi14": 37.7,
+   "drawdown": -0.3739,
+   "sma50": 202.2636,
+   "sma200": 202.6729,
+   "phase": "Tendencia bajista",
+   "technicalScore": null,
+   "quant": {
+    "state": "euforia",
+    "event": {
+     "day": "2026-11-24",
+     "daysAgo": 2,
+     "sessions": 2,
+     "move": 0.2378,
+     "sigma": 4.8,
+     "givenBack": 0.187
+    },
+    "stats": {
+     "n": 12,
+     "k": 4,
+     "pRevert": 0.406,
+     "kHalf": 6,
+     "pHalf": 0.5,
+     "context": "bajista",
+     "sameContext": false,
+     "median10": 0.0119,
+     "median20": 0.0716,
+     "giveBack20": 0.52
+    },
+    "levels": {
+     "pre": 125.53,
+     "half": 140.455,
+     "fib38": 143.9773,
+     "peak": 155.38
+    },
+    "z20": -0.87
+   }
+  },
+  {
+   "symbol": "OPEN",
+   "name": "Opendoor Technologies Inc.",
+   "kind": "stock",
+   "price": 1.24,
+   "currency": "USD",
+   "change1d": 0.0159,
+   "change30d": -0.3508,
+   "rsi14": 37,
+   "drawdown": -0.839,
+   "sma50": 1.914,
+   "sma200": 3.8133,
+   "phase": "Tendencia bajista",
+   "technicalScore": null,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-12",
+     "daysAgo": 10,
+     "sessions": 5,
+     "move": -0.3687,
+     "sigma": 3.1,
+     "givenBack": 0.167
+    },
+    "stats": {
+     "n": 6,
+     "k": 2,
+     "pRevert": 0.442,
+     "kHalf": 4,
+     "pHalf": 0.583,
+     "context": "bajista",
+     "sameContext": true,
+     "median10": -0.0212,
+     "median20": -0.1568,
+     "giveBack20": 0.542
+    },
+    "levels": {
+     "pre": 1.79,
+     "half": 1.46,
+     "fib38": 1.3821,
+     "peak": 1.13
+    },
+    "z20": -0.68
+   }
+  },
+  {
+   "symbol": "PANW",
+   "name": "Palo Alto Networks, Inc.",
+   "kind": "stock",
+   "price": 367.88,
+   "currency": "USD",
+   "change1d": 0.0298,
+   "change30d": -0.0675,
+   "rsi14": 56.3,
+   "drawdown": -0.1239,
+   "sma50": 366.0356,
+   "sma200": 285.2558,
+   "phase": "Tendencia alcista",
+   "technicalScore": 75,
+   "quant": {
+    "state": "normal",
+    "z20": 1.55
+   }
+  },
+  {
+   "symbol": "SHEL",
+   "name": "Shell plc",
+   "kind": "stock",
+   "price": 95.51,
+   "currency": "USD",
+   "change1d": 0.0142,
+   "change30d": -0.092,
+   "rsi14": 41.3,
+   "drawdown": -0.1213,
+   "sma50": 99.4884,
+   "sma200": 90.4102,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": -0.63
+   }
+  },
+  {
+   "symbol": "SND.DE",
+   "name": "Schneider Electric S.E.",
+   "kind": "stock",
+   "price": 220.3,
+   "currency": "EUR",
+   "change1d": 0.0046,
+   "change30d": -0.111,
+   "rsi14": 36.6,
+   "drawdown": -0.2913,
+   "sma50": 252.967,
+   "sma200": 267.4405,
+   "phase": "Tendencia bajista",
+   "technicalScore": null,
+   "quant": {
+    "state": "normal",
+    "z20": -1.56
+   }
+  },
+  {
+   "symbol": "STLA",
+   "name": "Stellantis N.V.",
+   "kind": "stock",
+   "price": 3.89,
+   "currency": "USD",
+   "change1d": 0.0628,
+   "change30d": -0.1688,
+   "rsi14": 46.9,
+   "drawdown": -0.679,
+   "sma50": 4.281,
+   "sma200": 6.0636,
+   "phase": "Tendencia bajista",
+   "technicalScore": null
+  },
+  {
+   "symbol": "TPG0.DE",
+   "name": "The Platform Group SE & Co. KGaA",
+   "kind": "stock",
+   "price": 0.231,
+   "currency": "EUR",
+   "change1d": -0.1476,
+   "change30d": -0.65,
+   "rsi14": 25.2,
+   "drawdown": -0.9659,
+   "sma50": 0.7077,
+   "sma200": 1.7568,
+   "phase": "Tendencia bajista",
+   "technicalScore": null,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-23",
+     "daysAgo": 4,
+     "sessions": 5,
+     "move": -0.6402,
+     "sigma": 4.1,
+     "givenBack": 0
+    },
+    "stats": {
+     "n": 10,
+     "k": 1,
+     "pRevert": 0.269,
+     "kHalf": 2,
+     "pHalf": 0.313,
+     "context": "bajista",
+     "sameContext": false,
+     "median10": -0.1215,
+     "median20": -0.1538,
+     "giveBack20": 0.288
+    },
+    "levels": {
+     "pre": 0.642,
+     "half": 0.4365,
+     "fib38": 0.388,
+     "peak": 0.231
+    },
+    "z20": -1.35
+   }
+  },
+  {
+   "symbol": "TXN",
+   "name": "Texas Instruments Incorporated",
+   "kind": "stock",
+   "price": 280.5,
+   "currency": "USD",
+   "change1d": 0.0432,
+   "change30d": -0.0947,
+   "rsi14": 47.5,
+   "drawdown": -0.1558,
+   "sma50": 287.4746,
+   "sma200": 267.4329,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": 81,
+   "quant": {
+    "state": "panico",
+    "event": {
+     "day": "2026-11-24",
+     "daysAgo": 2,
+     "sessions": 1,
+     "move": -0.1125,
+     "sigma": 4.3,
+     "givenBack": 0.674
+    },
+    "stats": {
+     "n": 3,
+     "k": 1,
+     "pRevert": 0.478,
+     "kHalf": 3,
+     "pHalf": 0.667,
+     "context": "alcista",
+     "sameContext": false,
+     "median10": -0.0018,
+     "median20": 0.078,
+     "giveBack20": 0.676
+    },
+    "levels": {
+     "pre": 291.19,
+     "half": 274.815,
+     "fib38": 270.9505,
+     "peak": 258.44
+    },
+    "z20": -0.7
+   }
+  },
+  {
+   "symbol": "VVV-EUR",
+   "name": "VVV",
+   "kind": "crypto",
+   "price": 24.08,
+   "currency": "EUR",
+   "change1d": -0.0084,
+   "technicalScore": null
+  },
+  {
+   "symbol": "WMT",
+   "name": "Walmart Inc.",
+   "kind": "stock",
+   "price": 133.13,
+   "currency": "USD",
+   "change1d": 0.009,
+   "change30d": 0.1209,
+   "rsi14": 72.1,
+   "drawdown": -0.008,
+   "sma50": 118.5552,
+   "sma200": 119.0476,
+   "phase": "Recuperación (posible suelo superado)",
+   "technicalScore": 75
+  },
+  {
+   "symbol": "XOM",
+   "name": "ExxonMobil Holdings Corporation",
+   "kind": "stock",
+   "price": 160.18,
+   "currency": "USD",
+   "change1d": 0.0133,
+   "change30d": -0.12,
+   "rsi14": 39.8,
+   "drawdown": -0.1446,
+   "sma50": 168.7866,
+   "sma200": 156.9727,
+   "phase": "Corrección en tendencia alcista",
+   "technicalScore": 77
+  }
+ ],
+ "cryptoRegime": {
+  "at": "2026-11-28T06:11:24.851175+00:00",
+  "score": 29.3,
+  "zone": "RISK_OFF",
+  "guidance": "Defensive market conditions observed; review existing risk controls",
+  "components": {
+   "btc_trend": {
+    "score": 45,
+    "signal": "STACK INTACT, PRICE BELOW (deep pullback / early break); 200DMA falling",
+    "ok": true
+   },
+   "alt_breadth": {
+    "score": 10,
+    "signal": "5% of 19 tracked alts above 200DMA (0% above 50DMA)",
+    "ok": true
+   },
+   "dominance": {
+    "score": 50,
+    "signal": "NO DATA: Need >= 31 daily dominance points",
+    "ok": false
+   },
+   "funding": {
+    "score": 50,
+    "signal": "NO DATA: Need funding for >= 2 symbols",
+    "ok": false
+   },
+   "drawdown_vol": {
+    "score": 25,
+    "signal": "Drawdown 38.5% from 1y high; volatility elevated (top third of 1y range)",
+    "ok": true
+   },
+   "momentum_thrust": {
+    "score": 35,
+    "signal": "WASHOUT (contrarian: near-total negative momentum): 0% of 20 coins positive over 30d",
+    "ok": true
+   }
+  }
+ },
+ "prevThesis": {
+  "NVDA": {
+   "thesis": "Centros de datos con ventas +93 % y BPA +130 %, margen neto del 62,5 % y foso de software CUDA; PER 17,6 frente a un máximo de 243,4 $.",
+   "breaks": "Que la SEC confirme sanciones o reformulación de cuentas, que S&P ejecute la rebaja de calificación, o un cierre mensual bajo 124,5 $."
+  },
+  "SHEL": {
+   "thesis": "Caja, dividendo 3,9 %, recompras y gas natural licuado.",
+   "breaks": "Recorte del dividendo o de recompras, o Brent bajo 80 $ sostenido."
+  },
+  "TPG0.DE": {
+   "thesis": "Plataformas online con adquisiciones, hoy sin respaldo de mercado.",
+   "breaks": "Ya rota en la práctica: −96 % desde máximos; la ampliación del 29-dic confirmaría la dilución."
+  },
+  "KLAR": {
+   "thesis": "Pagos aplazados con camino a beneficios: ingresos del T3 sobre 1.000 M$ y beneficio ajustado de 100-120 M$ esperado en el T4.",
+   "breaks": "Cierre bajo 12,0 $ (mínimo de 52 semanas) o un nuevo recorte de guía en el T4 (beneficio ajustado de 100-120 M$ esperado)."
+  },
+  "AZN": {
+   "thesis": "Cartera oncológica (Imfinzi) y aprobaciones frecuentes, BPA +17,4 %.",
+   "breaks": "BPA creciendo menos del 10 % en próximos resultados o pérdida de los 171 $ de la SMA50."
+  },
+  "CVX": {
+   "thesis": "Caja sólida, dividendo 4,2 %, recompras y producción creciente tras la compra en el Golfo de México.",
+   "breaks": "Brent bajo 70 $ de forma sostenida o recorte del dividendo."
+  },
+  "ANT": {
+   "thesis": "Líder de IA generativa con demanda institucional alta en la OPV y compromiso de gasto de 47.200 M$ en Azure.",
+   "breaks": "Cierre semanal bajo 75 $ o recorte de previsiones de ventas en su primer informe trimestral como cotizada."
+  },
+  "MSFT": {
+   "thesis": "Azure e IA empresarial con ventas +17,9 %, BPA +36 % y margen neto del 41 %.",
+   "breaks": "Ventas por debajo del +12 % en el próximo resultado o cierre bajo la SMA200 (≈445 $)."
+  },
+  "AMD": {
+   "thesis": "Ventas +42 % y BPA +127 % con CPU de servidor y aceleradores MI355X que compiten en coste con Nvidia.",
+   "breaks": "Cierre bajo 350 $ (mitad del rango de 52 semanas), ventas creciendo menos de +30 % o recortes de gasto de los grandes clientes de IA."
+  },
+  "CRWD": {
+   "thesis": "Plataforma de seguridad en la nube con ventas +24 %, ahora consolidando con Zscaler.",
+   "breaks": "Cierre bajo la SMA200 (≈178 $) o ventas por debajo de +20 % en el próximo trimestre."
+  },
+  "SND.DE": {
+   "thesis": "Electrificación y gestión de energía para centros de datos con demanda de dos dígitos en EE. UU. y Asia, según la dirección en sus últimos resultados.",
+   "breaks": "Un cierre semanal bajo 210 € o una guía que recorte el margen operativo en los resultados anuales."
+  },
+  "BTC-EUR": {
+   "thesis": "Adopción institucional vía ETF y escasez de oferta; el 5 % de monedas con momentum positivo es una señal contraria de capitulación.",
+   "breaks": "Cierre semanal bajo 50.000 € o régimen cripto bajo 25."
+  },
+  "VVV-EUR": {
+   "thesis": "IA privada descentralizada con tokenomics de recompra y apoyo de su fundador, aún sin datos suficientes de flujos o adopción.",
+   "breaks": "Venta confirmada de las carteras ligadas a Voorhees o régimen cripto bajo 25."
+  },
+  "MON-EUR": {
+   "thesis": "Cadena de alto rendimiento con adopción de desarrolladores, hoy sin flujos que la respalden.",
+   "breaks": "Régimen cripto bajo 25 o un nuevo mínimo histórico bajo 0,0095 $."
+  },
+  "TXN": {
+   "thesis": "Analógicos con ventas +20 %, margen neto 34 % y dividendo 3,4 %.",
+   "breaks": "Ventas bajo el +10 %, o cierre bajo la SMA200 (≈267 $)."
+  },
+  "OPEN": {
+   "thesis": "Compraventa digital de viviendas, hoy con ventas en caída.",
+   "breaks": "Ventas cayendo más del 40 % o pérdida del mínimo de 52 semanas (1,09 $)."
+  },
+  "PANW": {
+   "thesis": "Plataforma de seguridad con ventas +30 % y demanda ligada a la IA.",
+   "breaks": "Que se confirme una irregularidad contable o ventas por debajo de +28 % en el próximo trimestre."
+  },
+  "ANET": {
+   "thesis": "Redes de centros de datos con ventas +41 % y margen neto del 40 %.",
+   "breaks": "Cierre bajo 150 $ o ventas creciendo menos de +30 % en el siguiente trimestre."
+  },
+  "META": {
+   "thesis": "Publicidad digital con gran base de usuarios, ventas +27,5 % y flujo de caja que soporta litigios como la multa de 805 M€ (unos 887 M$).",
+   "breaks": "Un cierre semanal bajo la SMA200 (≈631 $) o que la multa italiana de 805 M€ se replique en otros reguladores europeos."
+  },
+  "LLY": {
+   "thesis": "Obesidad e incretinas con ventas +45 % y margen neto del 32 %.",
+   "breaks": "Ventas por debajo de +30 % en el siguiente trimestre o cierre bajo la SMA50 (≈1.282 $)."
+  },
+  "XOM": {
+   "thesis": "Caja sólida, ventas +19,5 %, BPA +41 % y dividendo del 2,5 %.",
+   "breaks": "Cierre bajo la SMA200 (≈156,9 $) o recorte del dividendo."
+  },
+  "ABBV": {
+   "thesis": "Dividendo del 4,5 %, cartera inmunológica y de neurociencia con ventas +10,7 % y beta 0,15.",
+   "breaks": "Ventas creciendo menos del 5 % en el próximo resultado o un recorte del dividendo."
+  },
+  "DIS": {
+   "thesis": "Parques, streaming rentable y litigios políticos resueltos a favor: ventas +8,4 % y margen neto del 9,7 %.",
+   "breaks": "Ventas creciendo menos del 4 % o cierre bajo la SMA50 con la FCC recurriendo la sentencia."
+  },
+  "NET": {
+   "thesis": "Red de borde con ventas +33 % y seguridad para agentes de IA.",
+   "breaks": "Ventas creciendo menos del +30 % en el próximo trimestre o cierre bajo la SMA200 (≈256 $)."
+  },
+  "COST": {
+   "thesis": "Modelo de socios con ventas +10 % y BPA +14 %.",
+   "breaks": "Ventas por debajo de +7 % o cierre bajo la SMA50 (≈994 $)."
+  },
+  "WMT": {
+   "thesis": "Logística propia y publicidad con margen neto 2,8 % y dividendo 0,76 %.",
+   "breaks": "Ventas creciendo menos del +4 % o cierre bajo la SMA50 (≈118 $)."
+  },
+  "INTR": {
+   "thesis": "Banco digital brasileño con PER 6,7, BPA +35,6 % y precio/valor contable 1,3.",
+   "breaks": "Cierre bajo 3,58 $ (mínimo de 52 semanas) o BPA creciendo menos del +15 % en el próximo trimestre."
+  },
+  "BBD": {
+   "thesis": "Banco brasileño con PER 6,1, dividendo del 5,6 % y mejora del sentimiento político tras el nombramiento de un banquero en Hacienda.",
+   "breaks": "Que el nuevo ministro no presente un plan fiscal creíble o un cierre semanal bajo 2,5 $ (devolviendo el salto)."
+  },
+  "AAOI": {
+   "thesis": "Transceptores ópticos para centros de datos de IA, con ventas +61,9 % y precio/ventas de 5,6.",
+   "breaks": "Cierre bajo 21,4 $ (mínimo de 52 semanas) o ventas creciendo menos del +40 %."
+  },
+  "AXTI": {
+   "thesis": "Sustratos de semiconductores (galio, indio) con ventas +45,8 % ligadas a fotónica e IA.",
+   "breaks": "Ventas creciendo menos del +30 % o cierre bajo 20 $, cerca de la mitad del precio actual."
+  },
+  "STLA": {
+   "thesis": "Valor deprimido con dividendo alto (7,15 %) y precio/valor contable de 0,24, pero sin giro operativo visible.",
+   "breaks": "Recorte del dividendo o pérdida del mínimo de 52 semanas (3,09 $)."
+  },
+  "HL": {
+   "thesis": "Plata y oro con margen neto del 24 %, ventas +29,7 % y BPA +86 %, beneficiado por precios altos de metales.",
+   "breaks": "Cierre bajo 10,2 $ (mínimo de 52 semanas) o ventas creciendo menos del +10 %."
+  }
+ },
+ "news": {
+  "NVDA": [
+   {
+    "t": "El CEO de ARM amplía contrato y responsabilidades tras el descarte como CEO de NVIDIA",
+    "src": "MuyComputerPRO",
+    "at": "2026-11-28T08:17:54.000Z",
+    "u": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPS1RwTkM4T0FyajVNTFhfeXRTR293eTFFNHVlYU9ZMld3Z19MY0pyeDVfN19lWVF3LTB1VlR3X3lVUElqYWd5SzhEcW80YlBUeUVoUnBLMFljUjh2YkYtQkZOVDY0dllBd1l3T2stOGJnTTk5V0xhWGI2SFhvTXJpQ08xcEJ1RVRsWTFYUWxCcnZnYWozVW5NSzhIZ3hEUUhOSG1EMjBUQlFWdDdna1NYTTBILWtSRmNQajVJUGF4VGgzd2g1V2c?oc=5"
+   },
+   {
+    "t": "Las turbulencias en Nvidia ponen a prueba la financiación circular de la IA",
+    "src": "Morningstar",
+    "at": "2026-11-28T08:16:54.000Z",
+    "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQMXB0UkQxNG85MUpIUlZVZ3Y2UGdUczdZamVLSFF0UWdUOW1Pb2ZzMzdOelpnNC1SVXZyVGRXVnRWUHRFQTV5bi1YS0R6YlI5Ml9YNk9KYldBbi15OHB2TWx0Z1lZVzdZVW1abHk1NTgtcnJUaDBPYm5lV0UwTlhCZmhUR2VmRFYzUjNGNEJjY0VwYTZVZE1RUnNKZjhZTTRHUEV6b3dKdEtnVFkwM05rNXlQaWFZdw?oc=5"
+   },
+   {
+    "t": "Datos clave: Los ingresos de NVIDIA se disparan; sus acciones caen y su calificación queda bajo vigilancia negativa",
+    "src": "TradingView",
+    "at": "2026-11-28T08:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1tS0hhYmU4X0ZkZjZocExVZDllOHFmUnV3a0E1SVp2Mk1pcVk1b0VYN3l1WlNaVTgya3ZzcEQ5Tnp3VnFpNnB1TzNuc2tJV2N2MXpZYnJ4aE5hdGIwc1BFYkNqTE1CSmJvREFQQw?oc=5"
+   },
+   {
+    "t": "Donald Trump inaugurará una planta que entrega chips a Nvidia en una señal de respaldo a Jensen Huang como CEO de la empresa",
+    "src": "Infobae",
+    "at": "2026-11-28T07:08:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPRU03TVF3U0xHbER2czA1dERBWVU5TExJUjJqQ2h0dFBZNlJmYjZRYkNZNjh2UWM0UVg2RjZfaUdScFN0SVY1MGx1RUk5OVpVN2VGTElqbXpqZ25ncDJFRDU0aFZCVFl6NWJKbG44UlBLQkg1bXQ5azRnd0VHV19hQm15bTZkTTdydnZCUkRtcmJpRXVzRHlsZDlocW1nQ2xaaFZ4cUxteC1sRi1pZ2JvQ19rWFF1aW1ybWVkYmo3YWY4REw0THEtYzFza1RJUFkzTkNWOW9IVGNGSEdQMDFYMXZiQ3pUUlp1aWRZVVpIdENvNjN2QVZiVEpVWDVUUVZ5SGRzLdIBnwJBVV95cUxPUFVYZnlqXzR3c2VzRVMyWUZFRXY1ZUtEY0dmV2loVXh1N09ta1JsTVNWVGtvNUhIWS1GRUMxdGpXa3ZoOHdUdFlOMVBnNTBWdW9HdmZSc3E1Ty05dUx0YnozalBVd0F4TDZUN0Qxam1QT2tWeDhDN1dFQWhDandLLXZxU21PZ3B1TFRHenZkR29Ca2YyejBHRF9DMmZGbjdmbzRGZ2JfeGNBR1pwU0F6SXhrcDhKdHgzLXItejA5QnpSQTlkdEljMnE5R24wT2lKcUhhamhsYUZZeDE5bkVLYVFZTjFrdWlxMXdlSWVvN2hKSlpqa2U5MU5iQmJmMzlCV2pfblpDSDFtNHkwb1JSNWFKdmo4ZGN6SmJSOXdpRQ?oc=5"
+   },
+   {
+    "t": "Jensen Huang y Nvidia redescubren el 'cisne negro' a Wall Street: las crisis y su resolución parecen cada vez más rápidas",
+    "src": "Business Insider España",
+    "at": "2026-11-28T05:30:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxORDhBaGttc3p6d0g3M0xrYUZGcFFFMmpWWWR4dnQtNXFCcS0zUWlvRDBYNm9vN3RpZVZMV2tyM2dXb3pNQXdSazNlM2IyTnVsNWw0cEhCbFE5RkpXLWh6OTFPQ2dBZ015alROVkR3M05XM2t3UXpVZHctdlc0a05rbEZqc1Z2eXh5S0lldTJIQ3l4WWJ4TU5BVHJSRzdzY1BQTTRQbFpZTkpSdEdmVndwYXExM1F0ZE13Yjc0YnNBS2t1VEM1MHJYUk1ZQnZmeWNCc0dGc0hha24xRTZmZXAzbTVKTDkyVVlwREdaMVB0ZnJWZ1pFeFU0?oc=5"
+   },
+   {
+    "t": "La crisis de Nvidia deja en ‘shock’ a la industria tecnológica global bajo la sombra de una grave crisis financiera",
+    "src": "EL PAÍS",
+    "at": "2026-11-28T04:45:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNeHl6cVVSVjVrTjhUajViVHhZcW9BQVVUaFRSMjJrUktIRG5JRGJVS2tyWXhMbjNqUFJ2RWQ1WFJlRXdxZnFENDN6VmdBS005RExYZlRGbzR4Y09YeUthbXYzay11NjNlbWkxcGlvVVhDcl90Q0JzZXgzZ0NlVXg0WHc2OHdsQi12bWpWS2NvR1U1NjdnX3NFRlU2Mkw1NGU2NVBsTi1IN1NfMm8yZHQwUEgwLW9zU291eTRDMGFoVVZheTVjLUlaSG5qOTdEeU1zcVZLTm0xT3RiczFUeTR1aWlPdG1OUGtQeVdpYTlR0gGCAkFVX3lxTFBGZGtubkE3elVkREVSMkZvYk9Bbmt4MWJOcDdzTWZvOEtYQzBKdlRISnI1eDVZeU45NTVpZkFhcWcxMHN0QTNVV3BLMEUzaG9sNlFMMzlEVzl3MjRUQ2dHSGVIc0tPbEVOUXA5dUVERk54OGp2S05ZaFZqTTM0NXdEeWpJdmh2TXV1dWVMUEZOVnoxRVg3NzBCaXVmcDhHZjdRY0ZUNzRtMEhHWDh2LTZjenJLSmlrN295aTdCeU5zczlBTFQ4UzhDQkR2eXoxby1aRlJvbm9hSlpOQlRnNUozN3VObGlSVllTMFhWXzdkejRQQk1OT3lfeERZQmRqS0h4dw?oc=5"
+   },
+   {
+    "t": "Nvidia investiga la relación del CEO Jensen Huang con una presunta espía china",
+    "src": "Bitfinanzas",
+    "at": "2026-11-28T03:49:28.000Z",
+    "u": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOLUVYRnozdndkZGhDQUkydTBkN1oxcVBsWGhqczZYQVRObkx6ZFNLZ2ROZW0tWnVpQlFOZEFTdzBrTlpCemZNbmFoUHRHdDVOd2cxNzAzelFzRHZlNXZDNkp3bDlPdzVGTUw1NEVLUDFLbFppREN5VVF4ZVRaaENka3Nkbw?oc=5"
+   },
+   {
+    "t": "Nvidia y otros pecados capitales",
+    "src": "Vozpopuli",
+    "at": "2026-11-28T03:45:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1VT1huRTl1b2ZOZmg2Sm5BdVdXZU9FV3VZcnFmS0Q3NC15TTF3WmdFdHNheFlMNFluTnY2N3A1V3FUZmJCTk1la3NfZ1YyN0RmTHE3V082NmNzMloxNEVvMGlpX01wZDAyOXZPaklVcm5yT0FRd3RSQjJOb9IBgAFBVV95cUxNNU9YVm1UOGd1Wk9LMUozVm1XeFZWTXcxVFMzYll2Unl0V2tvWUp3RUhtcjc5UXZXV25ZX1ZGeXA3OG02cnQ0cF9VZVJQdXNsTk9JNmRJUGFxNFhRME0wZkpnVUhlYVhVaTVFbml6UFRPcVpVSlZBOGpCTzdIaVdQRQ?oc=5"
+   }
+  ],
+  "SHEL": [
+   {
+    "t": "El componente del motor diésel que ayuda a controlar las emisiones y puede ensuciarse con el uso",
+    "src": "El Cronista",
+    "at": "2026-11-28T17:34:27.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPbmtNdFNJVERnRzJSN3QyMkJ3Nno1dTNiZXk5bVJoenZxVENYVThLWlNxX21HZ1NiMFQ3bVBOcWtZYWJZTll2SDNKZHNyaHhITDJCNnNkUmlTQ1VYODR1MFBJazRqLUtXdm9GdUtZckFITlBGVTk5bUYyYXRtY1U3eGxuUWQ1OW9QMUJPaGd0cFVfdVY3SGlvTmFOQi1rUnd0cXhJdjJRd2xXRV9Td0VrRWk4WWhhcnVJMmFaZnNfT2JTelhab3dPOXROa0VKd2pJX1B5eWZ30gHwAUFVX3lxTE40VDhFZlltbndGQkFMclpqN3l3czVFMFNmRkVaemZtVndDeHZFb0N6dWhaR2R0LV9QR2ZxQ1J1UWRtSEExZGJhM2VGX09KQnFGZEJjNlN4QVRfWERudXNDR0t4OExGQTFsbC1TblZlemYxb0doaEdzV2pxZDl2MUg2UGJuRHNpVDBrZDZUN05ocVd2V1FKZENJSVFZSXhwRVlLUmlER0QtamNDRGY4Nm5hc3Y3Z0hEcDE5Q2xKZV92Z2VuOW5sNi1LT1hEcy1JMkQ5UENFTHJDV25rMFo5YjNITFFNczdUYURrakpQVkJ2ag?oc=5"
+   },
+   {
+    "t": "YPF tiene el sexto inventario shale más grande del mundo y deja atrás a Chevron y Shell",
+    "src": "eolomedia",
+    "at": "2026-11-28T16:13:46.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUnVpZFVzamxxd2ZFVkFlVGdjSF9TV05uRDVhbTJ5ZjVQT3hjWGRnR2tkc2RaLWtmYl9RTjdkVUdYZk9HdHFYTEE0OXNOVDFNMWpyVVBEa284YzZ5aktjR1hDcTFQeXdiZTdNQTBwaWpJWmFtanJGLXpTbzRBSDdBeFAtYTh5dVMyUGJrQ1VhQnZxQWZMM2VmSHVkTkFWWHpwclVvQm1Kc3hTNzNVOERCSTYwUQ?oc=5"
+   },
+   {
+    "t": "Shell cumplió cinco años en Paraguay y celebró con aliados",
+    "src": "Última Hora",
+    "at": "2026-11-28T07:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPaUpxOHJsRHlhX0hfZ3JSTlAxY0FaalZxRXRiNG1vZU95VXUxd0VOYXJsaUplbl9xTkluX2pSdkhkOHJ3Y0xlRVhOTjA4TTNJTkZDX0ZzamNmUVg4OUpfYmtrcUc2NlFUZXRmNklwcW0xV2M1aENBLUhyQkVKcEZ2WUtzMldoWXpiRzJOTW41dDNJTnBkOU0tY3l3VdIBmwFBVV95cUxPaUpxOHJsRHlhX0hfZ3JSTlAxY0FaalZxRXRiNG1vZU95VXUxd0VOYXJsaUplbl9xTkluX2pSdkhkOHJ3Y0xlRVhOTjA4TTNJTkZDX0ZzamNmUVg4OUpfYmtrcUc2NlFUZXRmNklwcW0xV2M1aENBLUhyQkVKcEZ2WUtzMldoWXpiRzJOTW41dDNJTnBkOU0tY3l3VQ?oc=5"
+   },
+   {
+    "t": "“Y no va Shell”: cómo Always On convirtió a los taxistas en protagonistas de la campaña más reciente de lubricantes Shell",
+    "src": "Mercado Negro",
+    "at": "2026-11-28T01:55:01.000Z",
+    "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBiTFJBU3duVmZpQlh6WUtldDhnSDhzaG94OG8xWVlLTXhJMTViMmlleC1wT3M2U1JHM2NKWkNiX2pWdUZXOGxMRFE1VDZ5NmIyZTk1R1dmVkpiZ1lKTGx0OWR4eFViNUx1UFpjSS1Wekk?oc=5"
+   }
+  ],
+  "AZN": [
+   {
+    "t": "Salud respiratoria: ¿cómo impacta el corazón?",
+    "src": "Revista Semana",
+    "at": "2026-11-28T09:43:30.000Z",
+    "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQYktvWVJ5SEdCcWdqeWdTNnpOeHJKWkdyU1MxekhENl9DR2JHZ3hDQXl6eVNET0pHU1RsbmcydU0teDlXd3p6R0JrZ3RCd3dra3VsZ2JHbUdJR1MwdG1QMS1FcHJsVDVfZGd0YnEyTEludUQxd3lOWUdUVTVPcVBzX3hFZWNWWnZCTXQyODFHR2N4cHpMbzV4bXdIUdIBoAFBVV95cUxNelJSbXpGZ0VZZktrQUFhWWh3SFFnbWZUTnd2bUQ2ZWhOZVUwTFJUSEU4NEQtRkNGMHlYbzVRYldGYjRZckhUc0lSeElPQU5VbjV1YkxkUjBXUGxrTE9zNnNCbnBTaUZNdlBmOS1EMmgwczM2aUFFd0NFRkVLMEZONnN1Wm01TURaWEhNWFVfZEhQUkYybTZ2NzlHSWNfd0d1?oc=5"
+   }
+  ],
+  "CVX": [
+   {
+    "t": "The 3 Highest-Yielding Dividend Stocks Among Berkshire Hathaway’s Top Holdings",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQYko5MDhCdGI1a05QcGNEN19ZUElQYkVIMm1qNDlKNnlCVjdnYjRKT0FxM1FtMEkzMTFtT0xpWkhVRWtBTkRzUzlpRFRRTnM2MHRHRXVLUEJkdzJwX3JwcHFqNElCVFljRGpzUFZkOXJhTHpvRnpaX0kxUlBFb1J3amQ2UGJyMVZVTldycWZEUnNmNmpqZ2cwNE5WcVMyMVZVOGpQNHhyby1EUQ?oc=5"
+   },
+   {
+    "t": "Acciones de Chevron hoy: ganan un 0,71% hasta 212,45 dólares",
+    "src": "The Officer",
+    "at": "2026-11-27T22:56:12.000Z",
+    "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNNUsxcm5RaVF3MjBFVnFYYWJHTFdVZVVSbU1TSUFBVElZNXJ3cWNCQ0xHOEJIZ29DZmtfel9DU1ZuSDNWQXluZmowalQ5WlVUUno0VlZzMUJUd3pFZmZ5eWNjdHZHZ1lCZjc4STczcy1yMHEyaFFwY05lZi1nblVZdWVSWGlWdw?oc=5"
+   },
+   {
+    "t": "Acciones de Morgan Stanley hoy: suben un 1,99% hasta 170,88 dólares",
+    "src": "The Officer",
+    "at": "2026-11-27T22:16:08.000Z",
+    "u": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNZ1lTV1djaHZZZ29jYjNwZ1cwSEVVMzY4ZkZjWk9SS19VM0lHVG1TaEJGZ0pMM3VMVTJjUy1WTWc3R2FvdkhKQklaNWh1U0g2TTh3TTZTcVFIMmNDSTdrcXZIYTREYS1OaGt1QVNZNmV4M3BiS0RkY3hIMWdvbXdZZmFTbmpDd0Z0akdfMEZiSQ?oc=5"
+   },
+   {
+    "t": "Acciones de Sacyr hoy: suben un 2,34% hasta 4,20 euros",
+    "src": "The Officer",
+    "at": "2026-11-27T22:15:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBLbUg2LWVWMU1zQngwdVNVb3hwM0RjREQ1cnlaTXQ2VFMzVi1Da2JjWmJtMmtFTW00V3pnakVDRFNKYUFLdm1kYTRzcXJzZFc5TzJld05tX3B6d1diOXNmY1RzQkM3S3BLNDNweXZIU2YxZHgybkI4ZnJqYWNfUQ?oc=5"
+   }
+  ],
+  "ANT": [
+   {
+    "t": "Anthropic se dispara un 11% en su mejor día desde el auge de las OPV",
+    "src": "Forbes Colombia",
+    "at": "2026-11-28T14:58:36.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbmQwM05zTUVPQjRRNzhlQXV3cFJmamRyZ2wzQk9iMzBLampsUXBkQnJ3RjVpVzl5dGlBVUxpR3pSLTQ5S2w5T2x6bjhDVzJqb3N3QnVyZV9NRUxxaDlKTHNHaWwtU3RxTWl6M0tNT3FNS2xGUUtCdGhQRjhtajZZOE9rVy10ck1LYVVrTGs3UG5IRXRjOFR3LXJOM0p2cms4Q1NDN2w4SXN1UQ?oc=5"
+   },
+   {
+    "t": "Anthropic recupera terreno en bolsa, pero sus compromisos de infraestructura inquietan",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-28T14:00:31.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPcEZiX0JaMzcyTktJQXN3Z0FaNkxHYjJ1RjJtVV9mVENOMU1QSXFYMkNRQnlHYzAyYnpyYk9jdTd3d0pPVXRiS0tsdTExeUo2X2lPN0JQRHR2eC1RdkRMLTQtTVNDb0ZTanVVeUxEYWhKdl9mMjd6czMta1QyMWZ0Tk5JNUVPeG1faEMzNEdhUnJ3eGhLc2hhdHhUeDlRc3RubGM2dzI0QkMwTmhyNnlYandXQUhHSW9UNjhBd3BmblRyWms?oc=5"
+   },
+   {
+    "t": "Datos clave: Aprobación de satélites; $120.5 mil millones de Anthropic; acciones para Trump Account",
+    "src": "TradingView",
+    "at": "2026-11-28T08:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9NRV9BSTVGWHVCTHpkS29Ja2locWptQVVWS25ialdPczV5czVyb00xbU8tVkxrRllBcExzU205YW9pNlFJZVY5TkZpclU0WUhhTzFwZlRvOW4wZWY4Y2JnV3lzV2VMZk5RRU5DMQ?oc=5"
+   },
+   {
+    "t": "Anthropic tendió una trampa a sus propios agentes de IA y sus modelos más nuevos ya casi no muerden el anzuelo",
+    "src": "Business Insider España",
+    "at": "2026-11-28T07:30:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQLW9URi1tb1VLa3luY2dLVGVSbWI5dU43ZWk2Ymc3M0FYVUlyWXBpSm43bWFQYW1teEY5MU5VUFRlVGFNOXJhX2pRb0sxYzlaN084eVdnVzNBR29yT042ZnZjd01uN3gxbWc3VzFBWlBTVHg3Z2F4N2pFY3k1VWdmQ1FOT3lVRWhiSlFCdFdoSjlVc1VLZXlRUHA4VklxWnJ6MGpRS3RVa0JXQ0VyMEtwWExEQ2FwRGpCX2VRTVFtdWlEaVJndUViczQ2TGtuT054?oc=5"
+   },
+   {
+    "t": "Empleados millonarios de Anthropic: qué mide la OPI",
+    "src": "NeoTeo",
+    "at": "2026-11-28T05:41:30.000Z",
+    "u": "https://news.google.com/rss/articles/CBMingFBVV95cUxNbjZNQnVXR2NnVnVmaVRzQnExTjN5Q2VCaTZTZExlVlFWMG4zYXJCakNfQWtuenRRVWVVM0tPczBYSzZBVHhCWTRUWVNFdkhLZF9fcDNCQlhEYjg0ODE1WU1kUlFqNTFHSzBnNmhJZ05UWW9TeTlETHdqYm9vNWlYY3FiSjBFanNOREh3TDVOOEd2cktucV9DenFEOU1JUQ?oc=5"
+   },
+   {
+    "t": "Mercado hoy: Bolsa cae por ventas en IA y desplome de Anthropic",
+    "src": "Bitfinanzas",
+    "at": "2026-11-28T04:56:13.000Z",
+    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE05RExYOVB5QVhyNEdWUFZ3LXFxLV9yekUyN1F3UHVRellQLUtMdjB0aWxtSWhpRnRJVWdHY2E4dm5nUFk2VlV6U3RlWDFZa1RPZmFGbXVyZWZraEZONjR4a2w2eGZjMmJqX3RiTg?oc=5"
+   },
+   {
+    "t": "Las acciones de Anthropic cierran por encima del precio de la OPI tras dos sesiones por debajo",
+    "src": "Unite.AI",
+    "at": "2026-11-28T03:36:04.000Z",
+    "u": "https://news.google.com/rss/articles/CBMilgFBVV95cUxONEp3SG1lMVJndTNVdUJQcVRZcDRIblcxUW81MXpuaVRsTjEzUzlJa3p4a1lzS05FWTVFSXFEczJlV0prMGNfZDBEaWRxVmpEUTNIaEJmaGN0ZlZrY3RnMHN6YUFCLWZLbHM5bmdWQVViN3MtaVJ3c0xKTzE4RFhrTUh0RU9rcTRlVWw1TU13S2sxR2J6Rmc?oc=5"
+   },
+   {
+    "t": "Foro Anthropic | Comentarios sobre ANT",
+    "src": "Investing.com España",
+    "at": "2026-11-28T03:01:55.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA1dDl2QUFqV2pUMUs3V3Via1ZibGI5ZU9oYnNWOVQtQ1p6Rk00ZUJqV01iNmt2RnA3S0pRYmFLeXVxeElXM3YzZ2NEMTZVVFltUG1ZZUFndVA2enhyZHg1TDdYWnl6TkU?oc=5"
+   }
+  ],
+  "MSFT": [
+   {
+    "t": "Digital Foundry pone a prueba GTA 6 en XBOX One gracias a la nube de Microsoft. El resultado es mejor de lo esperado",
+    "src": "3DJuegos",
+    "at": "2026-11-28T05:46:20.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObklFUmRwdEhQVEprM29iSW9tZ0FselhWOTFIbjFVOE9RQ3Y1N0lnSFVuYVJEOWt1aUh3cWducjQtWXE4Z0RmR0pvV3liX3ZJeVg4cnl2dWRPVXk0eGtXV2hWUE42aS1YTXlGbW1YamVjUllfeldmbFRrWEJacDhZWndLY3lvZXdxSFVyWkkwdnlsVFYwZ2o3SmhwZnFwZ1ZOZlB0ZjBrMHJxem9iYlZkaktkUWdGcTR2cHg3b0JzMkxfdFFXZE5sUThBS3hoVnNtYVpN0gHYAUFVX3lxTFBLUUpWa0ZXdENjdkpoTGllLURuMkgzckFPSDVIU1p6VWI1eFRQb0lGb1Q4MHIyZl91R25YWkxKV2Vfa2ljYW1XYmQ4bWpyMy1PdTc0aEpzam1VdS1hY2ZqZ1hiUHJCNVB3ZnhRZlg3OElISjhtV1NQMzhPOW8wLVBzUGNLSkdRMS1PMFVBRWlIcHdHc25INEx0RzRFdEQtczFNcjAtQ0RqZkFHSUZ2UTF1TEtwS1RDNTE5QmFpaGc5UkdDUTQ0cnFxVzczeHNGdWFyUnhzOUJUWQ?oc=5"
+   },
+   {
+    "t": "Cita del día de Bill Gates, ex-CEO de Microsoft, sobre el valor de aprender de los fracasos",
+    "src": "La Nación",
+    "at": "2026-11-27T23:53:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNQmh2cnMzbUdyaFRFdDl6Rk90dFllV0F3eDNKc2FjdlpwYm5PMktUUGFxVzdrV1N3ZGlGNElxNlFZbjBWLTZhbWRhM0tJVFc5NExrdzZVeE5ZTy0xdW9UY2tzdXcteENHUVZ1aDVDV3A2RnRjZ1QtUDV6aG1uRXBmV0trLUNKclRLNU1kVTZVN2R3a1ZKb051d3F6cDlrd0JJMjBXc19sWjRGWnpiSWItWG1PZlNuT3hxUHR4dm92Q0xGbjBNR2Vzb1M1SkEwbGJJU2R1T3h3?oc=5"
+   }
+  ],
+  "AMD": [
+   {
+    "t": "Las acciones de AMD (AMD) podrían estar infravaloradas, ya que su subida del 250 % pone a prueba el flujo de caja",
+    "src": "Simply Wall St",
+    "at": "2026-11-28T06:12:30.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNVjVGYUZUSVJzUnRJTHc2UEpSTjJCdzQ0dmQ4dEF6Vk1BaWp0Nm8yWFdzVUNjaThmNW5sWGh3YVB2ZGRYQ3hZMXcxQkJTWWpaQ2U0VndFOWRWeHNkRE1TakNOMS14WlJzNzgzQ1YwZTJuWlJPdmNjdGJFMU1nak9jWURPUFV1cklFZEVXeWVUN3dXSERYSEhmZkM5LTJ6a1E2SzlxemQ2eUVBOE10ZDV2ZTRYQVBfUDNqM3NKVWFlN3VpM0dJT2d1NTdwb2JQSEN1Y0VaRzI3SktGeVFSaDRpZWhR0gHnAUFVX3lxTFBTYk5qVTRXV2M3NWUxbzlkZWJlamJydEpXYjNWWVc3blVOVGw1ZmU1M1ZLc3Zxc1F2NF93eTZlVGpQTEVJRnVqR2Y0eTBYUHpWMXpNZUtHZWRYY3RWTlRTOGxncTNPaFFJRWszWG56SE1mVzJRczFUU2liOFVFcnA1bHlfODRqTlR4Yi12MkkyeHlaaU1OV1poZEhvbXNZa3N0a1RyVjYwb0U2dUpFOExFOWlCc3lJTTMtckRVVTZ5UVVxOXFBalhYZ1MycnlRQmlEYWpxUzAwTlAzc1pFdkktdWtaRGtIQQ?oc=5"
+   },
+   {
+    "t": "AMD aprovecha el vacío de liderazgo de Nvidia y sube de calificación",
+    "src": "Bitfinanzas",
+    "at": "2026-11-28T04:15:07.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9ndHVLMVdXUDFSd0duaFNJd0cwTXVFalhGcmZ6elgzRGJZa3ZLa0V1elJBY1ZiSmRiYkFZbkhxR01XeVNfQW9zMGlhOGEwd2UwRDlPT3Y4Mi1CRUtPbU1VWEhiOEpFSUo3dXc?oc=5"
+   }
+  ],
+  "CRWD": [
+   {
+    "t": "CrowdStrike comprará Zscaler por USD 43.900 millones en una operación totalmente en acciones",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-28T14:24:34.000Z",
+    "u": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPOHFQNmR6V3N6Qjd5ZlN5cFRpb1A2bnpDSXpCamZNazlRelJjbUY5YmRhV294MlFtN1FtamhLWW4yamREZ2tUeG1aeXBxeFA2TFJzVEhYWHJxM2RxbGFNY3FudGNxdWpJVVcyV3pfbk9IcnV3OGVhV0IwdHpKMlFOekR5S1BtejAzUVJSWEdPS2dDaHh4dVVDOHIxam1Da0FzSFM0RUpCOE5IRFZ3U3o2WHhhZ3JiTG9feE92Z0ZIZU1JRFFrOEpqcGlOZ0hZRXc?oc=5"
+   },
+   {
+    "t": "2 More Firms Downgraded Zscaler in One Day. Its Upside Now Depends on CrowdStrike Stock",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQRmZtT2RnTmR4SGJhdVlRVkZSRXA5R1FNWFc1QWJtaDFIT19lYmxYRjgtbHFuQWEzendQR1NzVmpwbUVtbUI4QVZKV0VZSV9qTUhwVWdhM2ZMaDNRbnpuUi1GYk40Um5NUWpmb2dIQmd2d2UtdTlJRnJRamZJR2otOVZzNXFMd3g0SUlNR2gyVWhVTFA1MXdmRmF4NUQtY21KX05JbTRMNTk3MGdOZ3M4VWpyZENJdw?oc=5"
+   },
+   {
+    "t": "CrowdStrike CEO Predicts “More Agents Than Humans on the Internet.” That’s His Case for a $43.9 Billion Zscaler Deal",
+    "src": "TIKR.com",
+    "at": "2026-11-28T03:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbWk4R3JnU1ljWnY1dWhDMEQwNFRLdFk4RW1kYVVPeTlrRnI4bWNzT3dtSGtVTEpwOVFCOEF4a3pwNHJUbVhIUWhfem9kdTJuN1hUYmRVeHUxWkJJeFlJTVRYZDhQT2pLaThmTTZHa1JFVERLV1pHYU5qczFwZkNORmh3ZEc3cVBFV1hrWl91YU5iVnhEbkxFeXFNQ003eVBJdUVPUVZLOGlMeVRNTC1aSzlyUlh1d1FsaVpQMmViVWljV3lJeTZyX3kxbklEbmdhb2JBWHl3WQ?oc=5"
+   },
+   {
+    "t": "Exploits Arrive in “10 to 15 Minutes,” Patches in 45 Days, per Cisco’s Jeetu Patel. Cue CrowdStrike",
+    "src": "TIKR.com",
+    "at": "2026-11-28T01:46:52.000Z",
+    "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPNjRPbHRoazZaaFdlMVNUMmhnbmYtbUdZbVJFLU4xbkVlN3c4ckQtNFdvdzhFRDRhbllzUUU4S0gxS2dxVnRxYm1HRjNIeUdqMlA5aHB4MGp2QVhRM2JDZFpSeUdJbkdaajdwYWJzV1dPZzFMRGtwR18tdU1NSmgxVWpDZXRyUG82ZGNxS3lQcjh4RGhzYTRSSmRnZjhZVHVoN0hQdVprOXQ0LWNabmpPZjhLRlh6ajRYUGVGWXZjQQ?oc=5"
+   }
+  ],
+  "SND.DE": [
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de Nicolás Correa, S.A. (NEA.MC)",
+    "src": "Yahoo",
+    "at": "2026-11-27T21:42:23.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5wOXlETVp3RGRoZGc2dUF4elR0VFZTSzZjcGZSU28zV28yZXljMzc2WnF5Y1pITEp5cXNzaHR1OUFvX1NaNXFRX05Rd2ptWEdsMjNHOA?oc=5"
+   }
+  ],
+  "BTC-EUR": [
+   {
+    "t": "¿Cómo cambió la tendencia macro de Bitcoin en 2026?",
+    "src": "BeInCrypto",
+    "at": "2026-11-28T17:56:07.000Z",
+    "u": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBYZTlIa1RyTll4cHRvYkl3Qlc0cUhVZkFraXhISjJOejFIaWNlZDd1X2k4V3MtOU5BSUpQZl9SeTZEZ2dfeHZEVHVqaGRXOTJBemFtRHNfTEpBSGZTVmhPX3pQSGI1T2JSXzVZWm1JYVJQdkU?oc=5"
+   },
+   {
+    "t": "Bitcoin (BTC) el 28 de noviembre de 2026: presión bajista y volumen débil",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-28T17:04:50.000Z",
+    "u": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPWTBIRmxoS3NOc2FZS252NGYtVXUzQThyOVpsMDN1UlZxekNUanRtNVRzYmpOSzNVMGFVS0gyMDdzY3Rac3pNeFhWalRvX3JtaEFaaW9wblRIVjJDcG15clFqNEN3TjZRdHFkX3BJMUZvb1c2eXQ2cWpYX2ZDaktSbHpocUI0MFRHa1BmVWItTnF1LU12am5EeTlaYjhwNWdzZFZDTGF0eWpnWllyRVBZ?oc=5"
+   },
+   {
+    "t": "Florida obliga a registrar los cajeros de bitcoin desde enero y limita a $2,000 diarios a clientes nuevos:...",
+    "src": "CiberCuba",
+    "at": "2026-11-28T16:55:17.000Z",
+    "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNSVk1TjBGaGtSQ2dhNjBZVjZGcWM1UDY1Y1BoX0N1VXc4ZE9RNnJzcGpNcC1QTFl5WE9ZYnFDbXRiSWtiZ29Ca05KSC1fc0ZGdUNQT0xhcTZhdzJrU1lLaE5MX212UG1jMGRyODhaMDczTlUyS242UU51bXZPU21UbWtYRExrWjkxeldJRzJOSWR3VUItZHR1VXFURTZUbUZ2bDA4OXV5RnRDTDJ0SW8yODRYeDcwWmFRRzNUWHZPVEZJb3JZ0gHEAUFVX3lxTE1JWTVOMEZoa1JDZ2E2MFlWNkZxYzVQNjVjUGhfQ3VVdzhkT1E2cnNwak1wLVBMWXlYT1licUNtdGJJa2Jnb0JrTkpILV9zRkZ1Q1BPTGFxNmF3MmtTWUtoTkxfbXZQbWMwZHI4OFowNzNOVTJLbjZRTnVtdk9TbVRta1hETGtaOTF6V0lHMk5JZHdVQi1kdHVVcVRFNlRtRnZsMDg5dXlGdENMMnRJbzI4NFh4NzBaYVFHM1RYdk9URklvclk?oc=5"
+   },
+   {
+    "t": "Van de Poppe ve a Bitcoin en USD $100.000 para el primer trimestre de 2027",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-28T16:04:56.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxONHAxNmI1dUJ0ZUNnNENtaUdZY1lJRkJyWXdpa09iNGdMQ2dDd2dXcnpRYnZraGVRYkYzT3J4NFlnRllpemJ5Nmo1NWVvUXpVYlF6b3lvY0QwbjBjRHFnQWcteFpWSDE2dEp1STg1Z2lCanJUOUZiemVIbWp3ZGxrNTlUQ2dfbVJXbE5KSVg3Tk9KZnI4Unpfc3FDbldhR3hocVVjMTVpMVh5VlhZLVBLNnF5dzNWem5iMHc?oc=5"
+   },
+   {
+    "t": "Tether añade 10 millones de dólares en acciones de Bitdeer tras mantener la posición durante una caída del 87%",
+    "src": "CoinDesk",
+    "at": "2026-11-28T16:01:54.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNHpma3lpV2s5VjRzcll4ZWI0UVpka21KVTQ0Y2RpYmlJVm1CQlVuQTQ3YnZ2NkVaVExyeDc0WjZMRG1uQk1fSmVneUdYajV6QnZMcnRLUjNWUkxfTDRwYjVCRFFpeGRMdnZlYkg4WG1SMi11bnVmZ3FPMmdGWHFCVnRGcEFvMFdLTkZKXzJreEtPbXRLVWdVVWhVeHhNVW5fbklEYUIzSFhMT0NoYlNKc3N2RTB5UXZ3bHpTc3VsWmg?oc=5"
+   },
+   {
+    "t": "Adam Back califica de FUD las alarmas sobre la criptografía de Bitcoin y la IA",
+    "src": "CriptoNoticias",
+    "at": "2026-11-28T15:56:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNWG1VUXpjUDRYajFaU3FHc1p2dENGakJ4SjVwOHBwbzc2THNFM1Q2bFltRDJhOVREbU1CaUNvakp3VkllY0c2VU56UExhUFNDdW1SQ1JOS3czQlA1aERNejJST2ZfRFJxcGVOMkdwWHRiXzVyNzlqdHpVZVZORjJJTjQwc0VEdGZYSnpPaWx5MmxJWkw5ZG9rbDNZSnppa2x6?oc=5"
+   },
+   {
+    "t": "SKY sube un +10,61 % frente a la dirección diaria de Bitcoin, según datos de CMC",
+    "src": "CoinMarketCap",
+    "at": "2026-11-28T14:33:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5NLUlTeDh4WEtpS2k5ekFWckZKaTFJUkYxcEVrdDVmR2xwSTgyMVVnX1ZVVV80Q3hCeU12eHhDNlRlV2pNcHBkZkFzUzRSS3NBYlBoMklmLTNxSzJHTGZkTFdtcXRZWHJhQTgtYW9pNmVYeTNk?oc=5"
+   },
+   {
+    "t": "Bitcoin cae bajo USD $60.000 y cinco lecturas del mercado amplían las señales bajistas",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-28T13:59:51.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPdk1tbTJaY3plUHZrdG8tOW9hUjNSRUJQNi1EWHNGTGZnUGJmMFJxMEIyS3ZDQ3RIeDE0M3FDMjZRVkFkSTBEWF9IUlhiX25vNmlQdDZEWEJkQjhQNTAyczR4T0txTkVqeG96YURKa1V2OGRyZ01obGpvVDJSc0JOeUJrejdCbmZQSTAweUgxZUthRHRZdURoeHhKTHBFQUpyY0xIYmVYdUZPS1RRWDdlbG9FX1RJTWZYSklJNXFQVklFd00?oc=5"
+   }
+  ],
+  "VVV-EUR": [
+   {
+    "t": "Promedio de acciones básicas en circulación de VVV Sports Limited – AQUIS:PADL",
+    "src": "TradingView",
+    "at": "2026-11-28T08:31:59.000Z",
+    "u": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWnBFNHZvRE1DUm1wTHFIVXVsUHhrVXNNVzN1XzFPalhoX2lXRXZCcXA0QmRvVVBaNThjcFk2Nmo0dEdiTjJSMU13ZEd6MlR6MmtiT1AxcU9rWldNb0ZpNWtJRWdEalFreWp3Q1J6dFhLZ2ZZUVNLQm91czVzQzMyeGNaVTdyMlRHX0pROFk2RldwMnJ3SmVXSFhfR3E1ai1Q?oc=5"
+   },
+   {
+    "t": "Otros ingresos/gastos después de impuestos de VVV Sports Limited – AQUIS:PADL",
+    "src": "TradingView",
+    "at": "2026-11-28T04:16:59.000Z",
+    "u": "https://news.google.com/rss/articles/CBMingFBVV95cUxOOGVkTjU1MEpNcVJPcFlSZXJrbG5sTUtWQ2xFQVgwRk9adjNaRk5obFZSMU1iZXFTYTBySFk0aVltX3pQTGNSd0RlZm9PYVoybkpuOFh0Z0Y0YjlLZ2IyTWVDYWp6aXkxdXFMaEdTWlA0NzdRdGxlVi0xWFZuWGJJcEN3MGVBemFPOEZPcDhPVF9fQlBRaGNCWW8zaXJ1UQ?oc=5"
+   },
+   {
+    "t": "VVV cae 5,43% el 27 de noviembre de 2026 mientras persisten dudas sobre privacidad",
+    "src": "DiarioBitcoin",
+    "at": "2026-11-27T23:42:46.000Z",
+    "u": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVm9ON2Q2c25xTGJteGcyRk5HYlIyY21uN0ZjT2FYZkZYVTV0Uk94UzEzNUVXYk5ZNVJQWFdLSVI3R1AteEMwZ1RMSm9rLUdjODhhdXlFV2IzdHN6RDBIam5PMEVOWkpTQjA0bGZLaW84b25FRFIwdnJ0ek55ZjNHMGpSNHpWcV9HRDB4S2VWeTJJR09YR1BrRTRnaW0yZFZEdDBtaGlteUg1dUxkY2ZoTEVoR2NKY0Z4QUFVcg?oc=5"
+   }
+  ],
+  "PANW": [
+   {
+    "t": "Cloudflare’s CEO Says Its Post-Quantum Encryption May Really Be “Post-AI Cryptography”",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQQ293VlA2aTBfbnY0NV9GZTRDVGJUYzl6M21IQ2RmN3Z2M2FsUkRhemNCZ1RtSFJCVUVJSzMwdnQyWjFjdWtja3RSZ1hIbUZiQ0w5ZkVqa2doSWJxNF9JUjVjU3o1a1AwUG5oTDgyRF9EU2JpTnZhLUZlNVNnbEpTb3R4bVkyUUpjMTdXNzIzMUc3RlRhS2JJQ1kzclg2TFNISFByZ3QtX2pYUlYxSUJ0YUNR?oc=5"
+   },
+   {
+    "t": "CrowdStrike CEO Predicts “More Agents Than Humans on the Internet.” That’s His Case for a $43.9 Billion Zscaler Deal",
+    "src": "TIKR.com",
+    "at": "2026-11-28T03:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbWk4R3JnU1ljWnY1dWhDMEQwNFRLdFk4RW1kYVVPeTlrRnI4bWNzT3dtSGtVTEpwOVFCOEF4a3pwNHJUbVhIUWhfem9kdTJuN1hUYmRVeHUxWkJJeFlJTVRYZDhQT2pLaThmTTZHa1JFVERLV1pHYU5qczFwZkNORmh3ZEc3cVBFV1hrWl91YU5iVnhEbkxFeXFNQ003eVBJdUVPUVZLOGlMeVRNTC1aSzlyUlh1d1FsaVpQMmViVWljV3lJeTZyX3kxbklEbmdhb2JBWHl3WQ?oc=5"
+   },
+   {
+    "t": "Agentes de IA impulsan nuevos riesgos de seguridad en la nube",
+    "src": "Portal ERP",
+    "at": "2026-11-28T00:52:07.000Z",
+    "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQaktmVl9hTU9nWVlUbHhRZUloWElUSGdPUl9HMDhiSVZEYktwOU4wM2lDSGxQb2ZEcFZyelMyeVVSU2s1ZkZGYTFvWlVRTkhFVEc0dDJrZGFrQ1JxM3BJbmdTUW04V2FIMzdhMmVPNDhIX0lDTTJMdml3NDFNeXRfV0piaVlnOXloZUp3NTJUUmVGeEFrdzU5T0VR?oc=5"
+   }
+  ],
+  "ANET": [
+   {
+    "t": "La directora ejecutiva de Arista Networks, Jayshree Ullal, vende acciones por 2,18 millones de dólares",
+    "src": "Investing.com España",
+    "at": "2026-11-28T05:02:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNTDlub2REZENKSGpvQWg4VFlLUkdTRG1Pa211Z3JnOWlhd21mRlNFT05ucGM0UnJQWlpoM1NIajdsMjdTLUY5bFE3NmxEU3FiX1NISUJlQlhlYnlQcFdyV1RjRW12OXNMUVpoWGhLbHFZbkpfcnczX0FzWU8ySnBqaFZ4UkYxTnV6RjZHcHRrdEZVMEhJWktKTnBRdTdsMzhEUEdPMnBHZWl4d0JxNFBtU2hrdjlUd3hBV29HelF3SkNOY3BRUzBoYVI2Z2hvZ0NZTGhVQUptbVlpN3duZlFsemJ5SlllQk9reWZvS2F1d0V6Vy1kOFE?oc=5"
+   },
+   {
+    "t": "Las revisiones al alza de las previsiones de beneficios sitúan a las acciones de Arista Networks en el punto de mira",
+    "src": "Simply Wall St",
+    "at": "2026-11-28T02:12:25.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZGtINGpnOVVPQWctT2g1MG5BeGFQT0N5MEJBREpZb1djMUlmWlFpRGd6ZkY4eklKNzF0MHVzcVhmLV8wYmFVLVM2d0hlclRyRGtMeXZiNDRnODROblNucVZEanhxWXdqeWFGeFA4S3VILWUzRVdkTWFkREdJbFJyUldBMmFvQ0o3VWtuUXNwcThJcXZ0UU9WX3QyNjlMWWtkeWVaRnZORG9lTzFmVV90cW5sMHFnSXZaUmxEdkNZWm1OOVdYZXM2TmhUczlVXzVUNUJz0gHTAUFVX3lxTE1ka0g0amc5VU9BZy1PaDUwbkF4YVBPQ3kwQkFESllvV2MxSWZaUWlEZ3pmRjh6SUo3MXQwdXNxWGYtXzBiYVUtUzZ3SGVyVHJEa0x5dmI0NGc4NE5uU25xVkRqeHFZd2p5YUZ4UDhLdUgtZTNFV2RNYWRER0lsUnJSV0EyYW9DSjdVa25Rc3BxOElxdnRRT1ZfdDI2OUxZa2R5ZVpGdk5Eb2VPMWZVX3RxbmwwcWdJdlpSbER2Q1labU45V1hlczZOaFRzOVVfNVQ1QnM?oc=5"
+   },
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de Axon Enterprise, Inc. (AXON)",
+    "src": "Yahoo",
+    "at": "2026-11-27T22:24:30.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE04N1dLd1NaZThScXV2M3g0akxmTUh2Y2xjazE1czQ3OUh0RzFybGx5UWFyVlNqZHB1MWozczFMM29reFdBQ09KQThGYVdIb0NtZHc?oc=5"
+   }
+  ],
+  "META": [
+   {
+    "t": "BMV SUBE 1.86% IMPULSADA POR ACCIONES MINERAS; WALL STREET TAMBIÉN AVANZA",
+    "src": "El Heraldo de San Luis Potosí.",
+    "at": "2026-11-28T15:16:41.000Z",
+    "u": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNLVM3d1VpOXZPY2VOOFgwYVlYV0p5bUhxTUxkVk1aU3kzT2lWVlc2NGpVVDR2cWNLMXJVbFI5UFVJSG5GZWt4MDd6TU9KZTc5dS1fLTI2N2NyUHNGMHhVbE5Cczl0dU5xOG0tU0l0TGk4cEs2QmkxN2h4dWJFNXpVM21Pd3JHZU5pMTgtNlI0eGwxZzFadHFia1lDZWZFd1BEdkpUUk5IX3d1WE5yXzhFcWNZaHpSQQ?oc=5"
+   },
+   {
+    "t": "Las bolsas estadounidenses se recuperaron con fuerza, con las acciones tecnológicas a la cabeza de las ganancias.",
+    "src": "Vietnam.vn",
+    "at": "2026-11-28T08:04:43.000Z",
+    "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVmpQNzQ1MFgyNEF6NWZiTk5QUDVzY1dBWlgzZ3U2MzNuYThwWDFMWlVUNGxHUU5PaUx1S1h4NGc3Y0ZYVWktai1uUlAwTlQteDFhcGpXbDZ3WWE4di1PQVp3TExzOVZwVEJRMlViQ3RrdkYtS2lfd3NKbjV6b2Rvbk1WMWhLMWpHMjVua3AycUhoQ1U?oc=5"
+   },
+   {
+    "t": "Meta’s Credit Swaps Cost About Twice Microsoft’s and Alphabet’s, per JPMorgan Data. That’s a Problem for Its Capex",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNM1dQbnJTSHVhWHBQVUdNY2ZnQlNvZ2lrQm4tZkcyNjhSZ2JoQ2txQmNaX1NrbndET2JiaUczOVRSZ3JPeUZic3FaWlp0UU5QR09BOWVJbDZUOUpScXBnTG5RY1FTV1F2RmFpdmVlaV9LWmFyTDRKYUo3TUV3UE5nSWUzNkhmaGxSanJRYlNsX1hvUjdWMEE0OWdGbE90SGczME05eFBXeWg4NDZqd3pmZjB3TGV0UUFwdzRlQXZWM3FNd1NSUkxLS0REVjNNVVNxWHVN?oc=5"
+   },
+   {
+    "t": "Brad Gerstner and 8 Other Big Funds Sold Synopsys Last Quarter, While 13 Bought. Who’s Right?",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQc2VEYUdnMVd5UFg2WkJBT0lEVjI3dXBtZjVFbFBsbVBlSXMwbWRMWk55RmpSU2duQzNlTUhwcE9WeFNtMER1LWVNQjYyUmdSRkJOdlE5c1NLZ1JKTkNKN2p0UTdWUHIyajBuZXpYZmxVakNFeVVSbXROYlJmbEQ4dkNIeFhhdw?oc=5"
+   },
+   {
+    "t": "Las acciones de empresas de inteligencia artificial repuntan, impulsando al alza las acciones estadounidenses.",
+    "src": "Vietnam.vn",
+    "at": "2026-11-28T03:20:53.000Z",
+    "u": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOaFZfVmhzQVJUNGdjZm5ETDNhOGxESkZ6OUZXbVBPNXhiMlNTbUVHWFdyQUIzTEZZVW1nVFJyNjF2aklhX0ljck1TY25GckNSOEdRaXkyNWk4LTF6ZnZCcldaRjlLNkh3V3pvRGlobWdkUU0zV2p0S19XSDN3UXlmLQ?oc=5"
+   },
+   {
+    "t": "El Dow sube casi 600 puntos para cerrar su mejor semana desde 2022.",
+    "src": "Quartz",
+    "at": "2026-11-28T02:23:46.000Z",
+    "u": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5YS1czS1REM0MtVXlpYzVtY055d1BBUmJRc1FZbnNyNlFVNEo2N21RSmY1Y0VaUUgtTW13ZDlqR1ptWmx5T1BlY0w3N1lVS25aREt3bjFTVTVRS0R4U3M4YU1WcGhIbjBCSzVac0VNOUd6WUkyYTVaVW5Sb3M5dw?oc=5"
+   }
+  ],
+  "LLY": [
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de Eli Lilly and Company (LLY)",
+    "src": "Yahoo",
+    "at": "2026-11-28T02:13:50.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE80WE9EVHNiWmpxT0lYejNIMFlkcmNhTVRSX3NrQlhlbVEyVXBPM2h2R2RnX3pGOWh2YldFaGhyYm9qaVhuZWttaUk0UndKdGh2?oc=5"
+   }
+  ],
+  "DIS": [
+   {
+    "t": "▷ El Materno Infantil de Málaga acerca la magia de Disney a los niños hospitalizados",
+    "src": "103 Málaga",
+    "at": "2026-11-28T11:54:28.000Z",
+    "u": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZEFDTnZsM3dWTWdfRDlNYjJ1Q1g2VmFIYUIxRWVFeHhFNEJvOUlFcThEZ284Sk95bnlpVGlOQ3dTZ1BGdC01SkRMNG9nc0lvX1ZJMEZSeFlmMFQ1WDJEa0s1OUNZN0tMTUpiVUtWZnc0Xy1Vd0xjT1hmc3ZlX3FKNUp3RV8tTlY0eVIwODAyZFJvUC1TWkdLamMxNUM1MWV3MG1fby1BRWczZjFLQ0E?oc=5"
+   },
+   {
+    "t": "Bob Iger, Expresidente de Disney, Habría Embarazado a una Empleada de ABC Durante una Relación Extramarital",
+    "src": "Diario CAMBIO 22",
+    "at": "2026-11-27T21:51:30.000Z",
+    "u": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQaHh6bk5TRlRjTEVLNjVtVUJIZ09fTC13S1JFemE4VmJ6QXN3WDdCYjVza0E1dDVQaV9YdHpQZDBZVVFkeUxkN2xhVmRoQ08yQS1sY0NTeVpYeURXUW1Land3MFVnTml2RUgwa0d2dXZLRmxtbkR0QWlNQXFRTHNZMVZLbDBYdXRFRTkzWjV1Rm9SRnloRG44TDc1dE5wcUxsUjEwdzZycmdobkZGZ0pLUThFbGl4UkoxcmJrRFJfOE9QMlVpRnRuMWpCLWU?oc=5"
+   }
+  ],
+  "NET": [
+   {
+    "t": "Llega el RAT Olympic, se instala con una falsa verificación de Cloudflare",
+    "src": "Pasquale Pillitteri",
+    "at": "2026-11-28T08:32:03.000Z",
+    "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNTTNFUUVPR3lxSHBTWVd0R1pfNjVMOXJTSmU5ZDlOZGpwOVhyUzV2ckRNRFh3LW03WHFRLW92UnRENjNkb1pYV25aR3dGa0RVRFVNdGFaQkx3dHhFN1FIUlZhaTVWcUFyZWpRcTBPcU5TNF9qQllVV1NVaUE0Vl9lcGZ3cFU2UjZ2MlVfaTdwY2pLQWt4N2dWZDl3?oc=5"
+   },
+   {
+    "t": "Cloudflare’s CEO Says Its Post-Quantum Encryption May Really Be “Post-AI Cryptography”",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQQ293VlA2aTBfbnY0NV9GZTRDVGJUYzl6M21IQ2RmN3Z2M2FsUkRhemNCZ1RtSFJCVUVJSzMwdnQyWjFjdWtja3RSZ1hIbUZiQ0w5ZkVqa2doSWJxNF9JUjVjU3o1a1AwUG5oTDgyRF9EU2JpTnZhLUZlNVNnbEpTb3R4bVkyUUpjMTdXNzIzMUc3RlRhS2JJQ1kzclg2TFNISFByZ3QtX2pYUlYxSUJ0YUNR?oc=5"
+   },
+   {
+    "t": "Dell’s Operating Costs Fell to “the Lowest in Our Company’s 42-Year History.” The Stock Fell Anyway",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPSElyNHZ1bVVDZHBWa0hFY1l5WGdRZktIcHVTdW1aOG1FNkI4akVSRVAxaDVKZTRnbUJNMjl4bGJ6bzdVSjN1bHlvc2IxT1BUR3dkaHk3MVFIUmprMloyZDA2WVBuTGpOdGFSdWpRM0p6eEFFZ2xiVGxuNU55a2NwTDNQdzFoUEJGY1k2Qm9jcVc3UGJpV3dvelMzOTBqTWVQaVdGNkgtY3RvQTBzTjV0a3pRYjFDWFZjQTFfU3pBZHU?oc=5"
+   },
+   {
+    "t": "CrowdStrike CEO Predicts “More Agents Than Humans on the Internet.” That’s His Case for a $43.9 Billion Zscaler Deal",
+    "src": "TIKR.com",
+    "at": "2026-11-28T03:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbWk4R3JnU1ljWnY1dWhDMEQwNFRLdFk4RW1kYVVPeTlrRnI4bWNzT3dtSGtVTEpwOVFCOEF4a3pwNHJUbVhIUWhfem9kdTJuN1hUYmRVeHUxWkJJeFlJTVRYZDhQT2pLaThmTTZHa1JFVERLV1pHYU5qczFwZkNORmh3ZEc3cVBFV1hrWl91YU5iVnhEbkxFeXFNQ003eVBJdUVPUVZLOGlMeVRNTC1aSzlyUlh1d1FsaVpQMmViVWljV3lJeTZyX3kxbklEbmdhb2JBWHl3WQ?oc=5"
+   }
+  ],
+  "COST": [
+   {
+    "t": "Costco: esta sería la ubicación de su nueva sucursal en México, abrirá en 2027",
+    "src": "El Heraldo de México",
+    "at": "2026-11-28T13:37:33.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOd0NSZFRETU91RUdSTE5hQVBPXzZWY2w3SmJUUHVId1NVekdNRFp5eDYxOEpUSkZjNGNpZWFaRkE3Tkh1TUJmRG5QUTNVeldqWTYxQ3p6VFVwWkpVWlU3YlNCNWJoZVhNb21VWWdDSkpoUmV6X2NQYi1fN2FHQ1NObkdSTmhaNjZZUnlVTWFkQy1oeENNVWdOLXI3SXQxbzBsNWVQQjQ1d3NIUFM2NEVmZW1pV3g3c1FRaC0taElSdFV5WmxGdXZ1cjd1djV2NWZadE1pMUk4WQ?oc=5"
+   },
+   {
+    "t": "Cloudflare’s CEO Says Its Post-Quantum Encryption May Really Be “Post-AI Cryptography”",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQQ293VlA2aTBfbnY0NV9GZTRDVGJUYzl6M21IQ2RmN3Z2M2FsUkRhemNCZ1RtSFJCVUVJSzMwdnQyWjFjdWtja3RSZ1hIbUZiQ0w5ZkVqa2doSWJxNF9JUjVjU3o1a1AwUG5oTDgyRF9EU2JpTnZhLUZlNVNnbEpTb3R4bVkyUUpjMTdXNzIzMUc3RlRhS2JJQ1kzclg2TFNISFByZ3QtX2pYUlYxSUJ0YUNR?oc=5"
+   },
+   {
+    "t": "Dell’s Operating Costs Fell to “the Lowest in Our Company’s 42-Year History.” The Stock Fell Anyway",
+    "src": "TIKR.com",
+    "at": "2026-11-28T06:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPSElyNHZ1bVVDZHBWa0hFY1l5WGdRZktIcHVTdW1aOG1FNkI4akVSRVAxaDVKZTRnbUJNMjl4bGJ6bzdVSjN1bHlvc2IxT1BUR3dkaHk3MVFIUmprMloyZDA2WVBuTGpOdGFSdWpRM0p6eEFFZ2xiVGxuNU55a2NwTDNQdzFoUEJGY1k2Qm9jcVc3UGJpV3dvelMzOTBqTWVQaVdGNkgtY3RvQTBzTjV0a3pRYjFDWFZjQTFfU3pBZHU?oc=5"
+   },
+   {
+    "t": "12 Big Funds Bought Costco Wholesale Last Quarter, While 7 Sold. Who’s Right?",
+    "src": "TIKR.com",
+    "at": "2026-11-28T02:15:14.000Z",
+    "u": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNWElSeWhNY0JZS1FXZHZnU0c0RUhpX3BnWnB4OHVWNldLY0JVT2UzZW44WjRnYjNVc3JIVWg3MTNwZDZZeEtGcklTR1gyT1diR0ZmcU5wdGE2YmZuc3F3cG9jMTBEMWo1VVlYdXNDeDQ0MTUwLU1ENnlRd1lYbTVZVFVEMnJrdDY1QWhpanB2VjF6RVE3RXVXOUswcVd6UlFzdms4dg?oc=5"
+   },
+   {
+    "t": "Exploits Arrive in “10 to 15 Minutes,” Patches in 45 Days, per Cisco’s Jeetu Patel. Cue CrowdStrike",
+    "src": "TIKR.com",
+    "at": "2026-11-28T01:46:52.000Z",
+    "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPNjRPbHRoazZaaFdlMVNUMmhnbmYtbUdZbVJFLU4xbkVlN3c4ckQtNFdvdzhFRDRhbllzUUU4S0gxS2dxVnRxYm1HRjNIeUdqMlA5aHB4MGp2QVhRM2JDZFpSeUdJbkdaajdwYWJzV1dPZzFMRGtwR18tdU1NSmgxVWpDZXRyUG82ZGNxS3lQcjh4RGhzYTRSSmRnZjhZVHVoN0hQdVprOXQ0LWNabmpPZjhLRlh6ajRYUGVGWXZjQQ?oc=5"
+   }
+  ],
+  "WMT": [
+   {
+    "t": "Cuenta Cashi avisa sobre su cierre: fija el 29 de diciembre como fecha límite para que usuarios retiren su dinero",
+    "src": "EL CEO",
+    "at": "2026-11-28T00:06:50.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxObnQwc01sT1Q1eVhwNW1pOWk3b19GWDFlZFpUQ3kzbGZYamJxV0tGRUk5bHVncFBXWUI0LW10OGlJNXM3MXg1MVljcFNFY2o4Tk5LM19ZdXd5YUpILVJQcGdsQnc0OF95Q2Z6aER4NG5YMHRMejBXQ0ViZElkR3YtMEdQTDB4czFsWS11OHJZeldGZGl0WjZLXzZob0ctdm51T3phR2x5NDM3QnJ2QTB3alBuZ1dSZWJPSUlKQ3B3NDBBQ2doZHozTEVoVXNwTGNHc2h6amVlYw?oc=5"
+   },
+   {
+    "t": "Acciones de Walmart hoy: ganan un 0,90% hasta 133,13 dólares",
+    "src": "The Officer",
+    "at": "2026-11-27T23:56:12.000Z",
+    "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOYm9tWm5oN1JXaUYzaVR2cU1MeWFBMUJ1YXdUcUM1d2NpM3Y2ZVdkZDMwSVRUZGhqbTRNc1F5d0dYMVhDZ2FZNWt6RENleUk2bTB0OTd6VVlGWnMyRUtzbUI5cVdFMUVDOTd5cmxYS0NDUHFsZHlVVUdfTURWVUtlN2JRNmtXZw?oc=5"
+   },
+   {
+    "t": "TRIBUNAL CONDENA A CENCOSUD Y WALMART A PAGAR CASI 70 MIL MILLONES DE PESOS POR COLUSIÓN DE POLLOS",
+    "src": "araucanianoticias.cl",
+    "at": "2026-11-27T23:18:33.000Z",
+    "u": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNdXBxWnpPWEE5alFqWkVJa3Zja3BKSlBxN0Zrd3lCY0lLa1VZMERRYWdGZ2dqb1BwV3FwRExqNTR1QWlIQVhieTk3NEJBbXRVYWI3TVkydzRLMG4xOUU2T29GQWJNN01takxTQmxueWpQeHFkQVBDMWtYU0dDQWUzbkdKVm93SEhfa3M0T1pENl9VckJjbjhQTVFMdTk3YkhXNWNOdHV3RmlYTDEzX2VWVUViUWMyM1pnRGRUMHhuNUswX0FydXdSemdTcDlXRm1faHNPTjQxY3M2MDg?oc=5"
+   },
+   {
+    "t": "Acciones de Merck hoy: ganan un 0,73% hasta 141,32 dólares",
+    "src": "The Officer",
+    "at": "2026-11-27T23:15:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQRC1ueGJvRUNPckJ4X0VfcHpDcHRCZ1RaQVVwLU90a25WVFNwM2tGSlhQZ19oc3RpMHZMVElScXBUUnpoTHNmdUt6THY4dV9NTjBwb05HS05pRnI4c3RkN0tzRFh2aThlVHRnYVVfa2U0WmRzOUxnSGRqYzV3UTQzZnJnNA?oc=5"
+   },
+   {
+    "t": "Acciones de Chevron hoy: ganan un 0,71% hasta 212,45 dólares",
+    "src": "The Officer",
+    "at": "2026-11-27T22:56:12.000Z",
+    "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNNUsxcm5RaVF3MjBFVnFYYWJHTFdVZVVSbU1TSUFBVElZNXJ3cWNCQ0xHOEJIZ29DZmtfel9DU1ZuSDNWQXluZmowalQ5WlVUUno0VlZzMUJUd3pFZmZ5eWNjdHZHZ1lCZjc4STczcy1yMHEyaFFwY05lZi1nblVZdWVSWGlWdw?oc=5"
+   },
+   {
+    "t": "Sentencia TDLC condena a Cencosud y Walmart",
+    "src": "LOGIN Noticias",
+    "at": "2026-11-27T22:43:59.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPaEYxZ2ZPenhhZTJNVFBBYjVfenRjZlRIbW1KeGhlNndyX0VhM1A3elUwQ0xZYkxhTGNHRjBOcEhTaGEtWFVpYU1Od1BxN3M1azlrdjRsQ2lBRkJjQU5mRy1yVnJDajUzMzJPelBhaFNGV3dkYXc5R1YwdTFtb1hZa2Z5M0hUQ0lLZ0E?oc=5"
+   },
+   {
+    "t": "Acciones de Morgan Stanley hoy: suben un 1,99% hasta 170,88 dólares",
+    "src": "The Officer",
+    "at": "2026-11-27T22:16:08.000Z",
+    "u": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNZ1lTV1djaHZZZ29jYjNwZ1cwSEVVMzY4ZkZjWk9SS19VM0lHVG1TaEJGZ0pMM3VMVTJjUy1WTWc3R2FvdkhKQklaNWh1U0g2TTh3TTZTcVFIMmNDSTdrcXZIYTREYS1OaGt1QVNZNmV4M3BiS0RkY3hIMWdvbXdZZmFTbmpDd0Z0akdfMEZiSQ?oc=5"
+   }
+  ],
+  "INTR": [
+   {
+    "t": "Precio de acciones, noticias, cotización e historial de Inter & Co Inc (QN7.DU)",
+    "src": "Yahoo",
+    "at": "2026-11-27T23:33:32.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBYNzZyMmowWFBISHp5Rlppb2QtOUltb2lPaXhKbl8wejRPSTBBbEd0cWhoUWN6QnFvOWFuRlBFbGs0ay02WjhiNXRQVEtUYm44R28tQWNPV05SRS1aeTlpZl9iejg?oc=5"
+   }
+  ],
+  "BBD": [
+   {
+    "t": "Lula nombra a un banquero ministro de Economía de Brasil",
+    "src": "Diario de León",
+    "at": "2026-11-28T05:00:00.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQdmFxRlp5WVJEcEw4QTV5VGxiTWVBdDJXWS1HaWZMcDdoWmIxRk1ZbHFqdEpuTHpTVzRqQm50S3lRSUprOTVwVWQtWWF0QURlOHZjQS04SzBsdHZ4U1ZRYUpydHI4dlBXVGh6U0VTZkp5d3k2bWhzZEt3YThtOU90UzhoWHBQZ0J2VU1QYzVWTTl4RDFUNktkZDMySFVjaDRETWfSAacBQVVfeXFMUEdsOWZzZDJkNFpGOG9QNUxMQmlfZ3ctcVdqSnZubF9hWXpTNnE5dERzb0tTMDZ2RUFwU05PUThQeFFDZXNyaUluLWFnbi1uNVhMUW4zanE4QUo0UkZDZXJWdTBndEk5ZTZhZzRyUVZoYzZIQWRUazJydmZ6Z21OeTlvcEU1VEpVelM1b2RmUXZKYzVqbU96akp3d0lWbkRjZVRjMUdqVEk?oc=5"
+   }
+  ],
+  "HL": [
+   {
+    "t": "Global X Silver Miners ETF (ARCA:SIL) Precio, participaciones, comisiones y análisis",
+    "src": "Simply Wall St",
+    "at": "2026-11-28T09:18:32.000Z",
+    "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE54aXl2TVFpbl9YTERRVHFPRkF3VnNuYWpGelNqZ29aM2g1SnFNd3JpWUhPeVhCMnVOaFFFckVOZWZkVnBocHBDeENwakEzX2dNMG1OY1poeFA?oc=5"
+   }
+  ]
+ },
+ "marketNews": [
+  {
+   "t": "¿Cómo cambió la tendencia macro de Bitcoin en 2026?",
+   "src": "BeInCrypto",
+   "at": "2026-11-28T17:56:07.000Z",
+   "u": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBYZTlIa1RyTll4cHRvYkl3Qlc0cUhVZkFraXhISjJOejFIaWNlZDd1X2k4V3MtOU5BSUpQZl9SeTZEZ2dfeHZEVHVqaGRXOTJBemFtRHNfTEpBSGZTVmhPX3pQSGI1T2JSXzVZWm1JYVJQdkU?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "\"El problema del pavo\": la IA sigue generando incertidumbre en Wall Street",
+   "src": "LatinUS",
+   "at": "2026-11-28T17:36:52.000Z",
+   "u": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPZmZjUGYwOWFKQ2VrNmZMd1QxeW1pS0R1M2dhVGJVV1c3dzVrQjNiNVR5Z0lSMlZQM0ROaDBpT1pacDBjX2tMelVVbWNIOGMzWHRXcnJTeXo1WkRiTUxiZDMyS3Uxd2RXZFY2Z3Y5Mmt4MGxoQUhYYlk3ZGNYLW1DMnRnNE94aGNSVktWMnVYNXBaMVRtaGctYkJkaXZEUGFqeVFsOFZodktkZjJHU25rNW1Zam5TNExvVENtMXI3TQ?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "Dow Jones rebota y Alvargonzález señala el verdadero riesgo de Wall Street",
+   "src": "Negocios.com",
+   "at": "2026-11-28T17:09:02.000Z",
+   "u": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNNlB5ME02Q1MwVlV0M0V4LTYwR0V0aUFleTZkNjU4TXFMdnd5bjJhWW9uWmNySHVIT0ZBUTJYMmZ6LW96aTNzdXZFeVUwbTRUREhZM015SGhIT2xmNkFJQ1Z0S3pSZXZ2QkthMENRMUJqQWF4cU5CV2d2bE92VUVoOUtHNG1KUDhRaWhWeGdYUThCb2NyNExHZEdrTVpibzh3MjlTNXZJWkhWQ3ljbHcxaNIBtgFBVV95cUxQMjZkeUh0OXNMWldoc1RiQUdOQVI1TUdZMDNibW9ac0NPczBZZlN1M2hlS3JFWXFBT3VIQlE5LTRLSFlIaUZyNHlJV3kxS3pfbnpIMzhvdXgtLWMyOUZ6ODJLc19lY1ZVeG13MVJzWmJHY3JIYWNDWWtfZm9waVZrUDVlRjRuWDNmY1ZpbWdUZzN2amppUS1kUGQ1dkFNTkdZc2xtYmFaLVpVTTlsRld4X1k5ei1iZw?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "¿Wall Street enfrenta la parábola del 'Pavo' con las empresas de Inteligencia Artificial?",
+   "src": "Portafolio.co",
+   "at": "2026-11-28T17:07:29.000Z",
+   "u": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQS3lpN3ZTWkJiMFJmRm9NY1o1ekc3ZU5vNS01NjFRMlhISVZWbnhtUVNnTmVXbU5MN3N3MkVHbnZfM0JPMlVvQUJMWTlHUjlhbE1ZcFgySWdIM3YtS2Nrc3BKWFQ2M2FHR2tPZFZGSU9mZVZQbUh4TGVaXzFaTWRwWFZTenNEWmo4QWdZU3czcE9KTkJIenRKSkFlMHo0V0hKZUtQOUhmSFFuQ1BBdk10UFZXa2hlclViZ3NGbnJscEQxcFFRYy1BenVqSkzSAdIBQVVfeXFMTjdyUWQ4dkxoNFB4WGh3MFpJcnRFWmV6Ty02WWlqbU5aLU5HQTVlSjc0b2FFNXYxMzllWHVpM0lrOTVXNEdvVlZOaGdkWE1meU9QYWRaTDhHV1cyMzZYM2N0Z3V4eTZMeXFycEZFNUtwbVVFZHI4Q3Q0OVIxRnVqRUdVbVFWWDBPMk8zbk8wOGlOendLODhHekVCT2VKZHBzLU5iQjkyWXpzNkE2LUx4TE5OZjRCbWxyU2gwODdUamZYZ2ZVVzMzNFA4TXhSeWtkMVVB?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "Ethereum bajo presión el 28 de noviembre de 2026: señales débiles y un rebote aún frágil",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T17:04:56.000Z",
+   "u": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQVXA1RmRCa0FjWC1yNDlOSWdQSDJadl9EMFNhdjlFUjdJbHRJN002UFByeE1SaERqUmxzSlVMbENBNFE2NVZnOE1MTjhxeTRmdFk3OVFDYVJiSDFUdDRCWDVMeFpjUXFfTGcwdHpUR25KQWZHN042Y2JGTW80QkpWRS1IVU42dDFEYzE3SzZxeWZscVZaZm5pMXowS19zei1WYnZyUVZrZWo2M192Z2pnVzBEYWlOdW1hZ2RlRll5N2VtTmw0Tnc?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Bitcoin (BTC) el 28 de noviembre de 2026: presión bajista y volumen débil",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T17:04:50.000Z",
+   "u": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPWTBIRmxoS3NOc2FZS252NGYtVXUzQThyOVpsMDN1UlZxekNUanRtNVRzYmpOSzNVMGFVS0gyMDdzY3Rac3pNeFhWalRvX3JtaEFaaW9wblRIVjJDcG15clFqNEN3TjZRdHFkX3BJMUZvb1c2eXQ2cWpYX2ZDaktSbHpocUI0MFRHa1BmVWItTnF1LU12am5EeTlaYjhwNWdzZFZDTGF0eWpnWllyRVBZ?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Florida obliga a registrar los cajeros de bitcoin desde enero y limita a $2,000 diarios a clientes nuevos:...",
+   "src": "CiberCuba",
+   "at": "2026-11-28T16:55:17.000Z",
+   "u": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNSVk1TjBGaGtSQ2dhNjBZVjZGcWM1UDY1Y1BoX0N1VXc4ZE9RNnJzcGpNcC1QTFl5WE9ZYnFDbXRiSWtiZ29Ca05KSC1fc0ZGdUNQT0xhcTZhdzJrU1lLaE5MX212UG1jMGRyODhaMDczTlUyS242UU51bXZPU21UbWtYRExrWjkxeldJRzJOSWR3VUItZHR1VXFURTZUbUZ2bDA4OXV5RnRDTDJ0SW8yODRYeDcwWmFRRzNUWHZPVEZJb3JZ0gHEAUFVX3lxTE1JWTVOMEZoa1JDZ2E2MFlWNkZxYzVQNjVjUGhfQ3VVdzhkT1E2cnNwak1wLVBMWXlYT1licUNtdGJJa2Jnb0JrTkpILV9zRkZ1Q1BPTGFxNmF3MmtTWUtoTkxfbXZQbWMwZHI4OFowNzNOVTJLbjZRTnVtdk9TbVRta1hETGtaOTF6V0lHMk5JZHdVQi1kdHVVcVRFNlRtRnZsMDg5dXlGdENMMnRJbzI4NFh4NzBaYVFHM1RYdk9URklvclk?oc=5",
+   "cats": [
+    "valor",
+    "cripto"
+   ]
+  },
+  {
+   "t": "Ibex 35 cerca de 19.400 puntos: claves del rally antes del 29-N",
+   "src": "MUNDIARIO",
+   "at": "2026-11-28T16:46:32.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQU3dwTFVqR3pOTldFUTJYMVRpTzVFOUZLZEZyRmc4dkhzeThwdll2cXJ1OTZDRlpteV9Pd2Y5eGhmSWdiRDlqTmVMbl9qM0x0R1g0bXFiclJ0RE5jVHV0NVNCMjFGa0x4aGpOdHZyM0dNNDhPTWZsQThsRTF1SHE5RFQ1bGdpMGxaM241ZkFOdzQ5anpIVkpEazhaR0hPOF9iWm9OU1o2NjJ3NXV3YkcxcUVkMFZqM1NGRHfSAb8BQVVfeXFMTnh5MlRxbUhlVE4tbHRYZHBPVTZhTUpRXzg2RHJISGtidUNUM3ZfWGJkQlRvNU1QTGJhWHlVd296aXpieUtOcC1NRVdnRWpzQ1g4Q1B4ZXhpS2hIU0pBWWlBclN6SmtTeWNzcjN2R3ByVWlwT1ljNjZWcjVWV1V1eUd6Q3BURXJ6Qk82WUl5S3l1eUxuVjQ1ajhwQmFJT0RKY0pJR3AzYjBSbTBBQ0FjMTRaSEpCUVRPMjgyWmVyV2s?oc=5",
+   "cats": [
+    "europa"
+   ]
+  },
+  {
+   "t": "Van de Poppe ve a Bitcoin en USD $100.000 para el primer trimestre de 2027",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T16:04:56.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiugFBVV95cUxONHAxNmI1dUJ0ZUNnNENtaUdZY1lJRkJyWXdpa09iNGdMQ2dDd2dXcnpRYnZraGVRYkYzT3J4NFlnRllpemJ5Nmo1NWVvUXpVYlF6b3lvY0QwbjBjRHFnQWcteFpWSDE2dEp1STg1Z2lCanJUOUZiemVIbWp3ZGxrNTlUQ2dfbVJXbE5KSVg3Tk9KZnI4Unpfc3FDbldhR3hocVVjMTVpMVh5VlhZLVBLNnF5dzNWem5iMHc?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Tether añade 10 millones de dólares en acciones de Bitdeer tras mantener la posición durante una caída del 87%",
+   "src": "CoinDesk",
+   "at": "2026-11-28T16:01:54.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNHpma3lpV2s5VjRzcll4ZWI0UVpka21KVTQ0Y2RpYmlJVm1CQlVuQTQ3YnZ2NkVaVExyeDc0WjZMRG1uQk1fSmVneUdYajV6QnZMcnRLUjNWUkxfTDRwYjVCRFFpeGRMdnZlYkg4WG1SMi11bnVmZ3FPMmdGWHFCVnRGcEFvMFdLTkZKXzJreEtPbXRLVWdVVWhVeHhNVW5fbklEYUIzSFhMT0NoYlNKc3N2RTB5UXZ3bHpTc3VsWmg?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "Bitcoin registra un récord de 11,1 millones de BTC en pérdidas tras caer por debajo de USD $60.000",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T15:44:37.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOdzBaZ2RydklxemlUYVI4SlNjaEZ5WUtDeGlPUXNxZV9NbTdCNUlHV29ueVRNa2F3VF8tM1dudE5yQm9yN3pYaWVRTjJQdUw5Z1ZabEZnVjNMYnJyWi0zZ3RXRzROQk9VLUFBTFotMTNWZ2lEalNwa25NRUhHLTBIb05HZHQweENYaW93SHBIV2ZyRzZ5LWhQRXhVajFYQmcxOU9Pci1zd0ZDb1RJN0w4VG14TG1EMFdiSUFzZFBKSVVXLVBDVUR4SXh4T19wSVRSQjZiY2ctRVU?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "MNT sube un +6,03 % frente a la dirección diaria de Bitcoin, según datos de CMC",
+   "src": "CoinMarketCap",
+   "at": "2026-11-28T15:33:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE80SEozaHJYbHFmcWhBQkRXTTdvUXZhdVZ1WjFwY1ctU09Tck1pYkJxLUFSYmdTZ3hsSElFZ3dubGR6bUpuT0FxZUlWSVBid3VoQTZxbzl6Q2FkQkJnQjE3SjlDaW1fdjVlaUZPbWFjSEp0M2dH?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "CSRC, el regulador chino, aprieta las OPV tecnológicas",
+   "src": "El Ecosistema Startup",
+   "at": "2026-11-28T15:21:49.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPN1JQclRHcWpsMnF5NHFSWDZHSHd0M0dUOGtKb09ZdmdVRXBDYmZvNExUUW5ndjJ3ck5ZYU9HaUhCZjY4VTg2dmE0TTJLQmtTbW9vbFRMWldaN2gySnFrRU5Rb3ZBWjhlOEFtWVlPaVM5emotOExZMWlvV0RfNHkwT2MyeWhrQ09UN253?oc=5",
+   "cats": [
+    "ipo"
+   ]
+  },
+  {
+   "t": "Anthropic se dispara un 11% en su mejor día desde el auge de las OPV",
+   "src": "Forbes Colombia",
+   "at": "2026-11-28T14:58:36.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbmQwM05zTUVPQjRRNzhlQXV3cFJmamRyZ2wzQk9iMzBLampsUXBkQnJ3RjVpVzl5dGlBVUxpR3pSLTQ5S2w5T2x6bjhDVzJqb3N3QnVyZV9NRUxxaDlKTHNHaWwtU3RxTWl6M0tNT3FNS2xGUUtCdGhQRjhtajZZOE9rVy10ck1LYVVrTGs3UG5IRXRjOFR3LXJOM0p2cms4Q1NDN2w4SXN1UQ?oc=5",
+   "cats": [
+    "ipo",
+    "valor"
+   ]
+  },
+  {
+   "t": "HSBC identifica tres posibles catalizadores para una recuperación del S&P 500 en 2027",
+   "src": "Revista ADVFN",
+   "at": "2026-11-28T14:43:36.000Z",
+   "u": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNcm93QnIzUW9vbEV1ZnNrWkJHRnc0YkpjNDdCd2NPUDNuOUZKOHNybUJ2YkNtb1BCNzBrTWxlaGx6Y3FXYnlsY0xzdDNubE1rdE5ZR2J2NW90NjVqbDhpTFJYTjZVMXV1THhIUEFOMWNJbWNnaS1KOUI4cjFiWlQwSl8zd0RtYWEzV0ZaODdoMjZKOVZzSmlyb2xsb25mNTN2VHk5NC1Va3RSM3JZcVl4UF9hRUJUUnlqSGd5eUYtZS1vQ1R5cVY1Mjdad29iV251c2JqM1B3?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "Bitcoin apenas ofreció una prima de USD $38 en futuros durante el Black Friday",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T14:39:35.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNcDQzUzZqNm84R01TR2ZOd1A4VXhGQmtESS1KQ0hhRlRvS2t1VlEzRWNGSkVWX05DTUFUZDVfa2Z3TmFKbzBSZUpMcXJaU3hJanpBVGZ5RlU0YWlLZjZ1eGs1M01UQVdmckIxWWxScmItd1ZpemM4ZjBtM09oU1lZN3hoZHQyZXFIS2h0dUdHWnNYZFNZUTBWNWhQUW5oZ204ZEw0cGtzeWVaY0tVLVl5OTFGVWk0dXBnTHQtLXdXZHo?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "SKY sube un +10,61 % frente a la dirección diaria de Bitcoin, según datos de CMC",
+   "src": "CoinMarketCap",
+   "at": "2026-11-28T14:33:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5NLUlTeDh4WEtpS2k5ekFWckZKaTFJUkYxcEVrdDVmR2xwSTgyMVVnX1ZVVV80Q3hCeU12eHhDNlRlV2pNcHBkZkFzUzRSS3NBYlBoMklmLTNxSzJHTGZkTFdtcXRZWHJhQTgtYW9pNmVYeTNk?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "El presidente del Bundesbank prevé que el BCE podría seguir subiendo los tipos de interés.",
+   "src": "Vietnam.vn",
+   "at": "2026-11-28T14:12:02.000Z",
+   "u": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQZXJEalNHTktSX2VlQnhyblVGRVdpZzV0SEQ5cHg2NUd1cVJ5MS0zZV9SRTFSdVRJZi1yM0NBRXlTSFBEN0ZLVHpUTnhOc0lCcTA2b3lXLWN2djhPRUl5R3MyRTFPMUJrMTh0SEdwR2Y1ZnF6eUFwUGdTS05kX29fZUFiT1VsMjZKNC03aWZwcw?oc=5",
+   "cats": [
+    "europa"
+   ]
+  },
+  {
+   "t": "Explicación de la caída de Ethereum Classic por la retirada generalizada del mercado cripto",
+   "src": "CoinMarketCap",
+   "at": "2026-11-28T14:06:30.000Z",
+   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBEbHEyZHdWNGxTM0cyb1pKZVptd3ZfeHU1bXdsWldmSU1hRFcxdG5mOF93dzVXUDhEdkk3cGdEQTFkWDN3S044WXlUSDlGMXB5Z0tRYU9jdmhSY0lDb0xQb1BuV2VRUGhxYlBHS2k5QWxiY1lN?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "El informe postmortem del hackeo de 1.400 millones de dólares de Bybit está listo. No podrá verlo.",
+   "src": "CoinDesk",
+   "at": "2026-11-28T14:00:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPSG5QVEpXempBMmdjY2llS05HN0hnYXRpTU12LUJTVFhTOF9LS1JJOUpaRU5MTWNXWjhzMjBENS1UQzJnMlVwOVpKdFVMam1zanIwQnZKXzd3VkFORmdlRXByY0dhWTJWRG94Z19qZzQyUVFvYzI0bDZFSDNqaFpIYU9zX3E4SnhHajFXQnFCMTNwMDE4U0VxZ0pqZnNSMmlOcGFpZTdabU9sZ1g5RnBWNXlJS2tEQ21sRUhv?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Bitcoin cae bajo USD $60.000 y cinco lecturas del mercado amplían las señales bajistas",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T13:59:51.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPdk1tbTJaY3plUHZrdG8tOW9hUjNSRUJQNi1EWHNGTGZnUGJmMFJxMEIyS3ZDQ3RIeDE0M3FDMjZRVkFkSTBEWF9IUlhiX25vNmlQdDZEWEJkQjhQNTAyczR4T0txTkVqeG96YURKa1V2OGRyZ01obGpvVDJSc0JOeUJrejdCbmZQSTAweUgxZUthRHRZdURoeHhKTHBFQUpyY0xIYmVYdUZPS1RRWDdlbG9FX1RJTWZYSklJNXFQVklFd00?oc=5",
+   "cats": [
+    "cripto",
+    "valor"
+   ]
+  },
+  {
+   "t": "La M2 global cae 0,8% y reaviva el temor a más presión sobre Bitcoin y las acciones",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T13:41:15.000Z",
+   "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPUnZGX1VuY0lkcWZTb3hfbHFRamxiZ0dZSWdZRFZRcmtOQUtCOFRvS2pXRkJQNGtZUldoend1ZFRqZnUtRU1vRjZKTFNNUk55OWFVaGFhUFRkeXczem1FSWt1VnItdGxWWUdoVFBxR1g1M2NpcFZCbnpJQ0F5Ylk3SVhOQndwd1RJSUtWUEM1V1c2cFE2eThfSHlNYjlFcnFoSUxtd3JFX0RXNkY3UUpYTTJUU3V4Yjlkb0VXSkx3?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Precio de acciones, noticias, cotización e historial de Tempus AI, Inc. (TEM)",
+   "src": "Yahoo",
+   "at": "2026-11-28T13:37:32.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9CZXpiYTRIemw5SmN4Tkw2amxyN3ltMlpEbDg3RW1keGwydjdQY3BpZWh4TGZNSzd6R2Z6N1ZQLThCNmFKejV6YWIzb3RUel9Z?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "SEBI de India estudia una plataforma bursátil para acciones previas a OPV",
+   "src": "Investing.com España",
+   "at": "2026-11-28T13:29:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQRlhhbjdxR2pIUDdiTWthRFNwMm5XdmpGZFdOWFFsY1NoU0YxcFotWmFrX043Snh4WFU5elhacHhLTFNpT0NYZnYxWjMwejNvWGMya3JYRVQzeExDbVVwVkIwQ2FZZVNFWkV4VzNYZkRQa2FrbmtSRHpPZDFsUW1jVm1KR3o1NkMxbEdwQUNBTkxiODJBbzZBMHJ5a0pRakp0UlE5VE9wa0ZVZjM5MDlNMUk3alVLRDJxQWxiMzBhVjNqR2pVRnZDbA?oc=5",
+   "cats": [
+    "ipo"
+   ]
+  },
+  {
+   "t": "Bitcoin se acerca a una cruz de la muerte: qué muestran 13 señales anteriores",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T13:22:09.000Z",
+   "u": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQTWNlRFRVczBrNUp1T09sMVF0ZGZZNW1ETU1kdzFUOVhRNW1CRHZHRUREd2NBTGZtdWxmSDE1bWtqdXctUHhFc21IZV93blM2cEQ3WmJLMFRmRHp1LWpNOEt4TGtDaXFvVm9wQUJreDkwYUNSbDhGNzdqOGNxeDJLbzB4QmxPVGt6RWE5dXZMa2I5UW1TQnU0YWpLQkNRLU1OV2s4Wk9Eb3FGVHBtZkg5REd5dmw0UTQ?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "CryptoQuant: Bitcoin necesita que crezca la oferta de USDT para una recuperación sostenible",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T13:20:41.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQdjZ2VE5EWmlVcTQ4em5uWl9lTE9kNGY0VWdVLUtORTdOSFJRam9vS0xVaFk5Y29BR1ppMS10VGYwbXlmN1pUYUl2MnEtbDQ4ZVZhUXB4Y2MtT0NCLUM4amVMNmVtTzVPSmhidlNDcjFFOVZXRUswQUFwbHF3LVc4alFwSlNMam5XWXh3R2FWRHVwUWxGZXZSdWJobGYzcHNCVFFzTmpGaEdLR1NBSlBNcWdvVUZQdWFFSWt0Mm50N3RGZmNuQW1zbmtn?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "Vitalik Buterin pide chips inspeccionables para proteger las carteras de Bitcoin",
+   "src": "DiarioBitcoin",
+   "at": "2026-11-28T13:14:33.000Z",
+   "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxONWZHODUtQVVNTEJlSTRRLUc0aEtlUm1WQ2tlYTBIaThxUnFkbTVGbnBOY3VPVDVhbk5BQXhNXzVTR0k5VGN6U0xpOHU5ekRrQVVMQTI4NHoweTZicHFkM1I4b2pPcVd0VmV4MDBGamhzcUhKZVYxMzVDSURfa0lmVnJRamVLeVh0REprT09Sa1NxeGFtdHJ6S3VTSDdvWjhrUDE4T0JEVXpRdVozQlpHWjlBeV90eEJPcEVxV2tR?oc=5",
+   "cats": [
+    "cripto"
+   ]
+  },
+  {
+   "t": "El S&P 500 logra su mejor rally de Acción de Gracias desde 2008: ¿Qué sigue?",
+   "src": "BeInCrypto",
+   "at": "2026-11-28T13:12:00.000Z",
+   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE0zSU16dUEweWpycUY1dHJzM0JBYnhnaVVub2FnQlFtQnY0d0VBeVQ2ZTZ0RmxkcHZBcDE2bXM0QkltM1dmTEp2c3NmMUJ6ZHFQVGd4MGZDYVVCVmhnampQcjFxd05JODYtRkl4blhNa0xxZDI2?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "Mercado hoy: Wall Street estable antes del reporte de Nvidia",
+   "src": "Bitfinanzas",
+   "at": "2026-11-28T12:57:15.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBFOW1OWndvakVtakV5Z2tSeGhCRnNRUVdhUjd3RDlzUkRSa1laN01HOTBzenBETU8xOTdqekRCYkt5Sm5UWU1GeTh3Y2U5UDZlTjJFeHdCbFJUWUhfYUpPZGVXdzAwUzQ?oc=5",
+   "cats": [
+    "mercado"
+   ]
+  },
+  {
+   "t": "Precio de acciones, noticias, cotización e historial de Mapfre, S.A. (MAP.MC)",
+   "src": "Yahoo",
+   "at": "2026-11-28T12:49:11.000Z",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE41MVVtZURhLWZSV20wX1RLbG1qNGhUaWN2NXBDSnlWMW5KRnYwNDE5cWtqd1YwZk1qQTdCVWg0dEhPU1psWlg1a09QaTBMU0lBT281Ug?oc=5",
+   "cats": [
+    "europa"
+   ]
+  }
+ ],
+ "fundamentals": {
+  "NVDA": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": 15.9,
+   "ps": 9.94,
+   "pb": 19.52,
+   "revG": 93.33,
+   "epsG": 130.51,
+   "margin": 62.53,
+   "divY": 0.03,
+   "beta": 2.43,
+   "hi52": 243.37,
+   "lo52": 124.5
+  },
+  "SHEL": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": 8.21,
+   "ps": 0.84,
+   "pb": 1.35,
+   "revG": 19.41,
+   "epsG": 137.13,
+   "margin": 10.18,
+   "divY": 3.88,
+   "beta": 0.11,
+   "hi52": 4110,
+   "lo52": 2554
+  },
+  "TPG0.DE": {
+   "at": "2026-11-28T02:05:47.910Z",
+   "pe": null,
+   "ps": null,
+   "pb": null,
+   "revG": null,
+   "epsG": null,
+   "margin": null,
+   "divY": null,
+   "beta": null,
+   "hi52": null,
+   "lo52": null
+  },
+  "KLAR": {
+   "at": "2026-11-28T13:41:05.436Z",
+   "pe": null,
+   "ps": 1.22,
+   "pb": 8.13,
+   "revG": 70.79,
+   "epsG": null,
+   "margin": -2.9,
+   "divY": null,
+   "beta": 1.82,
+   "hi52": 33.1,
+   "lo52": 11.97
+  },
+  "AZN": {
+   "at": "2026-11-27T23:05:38.213Z",
+   "pe": 25.67,
+   "ps": 4.54,
+   "pb": 4.83,
+   "revG": 7.32,
+   "epsG": 17.38,
+   "margin": 17.68,
+   "divY": 2.3,
+   "beta": 1.26,
+   "hi52": 15730,
+   "lo52": 11404
+  },
+  "CVX": {
+   "at": "2026-11-28T15:05:31.290Z",
+   "pe": 15.62,
+   "ps": 1.87,
+   "pb": 2.08,
+   "revG": 20.75,
+   "epsG": 92.96,
+   "margin": 11.95,
+   "divY": 4.17,
+   "beta": 0.51,
+   "hi52": 236.48,
+   "lo52": 146.49
+  },
+  "ANT": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": null,
+   "ps": 31.02,
+   "pb": null,
+   "revG": null,
+   "epsG": null,
+   "margin": -342.66,
+   "divY": null,
+   "beta": null,
+   "hi52": 115.1,
+   "lo52": 73.85
+  },
+  "MSFT": {
+   "at": "2026-11-28T15:05:31.290Z",
+   "pe": 25.51,
+   "ps": 10.5,
+   "pb": 8.09,
+   "revG": 17.91,
+   "epsG": 36.24,
+   "margin": 41.17,
+   "divY": 0.79,
+   "beta": 1.07,
+   "hi52": 559.15,
+   "lo52": 349.2
+  },
+  "AMD": {
+   "at": "2026-11-28T09:20:41.801Z",
+   "pe": 91.39,
+   "ps": 15.32,
+   "pb": 14.51,
+   "revG": 41.87,
+   "epsG": 127.4,
+   "margin": 16.77,
+   "divY": null,
+   "beta": 2.67,
+   "hi52": 658.52,
+   "lo52": 188.22
+  },
+  "CRWD": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": 3829.04,
+   "ps": 41.48,
+   "pb": 38.1,
+   "revG": 24.3,
+   "epsG": null,
+   "margin": 1.08,
+   "divY": null,
+   "beta": 1.26,
+   "hi52": 286.99,
+   "lo52": 85.68
+  },
+  "SND.DE": {
+   "at": "2026-11-28T13:17:04.108Z",
+   "pe": null,
+   "ps": null,
+   "pb": null,
+   "revG": null,
+   "epsG": null,
+   "margin": null,
+   "divY": null,
+   "beta": null,
+   "hi52": null,
+   "lo52": null
+  },
+  "TXN": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": 32.93,
+   "ps": 11.28,
+   "pb": 13.33,
+   "revG": 20.27,
+   "epsG": 40.7,
+   "margin": 34.25,
+   "divY": 3.39,
+   "beta": 1.44,
+   "hi52": 334.03,
+   "lo52": 158.69
+  },
+  "OPEN": {
+   "at": "2026-11-28T02:05:47.910Z",
+   "pe": null,
+   "ps": 0.35,
+   "pb": 3.89,
+   "revG": -28.78,
+   "epsG": null,
+   "margin": -49.06,
+   "divY": null,
+   "beta": 3.97,
+   "hi52": 8.26,
+   "lo52": 1.09
+  },
+  "PANW": {
+   "at": "2026-11-28T02:05:47.910Z",
+   "pe": 642.62,
+   "ps": 23.48,
+   "pb": 10.04,
+   "revG": 30.29,
+   "epsG": -61.08,
+   "margin": 3.65,
+   "divY": null,
+   "beta": 0.99,
+   "hi52": 432.33,
+   "lo52": 139.57
+  },
+  "ANET": {
+   "at": "2026-11-28T02:05:47.910Z",
+   "pe": 43.6,
+   "ps": 17.43,
+   "pb": 15.61,
+   "revG": 40.74,
+   "epsG": 41.7,
+   "margin": 39.97,
+   "divY": null,
+   "beta": 1.6,
+   "hi52": 217.41,
+   "lo52": 115.42
+  },
+  "META": {
+   "at": "2026-11-28T13:41:05.436Z",
+   "pe": 20.72,
+   "ps": 6.45,
+   "pb": 6.78,
+   "revG": 27.53,
+   "epsG": 29.84,
+   "margin": 31.15,
+   "divY": null,
+   "beta": 1.26,
+   "hi52": 779.82,
+   "lo52": 520.26
+  },
+  "LLY": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": 47.49,
+   "ps": 15.15,
+   "pb": 27.05,
+   "revG": 45.51,
+   "epsG": 50.65,
+   "margin": 31.9,
+   "divY": 0.75,
+   "beta": 0.38,
+   "hi52": 1475.25,
+   "lo52": 850.51
+  },
+  "XOM": {
+   "at": "2026-11-27T23:50:46.094Z",
+   "pe": 16.07,
+   "ps": 1.68,
+   "pb": 2.52,
+   "revG": 19.48,
+   "epsG": 41.35,
+   "margin": 10.46,
+   "divY": 2.52,
+   "beta": 0.24,
+   "hi52": 188.5,
+   "lo52": 114.19
+  },
+  "ABBV": {
+   "at": "2026-11-28T03:20:42.095Z",
+   "pe": 50.33,
+   "ps": 7.89,
+   "pb": 261.01,
+   "revG": 10.68,
+   "epsG": 332.88,
+   "margin": 15.67,
+   "divY": 4.47,
+   "beta": 0.14,
+   "hi52": 302.98,
+   "lo52": 190.75
+  },
+  "DIS": {
+   "at": "2026-11-27T23:20:40.044Z",
+   "pe": 21.67,
+   "ps": 2.1,
+   "pb": 1.6,
+   "revG": 8.39,
+   "epsG": -17.8,
+   "margin": 9.67,
+   "divY": null,
+   "beta": 1.33,
+   "hi52": 126.28,
+   "lo52": 92.19
+  },
+  "NET": {
+   "at": "2026-11-27T22:20:40.969Z",
+   "pe": null,
+   "ps": 40.13,
+   "pb": 53.74,
+   "revG": 33.53,
+   "epsG": null,
+   "margin": -8.21,
+   "divY": null,
+   "beta": 1.46,
+   "hi52": 370.35,
+   "lo52": 158.83
+  },
+  "COST": {
+   "at": "2026-11-28T05:20:47.504Z",
+   "pe": 52.2,
+   "ps": 1.59,
+   "pb": 11.69,
+   "revG": 10.14,
+   "epsG": 14.01,
+   "margin": 3.04,
+   "divY": 0.69,
+   "beta": 0.8,
+   "hi52": 1123.67,
+   "lo52": 844.06
+  },
+  "WMT": {
+   "at": "2026-11-27T23:50:46.094Z",
+   "pe": 49.88,
+   "ps": 1.4,
+   "pb": 10.11,
+   "revG": 5.99,
+   "epsG": -8.27,
+   "margin": 2.8,
+   "divY": 0.76,
+   "beta": 0.49,
+   "hi52": 135.16,
+   "lo52": 102.15
+  },
+  "INTR": {
+   "at": "2026-11-28T08:20:43.666Z",
+   "pe": 7.18,
+   "ps": null,
+   "pb": 1.21,
+   "revG": null,
+   "epsG": 32.11,
+   "margin": null,
+   "divY": null,
+   "beta": 1.02,
+   "hi52": 10.36,
+   "lo52": 3.58
+  },
+  "BBD": {
+   "at": "2026-11-28T13:35:33.895Z",
+   "pe": 6.76,
+   "ps": 1.03,
+   "pb": 1.02,
+   "revG": 54.66,
+   "epsG": 12.54,
+   "margin": 15.4,
+   "divY": 5.63,
+   "beta": 1.5,
+   "hi52": 23,
+   "lo52": 13.44
+  },
+  "AAOI": {
+   "at": "2026-11-28T14:35:43.691Z",
+   "pe": null,
+   "ps": 4.5,
+   "pb": 3.76,
+   "revG": 77.19,
+   "epsG": null,
+   "margin": -4.39,
+   "divY": null,
+   "beta": 4.27,
+   "hi52": 233.67,
+   "lo52": 21.4
+  },
+  "AXTI": {
+   "at": "2026-11-28T14:35:43.691Z",
+   "pe": 72.28,
+   "ps": 13.4,
+   "pb": 5.56,
+   "revG": 89.14,
+   "epsG": null,
+   "margin": 18.53,
+   "divY": null,
+   "beta": 2.21,
+   "hi52": 143.16,
+   "lo52": 8.87
+  },
+  "STLA": {
+   "at": "2026-11-28T10:20:44.811Z",
+   "pe": null,
+   "ps": 0.07,
+   "pb": 0.24,
+   "revG": 36.18,
+   "epsG": null,
+   "margin": -9.59,
+   "divY": 7.15,
+   "beta": 1.13,
+   "hi52": 10.49,
+   "lo52": 3.09
+  },
+  "HL": {
+   "at": "2026-11-28T10:35:34.838Z",
+   "pe": 20.83,
+   "ps": 5.02,
+   "pb": 4.05,
+   "revG": 29.7,
+   "epsG": 85.92,
+   "margin": 24.11,
+   "divY": 0.52,
+   "beta": 1.53,
+   "hi52": 34.17,
+   "lo52": 10.24
+  }
+ }
+}
